@@ -1,8 +1,8 @@
 {
-  "name": "@minimal-kit/starter-vite-ts",
-  "author": "Minimals",
-  "version": "6.1.0",
-  "description": "Vite Starter & TypeScript",
+  "name": "fanki-portal-aliados",
+  "author": "Crafters404",
+  "version": "1.0.0",
+  "description": "Vite & TypeScript",
   "private": true,
   "type": "module",
   "scripts": {
