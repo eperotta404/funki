@@ -20,10 +20,10 @@ import { NavVertical } from './nav-vertical';
 import { NavHorizontal } from './nav-horizontal';
 import { _account } from '../config-nav-account';
 import { Searchbar } from '../components/searchbar';
-import { _workspaces } from '../config-nav-workspace';
 import { MenuButton } from '../components/menu-button';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
+import { _organization } from '../config-nav-workspace';
 import { StyledDivider, useNavColorVars } from './styles';
 import { AccountDrawer } from '../components/account-drawer';
 import { SettingsButton } from '../components/settings-button';
@@ -141,7 +141,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
                 )}
                 {/* -- Workspace popover -- */}
                 <WorkspacesPopover
-                  data={_workspaces}
+                  data={_organization}
                   sx={{ color: 'var(--layout-nav-text-primary-color)' }}
                 />
               </>
