@@ -10,17 +10,13 @@ import { BlankView } from 'src/sections/blank/view';
 
 // ----------------------------------------------------------------------
 
-const metadata = { title: `Page one | Dashboard - ${CONFIG.appName}` };
+const metadata = { title: `Inicio | Dashboard - ${CONFIG.appName}` };
 
 export default function Page() {
-  const { user, loading, error } = useGetUser('1');
+  const { user, loading } = useGetUser('1');
 
   if (loading) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
   }
 
   const renderAvatar = (
@@ -43,7 +39,7 @@ export default function Page() {
       <Helmet>
         <title> {metadata.title}</title>
       </Helmet>
-      <BlankView title="Page one">{renderAvatar}</BlankView>
+      <BlankView title="Inicio">{renderAvatar}</BlankView>
     </>
   );
 }
