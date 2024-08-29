@@ -6,6 +6,8 @@ import { CONFIG } from 'src/config-global';
 
 import { NetworkError } from './NetworkError';
 import { HttpJsonError } from './HttpJsonError';
+import { NotAuthorizedError } from './NotAuthorizedError';
+import { InternalServerError } from './InternalServerError';
 
 export class HttpClient {
   private http: AxiosInstance;
@@ -45,10 +47,13 @@ export class HttpClient {
       throw new NetworkError('Network Errot');
     }
     if (e.response.status === 500) {
-      throw new HttpJsonError();
+      throw new InternalServerError('Internal Server Error');
     }
     if (e.response.status === 400) {
-      throw new NetworkError('Network Errot');
+      throw new NetworkError('Network Error');
+    }
+    if (e.response.status === 401) {
+      throw new NotAuthorizedError('Not Authorized Error');
     }
     throw new HttpJsonError(e.response.status, e.response.data);
   }

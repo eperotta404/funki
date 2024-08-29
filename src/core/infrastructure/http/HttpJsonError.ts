@@ -4,7 +4,7 @@ export class HttpJsonError extends Error {
   public data: any;
 
   constructor(statusCode: number = 500, data: any = null) {
-    super(`HTTP Error ${statusCode}: ${data?.message || 'Error desconocido'}`);
+    super(`HTTP Error ${statusCode}: ${data?.message || 'Unknown Error'}`);
     this.statusCode = statusCode;
     this.data = data;
     this.name = 'HttpJsonError';
