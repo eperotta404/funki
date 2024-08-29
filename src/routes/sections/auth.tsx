@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { AuthSplitLayout } from 'src/layouts/auth-split';
+import { AuthSplitLayout } from 'src/layouts/auth-split/layout';
 
 import { SplashScreen } from 'src/components/loading-screen';
 
@@ -24,7 +24,7 @@ const authJwt = {
       path: 'sign-in',
       element: (
         <GuestGuard>
-          <AuthSplitLayout section={{ title: 'Hi, Welcome back' }}>
+          <AuthSplitLayout>
             <Jwt.SignInPage />
           </AuthSplitLayout>
         </GuestGuard>
