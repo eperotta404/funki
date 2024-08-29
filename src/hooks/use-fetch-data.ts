@@ -13,21 +13,21 @@ export const useFetchData = <T>(
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const fetchedData = await useCase.execute(...args);
         setData(fetchedData);
       } catch (err) {
-        setError('Error fetching data');
+        setError(err.message);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [args, useCase]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return { data, loading, error };
 };

@@ -23,7 +23,7 @@ export default function Page() {
   }
 
   if (error) {
-    return <div>error</div>;
+    return <div>{error}</div>;
   }
 
   const renderAvatar = (
