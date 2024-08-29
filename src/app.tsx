@@ -14,6 +14,8 @@ import { SettingsDrawer, defaultSettings, SettingsProvider } from 'src/component
 
 import { AuthProvider } from 'src/auth/context/jwt';
 
+import { OrganizationProvider } from './layouts/components/organization-popover/context/organization-selector-provider';
+
 // ----------------------------------------------------------------------
 
 export default function App() {
@@ -25,8 +27,10 @@ export default function App() {
         <ThemeProvider>
           <MotionLazy>
             <ProgressBar />
-            <SettingsDrawer />
-            <Router />
+            <OrganizationProvider>
+              <SettingsDrawer />
+              <Router />
+            </OrganizationProvider>
           </MotionLazy>
         </ThemeProvider>
       </SettingsProvider>

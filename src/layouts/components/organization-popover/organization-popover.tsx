@@ -11,9 +11,11 @@ import ButtonBase from '@mui/material/ButtonBase';
 import { Iconify } from 'src/components/iconify';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
 
+import { useOrganization } from './context/organization-selector-context';
+
 // ----------------------------------------------------------------------
 
-export type WorkspacesPopoverProps = ButtonBaseProps & {
+export type OrganizationPopoverProps = ButtonBaseProps & {
   data?: {
     id: string;
     name: string;
@@ -21,19 +23,21 @@ export type WorkspacesPopoverProps = ButtonBaseProps & {
   }[];
 };
 
-export function WorkspacesPopover({ data = [], sx, ...other }: WorkspacesPopoverProps) {
+export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPopoverProps) {
   const popover = usePopover();
+  const { setSelectedOrganization } = useOrganization();
 
   const mediaQuery = 'sm';
 
-  const [workspace, setWorkspace] = useState(data[0]);
+  const [organization, setOrganization] = useState(data[0]);
 
-  const handleChangeWorkspace = useCallback(
+  const handleChangeOrganization = useCallback(
     (newValue: (typeof data)[0]) => {
-      setWorkspace(newValue);
+      setOrganization(newValue);
+      setSelectedOrganization(newValue);
       popover.onClose();
     },
-    [popover]
+    [popover, setSelectedOrganization]
   );
 
   return (
@@ -50,8 +54,8 @@ export function WorkspacesPopover({ data = [], sx, ...other }: WorkspacesPopover
       >
         <Box
           component="img"
-          alt={workspace?.name}
-          src={workspace?.logo}
+          alt={organization?.name}
+          src={organization?.logo}
           sx={{ width: 24, height: 24, borderRadius: '50%' }}
         />
 
@@ -62,7 +66,7 @@ export function WorkspacesPopover({ data = [], sx, ...other }: WorkspacesPopover
             display: { xs: 'none', [mediaQuery]: 'inline-flex' },
           }}
         >
-          {workspace?.name}
+          {organization?.name}
         </Box>
 
         <Iconify width={16} icon="carbon:chevron-sort" sx={{ color: 'text.disabled' }} />
@@ -78,8 +82,8 @@ export function WorkspacesPopover({ data = [], sx, ...other }: WorkspacesPopover
           {data.map((option) => (
             <MenuItem
               key={option.id}
-              selected={option.id === workspace?.id}
-              onClick={() => handleChangeWorkspace(option)}
+              selected={option.id === organization?.id}
+              onClick={() => handleChangeOrganization(option)}
               sx={{ height: 48 }}
             >
               <Avatar alt={option.name} src={option.logo} sx={{ width: 24, height: 24 }} />

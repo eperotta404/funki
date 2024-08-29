@@ -29,9 +29,9 @@ import { AccountDrawer } from '../components/account-drawer';
 import { SettingsButton } from '../components/settings-button';
 import { LanguagePopover } from '../components/language-popover';
 import { ContactsPopover } from '../components/contacts-popover';
-import { WorkspacesPopover } from '../components/workspaces-popover';
 import { navData as dashboardNavData } from '../config-nav-dashboard';
 import { NotificationsDrawer } from '../components/notifications-drawer';
+import { OrganizationPopover } from '../components/organization-popover/organization-popover';
 
 // ----------------------------------------------------------------------
 
@@ -139,8 +139,8 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
                     sx={{ [theme.breakpoints.up(layoutQuery)]: { display: 'flex' } }}
                   />
                 )}
-                {/* -- Workspace popover -- */}
-                <WorkspacesPopover
+                {/* -- Organization popover -- */}
+                <OrganizationPopover
                   data={_organization}
                   sx={{ color: 'var(--layout-nav-text-primary-color)' }}
                 />
