@@ -8,7 +8,7 @@ import { iconButtonClasses } from '@mui/material/IconButton';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
-import { _contacts, _notifications } from 'src/_mock';
+import { _contacts } from 'src/_mock';
 
 import { Logo } from 'src/components/logo';
 import { useSettingsContext } from 'src/components/settings';
@@ -29,7 +29,6 @@ import { SettingsButton } from '../components/settings-button';
 import { LanguagePopover } from '../components/language-popover';
 import { ContactsPopover } from '../components/contacts-popover';
 import { navData as dashboardNavData } from '../config-nav-dashboard';
-import { NotificationsDrawer } from '../components/notifications-drawer';
 import { OrganizationPopover } from '../components/organization-popover/organization-popover';
 
 // ----------------------------------------------------------------------
@@ -157,8 +156,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
                     { value: 'ar', label: 'Arabic', countryCode: 'SA' },
                   ]}
                 />
-                {/* -- Notifications popover -- */}
-                <NotificationsDrawer data={_notifications} />
+
                 {/* -- Contacts popover -- */}
                 <ContactsPopover data={_contacts} />
                 {/* -- Settings button -- */}
