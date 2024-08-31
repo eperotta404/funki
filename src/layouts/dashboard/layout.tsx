@@ -23,7 +23,6 @@ import { HeaderSection } from '../core/header-section';
 import { _organization } from '../config-nav-workspace';
 import { StyledDivider, useNavColorVars } from './styles';
 import { AccountDrawer } from '../components/account-drawer';
-import { SettingsButton } from '../components/settings-button';
 import { LanguagePopover } from '../components/language-popover';
 import { navData as dashboardNavData } from '../config-nav-dashboard';
 import { OrganizationPopover } from '../components/organization-popover/organization-popover';
@@ -146,16 +145,10 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
                 {/* -- Language popover -- */}
                 <LanguagePopover
                   data={[
-                    { value: 'en', label: 'English', countryCode: 'GB' },
-                    { value: 'fr', label: 'French', countryCode: 'FR' },
-                    { value: 'vi', label: 'Vietnamese', countryCode: 'VN' },
-                    { value: 'cn', label: 'Chinese', countryCode: 'CN' },
-                    { value: 'ar', label: 'Arabic', countryCode: 'SA' },
+                    { value: 'es', label: 'Español', countryCode: 'ES' },
                   ]}
                 />
 
-                {/* -- Settings button -- */}
-                <SettingsButton />
                 {/* -- Account drawer -- */}
                 <AccountDrawer data={_account} />
               </Box>

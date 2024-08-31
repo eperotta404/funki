@@ -43,7 +43,6 @@ export function LanguagePopover({ data = [], sx, ...other }: LanguagePopoverProp
         whileTap="tap"
         whileHover="hover"
         variants={varHover(1.05)}
-        onClick={popover.onOpen}
         sx={{
           p: 0,
           width: 40,
