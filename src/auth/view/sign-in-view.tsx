@@ -18,8 +18,8 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { Iconify } from 'src/components/iconify';
 import { Form, Field } from 'src/components/hook-form';
 
-import { useAuthContext } from '../../hooks';
-import { signInWithPassword } from '../../context/jwt';
+import { useAuthContext } from '../hooks';
+import { signInWithPassword } from '../context';
 
 // ----------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ export const SignInSchema = zod.object({
 
 // ----------------------------------------------------------------------
 
-export function JwtSignInView() {
+export function SignInView() {
   const router = useRouter();
 
   const { checkUserSession } = useAuthContext();

@@ -9,22 +9,18 @@ import { GuestGuard } from 'src/auth/guard';
 
 // ----------------------------------------------------------------------
 
-/** **************************************
- * Jwt
- *************************************** */
-const Jwt = {
-  SignInPage: lazy(() => import('src/pages/auth/jwt/sign-in')),
+const Auth = {
+  SignInPage: lazy(() => import('src/pages/auth/sign-in')),
 };
 
-const authJwt = {
-  path: 'jwt',
+const auth = {
   children: [
     {
       path: 'sign-in',
       element: (
         <GuestGuard>
           <AuthSplitLayout>
-            <Jwt.SignInPage />
+            <Auth.SignInPage />
           </AuthSplitLayout>
         </GuestGuard>
       ),
@@ -42,6 +38,6 @@ export const authRoutes = [
         <Outlet />
       </Suspense>
     ),
-    children: [authJwt],
+    children: [auth],
   },
 ];

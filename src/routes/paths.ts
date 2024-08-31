@@ -10,10 +10,8 @@ const ROOTS = {
 export const paths = {
   minimalStore: 'https://mui.com/store/items/minimal-dashboard/',
   // AUTH
-  auth: {
-    jwt: {
-      signIn: `${ROOTS.AUTH}/jwt/sign-in`,
-    },
+  auth:{
+    signIn: `${ROOTS.AUTH}/sign-in`,
   },
   // DASHBOARD
   dashboard: {
