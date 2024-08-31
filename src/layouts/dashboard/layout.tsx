@@ -8,8 +8,6 @@ import { iconButtonClasses } from '@mui/material/IconButton';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
-import { _contacts } from 'src/_mock';
-
 import { Logo } from 'src/components/logo';
 import { useSettingsContext } from 'src/components/settings';
 
@@ -27,7 +25,6 @@ import { StyledDivider, useNavColorVars } from './styles';
 import { AccountDrawer } from '../components/account-drawer';
 import { SettingsButton } from '../components/settings-button';
 import { LanguagePopover } from '../components/language-popover';
-import { ContactsPopover } from '../components/contacts-popover';
 import { navData as dashboardNavData } from '../config-nav-dashboard';
 import { OrganizationPopover } from '../components/organization-popover/organization-popover';
 
@@ -157,8 +154,6 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
                   ]}
                 />
 
-                {/* -- Contacts popover -- */}
-                <ContactsPopover data={_contacts} />
                 {/* -- Settings button -- */}
                 <SettingsButton />
                 {/* -- Account drawer -- */}
