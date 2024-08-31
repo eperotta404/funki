@@ -69,8 +69,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
           slotProps={{
             toolbar: {
               sx: {
-                backgroundColor: '#0f333f',
-                color: 'white',
+
                 ...(isNavHorizontal && {
                   bgcolor: 'var(--layout-nav-bg)',
                   [`& .${iconButtonClasses.root}`]: {

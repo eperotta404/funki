@@ -79,7 +79,7 @@ export function HeaderSection({
       },
     },
     offset: {
-      ...bgBlur({ color: varAlpha(theme.vars.palette.background.defaultChannel, 0.8) }),
+      ...bgBlur({ color: varAlpha(theme.vars.palette.background.default, 0.8) }),
     },
   };
 
@@ -89,6 +89,7 @@ export function HeaderSection({
       className={layoutClasses.header}
       sx={{
         zIndex: 'var(--layout-header-zIndex)',
+        backgroundColor:"var(--layout-header)",
         ...sx,
       }}
       {...other}

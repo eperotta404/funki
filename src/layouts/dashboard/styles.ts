@@ -57,6 +57,7 @@ export function useNavColorVars(
             '--layout-nav-text-primary-color': palette.text.primary,
             '--layout-nav-text-secondary-color': palette.text.secondary,
             '--layout-nav-text-disabled-color': palette.text.disabled,
+            "--layout-header":palette.grey[900],
             [stylesMode.dark]: {
               '--layout-nav-border-color': varAlpha(palette.grey['500Channel'], 0.08),
               '--layout-nav-horizontal-bg': varAlpha(palette.background.defaultChannel, 0.96),
