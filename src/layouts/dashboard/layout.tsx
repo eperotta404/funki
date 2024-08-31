@@ -69,6 +69,8 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
           slotProps={{
             toolbar: {
               sx: {
+                backgroundColor: '#0f333f',
+                color: 'white',
                 ...(isNavHorizontal && {
                   bgcolor: 'var(--layout-nav-bg)',
                   [`& .${iconButtonClasses.root}`]: {
@@ -143,11 +145,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
             rightArea: (
               <Box display="flex" alignItems="center" gap={{ xs: 0, sm: 0.75 }}>
                 {/* -- Language popover -- */}
-                <LanguagePopover
-                  data={[
-                    { value: 'es', label: 'Español', countryCode: 'ES' },
-                  ]}
-                />
+                <LanguagePopover data={[{ value: 'es', label: 'Español', countryCode: 'ES' }]} />
 
                 {/* -- Account drawer -- */}
                 <AccountDrawer data={_account} />

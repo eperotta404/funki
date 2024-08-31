@@ -46,8 +46,11 @@ export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPop
         disableRipple
         onClick={popover.onOpen}
         sx={{
-          py: 0.5,
+          py: 1,
+          px: 2,
           gap: { xs: 0.5, [mediaQuery]: 1 },
+          backgroundColor: 'white',
+          borderRadius: 1,
           ...sx,
         }}
         {...other}
