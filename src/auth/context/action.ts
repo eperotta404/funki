@@ -9,13 +9,6 @@ export type SignInParams = {
   password: string;
 };
 
-export type SignUpParams = {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-};
-
 /** **************************************
  * Sign in
  *************************************** */
@@ -30,7 +23,8 @@ export const signInWithPassword = async ({ email, password }: SignInParams): Pro
     if (!accessToken) {
       throw new Error('Access token not found in response');
     }
-
+    // eslint-disable-next-line no-debugger
+    debugger;
     setSession(accessToken);
   } catch (error) {
     console.error('Error during sign in:', error);
