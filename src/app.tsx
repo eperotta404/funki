@@ -2,6 +2,8 @@ import 'src/global.css';
 
 // ----------------------------------------------------------------------
 
+import { I18nextProvider } from 'react-i18next';
+
 import { Router } from 'src/routes/sections';
 
 import { useScrollToTop } from 'src/hooks/use-scroll-to-top';
@@ -14,6 +16,7 @@ import { SettingsDrawer, defaultSettings, SettingsProvider } from 'src/component
 
 import { AuthProvider } from 'src/auth/context/jwt';
 
+import i18n from './i18n';
 import { OrganizationProvider } from './layouts/components/organization-popover/context/organization-selector-provider';
 
 // ----------------------------------------------------------------------
@@ -27,10 +30,13 @@ export default function App() {
         <ThemeProvider>
           <MotionLazy>
             <ProgressBar />
-            <OrganizationProvider>
-              <SettingsDrawer />
-              <Router />
-            </OrganizationProvider>
+            <I18nextProvider i18n={i18n}>
+              <OrganizationProvider>
+                <SettingsDrawer />
+
+                <Router />
+              </OrganizationProvider>
+            </I18nextProvider>
           </MotionLazy>
         </ThemeProvider>
       </SettingsProvider>

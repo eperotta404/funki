@@ -1,0 +1,18 @@
+{
+  "page" : {
+    "events": "Eventos"
+  },
+  "buttons" : {
+    "download": "Download"
+  },
+  "detailEvent": {
+    "team": "Equipo",
+    "rival": "Rival",
+    "league": "Liga",
+    "season": "Temporada",
+    "match": "Partido",
+    "date": "Fecha",
+    "time": "Hora",
+    "stadium": "Estadio"
+  }
+}

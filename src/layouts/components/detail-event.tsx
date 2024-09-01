@@ -1,4 +1,6 @@
-import { Box, Button, Card, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
+import { Box, Card, Button, Typography } from '@mui/material';
 
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
@@ -27,6 +29,7 @@ const DETAIL = [
 const status = 'Jugando';
 
 export default function DetailEvent() {
+  const { t } = useTranslation();
   const handleDownload = () => {
     console.log('download...');
   };
@@ -43,7 +46,7 @@ export default function DetailEvent() {
           size="small"
           color="primary"
         >
-          Download
+          <strong>{t('buttons.download')} </strong>
         </Button>
       </Box>
       <Box
@@ -54,47 +57,47 @@ export default function DetailEvent() {
       >
         <Card sx={{ textAlign: 'center', px: 5, py: 2 }}>
           <Iconify icon={DETAIL[0].icon} width={32} sx={{ color: 'primary.main' }} />
-          <Typography variant="body2" sx={{ mb: 1, mt: 2 }}>
+          <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary' }}>
             <strong>{DETAIL[0].line1}</strong>
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            <strong>Equipo: </strong>
+            <strong>{t('detailEvent.team')}: </strong>
             {DETAIL[0].line2}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            <strong>Rival: </strong>
+            <strong>{t('detailEvent.rival')}: </strong>
             {DETAIL[0].line3}
           </Typography>
         </Card>
 
         <Card sx={{ textAlign: 'center', px: 5, py: 2 }}>
           <Iconify icon={DETAIL[1].icon} width={32} sx={{ color: 'primary.main' }} />
-          <Typography variant="body2" sx={{ mb: 1, mt: 2 }}>
-            <strong>Liga: </strong>
+          <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary' }}>
+            <strong>{t('detailEvent.league')}: </strong>
             {DETAIL[1].line1}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            <strong>Temporada: </strong>
+            <strong>{t('detailEvent.season')}: </strong>
             {DETAIL[1].line2}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            <strong>Partido: </strong>
+            <strong>{t('detailEvent.match')}: </strong>
             {DETAIL[1].line3}
           </Typography>
         </Card>
 
         <Card sx={{ textAlign: 'center', px: 5, py: 2 }}>
           <Iconify icon={DETAIL[2].icon} width={32} sx={{ color: 'primary.main' }} />
-          <Typography variant="body2" sx={{ mb: 1, mt: 2 }}>
-            <strong>Fecha: </strong>
+          <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary' }}>
+          <strong>{t('detailEvent.date')}: </strong>
             {DETAIL[2].line1}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            <strong>Hora: </strong>
+          <strong>{t('detailEvent.time')}: </strong>
             {DETAIL[2].line2}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            <strong>Estadio: </strong>
+          <strong>{t('detailEvent.stadium')}: </strong>
             {DETAIL[2].line3}
           </Typography>
         </Card>
