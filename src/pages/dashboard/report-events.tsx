@@ -1,6 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 
+import { Grid } from '@mui/material';
+
 import { CONFIG } from 'src/config-global';
+import { DashboardContent } from 'src/layouts/dashboard';
+import DetailEvent from 'src/layouts/components/detail-event';
 import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
 
 import { BlankView } from 'src/sections/blank/view';
@@ -12,18 +16,21 @@ const metadata = { title: `Eventos| Dashboard - ${CONFIG.appName}` };
 export default function Page() {
   const { selectedOrganization } = useOrganization();
   const renderSelectedOde = (
-    <div>
-      <h1>Organization seleccionada</h1>
+    <>
+
       {selectedOrganization ? (
-        <div>
-          <p>ID: {selectedOrganization.id}</p>
-          <p>Nombre: {selectedOrganization.name}</p>
-          <img src={selectedOrganization.logo} alt={selectedOrganization.name} />
-        </div>
+         <DashboardContent maxWidth="xl">
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <DetailEvent/>
+          </Grid> 
+        </Grid>
+        </DashboardContent>
       ) : (
-        <p>no seleccionada</p>
+    
+        <p>No seleccionada</p>
       )}
-    </div>
+    </>
   );
 
   return (
