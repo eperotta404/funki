@@ -49,6 +49,7 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'react/no-array-index-key': 0,
     'react/require-default-props': 0,
+    'react-hooks/exhaustive-deps': 0,
     'react/jsx-props-no-spreading': 0,
     'react/function-component-definition': 0,
     'react/jsx-no-duplicate-props': [1, { ignoreCase: false }],
