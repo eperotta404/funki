@@ -21,24 +21,24 @@ export type LogoProps = BoxProps & {
 
 export const Logo = forwardRef<HTMLDivElement, LogoProps>(
   (
-    { width, href = '/', height, isSingle = true, disableLink = false, className, sx, ...other },
+    { width, href = '/', height, isSingle = false, disableLink = false, className, sx, ...other },
     ref
   ) => {
-    const horizontalLogo = (
+    const singleLogo = (
       <Box
         alt="Single logo"
         component="img"
-        src={`${CONFIG.assetsDir}/logo/logo-horizonal.svg`}
+        src={`${CONFIG.assetsDir}/logo/logo-single.svg`}
         width="100%"
         height="100%"
       />
     );
 
-    const verticalLogo = (
+    const fullLogo = (
       <Box
         alt="Full logo"
         component="img"
-        src={`${CONFIG.assetsDir}/logo/logo-vertical.svg`}
+        src={`${CONFIG.assetsDir}/logo/logo-full.svg`}
         width="100%"
         height="100%"
       />
@@ -70,7 +70,7 @@ export const Logo = forwardRef<HTMLDivElement, LogoProps>(
         }}
         {...other}
       >
-        {isSingle ? horizontalLogo : verticalLogo}
+        {isSingle ? singleLogo : fullLogo}
       </Box>
     );
   }
