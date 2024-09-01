@@ -1,6 +1,6 @@
 import type { ButtonBaseProps } from '@mui/material/ButtonBase';
 
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -39,6 +39,13 @@ export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPop
     },
     [popover, setSelectedOrganization]
   );
+
+  useEffect(() => {
+    if (data.length > 0) {
+      setOrganization(data[0]);
+      setSelectedOrganization(data[0]);
+    }
+  }, [data, setSelectedOrganization]);
 
   return (
     <>
