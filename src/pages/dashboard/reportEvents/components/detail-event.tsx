@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Box, Card, Button, useTheme, Typography } from '@mui/material';
+import { Box,  Button, useTheme } from '@mui/material';
 
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
@@ -66,6 +66,7 @@ export default function DetailEvent() {
           line3={`<strong>${t('detailEvent.rival')}: </strong>${DETAIL[0].line3}`}
           color1={theme.vars.palette.secondary.lightChannel}
           color2={theme.vars.palette.info.lightChannel}
+          colorSvg='grey.main'
         />
 
         <CardDetailEvent
@@ -75,6 +76,7 @@ export default function DetailEvent() {
           line3={`<strong>${t('detailEvent.match')}: </strong>${DETAIL[1].line3}`}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.primary.lightChannel}
+          colorSvg='primary.main'
         />
 
         <CardDetailEvent
@@ -84,6 +86,7 @@ export default function DetailEvent() {
           line3={`<strong>${t('detailEvent.stadium')}: </strong>${DETAIL[2].line3}`}
           color1={theme.vars.palette.info.lightChannel}
           color2={theme.vars.palette.error.lightChannel}
+          colorSvg='error.main'
         />
 
       </Box>

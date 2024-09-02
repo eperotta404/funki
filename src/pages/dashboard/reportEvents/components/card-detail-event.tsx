@@ -1,4 +1,3 @@
-import type { ColorType } from 'src/theme/core';
 
 import { Card, Typography } from '@mui/material';
 
@@ -15,10 +14,11 @@ interface CardDetailEventProps {
   line3: string;
   color1: string;
   color2: string;
+  colorSvg:string;
 }
 
 export default function CardDetailEvent(props: CardDetailEventProps) {
-  const { icon, line1, line2, line3, color1, color2 } = props;
+  const { icon, line1, line2, line3, color1, color2, colorSvg } = props;
   return (
     <Card
       sx={{
@@ -42,7 +42,7 @@ export default function CardDetailEvent(props: CardDetailEventProps) {
           height: 240,
           zIndex: -1,
           opacity: 0.24,
-          color: 'secondary.main',
+          color: colorSvg,
         }}
       />
       <Iconify icon={icon} width={32} sx={{ color: 'primary.main' }} />
