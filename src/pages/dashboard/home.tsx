@@ -1,20 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 
-import { useFetchData } from 'src/hooks/use-fetch-data';
-
 import { CONFIG } from 'src/config-global';
-import { GetUser } from 'src/core/domain/useCases/GetUser';
-import { userService } from 'src/core/infrastructure/instances';
 import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
-
-import { AnimateAvatar } from 'src/components/animate';
 
 import { BlankView } from 'src/sections/blank/view';
 
 // ----------------------------------------------------------------------
 
 const metadata = { title: `Inicio | Dashboard - ${CONFIG.appName}` };
-const getUserUseCase = new GetUser(userService);
 
 export default function Page() {
   const { selectedOrganization } = useOrganization();
