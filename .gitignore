@@ -36,3 +36,7 @@ build
 .eslintcache
 .unimportedrc.json
 tsconfig.tsbuildinfo
+
+# lock
+yarn.lock
+package-lock.json
