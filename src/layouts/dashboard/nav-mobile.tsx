@@ -1,5 +1,3 @@
-import { NavSectionVertical, type NavSectionProps } from 'src/components/nav-section';
-
 import { useEffect } from 'react';
 
 import Box from '@mui/material/Box';
@@ -9,6 +7,7 @@ import { usePathname } from 'src/routes/hooks';
 
 import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';
+import { NavSectionVertical, type NavSectionProps } from 'src/components/nav-section';
 
 // ----------------------------------------------------------------------
 
@@ -46,7 +45,7 @@ export function NavMobile({ data, open, onClose, slots, sx, ...other }: NavMobil
     >
       {slots?.topArea ?? (
         <Box sx={{ pl: 3.5, pt: 2.5, pb: 1 }}>
-          <Logo />mobile
+          <Logo />
         </Box>
       )}
 

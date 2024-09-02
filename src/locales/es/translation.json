@@ -1,18 +1,30 @@
 {
-  "page" : {
-    "events": "Eventos"
+  "login" : {},
+  "events" : {
+    "title" : "Eventos",
+    "buttons" : {
+      "download": "Download"
+    },
+    "detailEvent": {
+      "team": "Equipo",
+      "rival": "Rival",
+      "league": "Liga",
+      "season": "Temporada",
+      "match": "Partido",
+      "date": "Fecha",
+      "time": "Hora",
+      "stadium": "Estadio"
+    }
   },
-  "buttons" : {
-    "download": "Download"
+  "payments" : {
+    "title" : "Abonos"
   },
-  "detailEvent": {
-    "team": "Equipo",
-    "rival": "Rival",
-    "league": "Liga",
-    "season": "Temporada",
-    "match": "Partido",
-    "date": "Fecha",
-    "time": "Hora",
-    "stadium": "Estadio"
+  "sellers" : {
+    "title" : "Ventas"
+  },
+  "home" : {
+    "title" : "Inicio"
   }
 }
+
+

@@ -3,9 +3,8 @@ import { useMemo, useEffect, useCallback } from 'react';
 import { useSetState } from 'src/hooks/use-set-state';
 
 import { GetMe } from 'src/core/domain/useCases/GetMe';
-import { authService, session } from 'src/core/infrastructure/instances';
+import { session, authService } from 'src/core/infrastructure/instances';
 
-import { STORAGE_KEY } from './constant';
 import { AuthContext } from './auth-context';
 import { setSession, isValidToken } from './utils';
 

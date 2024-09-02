@@ -62,8 +62,8 @@ export default function DetailEvent() {
         <CardDetailEvent
           icon={DETAIL[0].icon}
           line1={`<strong>${DETAIL[0].line1}</strong`}
-          line2={`<strong>${t('detailEvent.team')}: </strong>${DETAIL[0].line2}`}
-          line3={`<strong>${t('detailEvent.rival')}: </strong>${DETAIL[0].line3}`}
+          line2={`<strong>${t('events.detailEvent.team')}: </strong>${DETAIL[0].line2}`}
+          line3={`<strong>${t('events.detailEvent.rival')}: </strong>${DETAIL[0].line3}`}
           color1={theme.vars.palette.secondary.lightChannel}
           color2={theme.vars.palette.info.lightChannel}
           colorSvg='grey.main'
@@ -71,9 +71,9 @@ export default function DetailEvent() {
 
         <CardDetailEvent
           icon={DETAIL[1].icon}
-          line1={`<strong>${t('detailEvent.league')}: </strong>${DETAIL[1].line1}`}
-          line2={`<strong>${t('detailEvent.season')}: </strong>${DETAIL[1].line2}`}
-          line3={`<strong>${t('detailEvent.match')}: </strong>${DETAIL[1].line3}`}
+          line1={`<strong>${t('events.detailEvent.league')}: </strong>${DETAIL[1].line1}`}
+          line2={`<strong>${t('events.detailEvent.season')}: </strong>${DETAIL[1].line2}`}
+          line3={`<strong>${t('events.detailEvent.match')}: </strong>${DETAIL[1].line3}`}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.primary.lightChannel}
           colorSvg='primary.main'
@@ -81,9 +81,9 @@ export default function DetailEvent() {
 
         <CardDetailEvent
           icon={DETAIL[2].icon}
-          line1={`<strong>${t('detailEvent.date')}: </strong>${DETAIL[2].line1}`}
-          line2={`<strong>${t('detailEvent.time')}: </strong>${DETAIL[2].line2}`}
-          line3={`<strong>${t('detailEvent.stadium')}: </strong>${DETAIL[2].line3}`}
+          line1={`<strong>${t('events.detailEvent.date')}: </strong>${DETAIL[2].line1}`}
+          line2={`<strong>${t('events.detailEvent.time')}: </strong>${DETAIL[2].line2}`}
+          line3={`<strong>${t('events.detailEvent.stadium')}: </strong>${DETAIL[2].line3}`}
           color1={theme.vars.palette.info.lightChannel}
           color2={theme.vars.palette.error.lightChannel}
           colorSvg='error.main'

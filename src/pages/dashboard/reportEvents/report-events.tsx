@@ -22,20 +22,18 @@ export default function Page() {
 
   const renderSelectedOde = (
     <>
-
       {selectedOrganization ? (
          <DashboardContent maxWidth="xl">
         <Grid container spacing={3}>
         <Grid item xs={12}>
             <FiltersEvent/>
-          </Grid> 
+          </Grid>
           <Grid item xs={12}>
             <DetailEvent/>
-          </Grid> 
+          </Grid>
         </Grid>
         </DashboardContent>
       ) : (
-    
         <p>No seleccionada</p>
       )}
     </>
@@ -46,7 +44,7 @@ export default function Page() {
       <Helmet>
         <title> {metadata.title}</title>
       </Helmet>
-      <BlankView title={t('page.events')}>{renderSelectedOde}</BlankView>
+      <BlankView title={t('events.title')}>{renderSelectedOde}</BlankView>
     </>
   );
 }
