@@ -14,9 +14,8 @@ import { ProgressBar } from 'src/components/progress-bar';
 import { MotionLazy } from 'src/components/animate/motion-lazy';
 import { SettingsDrawer, defaultSettings, SettingsProvider } from 'src/components/settings';
 
-import { AuthProvider } from 'src/auth/context/jwt';
-
 import i18n from './i18n';
+import { AuthProvider } from './auth/context';
 import { OrganizationProvider } from './layouts/components/organization-popover/context/organization-selector-provider';
 
 // ----------------------------------------------------------------------

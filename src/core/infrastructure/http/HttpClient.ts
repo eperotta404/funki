@@ -1,4 +1,4 @@
-import type { AxiosInstance } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import axios from 'axios';
 
@@ -9,12 +9,17 @@ import { HttpJsonError } from './HttpJsonError';
 import { NotAuthorizedError } from './NotAuthorizedError';
 import { InternalServerError } from './InternalServerError';
 
+import type { LocalStorage } from '../localStorage/localStorage';
+
 export class HttpClient {
   private http: AxiosInstance;
 
+  private session: LocalStorage;
+
   private baseUrl: string = CONFIG.baseApiUrl || '';
 
-  constructor() {
+  constructor(session: LocalStorage) {
+    this.session = session;
     this.http = axios.create({
       baseURL: this.baseUrl,
       headers: {
@@ -24,9 +29,19 @@ export class HttpClient {
     });
   }
 
+  configWithAuthHeader(): AxiosRequestConfig {
+    const accessToken = this.session.get()
+    if (!accessToken) { return {}; }
+    return {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+      },
+    };
+  }
+
   async get(url: string): Promise<any> {
     try {
-      return await this.http.get(url);
+      return await this.http.get(url, this.configWithAuthHeader());
     } catch (e) {
       this.handleError(e);
       return null;
@@ -35,7 +50,7 @@ export class HttpClient {
 
   async post(url: string, jsonBody: Record<string, unknown>): Promise<any> {
     try {
-      return await this.http.post(url, JSON.stringify(jsonBody));
+      return await this.http.post(url, JSON.stringify(jsonBody), this.configWithAuthHeader());
     } catch (e) {
       this.handleError(e);
       return null;

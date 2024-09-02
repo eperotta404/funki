@@ -2,11 +2,11 @@ import { Helmet } from 'react-helmet-async';
 
 import { CONFIG } from 'src/config-global';
 
-import { JwtSignUpView } from 'src/auth/view/jwt';
+import { SignInView } from 'src/auth/view/sign-in-view';
 
 // ----------------------------------------------------------------------
 
-const metadata = { title: `Sign up | Jwt - ${CONFIG.appName}` };
+const metadata = { title: `Sign in - ${CONFIG.appName}` };
 
 export default function Page() {
   return (
@@ -15,7 +15,7 @@ export default function Page() {
         <title> {metadata.title}</title>
       </Helmet>
 
-      <JwtSignUpView />
+      <SignInView />
     </>
   );
 }

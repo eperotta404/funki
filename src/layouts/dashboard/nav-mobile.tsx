@@ -1,4 +1,4 @@
-import type { NavSectionProps } from 'src/components/nav-section';
+import { NavSectionVertical, type NavSectionProps } from 'src/components/nav-section';
 
 import { useEffect } from 'react';
 
@@ -8,6 +8,7 @@ import Drawer, { drawerClasses } from '@mui/material/Drawer';
 import { usePathname } from 'src/routes/hooks';
 
 import { Logo } from 'src/components/logo';
+import { Scrollbar } from 'src/components/scrollbar';
 
 // ----------------------------------------------------------------------
 
@@ -45,9 +46,14 @@ export function NavMobile({ data, open, onClose, slots, sx, ...other }: NavMobil
     >
       {slots?.topArea ?? (
         <Box sx={{ pl: 3.5, pt: 2.5, pb: 1 }}>
-          <Logo />
+          <Logo />mobile
         </Box>
       )}
+
+      <Scrollbar fillContent>
+        <NavSectionVertical data={data} sx={{ px: 2, flex: '1 1 auto' }} {...other} />
+      </Scrollbar>
+
       {slots?.bottomArea}
     </Drawer>
   );

@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { AuthSplitLayout } from 'src/layouts/auth-split';
+import { AuthSplitLayout } from 'src/layouts/auth-split/layout';
 
 import { SplashScreen } from 'src/components/loading-screen';
 
@@ -9,33 +9,18 @@ import { GuestGuard } from 'src/auth/guard';
 
 // ----------------------------------------------------------------------
 
-/** **************************************
- * Jwt
- *************************************** */
-const Jwt = {
-  SignInPage: lazy(() => import('src/pages/auth/jwt/sign-in')),
-  SignUpPage: lazy(() => import('src/pages/auth/jwt/sign-up')),
+const Auth = {
+  SignInPage: lazy(() => import('src/pages/auth/sign-in')),
 };
 
-const authJwt = {
-  path: 'jwt',
+const auth = {
   children: [
     {
       path: 'sign-in',
       element: (
         <GuestGuard>
-          <AuthSplitLayout section={{ title: 'Hi, Welcome back' }}>
-            <Jwt.SignInPage />
-          </AuthSplitLayout>
-        </GuestGuard>
-      ),
-    },
-    {
-      path: 'sign-up',
-      element: (
-        <GuestGuard>
           <AuthSplitLayout>
-            <Jwt.SignUpPage />
+            <Auth.SignInPage />
           </AuthSplitLayout>
         </GuestGuard>
       ),
@@ -53,6 +38,6 @@ export const authRoutes = [
         <Outlet />
       </Suspense>
     ),
-    children: [authJwt],
+    children: [auth],
   },
 ];

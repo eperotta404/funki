@@ -31,6 +31,12 @@ export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPop
 
   const [organization, setOrganization] = useState(data[0]);
 
+  useEffect(() => {
+    if (data.length > 0) {
+      setSelectedOrganization(organization);
+    }
+  }, []);
+
   const handleChangeOrganization = useCallback(
     (newValue: (typeof data)[0]) => {
       setOrganization(newValue);
