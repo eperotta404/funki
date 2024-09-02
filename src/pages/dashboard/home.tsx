@@ -8,6 +8,7 @@ import { userService } from 'src/core/infrastructure/instances';
 import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
 
 import { AnimateAvatar } from 'src/components/animate';
+import { LoadingScreen } from 'src/components/loading-screen';
 
 import { BlankView } from 'src/sections/blank/view';
 
@@ -21,7 +22,8 @@ export default function Page() {
   const { data, error, loading } = useFetchData(getUserUseCase, '1');
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingScreen/>
+    
   }
 
   if (error) {
