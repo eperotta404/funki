@@ -1,6 +1,9 @@
-import axios, { endpoints } from 'src/utils/axios';
+import { SignIn } from 'src/core/domain/useCases/SignIn';
+import { authService } from 'src/core/infrastructure/instances';
 
 import { setSession } from './utils';
+
+const signInUseCase = new SignIn(authService);
 
 // ----------------------------------------------------------------------
 
@@ -14,17 +17,13 @@ export type SignInParams = {
  *************************************** */
 export const signInWithPassword = async ({ email, password }: SignInParams): Promise<void> => {
   try {
-    const params = { email, password };
-
-    const res = await axios.post(endpoints.auth.signIn, params);
-
-    const { accessToken } = res.data;
+    const ressponse = await signInUseCase.execute(email, password);
+    const { accessToken } = ressponse;
 
     if (!accessToken) {
       throw new Error('Access token not found in response');
     }
-    // eslint-disable-next-line no-debugger
-    debugger;
+
     setSession(accessToken);
   } catch (error) {
     console.error('Error during sign in:', error);

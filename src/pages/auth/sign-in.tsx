@@ -4,7 +4,6 @@ import { CONFIG } from 'src/config-global';
 
 import { SignInView } from 'src/auth/view/sign-in-view';
 
-
 // ----------------------------------------------------------------------
 
 const metadata = { title: `Sign in - ${CONFIG.appName}` };

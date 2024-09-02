@@ -42,13 +42,8 @@ export function AuthGuard({ children }: Props) {
     }
 
     if (!authenticated) {
-      const { method } = CONFIG.auth;
 
-      const signInPath = {
-        jwt: paths.auth.signIn,
-      }[method];
-
-      const href = `${signInPath}?${createQueryString('returnTo', pathname)}`;
+      const href = `${paths.auth.signIn}?${createQueryString('returnTo', pathname)}`;
 
       router.replace(href);
       return;

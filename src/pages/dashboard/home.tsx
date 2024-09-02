@@ -18,14 +18,10 @@ const getUserUseCase = new GetUser(userService);
 
 export default function Page() {
   const { selectedOrganization } = useOrganization();
-  const { data, error, loading } = useFetchData(getUserUseCase, '1');
+  const { data, loading } = useFetchData(getUserUseCase, '1');
 
   if (loading) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
   }
 
   const renderAvatar = (
