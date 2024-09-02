@@ -5,10 +5,11 @@ import { Grid } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { DashboardContent } from 'src/layouts/dashboard';
-import DetailEvent from 'src/layouts/components/detail-event';
 import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
 
 import { BlankView } from 'src/sections/blank/view';
+
+import DetailEvent from './components/detail-event';
 
 // ----------------------------------------------------------------------
 
@@ -17,6 +18,7 @@ const metadata = { title: `Eventos| Dashboard - ${CONFIG.appName}` };
 export default function Page() {
   const { t } = useTranslation();
   const { selectedOrganization } = useOrganization();
+
   const renderSelectedOde = (
     <>
 
