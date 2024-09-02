@@ -10,6 +10,7 @@ import { useOrganization } from 'src/layouts/components/organization-popover/con
 import { BlankView } from 'src/sections/blank/view';
 
 import DetailEvent from './components/detail-event';
+import FiltersEvent from './components/filters-event';
 
 // ----------------------------------------------------------------------
 
@@ -25,6 +26,9 @@ export default function Page() {
       {selectedOrganization ? (
          <DashboardContent maxWidth="xl">
         <Grid container spacing={3}>
+        <Grid item xs={12}>
+            <FiltersEvent/>
+          </Grid> 
           <Grid item xs={12}>
             <DetailEvent/>
           </Grid> 

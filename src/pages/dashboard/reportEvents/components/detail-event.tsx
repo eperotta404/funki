@@ -54,10 +54,10 @@ export default function DetailEvent() {
         </Button>
       </Box>
       <Box
-        gap={5}
+        gap={8}
         display="grid"
         gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
-        sx={{ my: 2 }}
+        sx={{ mt: 5 }}
       >
         <CardDetailEvent
           icon={DETAIL[0].icon}
