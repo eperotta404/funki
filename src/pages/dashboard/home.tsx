@@ -18,27 +18,6 @@ const getUserUseCase = new GetUser(userService);
 
 export default function Page() {
   const { selectedOrganization } = useOrganization();
-  const { data, loading } = useFetchData(getUserUseCase, '1');
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  const renderAvatar = (
-    <AnimateAvatar
-      width={96}
-      slotProps={{
-        avatar: { src: data?.avatar, alt: data?.name },
-        overlay: {
-          border: 2,
-          spacing: 3,
-        },
-      }}
-    >
-      {data?.name?.charAt(0).toUpperCase()}
-    </AnimateAvatar>
-  );
-
   const renderSelectedOde = (
     <div>
       <h1>Organization seleccionada</h1>
@@ -60,7 +39,6 @@ export default function Page() {
         <title> {metadata.title}</title>
       </Helmet>
       <BlankView title="Inicio">
-        {renderAvatar}
         {renderSelectedOde}
       </BlankView>
     </>
