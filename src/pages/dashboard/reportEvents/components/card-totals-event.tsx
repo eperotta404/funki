@@ -24,8 +24,8 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
     <Card
       sx={{
         pt: 2,
-        pb: 3,
-        width: 350,
+        pb: 2,
+        width: 320,
 
         position: 'relative',
         textAlign: 'left',
@@ -49,7 +49,7 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
       />
       <Grid container spacing={2} sx={{ alignItems: 'center' }}>
         <Grid item xs={line5 ? 6 : 12}>
-          <Box sx={{ ml: 2, width: 450 }}>
+          <Box sx={{ ml: 2, width: 300 }}>
             <Typography
               variant="h4"
               sx={{ color: 'text.info', mb: 1 }}
@@ -83,7 +83,7 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
-                mt: -8,
+                mt: -9,
               }}
             >
               <Typography
