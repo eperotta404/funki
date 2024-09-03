@@ -42,6 +42,18 @@ export default function TotalsEvent() {
           color2={theme.vars.palette.warning.lighterChannel}
           colorSvg="secondary.main"
         />
+
+<CardTotalsEvent
+          title={`<strong>${t('events.totals.ticketsSold')}</strong>`}
+          line1={`<strong>${t('events.totals.tickets')} :  </strong>${TOTALS[0].line1}`}
+          line2={`<strong>${t('events.totals.abonos')} :  </strong>${TOTALS[0].line2}`}
+          line3={`<strong>${t('events.totals.courtesy')} :  </strong>${TOTALS[0].line3}`}
+          line4={`<strong>${t('events.totals.total').toUpperCase()} : </strong>${TOTALS[0].line4}`}
+          color1={theme.vars.palette.warning.lightChannel}
+          color2={theme.vars.palette.warning.lighterChannel}
+          colorSvg="secondary.main"
+        />
+        
         <CardTotalsEvent
           title={`<strong>${t('events.totals.ocupation')}</strong>`}
           line1={`<strong>${t('events.totals.tickets')} :  </strong>${TOTALS[1].line1}`}

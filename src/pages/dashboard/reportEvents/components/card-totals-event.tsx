@@ -25,7 +25,7 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
       sx={{
         pt: 2,
         pb: 2,
-        width: 320,
+        // width: 320,
 
         position: 'relative',
         textAlign: 'left',
@@ -56,17 +56,17 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
               dangerouslySetInnerHTML={{ __html: title }}
             />
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{ color: 'text.info' }}
               dangerouslySetInnerHTML={{ __html: line1 }}
             />
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{ color: 'text.info' }}
               dangerouslySetInnerHTML={{ __html: line2 }}
             />
             <Typography
-              variant="body1"
+              variant="body2"
               sx={{ color: 'text.info' }}
               dangerouslySetInnerHTML={{ __html: line3 }}
             />
@@ -83,12 +83,12 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
-                mt: -9,
+                mt: -8,
               }}
             >
               <Typography
-                variant="h2"
-                sx={{ color: 'text.primary', textAlign: 'center' }}
+                variant="inherit"
+                sx={{ color: 'text.primary', textAlign: 'center', fontSize: 35, fontWeight: 700 }}
                 dangerouslySetInnerHTML={{ __html: line5 }}
               />
             </Box>
