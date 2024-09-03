@@ -8,12 +8,14 @@ const TOTALS = [
   {
     line1: '2,000',
     line2: '1,000',
-    line3: '3,000 / 4,000',
+    line3: '3,693,286 (3,641,012)',
+    line4: '3,000 / 4,000',
   },
   {
     line1: '1,900',
     line2: '957',
-    line3: '2,857 / 4,000',
+    line3: '3,693,286 (3,641,012)',
+    line4: '2,857 / 4,000',
   },
 ];
 
@@ -23,18 +25,19 @@ export default function TotalsEvent() {
 
   return (
     <>
-      <h2>Totals</h2>
+      <h2>{t('events.totals.totals')}</h2>
       <Box
         gap={8}
         display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
+        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
         sx={{ mt: 2 }}
       >
         <CardTotalsEvent
           title={`<strong>${t('events.totals.ticketsSold')}</strong>`}
           line1={`<strong>${t('events.totals.tickets')} :  </strong>${TOTALS[0].line1}`}
           line2={`<strong>${t('events.totals.abonos')} :  </strong>${TOTALS[0].line2}`}
-          line3={`<strong>${t('events.totals.total').toUpperCase()} : </strong>${TOTALS[0].line3}`}
+          line3={`<strong>${t('events.totals.courtesy')} :  </strong>${TOTALS[0].line3}`}
+          line4={`<strong>${t('events.totals.total').toUpperCase()} : </strong>${TOTALS[0].line4}`}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.warning.lighterChannel}
           colorSvg="secondary.main"
@@ -43,7 +46,9 @@ export default function TotalsEvent() {
           title={`<strong>${t('events.totals.ocupation')}</strong>`}
           line1={`<strong>${t('events.totals.tickets')} :  </strong>${TOTALS[1].line1}`}
           line2={`<strong>${t('events.totals.abonos')} :  </strong>${TOTALS[1].line2}`}
-          line3={`<strong>${t('events.totals.total').toUpperCase()} : </strong>${TOTALS[1].line3}`}
+          line3={`<strong>${t('events.totals.courtesy')} :  </strong>${TOTALS[0].line3}`}
+          line4={`<strong>${t('events.totals.total').toUpperCase()} : </strong>${TOTALS[1].line4}`}
+          line5="63%"
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
           colorSvg="error.main"

@@ -34,11 +34,13 @@
       "stadium": "Estadio"
     },
     "totals": {
+      "totals": "Totales",
       "ticketsSold": "Boletos vendidos",
       "tickets": "Boletos",
       "abonos": "Abonos",
       "total": "Total",
-      "ocupation": "Ocupación"
+      "ocupation": "Ocupación",
+      "courtesy":"Cortesía"
     }
   },
   "payments": {

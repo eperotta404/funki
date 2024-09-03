@@ -46,17 +46,17 @@ export default function CardSummaryEvent(props: CardDetailEventProps) {
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
       <Box sx={{ textAlign: 'center', mt: -2 }}>
         <Typography
-          variant="body2"
+          variant="body1"
           sx={{ color: 'text.info' }}
           dangerouslySetInnerHTML={{ __html: line1 }}
         />
         <Typography
-          variant="body2"
+          variant="body1"
           sx={{ color: 'text.info' }}
           dangerouslySetInnerHTML={{ __html: line2 }}
         />
         <Typography
-          variant="body2"
+          variant="body1"
           sx={{ color: 'text.info' }}
           dangerouslySetInnerHTML={{ __html: line3 }}
         />
