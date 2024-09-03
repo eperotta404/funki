@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
-import { Grid } from '@mui/material';
+import { Card, Grid } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { DashboardContent } from 'src/layouts/dashboard';
@@ -25,11 +25,13 @@ export default function Page() {
       {selectedOrganization ? (
         <DashboardContent maxWidth="xl">
           <Grid container spacing={3}>
-          <Grid item xs={12}>
-              <FiltersEvent/>
+            <Grid item xs={12}>
+              <FiltersEvent />
             </Grid>
             <Grid item xs={12}>
-              <SummaryEvent/>
+              <Card sx={{ p: 3, backgroundColor: 'background.default', boxShadow: 3 }}>
+                <SummaryEvent />
+              </Card>
             </Grid>
           </Grid>
         </DashboardContent>
