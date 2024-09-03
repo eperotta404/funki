@@ -1,5 +1,4 @@
-
-import { Card, Typography } from '@mui/material';
+import { Box, Card, Typography } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { varAlpha, bgGradient } from 'src/theme/styles';
@@ -14,7 +13,7 @@ interface CardDetailEventProps {
   line3: string;
   color1: string;
   color2: string;
-  colorSvg:string;
+  colorSvg: string;
 }
 
 export default function CardDetailEvent(props: CardDetailEventProps) {
@@ -22,11 +21,10 @@ export default function CardDetailEvent(props: CardDetailEventProps) {
   return (
     <Card
       sx={{
-        textAlign: 'center',
         pt: 2,
         pb: 3,
-
         position: 'relative',
+        textAlign: 'left', // Alinea todo el contenido a la izquierda
         ...bgGradient({
           color: `135deg, ${varAlpha(color1, 0.48)}, ${varAlpha(color2, 0.48)}`,
         }),
@@ -45,22 +43,24 @@ export default function CardDetailEvent(props: CardDetailEventProps) {
           color: colorSvg,
         }}
       />
-      <Iconify icon={icon} width={32} sx={{ color: 'primary.main' }} />
+      <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} /> 
+      <Box sx={{ textAlign:'center' }}>
       <Typography
         variant="body2"
-        sx={{ mt: 2, color: 'text.info' }}
+        sx={{  color: 'text.info' }} 
         dangerouslySetInnerHTML={{ __html: line1 }}
       />
       <Typography
         variant="body2"
-        sx={{ color: 'text.info' }}
+        sx={{ color: 'text.info'}} 
         dangerouslySetInnerHTML={{ __html: line2 }}
       />
       <Typography
         variant="body2"
-        sx={{ color: 'text.info' }}
+        sx={{ color: 'text.info'}} 
         dangerouslySetInnerHTML={{ __html: line3 }}
       />
+      </Box>
     </Card>
   );
 }

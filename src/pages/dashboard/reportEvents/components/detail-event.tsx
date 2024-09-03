@@ -40,7 +40,7 @@ export default function DetailEvent() {
   return (
     <>
       <Box sx={{ my: 2 }}>
-        <Label variant="soft" color="success" sx={{ p: 2, mr: 1.5 }}>
+        <Label variant="soft" color="primary" sx={{ p: 2, mr: 1.5 }}>
           {status}
         </Label>
         <Button
