@@ -50,7 +50,7 @@ export default function DetailEvent() {
           size="small"
           color="primary"
         >
-          <strong>{t('buttons.download')} </strong>
+          <strong>{t('events.buttons.download')} </strong>
         </Button>
       </Box>
       <Box

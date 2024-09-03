@@ -1,9 +1,27 @@
 {
-  "login" : {},
+  "login" : {
+    "inputEmail": "Correo electrónico",
+    "inputPassword": "Contraseña",
+    "placeholderPassword": "6+ caracteres",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "emailInvalid": "El correo electrónico debe ser una dirección válida",
+    "passwordRequired": "La contraseña es obligatoria!",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+    "invalidCredentials": "Credenciales inválidas",
+    "links": {
+      "forgotPassword": "Recuperar Contraseña?"
+    },
+    "buttons" : {
+      "login": "Ingresar"
+    }
+  },
+  "home" : {
+    "title" : "Inicio"
+  },
   "events" : {
     "title" : "Eventos",
     "buttons" : {
-      "download": "Download"
+      "download": "Descargar"
     },
     "detailEvent": {
       "team": "Equipo",
@@ -21,9 +39,6 @@
   },
   "sellers" : {
     "title" : "Ventas"
-  },
-  "home" : {
-    "title" : "Inicio"
   }
 }
 

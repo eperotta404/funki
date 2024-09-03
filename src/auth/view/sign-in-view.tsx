@@ -1,6 +1,7 @@
 import { z as zod } from 'zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import Box from '@mui/material/Box';
@@ -23,29 +24,32 @@ import { signInWithPassword } from '../context';
 
 // ----------------------------------------------------------------------
 
-export type SignInSchemaType = zod.infer<typeof SignInSchema>;
-
-export const SignInSchema = zod.object({
-  email: zod
-    .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
-  password: zod
-    .string()
-    .min(1, { message: 'Password is required!' })
-    .min(6, { message: 'Password must be at least 6 characters!' }),
-});
+export function createSignInSchema(t: any) {
+  return zod.object({
+    email: zod
+      .string()
+      .min(1, { message: t('login.emailRequired') })
+      .email({ message: t('login.emailInvalid') }),
+    password: zod
+      .string()
+      .min(1, { message: t('login.passwordRequired') })
+      .min(6, { message: t('login.passwordMinLength') }),
+  });
+}
 
 // ----------------------------------------------------------------------
 
 export function SignInView() {
   const router = useRouter();
-
+  const { t } = useTranslation();
   const { checkUserSession } = useAuthContext();
 
   const [errorMsg, setErrorMsg] = useState('');
 
   const password = useBoolean();
+
+  const SignInSchema = createSignInSchema(t);
+  type SignInSchemaType = zod.infer<typeof SignInSchema>;
 
   const defaultValues = {
     email: 'demo@minimals.cc',
@@ -66,17 +70,15 @@ export function SignInView() {
     try {
       await signInWithPassword({ email: data.email, password: data.password });
       await checkUserSession?.();
-
       router.refresh();
     } catch (error) {
-      console.error(error);
-      setErrorMsg(typeof error === 'string' ? error : error.message);
+      setErrorMsg(typeof error === 'string' ? error : t(error.message));
     }
   });
 
   const renderForm = (
     <Box gap={3} display="flex" flexDirection="column">
-      <Field.Text name="email" label="Email address" InputLabelProps={{ shrink: true }} />
+      <Field.Text name="email" label={t('login.inputEmail')} InputLabelProps={{ shrink: true }} />
 
       <Box gap={1.5} display="flex" flexDirection="column">
         <Link
@@ -86,13 +88,13 @@ export function SignInView() {
           color="inherit"
           sx={{ alignSelf: 'flex-end' }}
         >
-          Forgot password?
+          {t('login.links.forgotPassword')}
         </Link>
 
         <Field.Text
           name="password"
-          label="Password"
-          placeholder="6+ characters"
+          label={t('login.inputPassword')}
+          placeholder={t('login.inputPassword')}
           type={password.value ? 'text' : 'password'}
           InputLabelProps={{ shrink: true }}
           InputProps={{
@@ -116,19 +118,13 @@ export function SignInView() {
         loading={isSubmitting}
         loadingIndicator="Sign in..."
       >
-        Sign in
+        {t('login.buttons.login')}
       </LoadingButton>
     </Box>
   );
 
   return (
     <>
-      <Alert severity="info" sx={{ mb: 3 }}>
-        Use <strong>{defaultValues.email}</strong>
-        {' with password '}
-        <strong>{defaultValues.password}</strong>
-      </Alert>
-
       {!!errorMsg && (
         <Alert severity="error" sx={{ mb: 3 }}>
           {errorMsg}

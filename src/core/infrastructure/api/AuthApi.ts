@@ -25,7 +25,7 @@ export class AuthApi implements AuthRepository {
 
       return { accessToken, user: userResponse };
     } catch (error) {
-      console.error('Error signing user:', error);
+      error.message = "login.invalidCredentials"
       throw error;
     }
   }
