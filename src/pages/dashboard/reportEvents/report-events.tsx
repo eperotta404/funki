@@ -23,15 +23,15 @@ export default function Page() {
   const renderSelectedOde = (
     <>
       {selectedOrganization ? (
-         <DashboardContent maxWidth="xl">
-        <Grid container spacing={3}>
-        <Grid item xs={12}>
-            <FiltersEvent/>
-          </Grid>
+        <DashboardContent maxWidth="xl">
+          <Grid container spacing={3}>
           <Grid item xs={12}>
-            <DetailEvent/>
+              <FiltersEvent/>
+            </Grid>
+            <Grid item xs={12}>
+              <DetailEvent/>
+            </Grid>
           </Grid>
-        </Grid>
         </DashboardContent>
       ) : (
         <p>No seleccionada</p>
