@@ -79,7 +79,6 @@ export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPop
           component="span"
           sx={{
             typography: 'subtitle2',
-            display: { xs: 'none', [mediaQuery]: 'inline-flex' },
           }}
         >
           {organization?.name}

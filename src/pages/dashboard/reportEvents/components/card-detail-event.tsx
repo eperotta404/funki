@@ -43,23 +43,23 @@ export default function CardDetailEvent(props: CardDetailEventProps) {
           color: colorSvg,
         }}
       />
-      <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} /> 
-      <Box sx={{ textAlign:'center' }}>
-      <Typography
-        variant="body2"
-        sx={{  color: 'text.info' }} 
-        dangerouslySetInnerHTML={{ __html: line1 }}
-      />
-      <Typography
-        variant="body2"
-        sx={{ color: 'text.info'}} 
-        dangerouslySetInnerHTML={{ __html: line2 }}
-      />
-      <Typography
-        variant="body2"
-        sx={{ color: 'text.info'}} 
-        dangerouslySetInnerHTML={{ __html: line3 }}
-      />
+      <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
+      <Box sx={{ textAlign: 'center' }}>
+        <Typography
+          variant="body2"
+          sx={{ color: 'text.info' }}
+          dangerouslySetInnerHTML={{ __html: line1 }}
+        />
+        <Typography
+          variant="body2"
+          sx={{ color: 'text.info' }}
+          dangerouslySetInnerHTML={{ __html: line2 }}
+        />
+        <Typography
+          variant="body2"
+          sx={{ color: 'text.info' }}
+          dangerouslySetInnerHTML={{ __html: line3 }}
+        />
       </Box>
     </Card>
   );
