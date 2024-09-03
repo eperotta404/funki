@@ -9,7 +9,7 @@ import { useOrganization } from 'src/layouts/components/organization-popover/con
 
 import { BlankView } from 'src/sections/blank/view';
 
-import DetailEvent from './components/detail-event';
+import SummaryEvent from './components/summary-event';
 import FiltersEvent from './components/filters-event';
 
 // ----------------------------------------------------------------------
@@ -29,7 +29,7 @@ export default function Page() {
               <FiltersEvent/>
             </Grid>
             <Grid item xs={12}>
-              <DetailEvent/>
+              <SummaryEvent/>
             </Grid>
           </Grid>
         </DashboardContent>

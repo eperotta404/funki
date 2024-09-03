@@ -16,7 +16,7 @@ interface CardDetailEventProps {
   colorSvg: string;
 }
 
-export default function CardDetailEvent(props: CardDetailEventProps) {
+export default function CardSummaryEvent(props: CardDetailEventProps) {
   const { icon, line1, line2, line3, color1, color2, colorSvg } = props;
   return (
     <Card
@@ -24,7 +24,7 @@ export default function CardDetailEvent(props: CardDetailEventProps) {
         pt: 2,
         pb: 3,
         position: 'relative',
-        textAlign: 'left', // Alinea todo el contenido a la izquierda
+        textAlign: 'left', 
         ...bgGradient({
           color: `135deg, ${varAlpha(color1, 0.48)}, ${varAlpha(color2, 0.48)}`,
         }),
@@ -39,12 +39,12 @@ export default function CardDetailEvent(props: CardDetailEventProps) {
           width: 260,
           height: 240,
           zIndex: -1,
-          opacity: 0.24,
+          opacity: 0.25,
           color: colorSvg,
         }}
       />
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
-      <Box sx={{ textAlign: 'center' }}>
+      <Box sx={{ textAlign: 'center', mt:-2 }}>
         <Typography
           variant="body2"
           sx={{ color: 'text.info' }}

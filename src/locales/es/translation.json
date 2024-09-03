@@ -23,7 +23,7 @@
     "buttons" : {
       "download": "Descargar"
     },
-    "detailEvent": {
+    "summaryEvent": {
       "team": "Equipo",
       "rival": "Rival",
       "league": "Liga",

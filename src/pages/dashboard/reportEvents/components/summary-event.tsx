@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 
-import { Box,  Button, useTheme } from '@mui/material';
+import { Box, Button, useTheme } from '@mui/material';
 
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
 
-import CardDetailEvent from './card-detail-event';
+import CardSummaryEvent from './card-summary-event';
 
 const DETAIL = [
   {
@@ -30,7 +30,7 @@ const DETAIL = [
 
 const status = 'Jugando';
 
-export default function DetailEvent() {
+export default function SummaryEvent() {
   const theme = useTheme();
 
   const { t } = useTranslation();
@@ -59,36 +59,35 @@ export default function DetailEvent() {
         gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
         sx={{ mt: 5 }}
       >
-        <CardDetailEvent
+        <CardSummaryEvent
           icon={DETAIL[0].icon}
           line1={`<strong>${DETAIL[0].line1}</strong`}
-          line2={`<strong>${t('events.detailEvent.team')}: </strong>${DETAIL[0].line2}`}
-          line3={`<strong>${t('events.detailEvent.rival')}: </strong>${DETAIL[0].line3}`}
+          line2={`<strong>${t('events.summaryEvent.team')}: </strong>${DETAIL[0].line2}`}
+          line3={`<strong>${t('events.summaryEvent.rival')}: </strong>${DETAIL[0].line3}`}
           color1={theme.vars.palette.secondary.lightChannel}
           color2={theme.vars.palette.info.lightChannel}
-          colorSvg='grey.main'
+          colorSvg="grey.main"
         />
 
-        <CardDetailEvent
+        <CardSummaryEvent
           icon={DETAIL[1].icon}
-          line1={`<strong>${t('events.detailEvent.league')}: </strong>${DETAIL[1].line1}`}
-          line2={`<strong>${t('events.detailEvent.season')}: </strong>${DETAIL[1].line2}`}
-          line3={`<strong>${t('events.detailEvent.match')}: </strong>${DETAIL[1].line3}`}
+          line1={`<strong>${t('events.summaryEvent.league')}: </strong>${DETAIL[1].line1}`}
+          line2={`<strong>${t('events.summaryEvent.season')}: </strong>${DETAIL[1].line2}`}
+          line3={`<strong>${t('events.summaryEvent.match')}: </strong>${DETAIL[1].line3}`}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.primary.lightChannel}
-          colorSvg='primary.main'
+          colorSvg="primary.main"
         />
 
-        <CardDetailEvent
+        <CardSummaryEvent
           icon={DETAIL[2].icon}
-          line1={`<strong>${t('events.detailEvent.date')}: </strong>${DETAIL[2].line1}`}
-          line2={`<strong>${t('events.detailEvent.time')}: </strong>${DETAIL[2].line2}`}
-          line3={`<strong>${t('events.detailEvent.stadium')}: </strong>${DETAIL[2].line3}`}
+          line1={`<strong>${t('events.summaryEvent.date')}: </strong>${DETAIL[2].line1}`}
+          line2={`<strong>${t('events.summaryEvent.time')}: </strong>${DETAIL[2].line2}`}
+          line3={`<strong>${t('events.summaryEvent.stadium')}: </strong>${DETAIL[2].line3}`}
           color1={theme.vars.palette.info.lightChannel}
           color2={theme.vars.palette.error.lightChannel}
-          colorSvg='error.main'
+          colorSvg="error.main"
         />
-
       </Box>
     </>
   );
