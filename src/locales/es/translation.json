@@ -37,10 +37,11 @@
       "totals": "Totales",
       "ticketsSold": "Boletos vendidos",
       "tickets": "Boletos",
-      "abonos": "Abonos",
+      "memberships": "Abonos",
       "total": "Total",
       "ocupation": "Ocupación",
-      "courtesy":"Cortesía"
+      "courtesy": "Cortesía",
+      "fundraising": "Recaudación"
     }
   },
   "payments": {

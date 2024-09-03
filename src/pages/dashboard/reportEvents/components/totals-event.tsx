@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, useTheme } from '@mui/material';
 
 import CardTotalsEvent from './card-totals-event';
+import Card2TotalsEvent from './card-2-totals-event';
 
 const TOTALS = [
   {
@@ -18,6 +19,8 @@ const TOTALS = [
     line4: '2,857 / 4,000',
   },
 ];
+
+const fundraising = '45,653';
 
 export default function TotalsEvent() {
   const theme = useTheme();
@@ -35,7 +38,7 @@ export default function TotalsEvent() {
         <CardTotalsEvent
           title={`<strong>${t('events.totals.ticketsSold')}</strong>`}
           line1={`<strong>${t('events.totals.tickets')} :  </strong>${TOTALS[0].line1}`}
-          line2={`<strong>${t('events.totals.abonos')} :  </strong>${TOTALS[0].line2}`}
+          line2={`<strong>${t('events.totals.memberships')} :  </strong>${TOTALS[0].line2}`}
           line3={`<strong>${t('events.totals.courtesy')} :  </strong>${TOTALS[0].line3}`}
           line4={`<strong>${t('events.totals.total').toUpperCase()} : </strong>${TOTALS[0].line4}`}
           color1={theme.vars.palette.warning.lightChannel}
@@ -43,17 +46,14 @@ export default function TotalsEvent() {
           colorSvg="secondary.main"
         />
 
-<CardTotalsEvent
-          title={`<strong>${t('events.totals.ticketsSold')}</strong>`}
-          line1={`<strong>${t('events.totals.tickets')} :  </strong>${TOTALS[0].line1}`}
-          line2={`<strong>${t('events.totals.abonos')} :  </strong>${TOTALS[0].line2}`}
-          line3={`<strong>${t('events.totals.courtesy')} :  </strong>${TOTALS[0].line3}`}
-          line4={`<strong>${t('events.totals.total').toUpperCase()} : </strong>${TOTALS[0].line4}`}
-          color1={theme.vars.palette.warning.lightChannel}
+        <Card2TotalsEvent
+          title={`<strong>${t('events.totals.fundraising')}</strong>`}
+          line1={`<strong>$${t(fundraising)} </strong>`}
+          color1={theme.vars.palette.error.lightChannel}
           color2={theme.vars.palette.warning.lighterChannel}
-          colorSvg="secondary.main"
+          colorSvg="success.main"
         />
-        
+
         <CardTotalsEvent
           title={`<strong>${t('events.totals.ocupation')}</strong>`}
           line1={`<strong>${t('events.totals.tickets')} :  </strong>${TOTALS[1].line1}`}

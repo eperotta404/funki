@@ -64,8 +64,8 @@ export default function SummaryEvent() {
           line1={`<strong>${SUMMARY[0].line1}</strong`}
           line2={`<strong>${t('events.summaryEvent.team')}: </strong>${SUMMARY[0].line2}`}
           line3={`<strong>${t('events.summaryEvent.rival')}: </strong>${SUMMARY[0].line3}`}
-          color1={theme.vars.palette.secondary.lightChannel}
-          color2={theme.vars.palette.info.lightChannel}
+          color1={theme.vars.palette.secondary.lighterChannel}
+          color2={theme.vars.palette.warning.lightChannel}
           colorSvg="grey.main"
         />
 
@@ -85,7 +85,7 @@ export default function SummaryEvent() {
           line2={`<strong>${t('events.summaryEvent.time')}: </strong>${SUMMARY[2].line2}`}
           line3={`<strong>${t('events.summaryEvent.stadium')}: </strong>${SUMMARY[2].line3}`}
           color1={theme.vars.palette.info.lightChannel}
-          color2={theme.vars.palette.error.lightChannel}
+          color2={theme.vars.palette.success.lightChannel}
           colorSvg="error.main"
         />
       </Box>

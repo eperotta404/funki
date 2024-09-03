@@ -1,4 +1,4 @@
-import { Box, Card, Typography, Grid } from '@mui/material';
+import { Box, Card, Grid, Typography } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { varAlpha, bgGradient } from 'src/theme/styles';
@@ -11,7 +11,7 @@ interface CardTotalsEventProps {
   line2: string;
   line3: string;
   line4: string;
-  line5?: string; // Optional line5
+  line5?: string;
   color1: string;
   color2: string;
   colorSvg: string;
@@ -25,8 +25,6 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
       sx={{
         pt: 2,
         pb: 2,
-        // width: 320,
-
         position: 'relative',
         textAlign: 'left',
         ...bgGradient({
