@@ -6,6 +6,7 @@ import { varAlpha, bgGradient } from 'src/theme/styles';
 import { SvgColor } from 'src/components/svg-color';
 
 interface CardTotalsEventProps {
+  title: string;
   line1: string;
   line2: string;
   line3: string;
@@ -15,7 +16,7 @@ interface CardTotalsEventProps {
 }
 
 export default function CardTotalsEvent(props: CardTotalsEventProps) {
-  const { line1, line2, line3, color1, color2, colorSvg } = props;
+  const { title, line1, line2, line3, color1, color2, colorSvg } = props;
   return (
     <Card
       sx={{
@@ -37,11 +38,16 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
           width: 260,
           height: 240,
           zIndex: -1,
-          opacity: 0.25,
+          opacity: 0.2,
           color: colorSvg,
         }}
       />
-      <Box sx={{ textAlign: 'center', mt: -2 }}>
+      <Box sx={{ ml: 2, mt: 2 }}>
+        <Typography
+          variant="subtitle1"
+          sx={{ color: 'text.info', mb: 0.5 }}
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
         <Typography
           variant="body2"
           sx={{ color: 'text.info' }}
@@ -54,7 +60,7 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
         />
         <Typography
           variant="body2"
-          sx={{ color: 'text.info' }}
+          sx={{ color: 'text.info', mt: 0.5 }}
           dangerouslySetInnerHTML={{ __html: line3 }}
         />
       </Box>

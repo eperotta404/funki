@@ -1,5 +1,5 @@
 {
-  "login" : {
+  "login": {
     "inputEmail": "Correo electrónico",
     "inputPassword": "Contraseña",
     "placeholderPassword": "6+ caracteres",
@@ -11,16 +11,16 @@
     "links": {
       "forgotPassword": "Recuperar Contraseña?"
     },
-    "buttons" : {
+    "buttons": {
       "login": "Ingresar"
     }
   },
-  "home" : {
-    "title" : "Inicio"
+  "home": {
+    "title": "Inicio"
   },
-  "events" : {
-    "title" : "Eventos",
-    "buttons" : {
+  "events": {
+    "title": "Eventos",
+    "buttons": {
       "download": "Descargar"
     },
     "summaryEvent": {
@@ -32,14 +32,19 @@
       "date": "Fecha",
       "time": "Hora",
       "stadium": "Estadio"
+    },
+    "totals": {
+      "ticketsSold": "Boletos vendidos",
+      "tickets": "Boletos",
+      "abonos": "Abonos",
+      "total": "Total",
+      "ocupation": "Ocupación"
     }
   },
-  "payments" : {
-    "title" : "Abonos"
+  "payments": {
+    "title": "Abonos"
   },
-  "sellers" : {
-    "title" : "Ventas"
+  "sellers": {
+    "title": "Ventas"
   }
 }
-
-

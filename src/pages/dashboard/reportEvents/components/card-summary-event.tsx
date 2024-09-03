@@ -24,7 +24,7 @@ export default function CardSummaryEvent(props: CardDetailEventProps) {
         pt: 2,
         pb: 3,
         position: 'relative',
-        textAlign: 'left', 
+        textAlign: 'left',
         ...bgGradient({
           color: `135deg, ${varAlpha(color1, 0.48)}, ${varAlpha(color2, 0.48)}`,
         }),
@@ -44,7 +44,7 @@ export default function CardSummaryEvent(props: CardDetailEventProps) {
         }}
       />
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
-      <Box sx={{ textAlign: 'center', mt:-2 }}>
+      <Box sx={{ textAlign: 'center', mt: -2 }}>
         <Typography
           variant="body2"
           sx={{ color: 'text.info' }}

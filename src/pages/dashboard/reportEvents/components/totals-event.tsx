@@ -10,6 +10,11 @@ const TOTALS = [
     line2: '1,000',
     line3: '3,000 / 4,000',
   },
+  {
+    line1: '1,900',
+    line2: '957',
+    line3: '2,857 / 4,000',
+  },
 ];
 
 export default function TotalsEvent() {
@@ -23,15 +28,25 @@ export default function TotalsEvent() {
         gap={8}
         display="grid"
         gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
-        sx={{ mt: 5 }}
+        sx={{ mt: 2 }}
       >
         <CardTotalsEvent
-          line1={`<strong>${TOTALS[0].line1}</strong`}
-          line2={`<strong>${t('events.summaryEvent.team')}: </strong>${TOTALS[0].line2}`}
-          line3={`<strong>${t('events.summaryEvent.rival')}: </strong>${TOTALS[0].line3}`}
-          color1={theme.vars.palette.secondary.lightChannel}
-          color2={theme.vars.palette.info.lightChannel}
-          colorSvg="grey.main"
+          title={`<strong>${t('events.totals.ticketsSold')}</strong>`}
+          line1={`<strong>${t('events.totals.tickets')} :  </strong>${TOTALS[0].line1}`}
+          line2={`<strong>${t('events.totals.abonos')} :  </strong>${TOTALS[0].line2}`}
+          line3={`<strong>${t('events.totals.total').toUpperCase()} : </strong>${TOTALS[0].line3}`}
+          color1={theme.vars.palette.warning.lightChannel}
+          color2={theme.vars.palette.warning.lighterChannel}
+          colorSvg="secondary.main"
+        />
+        <CardTotalsEvent
+          title={`<strong>${t('events.totals.ocupation')}</strong>`}
+          line1={`<strong>${t('events.totals.tickets')} :  </strong>${TOTALS[1].line1}`}
+          line2={`<strong>${t('events.totals.abonos')} :  </strong>${TOTALS[1].line2}`}
+          line3={`<strong>${t('events.totals.total').toUpperCase()} : </strong>${TOTALS[1].line3}`}
+          color1={theme.vars.palette.primary.lightChannel}
+          color2={theme.vars.palette.primary.lighterChannel}
+          colorSvg="error.main"
         />
       </Box>
     </>
