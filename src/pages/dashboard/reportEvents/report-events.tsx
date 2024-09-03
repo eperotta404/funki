@@ -9,6 +9,7 @@ import { useOrganization } from 'src/layouts/components/organization-popover/con
 
 import { BlankView } from 'src/sections/blank/view';
 
+import TotalsEvent from './components/totals-event';
 import SummaryEvent from './components/summary-event';
 import FiltersEvent from './components/filters-event';
 
@@ -31,6 +32,11 @@ export default function Page() {
             <Grid item xs={12}>
               <Card sx={{ p: 3, backgroundColor: 'background.default', boxShadow: 3 }}>
                 <SummaryEvent />
+              </Card>
+            </Grid>
+            <Grid item xs={12}>
+              <Card sx={{ p: 3, backgroundColor: 'background.default', boxShadow: 3 }}>
+                <TotalsEvent />
               </Card>
             </Grid>
           </Grid>
