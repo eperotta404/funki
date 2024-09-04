@@ -35,7 +35,7 @@ export default function FiltersEvent() {
             }}
           />
         )}
-        renderInput={(params) => <TextField {...params} label={t('events.summaryEvent.team')} fullWidth />}
+        renderInput={(params) => <TextField {...params} label={t('events.summary.team')} fullWidth />}
         sx={{ background: 'white' }}
       />
 
@@ -54,7 +54,7 @@ export default function FiltersEvent() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('events.summaryEvent.league')} fullWidth />
+          <TextField {...params} label={t('events.summary.league')} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />

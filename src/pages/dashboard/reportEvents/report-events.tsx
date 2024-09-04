@@ -12,6 +12,7 @@ import { BlankView } from 'src/sections/blank/view';
 import TotalsEvent from './components/totals-event';
 import SummaryEvent from './components/summary-event';
 import FiltersEvent from './components/filters-event';
+import DetailsEvent from './components/details-event';
 
 // ----------------------------------------------------------------------
 
@@ -20,6 +21,8 @@ const metadata = { title: `Eventos| Dashboard - ${CONFIG.appName}` };
 export default function Page() {
   const { t } = useTranslation();
   const { selectedOrganization } = useOrganization();
+
+  const cardStyle = { p: 3, backgroundColor: 'background.default', boxShadow: 3 };
 
   const renderSelectedOde = (
     <>
@@ -30,13 +33,18 @@ export default function Page() {
               <FiltersEvent />
             </Grid>
             <Grid item xs={12}>
-              <Card sx={{ p: 3, backgroundColor: 'background.default', boxShadow: 3 }}>
+              <Card sx={cardStyle}>
                 <SummaryEvent />
               </Card>
             </Grid>
             <Grid item xs={12}>
-              <Card sx={{ p: 3, backgroundColor: 'background.default', boxShadow: 3 }}>
+              <Card sx={cardStyle}>
                 <TotalsEvent />
+              </Card>
+            </Grid>
+            <Grid item xs={12}>
+              <Card sx={cardStyle}>
+                <DetailsEvent />
               </Card>
             </Grid>
           </Grid>

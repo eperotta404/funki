@@ -23,7 +23,7 @@
     "buttons": {
       "download": "Descargar"
     },
-    "summaryEvent": {
+    "summary": {
       "team": "Equipo",
       "rival": "Rival",
       "league": "Liga",
@@ -42,6 +42,9 @@
       "ocupation": "Ocupación",
       "courtesy": "Cortesía",
       "fundraising": "Recaudación"
+    },
+    "details": {
+      "details": "Detalles"
     }
   },
   "payments": {

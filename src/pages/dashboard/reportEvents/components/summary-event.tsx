@@ -62,8 +62,8 @@ export default function SummaryEvent() {
         <CardSummaryEvent
           icon={SUMMARY[0].icon}
           line1={`<strong>${SUMMARY[0].line1}</strong`}
-          line2={`<strong>${t('events.summaryEvent.team')}: </strong>${SUMMARY[0].line2}`}
-          line3={`<strong>${t('events.summaryEvent.rival')}: </strong>${SUMMARY[0].line3}`}
+          line2={`<strong>${t('events.summary.team')}: </strong>${SUMMARY[0].line2}`}
+          line3={`<strong>${t('events.summary.rival')}: </strong>${SUMMARY[0].line3}`}
           color1={theme.vars.palette.secondary.lighterChannel}
           color2={theme.vars.palette.warning.lightChannel}
           colorSvg="grey.main"
@@ -71,9 +71,9 @@ export default function SummaryEvent() {
 
         <CardSummaryEvent
           icon={SUMMARY[1].icon}
-          line1={`<strong>${t('events.summaryEvent.league')}: </strong>${SUMMARY[1].line1}`}
-          line2={`<strong>${t('events.summaryEvent.season')}: </strong>${SUMMARY[1].line2}`}
-          line3={`<strong>${t('events.summaryEvent.match')}: </strong>${SUMMARY[1].line3}`}
+          line1={`<strong>${t('events.summary.league')}: </strong>${SUMMARY[1].line1}`}
+          line2={`<strong>${t('events.summary.season')}: </strong>${SUMMARY[1].line2}`}
+          line3={`<strong>${t('events.summary.match')}: </strong>${SUMMARY[1].line3}`}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.primary.lightChannel}
           colorSvg="primary.main"
@@ -81,9 +81,9 @@ export default function SummaryEvent() {
 
         <CardSummaryEvent
           icon={SUMMARY[2].icon}
-          line1={`<strong>${t('events.summaryEvent.date')}: </strong>${SUMMARY[2].line1}`}
-          line2={`<strong>${t('events.summaryEvent.time')}: </strong>${SUMMARY[2].line2}`}
-          line3={`<strong>${t('events.summaryEvent.stadium')}: </strong>${SUMMARY[2].line3}`}
+          line1={`<strong>${t('events.summary.date')}: </strong>${SUMMARY[2].line1}`}
+          line2={`<strong>${t('events.summary.time')}: </strong>${SUMMARY[2].line2}`}
+          line3={`<strong>${t('events.summary.stadium')}: </strong>${SUMMARY[2].line3}`}
           color1={theme.vars.palette.info.lightChannel}
           color2={theme.vars.palette.success.lightChannel}
           colorSvg="error.main"
