@@ -44,7 +44,9 @@
       "fundraising": "Recaudación"
     },
     "details": {
-      "details": "Detalles"
+      "details": "Detalles",
+      "ticketsByTribune": "Boletos por tribuna",
+      "montoByTribune": "Monto vendido por tribuna"
     }
   },
   "payments": {
