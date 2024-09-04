@@ -5,12 +5,14 @@ import { useTheme, alpha as hexAlpha } from '@mui/material/styles';
 
 import { Chart, useChart } from 'src/components/chart';
 
-interface AnalyticTicketsByTribuneProps {
+interface AnalyticBarProps {
   title?: string;
   subheader?: string;
+
   chart: {
     colors?: string[];
     categories?: string[];
+    max: number;
     series: {
       name: string;
       data: number[];
@@ -19,7 +21,7 @@ interface AnalyticTicketsByTribuneProps {
   };
 }
 
-export default function AnalyticTicketsByTribune(props: AnalyticTicketsByTribuneProps) {
+export default function AnalyticBar(props: AnalyticBarProps) {
   const { title, subheader, chart, ...other } = props;
   const theme = useTheme();
   const chartColors = chart.colors ?? [
@@ -37,14 +39,24 @@ export default function AnalyticTicketsByTribune(props: AnalyticTicketsByTribune
     xaxis: {
       categories: chart.categories,
     },
+
+    yaxis: {
+      max: chart.max,
+
+      labels: {
+        formatter: (value: number) => `${value}`, 
+      },
+    },
     legend: {
       show: true,
     },
     tooltip: {
       y: {
-        formatter: (value: number) => `${value} visits`,
+        formatter: (value: number) => `${value}`,
       },
+      theme: 'light',
     },
+
     ...chart.options,
   });
 
