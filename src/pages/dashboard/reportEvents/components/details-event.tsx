@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 
 import AnalyticBar from './analytic-bar';
+import AnalyticFunnel from './analytic-funnel';
 
 export default function DetailsEvent() {
   const { t } = useTranslation();
@@ -59,6 +60,14 @@ export default function DetailsEvent() {
               },
             ],
           }}
+        />
+        <AnalyticFunnel
+          title={t('events.details.totalCapacitySalesRevenue')}
+          chartData={[
+            [t('events.details.tickets'), 100],
+            [t('events.details.memberships'), 80],
+            [t('events.details.courtesy'), 50],
+          ]}
         />
       </Box>
     </>

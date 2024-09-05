@@ -46,7 +46,11 @@
     "details": {
       "details": "Detalles",
       "ticketsByTribune": "Boletos por tribuna",
-      "montoByTribune": "Monto vendido por tribuna"
+      "montoByTribune": "Monto vendido por tribuna",
+      "totalCapacitySalesRevenue": "Aforo Total, Ventas e Ingresos",
+      "tickets": "Boletos",
+      "memberships": "Abonos",
+      "courtesy": "Cortesía"
     }
   },
   "payments": {
