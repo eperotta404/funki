@@ -29,12 +29,14 @@ export default function AnalyticFunnel(props: AnalyticFunnelProps) {
     },
     plotOptions: {
       funnel: {
-        neckWidth: '30%',
-        neckHeight: '25%',
-        width: '80%',
+        neckWidth: '20%',
+        neckHeight: '10%',
+        width: '60%',
         height: '100%',
       },
     },
+
+    
     series: [
       {
         type: 'funnel',
