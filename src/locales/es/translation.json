@@ -50,7 +50,12 @@
       "totalCapacitySalesRevenue": "Aforo Total, Ventas e Ingresos",
       "tickets": "Boletos",
       "memberships": "Abonos",
-      "courtesy": "Cortesía"
+      "courtesy": "Cortesía",
+      "paymentMethods": "Metodos de Pago",
+      "paymentChannels": "Canales de Pago",
+      "web": "Web",
+      "app": "App",
+      "advisors": "Asesores"
     }
   },
   "payments": {

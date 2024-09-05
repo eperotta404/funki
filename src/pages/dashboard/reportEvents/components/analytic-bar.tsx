@@ -42,9 +42,10 @@ export default function AnalyticBar(props: AnalyticBarProps) {
 
     yaxis: {
       max: chart.max,
+      min: 0,
 
       labels: {
-        formatter: (value: number) => `${value}`, 
+        formatter: (value: number) => `${value}`,
       },
     },
     legend: {

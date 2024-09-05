@@ -5,16 +5,17 @@ import HighchartsReact from 'highcharts-react-official';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import HighchartsFunnel from 'highcharts/modules/funnel';
 
-import { Card, CardHeader } from '@mui/material';
+import {  Card, CardHeader } from '@mui/material';
 
 interface AnalyticFunnelProps {
   title?: string;
   subheader?: string;
   chartData: [string, number][];
+  colors?: string[];
 }
 
 export default function AnalyticFunnel(props: AnalyticFunnelProps) {
-  const { title, subheader, chartData } = props;
+  const { title, subheader, chartData, colors } = props;
   HighchartsFunnel(Highcharts);
 
   const options: Highcharts.Options = {
@@ -36,6 +37,8 @@ export default function AnalyticFunnel(props: AnalyticFunnelProps) {
       },
     },
 
+    colors: colors,
+
     
     series: [
       {
@@ -47,8 +50,8 @@ export default function AnalyticFunnel(props: AnalyticFunnelProps) {
   };
   return (
     <Card>
-      <CardHeader title={title} subheader={subheader} />
-      <HighchartsReact highcharts={Highcharts} options={options} />;
+      <CardHeader title={title} subheader={subheader} sx={{ mb:2 }} />
+      <HighchartsReact highcharts={Highcharts} options={options}  />
     </Card>
   );
 }
