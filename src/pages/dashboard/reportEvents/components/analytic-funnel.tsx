@@ -36,10 +36,7 @@ export default function AnalyticFunnel(props: AnalyticFunnelProps) {
         height: '100%',
       },
     },
-
-    colors: colors,
-
-    
+    colors,
     series: [
       {
         type: 'funnel',
