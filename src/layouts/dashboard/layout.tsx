@@ -16,7 +16,6 @@ import { NavMobile } from './nav-mobile';
 import { layoutClasses } from '../classes';
 import { NavVertical } from './nav-vertical';
 import { NavHorizontal } from './nav-horizontal';
-import { _account } from '../config-nav-account';
 import { MenuButton } from '../components/menu-button';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
@@ -146,7 +145,7 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
                 <LanguagePopover data={[{ value: 'es', label: 'Español', countryCode: 'ES' }]} />
 
                 {/* -- Account drawer -- */}
-                <AccountDrawer data={_account} />
+                <AccountDrawer />
               </Box>
             ),
           }}

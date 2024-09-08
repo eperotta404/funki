@@ -14,26 +14,17 @@ import { varAlpha } from 'src/theme/styles';
 import { Iconify } from 'src/components/iconify';
 import { AnimateAvatar } from 'src/components/animate';
 
-import { useMockedUser } from 'src/auth/hooks';
+import { useAuthContext } from 'src/auth/hooks';
 
 import { AccountButton } from './account-button';
 import { SignOutButton } from './sign-out-button';
 
 // ----------------------------------------------------------------------
 
-export type AccountDrawerProps = IconButtonProps & {
-  data?: {
-    label: string;
-    href: string;
-    icon?: React.ReactNode;
-    info?: React.ReactNode;
-  }[];
-};
-
-export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
+export function AccountDrawer() {
   const theme = useTheme();
 
-  const { user } = useMockedUser();
+  const { user } = useAuthContext();
 
   const [open, setOpen] = useState(false);
 
@@ -50,7 +41,7 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
     <AnimateAvatar
       width={96}
       slotProps={{
-        avatar: { src: user?.photoURL, alt: user?.displayName },
+        avatar: { src: user?.avatar, alt: user?.name },
         overlay: {
           border: 2,
           spacing: 3,
@@ -58,7 +49,7 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
         },
       }}
     >
-      {user?.displayName?.charAt(0).toUpperCase()}
+      {user?.name?.charAt(0).toUpperCase()}
     </AnimateAvatar>
   );
 
@@ -66,10 +57,8 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
     <>
       <AccountButton
         onClick={handleOpenDrawer}
-        photoURL={user?.photoURL}
-        displayName={user?.displayName}
-        sx={sx}
-        {...other}
+        photoURL={user?.avatar}
+        displayName={user?.user}
       />
 
       <Drawer
@@ -90,7 +79,7 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
             {renderAvatar}
 
             <Typography variant="subtitle1" noWrap sx={{ mt: 2 }}>
-              {user?.displayName}
+              {user?.name}
             </Typography>
 
             <Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5 }} noWrap>

@@ -11,19 +11,19 @@ export class AuthApi implements AuthRepository {
     this.httpClient = httpClient;
   }
 
-  async signIn(email: string, password: string): Promise<Login> {
+  async signIn(email : string, password: string): Promise<Login> {
     try {
-      const params = { email, password };
-      const response = await this.httpClient.post('/api/auth/sign-in',params);
-      const { accessToken, user } = response.data;
+      const params = new URLSearchParams({ username: email, password }).toString();
+      const response = await this.httpClient.post(`/auth/login?${params}`, {});
+      const { token } = response.data;
 
       const userResponse: User = {
-        id: user.id,
-        name: user.displayName,
-        avatar: user.photoURL,
+        id: 1,
+        name: 'admin@fanki.co',
+        avatar: '',
       };
 
-      return { accessToken, user: userResponse };
+      return { accessToken: token, user: userResponse };
     } catch (error) {
       error.message = "login.invalidCredentials"
       throw error;
@@ -32,13 +32,14 @@ export class AuthApi implements AuthRepository {
 
   async getMe(): Promise<User> {
     try {
-      const response = await this.httpClient.get('/api/auth/me');
-      const { user } = response.data;
+
+     // const response = await this.httpClient.get('/api/auth/me');
+     // const { user } = response.data;
 
       const userResponse: User = {
-        id: user.id,
-        name: user.displayName,
-        avatar: user.photoURL,
+        id: 1,
+        name: 'admin@fanki.co',
+        avatar: '',
       };
 
       return userResponse;

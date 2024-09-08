@@ -20,7 +20,7 @@ export type ConfigValue = {
 // ----------------------------------------------------------------------
 
 export const CONFIG: ConfigValue = {
-  appName: 'Funki - Portal de Aliados',
+  appName: 'Fanki - Portal de Aliados',
   appVersion: packageJson.version,
   baseApiUrl: import.meta.env.VITE_API_BASE_URL ?? '',
   serverUrl: import.meta.env.VITE_SERVER_URL ?? '',

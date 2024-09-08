@@ -33,7 +33,7 @@ export function createSignInSchema(t: any) {
     password: zod
       .string()
       .min(1, { message: t('login.passwordRequired') })
-      .min(6, { message: t('login.passwordMinLength') }),
+      .min(5, { message: t('login.passwordMinLength') }),
   });
 }
 
@@ -52,8 +52,8 @@ export function SignInView() {
   type SignInSchemaType = zod.infer<typeof SignInSchema>;
 
   const defaultValues = {
-    email: 'demo@minimals.cc',
-    password: '@demo1',
+    email : 'admin@fanki.co',
+    password: '12345',
   };
 
   const methods = useForm<SignInSchemaType>({
