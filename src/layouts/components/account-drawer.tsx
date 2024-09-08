@@ -1,5 +1,3 @@
-import type { IconButtonProps } from '@mui/material/IconButton';
-
 import { useState, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
