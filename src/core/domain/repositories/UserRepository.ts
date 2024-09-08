@@ -1,5 +1,5 @@
-import type { User } from '../models/user';
+import type { Organization } from "../models/organization";
 
 export interface UserRepository {
-  getUserById(id: string): Promise<User>;
+  getOrganizations(): Promise<Organization[]>;
 }

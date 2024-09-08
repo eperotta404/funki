@@ -1,4 +1,4 @@
-import type { User } from 'src/core/domain/models/user';
+import { Organization } from 'src/core/domain/models/organization';
 
 import type { HttpClient } from '../http/HttpClient';
 import type { UserRepository } from '../../domain/repositories/UserRepository';
@@ -10,18 +10,17 @@ export class UserApi implements UserRepository {
     this.httpClient = httpClient;
   }
 
-  async getUserById(id: string): Promise<User> {
+  async getOrganizations(): Promise<Organization[]> {
     try {
-      const response = await this.httpClient.get(`/jokes/random`);
-      const { icon_url, id: responseId, value } = response.data;
+      const response = await this.httpClient.get(`/backoffice/sportOrganizations`);
+      const organizations = response.data.map((org: any) =>
+        new Organization(org.id, org.country, org.name, org.squads.map((squad: any) => ({
+          name: squad.name,
+          logo: squad.logo,
+        })))
+      );
 
-      const user: User = {
-        id: responseId,
-        name: value,
-        avatar: icon_url,
-      };
-
-      return user;
+      return organizations;
     } catch (error) {
       console.error('Error fetching user:', error);
       throw error;

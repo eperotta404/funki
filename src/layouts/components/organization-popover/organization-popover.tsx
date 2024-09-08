@@ -1,3 +1,4 @@
+/* eslint-disable perfectionist/sort-imports */
 import type { ButtonBaseProps } from '@mui/material/ButtonBase';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -8,12 +9,17 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 
+import { GetOrganizations } from 'src/core/domain/useCases/GetOrganizations';
+
 import { Iconify } from 'src/components/iconify';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
 
+import { userService } from 'src/core/infrastructure/instances';
 import { useOrganization } from './context/organization-selector-context';
 
 // ----------------------------------------------------------------------
+
+const getOrganizationUseCase = new GetOrganizations(userService);
 
 export type OrganizationPopoverProps = ButtonBaseProps & {
   data?: {
@@ -32,9 +38,20 @@ export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPop
   const [organization, setOrganization] = useState(data[0]);
 
   useEffect(() => {
-    if (data.length > 0) {
-      setSelectedOrganization(organization);
-    }
+    const fetchOrganization = async () => {
+      try {
+        const res = await getOrganizationUseCase.execute();
+        // eslint-disable-next-line no-debugger
+        debugger;
+        // if (res.length > 0) {
+        //   setSelectedOrganization(organization);
+        // }
+      } catch (error) {
+        console.error("Error fetching organization:", error);
+      }
+    };
+
+    fetchOrganization();
   }, []);
 
   const handleChangeOrganization = useCallback(
