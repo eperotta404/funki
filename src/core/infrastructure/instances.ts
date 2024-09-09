@@ -11,5 +11,5 @@ const httpClient = new HttpClient(session);
 const organizationApi = new OrganizationApi(httpClient);
 const authApi = new AuthApi(httpClient);
 
-export const userService = new OrganizationService(organizationApi);
+export const organizationService = new OrganizationService(organizationApi);
 export const authService = new AuthService(authApi);

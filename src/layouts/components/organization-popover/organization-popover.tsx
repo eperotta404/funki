@@ -9,7 +9,7 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 
-import { userService } from 'src/core/infrastructure/instances';
+import { organizationService } from 'src/core/infrastructure/instances';
 import { GetOrganizations } from 'src/core/domain/useCases/GetOrganizations';
 
 import { Iconify } from 'src/components/iconify';
@@ -19,7 +19,7 @@ import { useOrganization } from './context/organization-selector-context';
 
 // ----------------------------------------------------------------------
 
-const getOrganizationsUseCase = new GetOrganizations(userService);
+const getOrganizationsUseCase = new GetOrganizations(organizationService);
 
 export function OrganizationPopover({ sx }: ButtonBaseProps) {
   const mediaQuery = 'sm';

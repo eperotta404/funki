@@ -2,9 +2,9 @@ import type { Organization } from '../models/organization';
 import type { OrganizationService } from '../services/OrganizationService';
 
 export class GetOrganizations {
-  constructor(private userService: OrganizationService) {}
+  constructor(private organizationService: OrganizationService) {}
 
   async execute(): Promise<Organization[]> {
-    return this.userService.getOrganizations();
+    return this.organizationService.getOrganizations();
   }
 }

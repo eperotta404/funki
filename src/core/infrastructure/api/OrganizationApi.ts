@@ -1,5 +1,6 @@
 import type { OrganizationRepository } from 'src/core/domain/repositories/OrganizationRepository';
 
+import { Event } from 'src/core/domain/models/event';
 import { Organization } from 'src/core/domain/models/organization';
 
 import mockOrganizations from './mockOrganizations.json';
@@ -25,6 +26,21 @@ export class OrganizationApi implements OrganizationRepository {
       );
 
       return organizations;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      throw error;
+    }
+  }
+
+  async getEventsByOrganization(organizationId: string, squadId: string): Promise<Event[]> {
+    try {
+      const params = new URLSearchParams({ squad: squadId }).toString();
+      const response = await this.httpClient.get(`/events/so/${organizationId}/get?${params}`);
+      const events = response.data.map((eve: any) =>
+        new Event(eve.id, eve.name)
+      );
+
+      return events;
     } catch (error) {
       console.error('Error fetching user:', error);
       throw error;

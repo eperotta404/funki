@@ -2,30 +2,15 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Paper, TextField, Autocomplete } from '@mui/material';
 
-import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
+interface FiltersEventProps {
+  teams: { id: string; label: string }[];
+  dates: { id: string; label: string }[];
+  events: { id: string; label: string }[];
+  selectedTeam: { id: string; label: string } | null
+}
 
-const dates = [
-  { id: 1, label: '24/9/2024' },
-  { id: 2, label: '24/9/2024' },
-];
-
-const events = [
-  { id: 1, label: 'Evento 1' },
-  { id: 2, label: 'Evento 2' },
-];
-
-export default function FiltersEvent() {
-  const { selectedOrganization } = useOrganization();
-
+export default function FiltersEvent({ teams, dates, events, selectedTeam }: FiltersEventProps) {
   const { t } = useTranslation();
-
-  const teams = selectedOrganization ? selectedOrganization.squads.map(squad => ({
-    id: squad.id,
-    label: squad.name,
-  })) : [];
-
-
-  const selectedTeam = teams.length > 0 ? teams[0] : null;
 
   return (
     <Box
