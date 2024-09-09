@@ -19,6 +19,7 @@ interface AnalyticBarProps {
       data: number[];
     }[];
     options?: ChartOptions;
+    yAxisMarker?: number;
   };
 }
 
@@ -30,6 +31,29 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     hexAlpha(theme.palette.warning.main, 0.8),
     hexAlpha(theme.palette.error.main, 0.8),
   ];
+
+
+  const annotations = chart.yAxisMarker
+  ? {
+      yaxis: [
+        {
+          y: chart.yAxisMarker,
+          borderColor: theme.palette.info.main,
+          strokeDashArray: 4, 
+          label: {
+            borderColor: theme.palette.info.main,
+            style: {
+              color: '#fff',
+              background: theme.palette.info.main,
+            },
+            text: `10% del aforo`,
+          },
+        },
+      ],
+    }
+  : {};
+
+
 
   const chartOptions = useChart({
     colors: chartColors,
@@ -62,6 +86,8 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       },
       theme: 'light',
     },
+
+    annotations,
 
     ...chart.options,
   });

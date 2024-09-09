@@ -120,14 +120,15 @@ export default function DetailsEvent() {
           title={t('events.details.courtesies')}
           chart={{
             stacked: true,
-            categories: ['Tribune 1', 'Tribune 2', 'Tribune 3'],
+            categories: [t('events.details.courtesies') ],
             max: 90000,
             colors: [theme.palette.success.main, theme.palette.info.main, theme.palette.error.main],
             series: [
-              { name: t('events.details.ticketsGenerated'), data: [40000, 30003, 20002] },
-              { name: t('events.details.ticketsRedeemed'), data: [17000, 9000, 47000] },
-              { name: t('events.details.ticketsUnredeemed'), data: [30000, 50000, 70000] },
+              { name: t('events.details.ticketsGenerated'), data: [40000 ] },
+              { name: t('events.details.ticketsRedeemed'), data: [17000] },
+              { name: t('events.details.ticketsUnredeemed'), data: [30000,] },
             ],
+            yAxisMarker: 72000,
           }}
         />
       </Box>
