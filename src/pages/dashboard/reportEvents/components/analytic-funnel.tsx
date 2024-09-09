@@ -19,9 +19,13 @@ export default function AnalyticFunnel(props: AnalyticFunnelProps) {
   HighchartsFunnel(Highcharts);
 
   const options: Highcharts.Options = {
+    accessibility: {
+      enabled: false,
+    },
     chart: {
       type: 'funnel',
     },
+
     title: {
       text: '',
     },
