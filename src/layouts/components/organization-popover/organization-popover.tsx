@@ -1,5 +1,5 @@
-/* eslint-disable perfectionist/sort-imports */
 import type { ButtonBaseProps } from '@mui/material/ButtonBase';
+import type { Organization } from 'src/core/domain/models/organization';
 
 import { useState, useEffect, useCallback } from 'react';
 
@@ -9,43 +9,34 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 
+import { userService } from 'src/core/infrastructure/instances';
 import { GetOrganizations } from 'src/core/domain/useCases/GetOrganizations';
 
 import { Iconify } from 'src/components/iconify';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
 
-import { userService } from 'src/core/infrastructure/instances';
 import { useOrganization } from './context/organization-selector-context';
 
 // ----------------------------------------------------------------------
 
-const getOrganizationUseCase = new GetOrganizations(userService);
+const getOrganizationsUseCase = new GetOrganizations(userService);
 
-export type OrganizationPopoverProps = ButtonBaseProps & {
-  data?: {
-    id: string;
-    name: string;
-    logo: string;
-  }[];
-};
-
-export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPopoverProps) {
-  const popover = usePopover();
-  const { setSelectedOrganization } = useOrganization();
-
+export function OrganizationPopover({ sx }: ButtonBaseProps) {
   const mediaQuery = 'sm';
+  const popover = usePopover();
 
-  const [organization, setOrganization] = useState(data[0]);
+  const { setSelectedOrganization, selectedOrganization } = useOrganization();
+
+  const [organizations, setOrganizations] = useState<Organization[]>([]);
 
   useEffect(() => {
     const fetchOrganization = async () => {
       try {
-        const res = await getOrganizationUseCase.execute();
-        // eslint-disable-next-line no-debugger
-        debugger;
-        // if (res.length > 0) {
-        //   setSelectedOrganization(organization);
-        // }
+        const res = await getOrganizationsUseCase.execute();
+        if (res.length > 0) {
+          setOrganizations(res);
+          setSelectedOrganization(res[0]);
+         }
       } catch (error) {
         console.error("Error fetching organization:", error);
       }
@@ -55,20 +46,12 @@ export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPop
   }, []);
 
   const handleChangeOrganization = useCallback(
-    (newValue: (typeof data)[0]) => {
-      setOrganization(newValue);
+    (newValue: (typeof organizations)[0]) => {
       setSelectedOrganization(newValue);
       popover.onClose();
     },
     [popover, setSelectedOrganization]
   );
-
-  useEffect(() => {
-    if (data.length > 0) {
-      setOrganization(data[0]);
-      setSelectedOrganization(data[0]);
-    }
-  }, [data, setSelectedOrganization]);
 
   return (
     <>
@@ -83,12 +66,11 @@ export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPop
           borderRadius: 1,
           ...sx,
         }}
-        {...other}
       >
         <Box
           component="img"
-          alt={organization?.name}
-          src={organization?.logo}
+          alt={selectedOrganization?.name}
+          src={selectedOrganization?.logo}
           sx={{ width: 24, height: 24, borderRadius: '50%' }}
         />
 
@@ -98,7 +80,7 @@ export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPop
             typography: 'subtitle2',
           }}
         >
-          {organization?.name}
+          {selectedOrganization?.name}
         </Box>
 
         <Iconify width={16} icon="carbon:chevron-sort" sx={{ color: 'text.disabled' }} />
@@ -111,10 +93,10 @@ export function OrganizationPopover({ data = [], sx, ...other }: OrganizationPop
         slotProps={{ arrow: { placement: 'top-left' } }}
       >
         <MenuList sx={{ width: 240 }}>
-          {data.map((option) => (
+          {organizations.map((option) => (
             <MenuItem
               key={option.id}
-              selected={option.id === organization?.id}
+              selected={option.id === selectedOrganization?.id}
               onClick={() => handleChangeOrganization(option)}
               sx={{ height: 48 }}
             >

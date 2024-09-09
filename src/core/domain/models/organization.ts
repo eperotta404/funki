@@ -1,4 +1,7 @@
+import { CONFIG } from "src/config-global";
+
 interface Squad {
+  id: string;
   name: string;
   logo: string;
 }
@@ -19,11 +22,7 @@ export class Organization {
     this.country = country;
     this.name = name;
     this.squads = squads;
-    this.logo = this.getOrganizationLogo();
-  }
-
-  private getOrganizationLogo(): string {
-    return this.squads.length > 0 ? this.squads[0].logo : '';
+    this.logo = `${CONFIG.assetsDir}/assets/icons/workspaces/logo-1.webp`;
   }
 }
 

@@ -19,7 +19,6 @@ import { NavHorizontal } from './nav-horizontal';
 import { MenuButton } from '../components/menu-button';
 import { LayoutSection } from '../core/layout-section';
 import { HeaderSection } from '../core/header-section';
-import { _organization } from '../config-nav-workspace';
 import { StyledDivider, useNavColorVars } from './styles';
 import { AccountDrawer } from '../components/account-drawer';
 import { LanguagePopover } from '../components/language-popover';
@@ -134,7 +133,6 @@ export function DashboardLayout({ sx, children, header, data }: DashboardLayoutP
                 )}
                 {/* -- Organization popover -- */}
                 <OrganizationPopover
-                  data={_organization}
                   sx={{ color: 'var(--layout-nav-text-primary-color)' }}
                 />
               </>

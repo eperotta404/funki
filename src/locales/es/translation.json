@@ -23,6 +23,11 @@
     "buttons": {
       "download": "Descargar"
     },
+    "filter": {
+      "teams": "Equipos",
+      "dates": "Fechas",
+      "events": "Eventos"
+    },
     "summary": {
       "team": "Equipo",
       "rival": "Rival",

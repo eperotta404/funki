@@ -1,10 +1,10 @@
 import type { Organization } from '../models/organization';
-import type { UserService } from '../services/UserService';
+import type { OrganizationService } from '../services/OrganizationService';
 
 export class GetOrganizations {
-  constructor(private userService: UserService) {}
+  constructor(private userService: OrganizationService) {}
 
-  async execute(): Promise<Organization> {
+  async execute(): Promise<Organization[]> {
     return this.userService.getOrganizations();
   }
 }

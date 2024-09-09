@@ -1,10 +1,9 @@
 import type { ReactNode } from 'react';
+import type { Organization } from 'src/core/domain/models/organization';
 
 import React, { useMemo, useState } from 'react';
 
 import { OrganizationContext } from './organization-selector-context';
-
-import type { Organization } from './organization-selector-context';
 
 type OrganizationProviderProps = {
   children: ReactNode;

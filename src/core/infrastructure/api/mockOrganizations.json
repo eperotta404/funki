@@ -1,0 +1,53 @@
+{
+  "sportOrganizations": [
+    {
+      "id": "2348f336-0a11-4a02-bfab-6579d5a103e7",
+      "company": false,
+      "name": "Santos",
+      "country": "MEXICO",
+      "squads": [
+        {
+          "id": "99a11e02-508b-4804-aebb-d25c99e3612f",
+          "name": "Santos",
+          "shortName": "SAN",
+          "logo": "logo.jpg",
+          "banner": "banner",
+          "sport": {
+            "id": "e8996776-26ee-445a-90eb-ce6051083da7",
+            "name": "futbol",
+            "logo": "futbol.jpg",
+            "banner": "banner_futbol.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "451201ed-99be-4cc4-9dab-1f0742565a38",
+      "company": true,
+      "name": "Fanki",
+      "country": "COLOMBIA",
+      "squads": []
+    },
+    {
+      "id": "86fe0198-51d7-41fc-aa5e-ffdcf051369f",
+      "company": false,
+      "name": "Atlas",
+      "country": "MEXICO",
+      "squads": [
+        {
+          "id": "eddbdc7a-e21d-4c95-87ea-ef394bbdc9bd",
+          "name": "Atlas",
+          "shortName": "ATS",
+          "logo": "logo.jpg",
+          "banner": "banner",
+          "sport": {
+            "id": "e8996776-26ee-445a-90eb-ce6051083da7",
+            "name": "futbol",
+            "logo": "futbol.jpg",
+            "banner": "banner_futbol.jpg"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,8 @@
-import type { User } from 'src/core/domain/models/user';
+
 import type { Login } from 'src/core/domain/models/login';
 import type { AuthRepository } from 'src/core/domain/repositories/AuthRepository';
+
+import { User } from 'src/core/domain/models/user';
 
 import type { HttpClient } from '../http/HttpClient';
 
@@ -17,13 +19,9 @@ export class AuthApi implements AuthRepository {
       const response = await this.httpClient.post(`/auth/login?${params}`, {});
       const { token } = response.data;
 
-      const userResponse: User = {
-        id: 1,
-        name: 'admin@fanki.co',
-        avatar: '',
-      };
+      const user = new User();
 
-      return { accessToken: token, user: userResponse };
+      return { accessToken: token, user };
     } catch (error) {
       error.message = "login.invalidCredentials"
       throw error;
@@ -32,17 +30,11 @@ export class AuthApi implements AuthRepository {
 
   async getMe(): Promise<User> {
     try {
+      // const response = await this.httpClient.get('/api/auth/me');
+      // const { user } = response.data;
+      const user = new User();
 
-     // const response = await this.httpClient.get('/api/auth/me');
-     // const { user } = response.data;
-
-      const userResponse: User = {
-        id: 1,
-        name: 'admin@fanki.co',
-        avatar: '',
-      };
-
-      return userResponse;
+      return user;
     } catch (error) {
       console.error('Error fetching user:', error);
       throw error;

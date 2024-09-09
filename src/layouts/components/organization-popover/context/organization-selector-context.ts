@@ -1,10 +1,6 @@
-import { useContext, createContext } from 'react';
+import type { Organization } from 'src/core/domain/models/organization';
 
-export interface Organization {
-  id: string;
-  name: string;
-  logo: string;
-}
+import { useContext, createContext } from 'react';
 
 interface OrganizationContextValue {
   selectedOrganization: Organization | null;
