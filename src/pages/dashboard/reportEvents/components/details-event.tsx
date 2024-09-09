@@ -21,6 +21,7 @@ export default function DetailsEvent() {
         <AnalyticBar
           title={t('events.details.ticketsByTribune')}
           chart={{
+            stacked: true,
             categories: [
               'Tribune 1',
               'Tribune 2',
@@ -44,6 +45,7 @@ export default function DetailsEvent() {
         <AnalyticBar
           title={t('events.details.montoByTribune')}
           chart={{
+            stacked: false,
             categories: [
               'Tribune 1',
               'Tribune 2',
@@ -110,6 +112,21 @@ export default function DetailsEvent() {
               { label: t('events.details.web'), value: 1700 },
               { label: t('events.details.app'), value: 3500 },
               { label: t('events.details.advisors'), value: 1500 },
+            ],
+          }}
+        />
+
+        <AnalyticBar
+          title={t('events.details.courtesies')}
+          chart={{
+            stacked: true,
+            categories: ['Tribune 1', 'Tribune 2', 'Tribune 3'],
+            max: 90000,
+            colors: [theme.palette.success.main, theme.palette.info.main, theme.palette.error.main],
+            series: [
+              { name: t('events.details.ticketsGenerated'), data: [40000, 30003, 20002] },
+              { name: t('events.details.ticketsRedeemed'), data: [17000, 9000, 47000] },
+              { name: t('events.details.ticketsUnredeemed'), data: [30000, 50000, 70000] },
             ],
           }}
         />

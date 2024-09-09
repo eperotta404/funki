@@ -11,6 +11,7 @@ interface AnalyticBarProps {
 
   chart: {
     colors?: string[];
+    stacked: boolean;
     categories?: string[];
     max: number;
     series: {
@@ -36,6 +37,10 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       width: 2,
       colors: ['transparent'],
     },
+    chart: {
+      stacked: chart.stacked,
+    },
+
     xaxis: {
       categories: chart.categories,
     },

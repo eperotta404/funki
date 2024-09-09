@@ -47,10 +47,13 @@ export default function Page() {
 
   const [selectedTeam, setSelectedTeam] = useState<FiltersOption | null>(null);
 
-  const getTeamsFromOrganization = (organization: Organization | null): FiltersOption[] => organization ? organization.squads.map(squad => ({
-      id: squad.id,
-      label: squad.name,
-    })) : [];
+  const getTeamsFromOrganization = (organization: Organization | null): FiltersOption[] =>
+    organization
+      ? organization.squads.map((squad) => ({
+          id: squad.id,
+          label: squad.name,
+        }))
+      : [];
 
   useEffect(() => {
     if (selectedOrganization) {
@@ -65,7 +68,7 @@ export default function Page() {
           //   setEvents(res);
           // }
         } catch (error) {
-          console.error("Error fetching events:", error);
+          console.error('Error fetching events:', error);
         }
       };
 
@@ -81,7 +84,12 @@ export default function Page() {
         <DashboardContent maxWidth="xl">
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <FiltersEvent teams={teams} dates={datesMock} events={events} selectedTeam={selectedTeam}/>
+              <FiltersEvent
+                teams={teams}
+                dates={datesMock}
+                events={events}
+                selectedTeam={selectedTeam}
+              />
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>

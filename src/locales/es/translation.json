@@ -55,12 +55,16 @@
       "totalCapacitySalesRevenue": "Aforo Total, Ventas e Ingresos",
       "tickets": "Boletos",
       "memberships": "Abonos",
+      "courtesies": "Cortesías",
       "courtesy": "Cortesía",
       "paymentMethods": "Metodos de Pago",
       "paymentChannels": "Canales de Pago",
       "web": "Web",
       "app": "App",
-      "advisors": "Asesores"
+      "advisors": "Asesores",
+      "ticketsGenerated": "Boletos Generados",
+      "ticketsRedeemed": "Boletos Redimidos",
+      "ticketsUnredeemed": "Boletos No Redimidos"
     }
   },
   "payments": {
