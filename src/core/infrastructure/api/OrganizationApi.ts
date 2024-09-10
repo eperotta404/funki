@@ -3,8 +3,6 @@ import type { OrganizationRepository } from 'src/core/domain/repositories/Organi
 import { Event } from 'src/core/domain/models/event';
 import { Organization } from 'src/core/domain/models/organization';
 
-import mockOrganizations from './mockOrganizations.json';
-
 import type { HttpClient } from '../http/HttpClient';
 
 export class OrganizationApi implements OrganizationRepository {
