@@ -16,8 +16,8 @@ export class OrganizationApi implements OrganizationRepository {
 
   async getOrganizations(): Promise<Organization[]> {
     try {
-      // const response = await this.httpClient.get(`/backoffice/sportOrganizations`);
-      const organizations = mockOrganizations.sportOrganizations.map((org: any) =>
+      const response = await this.httpClient.get(`/backoffice/sportOrganizations`);
+      const organizations = response.data.sportOrganizations.map((org: any) =>
         new Organization(org.id, org.country, org.name, org.squads.map((squad: any) => ({
           id: squad.id,
           name: squad.name,
