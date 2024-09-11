@@ -31,12 +31,11 @@
     "summary": {
       "team": "Equipo",
       "rival": "Rival",
-      "league": "Liga",
-      "season": "Temporada",
-      "match": "Partido",
       "date": "Fecha",
       "time": "Hora",
-      "stadium": "Estadio"
+      "stadium": "Estadio",
+      "live": "Jugando",
+      "status": "Estado"
     },
     "totals": {
       "totals": "Totales",
