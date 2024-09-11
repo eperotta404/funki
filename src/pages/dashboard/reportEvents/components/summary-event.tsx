@@ -14,7 +14,7 @@ const SUMMARY = [
     line3: 'Santos',
     icon: 'guidance:stadium',
   },
-  
+
   {
     line1: '10/06/2024',
     line2: '19:05 (-6)',
@@ -22,7 +22,6 @@ const SUMMARY = [
     icon: 'cil:calendar',
   },
 ];
-
 
 export default function SummaryEvent() {
   const theme = useTheme();
@@ -33,7 +32,10 @@ export default function SummaryEvent() {
   };
   return (
     <>
-      <Box sx={{ my: 2 }}>
+      <Box sx={{ display: 'flex', my: 1, justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography variant="h3" color={theme.vars.palette.primary.main}>
+          {SUMMARY[0].line1}
+        </Typography>
         <Button
           onClick={handleDownload}
           startIcon={<Iconify icon="eva:cloud-download-fill" />}
@@ -44,7 +46,7 @@ export default function SummaryEvent() {
           <strong>{t('events.buttons.download')} </strong>
         </Button>
       </Box>
-      <Typography variant="h3" color={theme.vars.palette.primary.main}>{SUMMARY[0].line1}</Typography>
+
       <Box
         gap={5}
         display="grid"
@@ -63,7 +65,7 @@ export default function SummaryEvent() {
       >
         <Card2SummaryEvent
           icon="game-icons:soccer-ball"
-          status={t("events.summary.live")}
+          status={t('events.summary.live')}
           statusColor="primary"
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.error.lightChannel}
