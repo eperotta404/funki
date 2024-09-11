@@ -32,8 +32,18 @@ export default function TotalsEvent() {
       <Box
         gap={8}
         display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
-        sx={{ mt: 2 }}
+        gridTemplateColumns={{
+          xs: 'repeat(1, 1fr)',
+          sm: 'repeat(1, 1fr)',
+          md: 'repeat(2, 1fr)',
+          lg: 'repeat(3, 1fr)',
+        }}
+        sx={{
+          mt: 2,
+          '@media (min-width: 1200px) and (max-width: 1399px)': {
+            gridTemplateColumns: 'repeat(2, 1fr)',
+          },
+        }}
       >
         <CardTotalsEvent
           title={`<strong>${t('events.totals.ticketsSold')}</strong>`}
