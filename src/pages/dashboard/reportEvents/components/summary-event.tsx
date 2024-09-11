@@ -73,8 +73,8 @@ export default function SummaryEvent() {
         />
         <CardSummaryEvent
           icon={SUMMARY[0].icon}
-          line1={`<strong>${t('events.summary.team')}: </strong>${SUMMARY[0].line2}`}
-          line2={`<strong>${t('events.summary.rival')}: </strong>${SUMMARY[0].line3}`}
+          line1={`${t('events.summary.team')} :  <strong>${SUMMARY[0].line2} </strong>`}
+          line2={`${t('events.summary.rival')} :  <strong>${SUMMARY[0].line3} </strong>`}
           color1={theme.vars.palette.secondary.lighterChannel}
           color2={theme.vars.palette.warning.lightChannel}
           colorSvg="grey.main"
@@ -82,9 +82,9 @@ export default function SummaryEvent() {
 
         <CardSummaryEvent
           icon={SUMMARY[1].icon}
-          line1={`<strong>${t('events.summary.date')}: </strong>${SUMMARY[1].line1}`}
-          line2={`<strong>${t('events.summary.time')}: </strong>${SUMMARY[1].line2}`}
-          line3={`<strong>${t('events.summary.stadium')}: </strong>${SUMMARY[1].line3}`}
+          line1={`${t('events.summary.date')} : <strong>${SUMMARY[1].line1}</strong>`}
+          line2={`${t('events.summary.time')} :  <strong> ${SUMMARY[1].line2}</strong>`}
+          line3={`${t('events.summary.stadium')} :  <strong>${SUMMARY[1].line3} </strong>`}
           color1={theme.vars.palette.info.lightChannel}
           color2={theme.vars.palette.success.lightChannel}
           colorSvg="error.main"
