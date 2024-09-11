@@ -8,7 +8,7 @@ import { Chart, useChart } from 'src/components/chart';
 interface AnalyticBarProps {
   title?: string;
   subheader?: string;
-
+  isVertical?: boolean;
   chart: {
     colors?: string[];
     stacked: boolean;
@@ -24,7 +24,7 @@ interface AnalyticBarProps {
 }
 
 export default function AnalyticBar(props: AnalyticBarProps) {
-  const { title, subheader, chart, ...other } = props;
+  const { title, subheader,isVertical, chart, ...other } = props;
   const theme = useTheme();
   const chartColors = chart.colors ?? [
     hexAlpha(theme.palette.primary.dark, 0.8),
@@ -67,6 +67,12 @@ export default function AnalyticBar(props: AnalyticBarProps) {
 
     xaxis: {
       categories: chart.categories,
+      axisTicks: {
+        show: isVertical ,
+      },
+      axisBorder: {
+        show: isVertical,
+      },
     },
 
     yaxis: {
@@ -76,6 +82,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       labels: {
         formatter: (value: number) => `${value}`,
       },
+
     },
     legend: {
       show: true,
@@ -88,6 +95,12 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     },
 
     annotations,
+
+    plotOptions: {
+      bar: {
+        horizontal: !isVertical, 
+      },
+    },
 
     ...chart.options,
   });
