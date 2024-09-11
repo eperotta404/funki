@@ -4,7 +4,7 @@ import { Box, useTheme } from '@mui/material';
 
 import AnalyticBar from './analytic-bar';
 import AnalyticPie from './analytic-pie';
-import AnalyticFunnel from './analytic-funnel';
+
 
 export default function DetailsEvent() {
   const { t } = useTranslation();
@@ -20,6 +20,7 @@ export default function DetailsEvent() {
       >
         <AnalyticBar
           title={t('events.details.ticketsByTribune')}
+          isVertical
           chart={{
             stacked: true,
             categories: [
@@ -44,6 +45,7 @@ export default function DetailsEvent() {
         />
         <AnalyticBar
           title={t('events.details.montoByTribune')}
+          isVertical
           chart={{
             stacked: false,
             categories: [
@@ -67,20 +69,8 @@ export default function DetailsEvent() {
             ],
           }}
         />
-        <AnalyticFunnel
-          title={t('events.details.totalCapacitySalesRevenue')}
-          colors={[
-            theme.palette.warning.light,
-            theme.palette.error.dark,
 
-            theme.palette.success.main,
-          ]}
-          chartData={[
-            [t('events.details.tickets'), 100],
-            [t('events.details.memberships'), 80],
-            [t('events.details.courtesy'), 50],
-          ]}
-        />
+       
         <AnalyticPie
           title={t('events.details.paymentMethods')}
           chart={{
@@ -118,6 +108,7 @@ export default function DetailsEvent() {
 
         <AnalyticBar
           title={t('events.details.courtesies')}
+          isVertical
           chart={{
             stacked: true,
             categories: [t('events.details.courtesies') ],

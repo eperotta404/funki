@@ -10,7 +10,7 @@ interface CardDetailEventProps {
   icon: string;
   line1: string;
   line2: string;
-  line3: string;
+  line3?: string;
   color1: string;
   color2: string;
   colorSvg: string;
@@ -44,7 +44,7 @@ export default function CardSummaryEvent(props: CardDetailEventProps) {
         }}
       />
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
-      <Box sx={{ textAlign: 'center', mt: -2 }}>
+      <Box sx={{ textAlign: 'center', mt: line3 ?  -2 : 0 }}>
         <Typography
           variant="body1"
           sx={{ color: 'text.info' }}
@@ -55,11 +55,13 @@ export default function CardSummaryEvent(props: CardDetailEventProps) {
           sx={{ color: 'text.info' }}
           dangerouslySetInnerHTML={{ __html: line2 }}
         />
-        <Typography
-          variant="body1"
-          sx={{ color: 'text.info' }}
-          dangerouslySetInnerHTML={{ __html: line3 }}
-        />
+        {line3 && (
+          <Typography
+            variant="body1"
+            sx={{ color: 'text.info' }}
+            dangerouslySetInnerHTML={{ __html: line3 }}
+          />
+        )}
       </Box>
     </Card>
   );
