@@ -67,6 +67,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
 
     xaxis: {
       categories: chart.categories,
+      tickAmount:5,
       axisTicks: {
         show: isVertical ,
       },
@@ -78,7 +79,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     yaxis: {
       max: chart.max,
       min: 0,
-
+      tickAmount:5,
       labels: {
         formatter: (value: number) => `${value}`,
       },
