@@ -49,17 +49,11 @@ export default function Card2SummaryEvent(props: Card2SummaryEventProps) {
         }}
       />
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
-      <Box sx={{ textAlign: 'center', mt: -4 }}>
-        <Typography variant="body1" sx={{ color: 'text.info',fontWeight: 700 }}>
-          {t('events.summary.status')}
+      <Box sx={{ textAlign: 'center', mt: -2 }}>
+        <Typography variant="h3" sx={{ color: 'text.info',fontWeight: 900 }}>
+        {status.toUpperCase()}
         </Typography>
-        <Label
-          variant="soft"
-          color={statusColor}
-          sx={{mt:1, p: 3, fontSize: 22, fontWeight: 900, borderRadius: 5 }}
-        >
-          {status.toUpperCase()}
-        </Label>
+
       </Box>
     </Card>
   );

@@ -34,8 +34,8 @@
       "date": "Fecha",
       "time": "Hora",
       "stadium": "Estadio",
-      "live": "Jugando",
-      "status": "Estado"
+      "live": "Jugado"
+      
     },
     "totals": {
       "totals": "Totales",
