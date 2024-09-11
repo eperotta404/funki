@@ -24,7 +24,7 @@ interface AnalyticBarProps {
 }
 
 export default function AnalyticBar(props: AnalyticBarProps) {
-  const { title, subheader,isVertical, chart, ...other } = props;
+  const { title, subheader, isVertical, chart, ...other } = props;
   const theme = useTheme();
   const chartColors = chart.colors ?? [
     hexAlpha(theme.palette.primary.dark, 0.8),
@@ -32,28 +32,25 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     hexAlpha(theme.palette.error.main, 0.8),
   ];
 
-
   const annotations = chart.yAxisMarker
-  ? {
-      yaxis: [
-        {
-          y: chart.yAxisMarker,
-          borderColor: theme.palette.info.main,
-          strokeDashArray: 4, 
-          label: {
+    ? {
+        yaxis: [
+          {
+            y: chart.yAxisMarker,
             borderColor: theme.palette.info.main,
-            style: {
-              color: '#fff',
-              background: theme.palette.info.main,
+            strokeDashArray: 4,
+            label: {
+              borderColor: theme.palette.info.main,
+              style: {
+                color: '#fff',
+                background: theme.palette.info.main,
+              },
+              text: `10% del aforo`,
             },
-            text: `10% del aforo`,
           },
-        },
-      ],
-    }
-  : {};
-
-
+        ],
+      }
+    : {};
 
   const chartOptions = useChart({
     colors: chartColors,
@@ -67,9 +64,9 @@ export default function AnalyticBar(props: AnalyticBarProps) {
 
     xaxis: {
       categories: chart.categories,
-      tickAmount:5,
+      tickAmount: 5,
       axisTicks: {
-        show: isVertical ,
+        show: isVertical,
       },
       axisBorder: {
         show: isVertical,
@@ -79,11 +76,10 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     yaxis: {
       max: chart.max,
       min: 0,
-      tickAmount:5,
+      tickAmount: 5,
       labels: {
         formatter: (value: number) => `${value}`,
       },
-
     },
     legend: {
       show: true,
@@ -99,7 +95,10 @@ export default function AnalyticBar(props: AnalyticBarProps) {
 
     plotOptions: {
       bar: {
-        horizontal: !isVertical, 
+        horizontal: !isVertical,
+        ...(chart.series[0].data.length === 1 && {
+          columnWidth: '20%', 
+        }),
       },
     },
 
