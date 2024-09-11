@@ -20,13 +20,16 @@
   },
   "events": {
     "title": "Eventos",
+
     "buttons": {
       "download": "Descargar"
     },
     "filter": {
       "teams": "Equipos",
       "dates": "Fechas",
-      "events": "Eventos"
+      "events": "Eventos",
+      "eventNotFound": "No has realizado una búsqueda",
+      "eventNotFoundFeedback": "Por favor, selecciona o busca un evento para continuar."
     },
     "summary": {
       "team": "Equipo",

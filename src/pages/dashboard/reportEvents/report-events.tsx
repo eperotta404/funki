@@ -16,6 +16,7 @@ import TotalsEvent from './components/totals-event';
 import SummaryEvent from './components/summary-event';
 import FiltersEvent from './components/filters-event';
 import DetailsEvent from './components/details-event';
+import EventNotAvailable from './components/event-not-available';
 
 // ----------------------------------------------------------------------
 
@@ -93,6 +94,11 @@ export default function Page() {
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
+                <EventNotAvailable />
+              </Card>
+            </Grid>
+            <Grid item xs={12}>
+              <Card sx={cardStyle}>
                 <SummaryEvent />
               </Card>
             </Grid>
@@ -109,7 +115,7 @@ export default function Page() {
           </Grid>
         </DashboardContent>
       ) : (
-        <p>No seleccionada</p>
+        <EventNotAvailable />
       )}
     </>
   );
