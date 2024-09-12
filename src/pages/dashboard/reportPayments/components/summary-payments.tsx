@@ -1,9 +1,16 @@
 import { Box, Card, useTheme, Typography, CardContent } from '@mui/material';
 
+import { AnalyticsTimeline } from './analytics-timeline';
 
+
+const _analyticOrderTimeline = [
+    { id: "1", title: "1983, orders, $4220", type: "order1", time: "2022-01-01" },
+    { id: "2", title: "1983, orders, $4220", type: "order1", time: "2022-01-01" },
+    { id: "3", title: "1983, orders, $4220", type: "order1", time: "2022-01-01" }
+  ];
 
 export default function SummaryPayments() {
-    const theme = useTheme();
+  const theme = useTheme();
   return (
     <>
       <Box sx={{ display: 'flex', my: 1, justifyContent: 'space-between', alignItems: 'center' }}>
@@ -24,12 +31,12 @@ export default function SummaryPayments() {
         sx={{
           mt: 3,
           '@media (min-width: 1200px) and (max-width: 1399px)': {
-            gridTemplateColumns: 'repeat(2, 1fr)', 
+            gridTemplateColumns: 'repeat(2, 1fr)',
           },
         }}
       >
         <Card>
-          <CardContent> 1</CardContent>
+          <AnalyticsTimeline title="Order timeline" list={_analyticOrderTimeline} />
         </Card>
         <Card>
           <CardContent> 2</CardContent>
