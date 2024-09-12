@@ -8,6 +8,8 @@ import { DashboardContent } from 'src/layouts/dashboard';
 
 import { BlankView } from 'src/sections/blank/view';
 
+import FiltersPayment from './components/filters-payments';
+
 // ----------------------------------------------------------------------
 
 const metadata = { title: `Payments| Dashboard - ${CONFIG.appName}` };
@@ -18,8 +20,7 @@ export default function Page() {
     <DashboardContent maxWidth="xl">
     <Grid container spacing={3}>
         <Grid item xs={12}>
-          Abonos
-
+      <FiltersPayment />
         </Grid> 
     </Grid>
     </DashboardContent>
