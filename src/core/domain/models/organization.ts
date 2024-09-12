@@ -4,6 +4,7 @@ interface Squad {
   id: string;
   name: string;
   logo: string;
+  shortName: string;
 }
 
 export class Organization {

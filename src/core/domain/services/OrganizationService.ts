@@ -9,7 +9,7 @@ export class OrganizationService {
     return this.organizationRepository.getOrganizations();
   }
 
-  async getEventsByOrganization(organizationId: string, squadId: string): Promise<Event[]> {
-    return this.organizationRepository.getEventsByOrganization(organizationId, squadId);
+  async getEventsByOrganization(team: string, date: string): Promise<Event[]> {
+    return this.organizationRepository.getEventsByOrganization(team, date);
   }
 }

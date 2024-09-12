@@ -26,7 +26,7 @@
     },
     "filter": {
       "teams": "Equipos",
-      "dates": "Fechas",
+      "year": "Año",
       "events": "Eventos",
       "eventNotFound": "No has realizado una búsqueda",
       "eventNotFoundFeedback": "Por favor, selecciona o busca un evento para continuar."
@@ -38,7 +38,7 @@
       "time": "Hora",
       "stadium": "Estadio",
       "live": "Jugado"
-      
+
     },
     "totals": {
       "totals": "Totales",

@@ -20,28 +20,44 @@ export class OrganizationApi implements OrganizationRepository {
           id: squad.id,
           name: squad.name,
           logo: squad.logo,
+          shortName: squad.shortName
         })))
       );
 
       return organizations;
     } catch (error) {
-      console.error('Error fetching user:', error);
+      console.error('Error fetching organization:', error);
       throw error;
     }
   }
 
-  async getEventsByOrganization(organizationId: string, squadId: string): Promise<Event[]> {
+  async getEventsByOrganization(team: string, date: string): Promise<Event[]> {
     try {
-      const params = new URLSearchParams({ squad: squadId }).toString();
-      const response = await this.httpClient.get(`/events/so/${organizationId}/get?${params}`);
-      const events = response.data.map((eve: any) =>
+      const { fromDate, toDate } = this.generateDateRange(date);
+      const params = new URLSearchParams({
+        squad: team,
+        fromDate,
+        toDate,
+        page: '0',
+        size: '1000'
+      }).toString();
+
+      const response = await this.httpClient.get(`/events/so/${team}/get?${params}`);
+      const events = response.data.content.map((eve: any) =>
         new Event(eve.id, eve.name)
       );
 
       return events;
     } catch (error) {
-      console.error('Error fetching user:', error);
+      console.error('Error fetching events:', error);
       throw error;
     }
   }
+
+  private generateDateRange = (year: string) => {
+    const fromDate = `${year}-01-01`;
+    const toDate = `${year}-12-31`;
+
+    return { fromDate, toDate };
+  };
 }

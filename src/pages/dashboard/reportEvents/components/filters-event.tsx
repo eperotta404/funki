@@ -2,14 +2,21 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Paper, TextField, Autocomplete } from '@mui/material';
 
+import type { FiltersOption } from '../report-events';
+
 interface FiltersEventProps {
-  teams: { id: string; label: string }[];
-  dates: { id: string; label: string }[];
-  events: { id: string; label: string }[];
-  selectedTeam: { id: string; label: string } | null
+  teams: FiltersOption[];
+  years: FiltersOption[];
+  events: FiltersOption[];
+  selectedTeam: FiltersOption | null;
+  selectedYear: FiltersOption | null;
+  selectedEvent: FiltersOption | null;
+  onTeamChange: (team: FiltersOption | null) => void;
+  onYearChange: (date: FiltersOption | null) => void;
+  onEventChange: (event: FiltersOption | null) => void;
 }
 
-export default function FiltersEvent({ teams, dates, events, selectedTeam }: FiltersEventProps) {
+export default function FiltersEvent({ teams, years, events, selectedTeam, selectedYear, selectedEvent, onTeamChange, onYearChange, onEventChange }: FiltersEventProps) {
   const { t } = useTranslation();
 
   return (
@@ -24,6 +31,7 @@ export default function FiltersEvent({ teams, dates, events, selectedTeam }: Fil
         id="combo-box-team"
         options={teams}
         value={selectedTeam}
+        onChange={(event, newValue) => onTeamChange(newValue)}
         PaperComponent={(props) => (
           <Paper
             {...props}
@@ -43,7 +51,10 @@ export default function FiltersEvent({ teams, dates, events, selectedTeam }: Fil
       <Autocomplete
         disablePortal
         id="combo-box-date"
-        options={dates}
+        options={years}
+        value={selectedYear}
+        isOptionEqualToValue={(option, value) => option.id === value.id}
+        onChange={(event, newValue) => onYearChange(newValue)}
         PaperComponent={(props) => (
           <Paper
             {...props}
@@ -55,7 +66,7 @@ export default function FiltersEvent({ teams, dates, events, selectedTeam }: Fil
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('events.filter.dates')} fullWidth />
+          <TextField {...params} label={t('events.filter.year')} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />
@@ -64,6 +75,8 @@ export default function FiltersEvent({ teams, dates, events, selectedTeam }: Fil
         disablePortal
         id="combo-box-date"
         options={events}
+        value={selectedEvent}
+        onChange={(event, newValue) => onEventChange(newValue)}
         PaperComponent={(props) => (
           <Paper
             {...props}
