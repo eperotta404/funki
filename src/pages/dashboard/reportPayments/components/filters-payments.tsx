@@ -37,7 +37,7 @@ export default function FiltersPayment() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('events.filter.teams')} fullWidth />
+          <TextField {...params} label={t('payments.filter.year')} fullWidth />
         )}
         sx={{ background: 'white' }}
       />
@@ -58,7 +58,7 @@ export default function FiltersPayment() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('events.filter.year')} fullWidth />
+          <TextField {...params} label={t('payments.filter.teams')} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />
@@ -79,7 +79,7 @@ export default function FiltersPayment() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('events.filter.events')} fullWidth />
+          <TextField {...params} label={t('payments.filter.payments')} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />

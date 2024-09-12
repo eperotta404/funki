@@ -70,7 +70,12 @@
     }
   },
   "payments": {
-    "title": "Abonos"
+    "title": "Abonos",
+    "filter": {
+      "teams": "Equipos",
+      "year": "Año",
+      "payments": "Abonos"
+    }
   },
   "sellers": {
     "title": "Ventas"
