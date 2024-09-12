@@ -8,7 +8,7 @@ export default function EventNotAvailable() {
   return (
     <Box
       sx={{
-        height: '50vh',
+        height: '35vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

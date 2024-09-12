@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { Card, Grid } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
+import { DashboardContent } from 'src/layouts/dashboard';
 import { organizationService } from 'src/core/infrastructure/instances';
 import { GetEventsByOrganization } from 'src/core/domain/useCases/GetEventsByOrganization';
 import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
@@ -118,46 +119,48 @@ export default function Page() {
   const cardStyle = { p: 3, backgroundColor: 'background.default', boxShadow: 3 };
 
   const renderSelectedOde = (
-    <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <FiltersEvent
-            teams={teams}
-            years={years}
-            events={events}
-            selectedTeam={selectedTeam}
-            selectedYear={selectedYear}
-            selectedEvent={selectedEvent}
-            onTeamChange={setSelectedTeam}
-            onYearChange={setSelectedYear}
-            onEventChange={setSelectedEvent}
-          />
-        </Grid>
-        {selectedOrganization && selectedEvent ? (
-          <>
-            <Grid item xs={12}>
-              <Card sx={cardStyle}>
-                <SummaryEvent selectedEvent={selectedEvent} />
-              </Card>
-            </Grid>
-            <Grid item xs={12}>
-              <Card sx={cardStyle}>
-                <TotalsEvent />
-              </Card>
-            </Grid>
-            <Grid item xs={12}>
-              <Card sx={cardStyle}>
-                <DetailsEvent />
-              </Card>
-            </Grid>
-          </>
-        ) : (
+    <DashboardContent maxWidth="xl">
+      <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Card sx={cardStyle}>
-              <EventNotAvailable />
-            </Card>
+            <FiltersEvent
+              teams={teams}
+              years={years}
+              events={events}
+              selectedTeam={selectedTeam}
+              selectedYear={selectedYear}
+              selectedEvent={selectedEvent}
+              onTeamChange={setSelectedTeam}
+              onYearChange={setSelectedYear}
+              onEventChange={setSelectedEvent}
+            />
           </Grid>
-        )}
-      </Grid>
+          {selectedOrganization && selectedEvent ? (
+            <>
+              <Grid item xs={12}>
+                <Card sx={cardStyle}>
+                  <SummaryEvent selectedEvent={selectedEvent} />
+                </Card>
+              </Grid>
+              <Grid item xs={12}>
+                <Card sx={cardStyle}>
+                  <TotalsEvent />
+                </Card>
+              </Grid>
+              <Grid item xs={12}>
+                <Card sx={cardStyle}>
+                  <DetailsEvent />
+                </Card>
+              </Grid>
+            </>
+          ) : (
+            <Grid item xs={12}>
+              <Card sx={cardStyle}>
+                <EventNotAvailable />
+              </Card>
+            </Grid>
+          )}
+        </Grid>
+      </DashboardContent>
   );
 
 
