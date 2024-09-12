@@ -2,18 +2,18 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Paper, TextField, Autocomplete } from '@mui/material';
 
-import type { FiltersOption } from '../report-events';
+import type { FilterOption, FilterEventOption } from '../report-events';
 
 interface FiltersEventProps {
-  teams: FiltersOption[];
-  years: FiltersOption[];
-  events: FiltersOption[];
-  selectedTeam: FiltersOption | null;
-  selectedYear: FiltersOption | null;
-  selectedEvent: FiltersOption | null;
-  onTeamChange: (team: FiltersOption | null) => void;
-  onYearChange: (date: FiltersOption | null) => void;
-  onEventChange: (event: FiltersOption | null) => void;
+  teams: FilterOption[];
+  years: FilterOption[];
+  events: FilterOption[];
+  selectedTeam: FilterOption | null;
+  selectedYear: FilterOption | null;
+  selectedEvent: FilterOption | null;
+  onTeamChange: (team: FilterOption | null) => void;
+  onYearChange: (date: FilterOption | null) => void;
+  onEventChange: (event: FilterEventOption | null) => void;
 }
 
 export default function FiltersEvent({ teams, years, events, selectedTeam, selectedYear, selectedEvent, onTeamChange, onYearChange, onEventChange }: FiltersEventProps) {
@@ -76,7 +76,7 @@ export default function FiltersEvent({ teams, years, events, selectedTeam, selec
         id="combo-box-date"
         options={events}
         value={selectedEvent}
-        onChange={(event, newValue) => onEventChange(newValue)}
+        onChange={(event, newValue: any) => onEventChange(newValue)}
         PaperComponent={(props) => (
           <Paper
             {...props}

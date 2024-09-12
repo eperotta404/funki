@@ -1,5 +1,6 @@
-import type { Organization } from 'src/core/domain/models/organization';
 import type { Event } from 'src/core/domain/models/event';
+import type { EventDetail } from 'src/core/domain/models/eventDetail';
+import type { Organization } from 'src/core/domain/models/organization';
 
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -8,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 import { Card, Grid } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
-import { DashboardContent } from 'src/layouts/dashboard';
 import { organizationService } from 'src/core/infrastructure/instances';
 import { GetEventsByOrganization } from 'src/core/domain/useCases/GetEventsByOrganization';
 import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
@@ -26,9 +26,15 @@ import EventNotAvailable from './components/event-not-available';
 const getEventsByOrgnizationUseCase = new GetEventsByOrganization(organizationService);
 
 const metadata = { title: `Eventos| Dashboard - ${CONFIG.appName}` };
-export interface FiltersOption {
+export interface FilterOption {
   id: string;
   label: string;
+}
+
+export interface FilterEventOption {
+  id: string;
+  label: string;
+  details: EventDetail
 }
 
 export default function Page() {
@@ -38,21 +44,21 @@ export default function Page() {
 
   const { selectedOrganization } = useOrganization();
 
-  const [teams, setTeams] = useState<FiltersOption[]>([]);
-  const [years, setYear] = useState<FiltersOption[]>([]);
-  const [events, setEvents] = useState<FiltersOption[]>([]);
+  const [teams, setTeams] = useState<FilterOption[]>([]);
+  const [years, setYear] = useState<FilterOption[]>([]);
+  const [events, setEvents] = useState<FilterOption[]>([]);
 
-  const [selectedTeam, setSelectedTeam] = useState<FiltersOption | null>(null);
-  const [selectedYear, setSelectedYear] = useState<FiltersOption | null>(null);
-  const [selectedEvent, setSelectedEvent] = useState<FiltersOption | null>(null);
+  const [selectedTeam, setSelectedTeam] = useState<FilterOption | null>(null);
+  const [selectedYear, setSelectedYear] = useState<FilterOption | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<FilterEventOption | null>(null);
 
-  const getDatesOrganizationDropdown = (): FiltersOption[] => [
+  const getDatesOrganizationDropdown = (): FilterOption[] => [
       { id: (currentYear - 2).toString(), label: (currentYear - 2).toString() },
       { id: (currentYear - 1).toString(), label: (currentYear - 1).toString() },
       { id: currentYear.toString(), label: currentYear.toString() },
     ];
 
-  const getTeamsFromOrganizationDropdown = (organization: Organization | null): FiltersOption[] =>
+  const getTeamsFromOrganizationDropdown = (organization: Organization | null): FilterOption[] =>
     organization
       ? organization.squads.map((squad) => ({
           id: squad.shortName,
@@ -60,16 +66,17 @@ export default function Page() {
         }))
       : [];
 
-  const getEventsFromOrganization = (eventsData: Event[] | null): FiltersOption[] =>
+  const getEventsFromOrganization = (eventsData: Event[] | null): FilterEventOption[] =>
     eventsData
-      ? eventsData.map((event) => ({
+      ? eventsData.map((event, index) => ({
           id: event.id,
           label: event.name,
+          details: event.details,
         }))
       : [];
 
 
-  const updateFilters = (teamsData: FiltersOption[], datesData: FiltersOption[]): void => {
+  const updateFilters = (teamsData: FilterOption[], datesData: FilterOption[]): void => {
     if (teamsData.length === 0) {
       setEvents([]);
       setSelectedEvent(null);
@@ -111,31 +118,25 @@ export default function Page() {
   const cardStyle = { p: 3, backgroundColor: 'background.default', boxShadow: 3 };
 
   const renderSelectedOde = (
-    <>
-      {selectedOrganization ? (
-        <DashboardContent maxWidth="xl">
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <FiltersEvent
-                teams={teams}
-                years={years}
-                events={events}
-                selectedTeam={selectedTeam}
-                selectedYear={selectedYear}
-                selectedEvent={selectedEvent}
-                onTeamChange={setSelectedTeam}
-                onYearChange={setSelectedYear}
-                onEventChange={setSelectedEvent}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Card sx={cardStyle}>
-                <EventNotAvailable />
-              </Card>
-            </Grid>
+    <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <FiltersEvent
+            teams={teams}
+            years={years}
+            events={events}
+            selectedTeam={selectedTeam}
+            selectedYear={selectedYear}
+            selectedEvent={selectedEvent}
+            onTeamChange={setSelectedTeam}
+            onYearChange={setSelectedYear}
+            onEventChange={setSelectedEvent}
+          />
+        </Grid>
+        {selectedOrganization && selectedEvent ? (
+          <>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <SummaryEvent />
+                <SummaryEvent selectedEvent={selectedEvent} />
               </Card>
             </Grid>
             <Grid item xs={12}>
@@ -148,13 +149,17 @@ export default function Page() {
                 <DetailsEvent />
               </Card>
             </Grid>
+          </>
+        ) : (
+          <Grid item xs={12}>
+            <Card sx={cardStyle}>
+              <EventNotAvailable />
+            </Card>
           </Grid>
-        </DashboardContent>
-      ) : (
-        <EventNotAvailable />
-      )}
-    </>
+        )}
+      </Grid>
   );
+
 
   return (
     <>

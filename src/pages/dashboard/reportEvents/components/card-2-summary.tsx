@@ -1,28 +1,21 @@
-import type { LabelColor } from 'src/components/label';
-
-import { useTranslation } from 'react-i18next';
-
 import { Box, Card, Typography } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { varAlpha, bgGradient } from 'src/theme/styles';
 
-import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
 import { SvgColor } from 'src/components/svg-color';
 
 interface Card2SummaryEventProps {
   icon: string;
   status: string;
-  statusColor: LabelColor;
   color1: string;
   color2: string;
   colorSvg: string;
 }
 
 export default function Card2SummaryEvent(props: Card2SummaryEventProps) {
-  const { icon, status, statusColor, color1, color2, colorSvg } = props;
-  const { t } = useTranslation();
+  const { icon, status, color1, color2, colorSvg } = props;
   return (
     <Card
       sx={{
@@ -51,7 +44,7 @@ export default function Card2SummaryEvent(props: Card2SummaryEventProps) {
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
       <Box sx={{ textAlign: 'center', mt: -2 }}>
         <Typography variant="h3" sx={{ color: 'text.info',fontWeight: 900 }}>
-        {status.toUpperCase()}
+        {status}
         </Typography>
 
       </Box>

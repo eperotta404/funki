@@ -267,3 +267,25 @@ export function fSub({
 
   return result;
 }
+
+interface DateTimeFormatProps {
+  date: string;
+}
+
+export function fFormatDateTime({ date }: DateTimeFormatProps) {
+  const eventDate = new Date(date);
+  const formattedDate = eventDate.toLocaleDateString();
+  const formattedTime = eventDate.toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+  const timezoneOffset = -eventDate.getTimezoneOffset() / 60;
+  const timezoneFormatted = `(${timezoneOffset > 0 ? '+' : ''}${timezoneOffset})`;
+  const timeWithTimezone = `${formattedTime} ${timezoneFormatted}`;
+
+  return {
+    formattedDate,
+    timeWithTimezone,
+  };
+}

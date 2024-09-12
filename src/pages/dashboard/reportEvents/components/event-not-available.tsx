@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+
 import { Box, Typography } from '@mui/material';
 
 export default function EventNotAvailable() {

@@ -42,9 +42,25 @@ export class OrganizationApi implements OrganizationRepository {
         size: '1000'
       }).toString();
 
+      const seenNames = new Set();
       const response = await this.httpClient.get(`/events/so/${team}/get?${params}`);
-      const events = response.data.content.map((eve: any) =>
-        new Event(eve.id, eve.name)
+      const events = response.data.content.filter((eve: any) => {
+        const isDuplicate = seenNames.has(eve.name);
+        seenNames.add(eve.name);
+        return !isDuplicate;
+      })
+      .map((eve: any) =>
+        new Event(eve.id, eve.name, {
+          code: eve.code,
+          description: eve.detail,
+          venue: eve.venue,
+          type: eve.type,
+          date: eve.date,
+          expired: eve.expired,
+          enabled: eve.enabled,
+          home: eve.homeTeam?.name,
+          away: eve.awayTeam?.name,
+        })
       );
 
       return events;
