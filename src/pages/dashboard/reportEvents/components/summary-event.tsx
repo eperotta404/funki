@@ -56,7 +56,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
         sx={{
           mt: 3,
           '@media (min-width: 1200px) and (max-width: 1399px)': {
-            gridTemplateColumns: 'repeat(2, 1fr)', // Se agrupa de a 2 en esta resolución intermedia
+            gridTemplateColumns: 'repeat(2, 1fr)', 
           },
         }}
       >
