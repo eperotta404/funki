@@ -1,11 +1,12 @@
 import type { Dayjs, OpUnitType } from 'dayjs';
 
+import 'dayjs/locale/es';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 // ----------------------------------------------------------------------
-
+dayjs.locale('es');
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 
