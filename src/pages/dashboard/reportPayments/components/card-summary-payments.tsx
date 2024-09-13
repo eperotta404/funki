@@ -31,7 +31,7 @@ export default function CardSummaryPayments(props: CardTotalsEventProps) {
         <Tooltip title={capitalizeFirtsLetter(t("payments.summary.startDate"))} arrow>
           <Iconify icon="clarity:calendar-line" width={40} sx={{ color: 'text.primary' }} />
         </Tooltip>
-        <Typography variant="subtitle1" color="text.primary" sx={{ fontSize: 18 }}>
+        <Typography variant="subtitle1" color="text.primary" sx={{ fontSize: { xs: 16, sm: 18} }}>
           {fDateTime('2024-04-01 16:15')}
         </Typography>
       </Box>
@@ -46,7 +46,7 @@ export default function CardSummaryPayments(props: CardTotalsEventProps) {
         <Tooltip title={capitalizeFirtsLetter(t("payments.summary.endDate"))} arrow>
           <Iconify icon="clarity:calendar-solid" width={40} sx={{ color: 'text.primary' }} />
         </Tooltip>
-        <Typography variant="subtitle1" color="text.primary" sx={{ fontSize: 18 }}>
+        <Typography variant="subtitle1" color="text.primary" sx={{ fontSize: { xs: 16, sm: 18} }}>
           {fDateTime('2025-01-06 20:00')}
         </Typography>
       </Box>
