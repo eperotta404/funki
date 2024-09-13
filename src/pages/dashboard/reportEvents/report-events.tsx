@@ -6,13 +6,15 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
-import { Card, Grid } from '@mui/material';
+import { Box, Card, Grid } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { DashboardContent } from 'src/layouts/dashboard';
 import { organizationService } from 'src/core/infrastructure/instances';
 import { GetEventsByOrganization } from 'src/core/domain/useCases/GetEventsByOrganization';
 import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
+
+import { LoadingScreen } from 'src/components/loading-screen';
 
 import { BlankView } from 'src/sections/blank/view';
 
@@ -35,7 +37,7 @@ export interface FilterOption {
 export interface FilterEventOption {
   id: string;
   label: string;
-  details: EventDetail
+  details: EventDetail;
 }
 
 export default function Page() {
@@ -44,6 +46,9 @@ export default function Page() {
   const { t } = useTranslation();
 
   const { selectedOrganization } = useOrganization();
+
+  const [loading, setLoading] = useState(false);
+  const [isDataFetched, setIsDataFetched] = useState(false); // Nuevo estado para controlar si los datos ya fueron cargados
 
   const [teams, setTeams] = useState<FilterOption[]>([]);
   const [years, setYear] = useState<FilterOption[]>([]);
@@ -54,10 +59,10 @@ export default function Page() {
   const [selectedEvent, setSelectedEvent] = useState<FilterEventOption | null>(null);
 
   const getDatesOrganizationDropdown = (): FilterOption[] => [
-      { id: (currentYear - 2).toString(), label: (currentYear - 2).toString() },
-      { id: (currentYear - 1).toString(), label: (currentYear - 1).toString() },
-      { id: currentYear.toString(), label: currentYear.toString() },
-    ];
+    { id: (currentYear - 2).toString(), label: (currentYear - 2).toString() },
+    { id: (currentYear - 1).toString(), label: (currentYear - 1).toString() },
+    { id: currentYear.toString(), label: currentYear.toString() },
+  ];
 
   const getTeamsFromOrganizationDropdown = (organization: Organization | null): FilterOption[] =>
     organization
@@ -76,7 +81,6 @@ export default function Page() {
         }))
       : [];
 
-
   const updateFilters = (teamsData: FilterOption[], datesData: FilterOption[]): void => {
     if (teamsData.length === 0) {
       setEvents([]);
@@ -86,7 +90,7 @@ export default function Page() {
     setYear(datesData);
     setSelectedTeam(teamsData.length > 0 ? teamsData[0] : null);
     setSelectedYear({ id: currentYear.toString(), label: currentYear.toString() });
-  }
+  };
 
   useEffect(() => {
     if (selectedOrganization) {
@@ -96,9 +100,9 @@ export default function Page() {
     }
   }, [selectedOrganization]);
 
-
   useEffect(() => {
     const fetchEventByOrganization = async () => {
+      setLoading(true);
       try {
         if (selectedTeam?.id && selectedYear?.id) {
           const res = await getEventsByOrgnizationUseCase.execute(selectedTeam.id, selectedYear.id);
@@ -108,6 +112,9 @@ export default function Page() {
         }
       } catch (error) {
         console.error('Error fetching events:', error);
+      } finally {
+        setLoading(false);
+        setIsDataFetched(true); 
       }
     };
 
@@ -121,53 +128,61 @@ export default function Page() {
   const renderSelectedOde = (
     <DashboardContent maxWidth="xl">
       <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <FiltersEvent
-              teams={teams}
-              years={years}
-              events={events}
-              selectedTeam={selectedTeam}
-              selectedYear={selectedYear}
-              selectedEvent={selectedEvent}
-              onTeamChange={setSelectedTeam}
-              onYearChange={setSelectedYear}
-              onEventChange={setSelectedEvent}
-            />
+        <Grid item xs={12}>
+          <FiltersEvent
+            teams={teams}
+            years={years}
+            events={events}
+            selectedTeam={selectedTeam}
+            selectedYear={selectedYear}
+            selectedEvent={selectedEvent}
+            onTeamChange={setSelectedTeam}
+            onYearChange={setSelectedYear}
+            onEventChange={setSelectedEvent}
+          />
+        </Grid>
+
+        {loading ? (
+          <Grid item xs={12} textAlign="center">
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight:'50vh' }}>
+            <LoadingScreen />
+            </Box>
           </Grid>
-          {selectedOrganization && selectedEvent ? (
-            <>
-              <Grid item xs={12}>
-                <Card sx={cardStyle}>
-                  <SummaryEvent selectedEvent={selectedEvent} />
-                </Card>
-              </Grid>
-              <Grid item xs={12}>
-                <Card sx={cardStyle}>
-                  <TotalsEvent />
-                </Card>
-              </Grid>
-              <Grid item xs={12}>
-                <Card sx={cardStyle}>
-                  <DetailsEvent />
-                </Card>
-              </Grid>
-            </>
-          ) : (
+        ) : isDataFetched && selectedOrganization && selectedEvent ? (
+          <>
+            <Grid item xs={12}>
+              <Card sx={cardStyle}>
+                <SummaryEvent selectedEvent={selectedEvent} />
+              </Card>
+            </Grid>
+            <Grid item xs={12}>
+              <Card sx={cardStyle}>
+                <TotalsEvent />
+              </Card>
+            </Grid>
+            <Grid item xs={12}>
+              <Card sx={cardStyle}>
+                <DetailsEvent />
+              </Card>
+            </Grid>
+          </>
+        ) : (
+          isDataFetched && (
             <Grid item xs={12}>
               <Card sx={cardStyle}>
                 <EventNotAvailable />
               </Card>
             </Grid>
-          )}
-        </Grid>
-      </DashboardContent>
+          )
+        )}
+      </Grid>
+    </DashboardContent>
   );
-
 
   return (
     <>
       <Helmet>
-        <title> {metadata.title}</title>
+        <title>{metadata.title}</title>
       </Helmet>
       <BlankView title={t('events.title')}>{renderSelectedOde}</BlankView>
     </>
