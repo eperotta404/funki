@@ -13,6 +13,7 @@ import { BlankView } from 'src/sections/blank/view';
 import TotalsPayments from './components/totals-payments';
 import FiltersPayment from './components/filters-payments';
 import SummaryPayments from './components/summary-payments';
+import DetailsPayments from './components/details-payments';
 
 // ----------------------------------------------------------------------
 
@@ -39,6 +40,11 @@ export default function Page() {
             <TotalsPayments />
           </Card>
         </Grid>
+        <Grid item xs={12}>
+          <Card sx={cardStyle}>
+            <DetailsPayments />
+          </Card>
+        </Grid>
       </Grid>
     </DashboardContent>
   );
@@ -48,7 +54,9 @@ export default function Page() {
         <title> {metadata.title}</title>
       </Helmet>
 
-      <BlankView title={capitalizeFirtsLetter(t('payments.title'))}>{renderPaymentsScreen}</BlankView>
+      <BlankView title={capitalizeFirtsLetter(t('payments.title'))}>
+        {renderPaymentsScreen}
+      </BlankView>
     </>
   );
 }

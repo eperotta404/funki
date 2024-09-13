@@ -87,6 +87,9 @@
       "ocupation": "ocupación",
       "total": "total",
       "courtesy": "cortesía"
+    },
+    "details": {
+      "details": "detalles"
     }
   },
   "sellers": {
