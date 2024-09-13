@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, useTheme } from '@mui/material';
 
+import { capitalizeFirtsLetter } from 'src/utils/helper';
+
 import CardTotalsEvent from './card-totals-event';
 import Card2TotalsEvent from './card-2-totals-event';
 
@@ -28,7 +30,7 @@ export default function TotalsEvent() {
 
   return (
     <>
-      <h2>{t('events.totals.totals')}</h2>
+      <h2>{capitalizeFirtsLetter(t('events.totals.totals'))}</h2>
       <Box
         gap={8}
         display="grid"
@@ -46,10 +48,10 @@ export default function TotalsEvent() {
         }}
       >
         <CardTotalsEvent
-          title={`<strong>${t('events.totals.ticketsSold')}</strong>`}
-          line1={`${t('events.totals.tickets')} : <strong>${TOTALS[0].line1}</strong>`}
-          line2={`${t('events.totals.memberships')} : <strong>${TOTALS[0].line2} </strong>`}
-          line3={`${t('events.totals.courtesy')} :  <strong>${TOTALS[0].line3}</strong>`}
+          title={`<strong>${capitalizeFirtsLetter(t('events.totals.ticketsSold'))}</strong>`}
+          line1={`${capitalizeFirtsLetter(t('events.totals.tickets'))} : <strong>${TOTALS[0].line1}</strong>`}
+          line2={`${capitalizeFirtsLetter(t('events.totals.memberships'))} : <strong>${TOTALS[0].line2} </strong>`}
+          line3={`${capitalizeFirtsLetter(t('events.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('events.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.warning.lighterChannel}
@@ -57,7 +59,7 @@ export default function TotalsEvent() {
         />
 
         <Card2TotalsEvent
-          title={`<strong>${t('events.totals.fundraising')}</strong>`}
+          title={`<strong>${capitalizeFirtsLetter(t('events.totals.fundraising'))}</strong>`}
           line1={`<strong>$${t(fundraising)} </strong>`}
           color1={theme.vars.palette.error.lightChannel}
           color2={theme.vars.palette.warning.lighterChannel}
@@ -65,10 +67,10 @@ export default function TotalsEvent() {
         />
 
         <CardTotalsEvent
-          title={`<strong>${t('events.totals.ocupation')}</strong>`}
-          line1={`${t('events.totals.tickets')} : <strong>${TOTALS[1].line1} </strong>`}
-          line2={`${t('events.totals.memberships')} : <strong> ${TOTALS[1].line2}</strong>`}
-          line3={`${t('events.totals.courtesy')} :  <strong>${TOTALS[0].line3}</strong>`}
+          title={`<strong>${capitalizeFirtsLetter(t('events.totals.ocupation'))}</strong>`}
+          line1={`${capitalizeFirtsLetter(t('events.totals.tickets'))} : <strong>${TOTALS[1].line1} </strong>`}
+          line2={`${capitalizeFirtsLetter(t('events.totals.memberships'))} : <strong> ${TOTALS[1].line2}</strong>`}
+          line3={`${capitalizeFirtsLetter(t('events.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('events.totals.total').toUpperCase()} : <strong>${TOTALS[1].line4}</strong>`}
           line5="63%"
           color1={theme.vars.palette.primary.lightChannel}

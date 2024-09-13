@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Paper, TextField, Autocomplete } from '@mui/material';
 
+import { capitalizeFirtsLetter } from 'src/utils/helper';
+
 import type { FilterOption, FilterEventOption } from '../report-events';
 
 interface FiltersEventProps {
@@ -43,7 +45,7 @@ export default function FiltersEvent({ teams, years, events, selectedTeam, selec
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('events.filter.teams')} fullWidth />
+          <TextField {...params} label={capitalizeFirtsLetter(t('events.filter.teams'))} fullWidth />
         )}
         sx={{ background: 'white' }}
       />
@@ -66,7 +68,7 @@ export default function FiltersEvent({ teams, years, events, selectedTeam, selec
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('events.filter.year')} fullWidth />
+          <TextField {...params} label={capitalizeFirtsLetter(t('events.filter.year'))} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />
@@ -88,7 +90,7 @@ export default function FiltersEvent({ teams, years, events, selectedTeam, selec
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('events.filter.events')} fullWidth />
+          <TextField {...params} label={capitalizeFirtsLetter(t('events.filter.events'))} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />

@@ -19,54 +19,54 @@
     "title": "Inicio"
   },
   "events": {
-    "title": "Eventos",
+    "title": "eventos",
 
     "buttons": {
-      "download": "Descargar"
+      "download": "descargar"
     },
     "filter": {
-      "teams": "Equipos",
-      "year": "Año",
-      "events": "Eventos",
-      "eventNotFound": "No has realizado una búsqueda",
-      "eventNotFoundFeedback": "Por favor, selecciona o busca un evento para continuar."
+      "teams": "equipos",
+      "year": "año",
+      "events": "eventos",
+      "eventNotFound": "no has realizado una búsqueda",
+      "eventNotFoundFeedback": "por favor, selecciona o busca un evento para continuar."
     },
     "summary": {
-      "team": "Equipo",
-      "rival": "Rival",
-      "date": "Fecha",
-      "time": "Hora",
-      "stadium": "Estadio",
-      "live": "Jugado"
+      "team": "equipo",
+      "rival": "rival",
+      "date": "fecha",
+      "time": "hora",
+      "stadium": "estadio",
+      "live": "jugado"
 
     },
     "totals": {
-      "totals": "Totales",
-      "ticketsSold": "Boletos vendidos",
-      "tickets": "Boletos",
-      "memberships": "Abonos",
-      "total": "Total",
-      "ocupation": "Ocupación",
-      "courtesy": "Cortesía",
-      "fundraising": "Recaudación"
+      "totals": "totales",
+      "ticketsSold": "boletos vendidos",
+      "tickets": "boletos",
+      "memberships": "abonos",
+      "total": "total",
+      "ocupation": "ocupación",
+      "courtesy": "cortesía",
+      "fundraising": "recaudación"
     },
     "details": {
-      "details": "Detalles",
-      "ticketsByTribune": "Boletos por tribuna",
-      "montoByTribune": "Monto vendido por tribuna",
-      "totalCapacitySalesRevenue": "Aforo Total, Ventas e Ingresos",
-      "tickets": "Boletos",
-      "memberships": "Abonos",
-      "courtesies": "Cortesías",
-      "courtesy": "Cortesía",
-      "paymentMethods": "Metodos de Pago",
-      "paymentChannels": "Canales de Pago",
-      "web": "Web",
-      "app": "App",
-      "advisors": "Asesores",
-      "ticketsGenerated": "Boletos Generados",
-      "ticketsRedeemed": "Boletos Redimidos",
-      "ticketsUnredeemed": "Boletos No Redimidos"
+      "details": "detalles",
+      "ticketsByTribune": "boletos por tribuna",
+      "montoByTribune": "monto vendido por tribuna",
+      "totalCapacitySalesRevenue": "aforo Total, Ventas e Ingresos",
+      "tickets": "boletos",
+      "memberships": "abonos",
+      "courtesies": "cortesías",
+      "courtesy": "cortesía",
+      "paymentMethods": "métodos de Pago",
+      "paymentChannels": "canales de Pago",
+      "web": "web",
+      "app": "app",
+      "advisors": "asesores",
+      "ticketsGenerated": "boletos Generados",
+      "ticketsRedeemed": "boletos Redimidos",
+      "ticketsUnredeemed": "boletos No Redimidos"
     }
   },
   "payments": {

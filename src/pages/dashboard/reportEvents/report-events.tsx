@@ -186,7 +186,7 @@ export default function Page() {
       <Helmet>
         <title>{metadata.title}</title>
       </Helmet>
-      <BlankView title={capitalizeFirtsLetter('events.title')}>{renderSelectedOde}</BlankView>
+      <BlankView title={capitalizeFirtsLetter(t('events.title'))}>{renderSelectedOde}</BlankView>
     </>
   );
 }

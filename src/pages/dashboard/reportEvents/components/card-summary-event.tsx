@@ -44,7 +44,7 @@ export default function CardSummaryEvent(props: CardDetailEventProps) {
         }}
       />
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
-      <Box sx={{ textAlign: 'center', mt: line3 ?  -2 : 0 }}>
+      <Box sx={{ textAlign: 'start', ml:10, mt: line3 ?  -2 : 0 }}>
         <Typography
           variant="body1"
           sx={{ color: 'text.info' }}

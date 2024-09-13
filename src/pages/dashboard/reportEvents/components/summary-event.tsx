@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, Button, useTheme, Typography } from '@mui/material';
 
 import { fFormatDateTime } from 'src/utils/format-time';
+import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import { Iconify } from 'src/components/iconify';
 
@@ -41,7 +42,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           color="primary"
           sx={{ mt: { xs: 2, sm: 0 } }}
         >
-          <strong>{t('events.buttons.download')} </strong>
+          <strong>{capitalizeFirtsLetter(t('events.buttons.download'))} </strong>
         </Button>
       </Box>
 
@@ -70,8 +71,8 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
         />
         <CardSummaryEvent
           icon="guidance:stadium"
-          line1={`${t('events.summary.team')} :  <strong>${selectedEvent?.details?.home} </strong>`}
-          line2={`${t('events.summary.rival')} :  <strong>${selectedEvent?.details?.away} </strong>`}
+          line1={`${capitalizeFirtsLetter(t('events.summary.team'))} :  <strong>${selectedEvent?.details?.home} </strong>`}
+          line2={`${capitalizeFirtsLetter(t('events.summary.rival'))} :  <strong>${selectedEvent?.details?.away} </strong>`}
           color1={theme.vars.palette.secondary.lighterChannel}
           color2={theme.vars.palette.warning.lightChannel}
           colorSvg="grey.main"
@@ -79,9 +80,9 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
 
         <CardSummaryEvent
           icon="cil:calendar"
-          line1={`${t('events.summary.date')} : <strong>${formattedDate}</strong>`}
-          line2={`${t('events.summary.time')} :  <strong> ${timeWithTimezone}</strong>`}
-          line3={`${t('events.summary.stadium')} :  <strong>${selectedEvent?.details?.stadium} </strong>`}
+          line1={`${capitalizeFirtsLetter(t('events.summary.date'))} : <strong>${formattedDate}</strong>`}
+          line2={`${capitalizeFirtsLetter(t('events.summary.time'))} :  <strong> ${timeWithTimezone}</strong>`}
+          line3={`${capitalizeFirtsLetter(t('events.summary.stadium'))} :  <strong>${selectedEvent?.details?.stadium} </strong>`}
           color1={theme.vars.palette.info.lightChannel}
           color2={theme.vars.palette.success.lightChannel}
           colorSvg="error.main"

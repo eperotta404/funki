@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Typography } from '@mui/material';
 
+import { capitalizeFirtsLetter } from 'src/utils/helper';
+
 export default function EventNotAvailable() {
   const { t } = useTranslation();
 
@@ -18,10 +20,10 @@ export default function EventNotAvailable() {
       }}
     >
       <Typography variant="h4" color="textPrimary" gutterBottom>
-        {t('events.filter.eventNotFound')}
+        {capitalizeFirtsLetter(t('events.filter.eventNotFound'))}
       </Typography>
       <Typography variant="body1" color="textSecondary">
-        {t('events.filter.eventNotFoundFeedback')}
+        {capitalizeFirtsLetter(t('events.filter.eventNotFoundFeedback'))}
       </Typography>
     </Box>
   );

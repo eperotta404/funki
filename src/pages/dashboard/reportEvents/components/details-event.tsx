@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, useTheme } from '@mui/material';
 
+import { capitalizeFirtsLetter } from 'src/utils/helper';
+
 import AnalyticBar from './analytic-bar';
 import AnalyticPie from './analytic-pie';
 
@@ -10,7 +12,7 @@ export default function DetailsEvent() {
   const theme = useTheme();
   return (
     <>
-      <h2>{t('events.details.details')}</h2>
+      <h2>{capitalizeFirtsLetter(t('events.details.details'))}</h2>
       <Box
         gap={8}
         display="grid"
@@ -18,7 +20,7 @@ export default function DetailsEvent() {
         sx={{ mt: 2 }}
       >
         <AnalyticBar
-          title={t('events.details.ticketsByTribune')}
+          title={capitalizeFirtsLetter(t('events.details.ticketsByTribune'))}
           isVertical
           chart={{
             stacked: true,
@@ -43,7 +45,7 @@ export default function DetailsEvent() {
           }}
         />
         <AnalyticBar
-          title={t('events.details.montoByTribune')}
+          title={capitalizeFirtsLetter(t('events.details.montoByTribune'))}
           isVertical
           chart={{
             stacked: false,
@@ -70,7 +72,7 @@ export default function DetailsEvent() {
         />
 
         <AnalyticPie
-          title={t('events.details.paymentMethods')}
+          title={capitalizeFirtsLetter(t('events.details.paymentMethods'))}
           chart={{
             colors: [
               theme.palette.info.main,
@@ -89,7 +91,7 @@ export default function DetailsEvent() {
           }}
         />
         <AnalyticPie
-          title={t('events.details.paymentChannels')}
+          title={capitalizeFirtsLetter(t('events.details.paymentChannels'))}
           chart={{
             colors: [
               theme.palette.primary.main,
@@ -105,7 +107,7 @@ export default function DetailsEvent() {
         />
 
         <AnalyticBar
-          title={t('events.details.totalCapacitySalesRevenue')}
+          title={capitalizeFirtsLetter(t('events.details.totalCapacitySalesRevenue'))}
           isVertical={false}
           chart={{
             stacked: true,
@@ -122,7 +124,7 @@ export default function DetailsEvent() {
         />
 
         <AnalyticBar
-          title={t('events.details.courtesies')}
+          title={capitalizeFirtsLetter(t('events.details.courtesies'))}
           isVertical
           chart={{
             stacked: true,
