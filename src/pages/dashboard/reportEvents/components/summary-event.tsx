@@ -29,7 +29,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
   };
   return (
     <>
-      <Box sx={{ display: 'flex', my: 1, justifyContent: 'space-between', alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', my: 1, justifyContent: 'space-between', alignItems: {xs: 'flex-start', sm: 'center'} , flexDirection:{xs: 'column', sm: 'row'}}}>
         <Typography variant="h3" color={theme.vars.palette.primary.main}>
           {`${selectedEvent?.details?.home} vs ${selectedEvent?.details?.away}`}
         </Typography>
@@ -39,6 +39,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           variant="outlined"
           size="small"
           color="primary"
+          sx={{ mt: { xs: 2, sm: 0 } }}
         >
           <strong>{t('events.buttons.download')} </strong>
         </Button>
