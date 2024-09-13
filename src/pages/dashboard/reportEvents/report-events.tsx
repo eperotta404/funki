@@ -74,7 +74,7 @@ export default function Page() {
 
   const getEventsFromOrganization = (eventsData: Event[] | null): FilterEventOption[] =>
     eventsData
-      ? eventsData.map((event, index) => ({
+      ? eventsData.map((event) => ({
           id: event.id,
           label: event.name,
           details: event.details,
@@ -114,7 +114,7 @@ export default function Page() {
         console.error('Error fetching events:', error);
       } finally {
         setLoading(false);
-        setIsDataFetched(true); 
+        setIsDataFetched(true);
       }
     };
 

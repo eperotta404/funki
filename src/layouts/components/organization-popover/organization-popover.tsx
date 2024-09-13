@@ -9,6 +9,8 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 
+import { useFetchData } from 'src/hooks/use-fetch-data';
+
 import { organizationService } from 'src/core/infrastructure/instances';
 import { GetOrganizations } from 'src/core/domain/useCases/GetOrganizations';
 
@@ -24,26 +26,17 @@ const getOrganizationsUseCase = new GetOrganizations(organizationService);
 export function OrganizationPopover({ sx }: ButtonBaseProps) {
   const mediaQuery = 'sm';
   const popover = usePopover();
-
+  const { data } = useFetchData(getOrganizationsUseCase);
   const { setSelectedOrganization, selectedOrganization } = useOrganization();
 
   const [organizations, setOrganizations] = useState<Organization[]>([]);
 
   useEffect(() => {
-    const fetchOrganization = async () => {
-      try {
-        const res = await getOrganizationsUseCase.execute();
-        if (res.length > 0) {
-          setOrganizations(res);
-          setSelectedOrganization(res[0]);
-         }
-      } catch (error) {
-        console.error("Error fetching organization:", error);
-      }
-    };
-
-    fetchOrganization();
-  }, []);
+    if (data && data.length > 0) {
+      setOrganizations(data);
+      setSelectedOrganization(data[0]);
+    }
+  }, [data]);
 
   const handleChangeOrganization = useCallback(
     (newValue: (typeof organizations)[0]) => {

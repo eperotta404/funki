@@ -23,7 +23,7 @@ export class AuthApi implements AuthRepository {
 
       return { accessToken: token, user };
     } catch (error) {
-      error.message = "login.invalidCredentials"
+      error.message = "auth.invalidCredentials"
       throw error;
     }
   }
