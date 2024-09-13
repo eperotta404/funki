@@ -8,6 +8,7 @@ import { DashboardContent } from 'src/layouts/dashboard';
 
 import { BlankView } from 'src/sections/blank/view';
 
+import TotalsPayments from './components/totals-payments';
 import FiltersPayment from './components/filters-payments';
 import SummaryPayments from './components/summary-payments';
 
@@ -27,8 +28,13 @@ export default function Page() {
           <FiltersPayment />
         </Grid>
         <Grid item xs={12}>
-        <Card sx={cardStyle}>
-          <SummaryPayments />
+          <Card sx={cardStyle}>
+            <SummaryPayments />
+          </Card>
+        </Grid>
+        <Grid item xs={12}>
+          <Card sx={cardStyle}>
+            <TotalsPayments />
           </Card>
         </Grid>
       </Grid>
