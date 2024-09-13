@@ -7,9 +7,7 @@ import { SvgColor } from 'src/components/svg-color';
 
 interface CardTotalsPaymentsProps {
   title: string;
-  line1: string;
-  line2: string;
-  line3: string;
+  line3?: string;
   line4: string;
   line5?: string;
   color1: string;
@@ -18,7 +16,7 @@ interface CardTotalsPaymentsProps {
 }
 
 export default function CardTotalsPayments(props: CardTotalsPaymentsProps) {
-  const { title, line1, line2, line3, line4, line5, color1, color2, colorSvg } = props;
+  const { title, line3, line4, line5, color1, color2, colorSvg } = props;
 
   return (
     <Card
@@ -53,21 +51,24 @@ export default function CardTotalsPayments(props: CardTotalsPaymentsProps) {
               sx={{ color: 'text.info', mb: 1 }}
               dangerouslySetInnerHTML={{ __html: title }}
             />
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.info' }}
-              dangerouslySetInnerHTML={{ __html: line1 }}
-            />
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.info' }}
-              dangerouslySetInnerHTML={{ __html: line2 }}
-            />
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.info' }}
-              dangerouslySetInnerHTML={{ __html: line3 }}
-            />
+            <Typography variant="h6" sx={{ color: 'text.main', fontWeight: 700 }}>
+              Abono Flex promo
+            </Typography>
+            <Typography variant="h4" sx={{ color: 'text.main', fontWeight: 700 }}>
+              1,500
+            </Typography>
+
+
+            {!line3 && <Box sx={{ height: 24 }} />} {/* Spacer for when line3 is not present */}
+
+            {line3 && (
+              <Typography
+                variant="body2"
+                sx={{ color: 'text.info' }}
+                dangerouslySetInnerHTML={{ __html: line3 }}
+              />
+            )}
+
             <Typography
               variant="body1"
               sx={{ color: 'text.info', mt: 1.5, fontSize: 20 }}
@@ -75,6 +76,7 @@ export default function CardTotalsPayments(props: CardTotalsPaymentsProps) {
             />
           </Box>
         </Grid>
+
         {line5 && (
           <Grid item xs={6}>
             <Box

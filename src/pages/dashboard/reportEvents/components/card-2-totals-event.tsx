@@ -50,7 +50,7 @@ export default function Card2TotalsEvent(props: Card2TotalsEventProps) {
             />
             <Typography
               variant="h2"
-              sx={{ color: 'text.info' }}
+              sx={{ mt:3, color: 'text.info' }}
               dangerouslySetInnerHTML={{ __html: line1 }}
             />
           </Box>

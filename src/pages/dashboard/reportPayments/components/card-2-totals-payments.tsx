@@ -50,7 +50,7 @@ export default function Card2TotalsPayments(props: Card2TotalsPaymentsProps) {
             />
             <Typography
               variant="h2"
-              sx={{ color: 'text.info' }}
+              sx={{mt: 3.5, color: 'text.info' }}
               dangerouslySetInnerHTML={{ __html: line1 }}
             />
           </Box>

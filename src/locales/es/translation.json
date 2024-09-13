@@ -38,7 +38,6 @@
       "time": "hora",
       "stadium": "estadio",
       "live": "jugado"
-
     },
     "totals": {
       "totals": "totales",
@@ -80,6 +79,14 @@
       "startDate": "feha inicio",
       "endDate": "feha fin",
       "matches": "partidos"
+    },
+    "totals": {
+      "totals": "totales",
+      "membershipsSold": "abonos vendidos",
+      "fundraising": "recaudación",
+      "ocupation": "ocupación",
+      "total": "total",
+      "courtesy": "cortesía"
     }
   },
   "sellers": {
