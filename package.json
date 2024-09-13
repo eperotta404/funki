@@ -39,6 +39,7 @@
     "@mui/x-data-grid": "^7.13.0",
     "@mui/x-date-pickers": "^7.13.0",
     "@mui/x-tree-view": "^7.13.0",
+    "apexcharts": "^3.53.0",
     "autosuggest-highlight": "^3.3.4",
     "axios": "^1.7.4",
     "dayjs": "^1.11.13",
