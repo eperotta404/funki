@@ -1,4 +1,8 @@
-import { Box, Card, useTheme, Typography, CardHeader, CardContent } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
+import { Box, Card, useTheme, Typography, CardContent } from '@mui/material';
+
+import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import { AnalyticsTimeline } from './analytics-timeline';
 import CardSummaryPayments from './card-summary-payments';
@@ -13,6 +17,7 @@ const _analyticOrderTimeline = [
 
 export default function SummaryPayments() {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <>
       <Box sx={{ display: 'flex', my: 1, justifyContent: 'space-between', alignItems: 'center' }}>
@@ -38,7 +43,7 @@ export default function SummaryPayments() {
         }}
       >
         <Card>
-          <AnalyticsTimeline title="Partidos" list={_analyticOrderTimeline} />
+          <AnalyticsTimeline title={capitalizeFirtsLetter(t("payments.summary.matches"))} list={_analyticOrderTimeline} />
         </Card>
         <Card>
           <CardContent>

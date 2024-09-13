@@ -3,6 +3,10 @@
  * https://github.com/you-dont-need-x/you-dont-need-lodash
  */
 
+
+export function capitalizeFirtsLetter(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
 // ----------------------------------------------------------------------
 
 export function flattenArray<T>(list: T[], key = 'children'): T[] {

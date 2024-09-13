@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 import { Box, Tooltip, Typography } from '@mui/material';
 
 import { fDateTime } from 'src/utils/format-time';
+import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import { Iconify } from 'src/components/iconify';
 
@@ -10,6 +13,7 @@ interface CardTotalsEventProps {
 
 export default function CardSummaryPayments(props: CardTotalsEventProps) {
   const { team } = props;
+  const { t } = useTranslation();
 
   return (
     <>
@@ -24,7 +28,7 @@ export default function CardSummaryPayments(props: CardTotalsEventProps) {
           gap: 3,
         }}
       >
-        <Tooltip title="Fecha Inicio" arrow>
+        <Tooltip title={capitalizeFirtsLetter(t("payments.summary.startDate"))} arrow>
           <Iconify icon="clarity:calendar-line" width={40} sx={{ color: 'text.primary' }} />
         </Tooltip>
         <Typography variant="subtitle1" color="text.primary" sx={{ fontSize: 18 }}>
@@ -39,7 +43,7 @@ export default function CardSummaryPayments(props: CardTotalsEventProps) {
           gap: 3,
         }}
       >
-        <Tooltip title="Fecha Fin" arrow>
+        <Tooltip title={capitalizeFirtsLetter(t("payments.summary.endDate"))} arrow>
           <Iconify icon="clarity:calendar-solid" width={40} sx={{ color: 'text.primary' }} />
         </Tooltip>
         <Typography variant="subtitle1" color="text.primary" sx={{ fontSize: 18 }}>
@@ -55,7 +59,7 @@ export default function CardSummaryPayments(props: CardTotalsEventProps) {
           gap: 3,
         }}
       >
-        <Tooltip title="Partidos" arrow>
+        <Tooltip title={capitalizeFirtsLetter(t("payments.summary.matches"))} arrow>
           <Iconify icon="game-icons:soccer-ball" width={40} sx={{ color: 'text.primary' }} />
         </Tooltip>
         <Typography

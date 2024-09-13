@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Card, Grid } from '@mui/material';
 
+import { capitalizeFirtsLetter } from 'src/utils/helper';
+
 import { CONFIG } from 'src/config-global';
 import { DashboardContent } from 'src/layouts/dashboard';
 
@@ -46,7 +48,7 @@ export default function Page() {
         <title> {metadata.title}</title>
       </Helmet>
 
-      <BlankView title={t('payments.title')}>{renderPaymentsScreen}</BlankView>
+      <BlankView title={capitalizeFirtsLetter(t('payments.title'))}>{renderPaymentsScreen}</BlankView>
     </>
   );
 }

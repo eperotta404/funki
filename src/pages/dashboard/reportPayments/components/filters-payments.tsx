@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Paper, TextField, Autocomplete } from '@mui/material';
 
+import { capitalizeFirtsLetter } from 'src/utils/helper';
+
 const years = ['2020', '2021', '2022', '2023', '2024', '2025'];
 const selectedYear = '2024';
 
@@ -37,7 +39,7 @@ export default function FiltersPayment() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('payments.filter.year')} fullWidth />
+          <TextField {...params} label={capitalizeFirtsLetter(t('payments.filter.year'))} fullWidth />
         )}
         sx={{ background: 'white' }}
       />
@@ -58,7 +60,7 @@ export default function FiltersPayment() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('payments.filter.teams')} fullWidth />
+          <TextField {...params} label={capitalizeFirtsLetter(t('payments.filter.teams'))} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />
@@ -79,7 +81,7 @@ export default function FiltersPayment() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={t('payments.filter.payments')} fullWidth />
+          <TextField {...params} label={capitalizeFirtsLetter(t('payments.filter.payments'))} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />

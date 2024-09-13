@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Card, Grid } from '@mui/material';
 
+import { capitalizeFirtsLetter } from 'src/utils/helper';
+
 import { CONFIG } from 'src/config-global';
 import { DashboardContent } from 'src/layouts/dashboard';
 import { organizationService } from 'src/core/infrastructure/instances';
@@ -184,7 +186,7 @@ export default function Page() {
       <Helmet>
         <title>{metadata.title}</title>
       </Helmet>
-      <BlankView title={t('events.title')}>{renderSelectedOde}</BlankView>
+      <BlankView title={capitalizeFirtsLetter('events.title')}>{renderSelectedOde}</BlankView>
     </>
   );
 }

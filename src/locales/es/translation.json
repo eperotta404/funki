@@ -70,11 +70,16 @@
     }
   },
   "payments": {
-    "title": "Abonos",
+    "title": "abonos",
     "filter": {
-      "teams": "Equipos",
-      "year": "Año",
-      "payments": "Abonos"
+      "teams": "equipos",
+      "year": "año",
+      "payments": "abonos"
+    },
+    "summary": {
+      "startDate": "feha inicio",
+      "endDate": "feha fin",
+      "matches": "partidos"
     }
   },
   "sellers": {
