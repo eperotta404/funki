@@ -37,7 +37,7 @@ export function AnalyticsTimeline({ title, subheader, list, itemsPerPage = 4, ..
   const paginatedList = list.slice((page - 1) * itemsPerPage, page * itemsPerPage);
   return (
     <Card {...other}>
-      <CardHeader title={title} subheader={subheader} />
+      <CardHeader title={title} subheader={subheader} titleTypographyProps={{ variant: 'h5' }}  />
 
       <Timeline
         sx={{
@@ -90,9 +90,9 @@ function Item({ item, lastItem, ...other }: ItemProps) {
       </TimelineSeparator>
 
       <TimelineContent>
-        <Typography variant="subtitle2">{item.title}</Typography>
+        <Typography variant="h6">{item.title}</Typography>
 
-        <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+        <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
           {fDateTime(item.time)}
         </Typography>
       </TimelineContent>
