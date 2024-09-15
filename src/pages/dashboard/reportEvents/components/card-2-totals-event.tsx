@@ -1,4 +1,4 @@
-import { Box, Card, Grid, Typography } from '@mui/material';
+import { Box, Card, Grid, Skeleton, Typography } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { varAlpha, bgGradient } from 'src/theme/styles';
@@ -8,13 +8,14 @@ import { SvgColor } from 'src/components/svg-color';
 interface Card2TotalsEventProps {
   title: string;
   line1: string;
+  loading: boolean;
   color1: string;
   color2: string;
   colorSvg: string;
 }
 
 export default function Card2TotalsEvent(props: Card2TotalsEventProps) {
-  const { title, line1, color1, color2, colorSvg } = props;
+  const { title, line1, loading, color1, color2, colorSvg } = props;
   return (
     <Card
       sx={{
@@ -48,11 +49,16 @@ export default function Card2TotalsEvent(props: Card2TotalsEventProps) {
               sx={{ color: 'text.info', mb: 1 }}
               dangerouslySetInnerHTML={{ __html: title }}
             />
-            <Typography
-              variant="h2"
-              sx={{ mt:3, color: 'text.info' }}
-              dangerouslySetInnerHTML={{ __html: line1 }}
-            />
+
+            {loading ? (
+              <Skeleton variant="rectangular" height={30} sx={{ mt: 5, mr: 2 }} />
+            ) : (
+              <Typography
+                variant="h2"
+                sx={{ mt: 3, color: 'text.info' }}
+                dangerouslySetInnerHTML={{ __html: line1 }}
+              />
+            )}
           </Box>
         </Grid>
       </Grid>

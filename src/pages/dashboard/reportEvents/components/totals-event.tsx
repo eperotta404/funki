@@ -64,6 +64,7 @@ export default function TotalsEvent() {
           title={`<strong>${capitalizeFirtsLetter(t('events.totals.fundraising'))}</strong>`}
           line1={`<strong>$${t(fundraising)} </strong>`}
           color1={theme.vars.palette.error.lightChannel}
+          loading={loading}
           color2={theme.vars.palette.warning.lighterChannel}
           colorSvg="success.main"
         />
