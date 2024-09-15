@@ -1,4 +1,4 @@
-import { Box, Card, Grid, Typography } from '@mui/material';
+import { Box, Card, Grid, Skeleton, Typography } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { varAlpha, bgGradient } from 'src/theme/styles';
@@ -10,13 +10,14 @@ interface CardTotalsPaymentsProps {
   line3?: string;
   line4: string;
   line5?: string;
+  loading: boolean;
   color1: string;
   color2: string;
   colorSvg: string;
 }
 
 export default function CardTotalsPayments(props: CardTotalsPaymentsProps) {
-  const { title, line3, line4, line5, color1, color2, colorSvg } = props;
+  const { title, line3, line4, line5, loading, color1, color2, colorSvg } = props;
 
   return (
     <Card
@@ -51,29 +52,41 @@ export default function CardTotalsPayments(props: CardTotalsPaymentsProps) {
               sx={{ color: 'text.info', mb: 1 }}
               dangerouslySetInnerHTML={{ __html: title }}
             />
-            <Typography variant="h6" sx={{ color: 'text.main', fontWeight: 700 }}>
-              Abono Flex promo
-            </Typography>
-            <Typography variant="h4" sx={{ color: 'text.main', fontWeight: 700 }}>
-              1,500
-            </Typography>
-
-
+            {loading ? (
+              <Skeleton variant="rectangular" height={20} sx={{ mt: 5, mr: 2 }} />
+            ) : (
+              <Typography variant="h6" sx={{ color: 'text.main', fontWeight: 700 }}>
+                Abono Flex promo
+              </Typography>
+            )}
+            {loading ? (
+              <Skeleton variant="rectangular" height={20} sx={{ mt: 1, mr: 2 }} />
+            ) : (
+              <Typography variant="h4" sx={{ color: 'text.main', fontWeight: 700 }}>
+                1,500
+              </Typography>
+            )}
             {!line3 && <Box sx={{ height: 24 }} />} {/* Spacer for when line3 is not present */}
-
-            {line3 && (
+            {loading && line3 ? (
+              <Skeleton variant="rectangular" height={15} sx={{ mt: 1, mr: 2 }} />
+            ) : (
+              line3 && (
+                <Typography
+                  variant="body2"
+                  sx={{ color: 'text.info' }}
+                  dangerouslySetInnerHTML={{ __html: line3 }}
+                />
+              )
+            )}
+            {loading ? (
+              <Skeleton variant="rectangular" height={15} sx={{ mt: 1, mr: 2 }} />
+            ) : (
               <Typography
-                variant="body2"
-                sx={{ color: 'text.info' }}
-                dangerouslySetInnerHTML={{ __html: line3 }}
+                variant="body1"
+                sx={{ color: 'text.info', mt: 1.5, fontSize: 20 }}
+                dangerouslySetInnerHTML={{ __html: line4 }}
               />
             )}
-
-            <Typography
-              variant="body1"
-              sx={{ color: 'text.info', mt: 1.5, fontSize: 20 }}
-              dangerouslySetInnerHTML={{ __html: line4 }}
-            />
           </Box>
         </Grid>
 
@@ -86,11 +99,15 @@ export default function CardTotalsPayments(props: CardTotalsPaymentsProps) {
                 mt: -8,
               }}
             >
-              <Typography
-                variant="inherit"
-                sx={{ color: 'text.primary', textAlign: 'center', fontSize: 35, fontWeight: 700 }}
-                dangerouslySetInnerHTML={{ __html: line5 }}
-              />
+              {loading ? (
+                <Skeleton variant="rectangular" width={100} height={40} />
+              ) : (
+                <Typography
+                  variant="inherit"
+                  sx={{ color: 'text.primary', textAlign: 'center', fontSize: 35, fontWeight: 700 }}
+                  dangerouslySetInnerHTML={{ __html: line5 }}
+                />
+              )}
             </Box>
           </Grid>
         )}

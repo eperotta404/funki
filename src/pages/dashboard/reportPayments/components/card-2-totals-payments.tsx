@@ -1,4 +1,4 @@
-import { Box, Card, Grid, Typography } from '@mui/material';
+import { Box, Card, Grid, Skeleton, Typography } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { varAlpha, bgGradient } from 'src/theme/styles';
@@ -8,13 +8,14 @@ import { SvgColor } from 'src/components/svg-color';
 interface Card2TotalsPaymentsProps {
   title: string;
   line1: string;
+  loading: boolean;
   color1: string;
   color2: string;
   colorSvg: string;
 }
 
 export default function Card2TotalsPayments(props: Card2TotalsPaymentsProps) {
-  const { title, line1, color1, color2, colorSvg } = props;
+  const { title, line1, loading, color1, color2, colorSvg } = props;
   return (
     <Card
       sx={{
@@ -42,17 +43,21 @@ export default function Card2TotalsPayments(props: Card2TotalsPaymentsProps) {
       />
       <Grid container spacing={2} sx={{ alignItems: 'center' }}>
         <Grid item xs={12}>
-          <Box sx={{ ml: 2, width: 300 }}>
+          <Box sx={{ mx: 2, width: 300 }}>
             <Typography
               variant="h4"
               sx={{ color: 'text.info', mb: 1 }}
               dangerouslySetInnerHTML={{ __html: title }}
             />
-            <Typography
-              variant="h2"
-              sx={{mt: 3.5, color: 'text.info' }}
-              dangerouslySetInnerHTML={{ __html: line1 }}
-            />
+            {loading ? (
+              <Skeleton variant="rectangular" height={30} sx={{ mt: 5, mr: 2 }} />
+            ) : (
+              <Typography
+                variant="h2"
+                sx={{ mt: 3.5, color: 'text.info' }}
+                dangerouslySetInnerHTML={{ __html: line1 }}
+              />
+            )}
           </Box>
         </Grid>
       </Grid>

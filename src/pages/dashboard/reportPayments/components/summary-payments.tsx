@@ -18,6 +18,7 @@ const _analyticOrderTimeline = [
 export default function SummaryPayments() {
   const theme = useTheme();
   const { t } = useTranslation();
+
   return (
     <>
       <Box sx={{ display: 'flex', my: 1, justifyContent: 'space-between', alignItems: 'center' }}>

@@ -25,6 +25,8 @@ export default function TotalsPayments() {
   const theme = useTheme();
   const { t } = useTranslation();
 
+  const loading = true;
+
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('payments.totals.totals'))}</h2>
@@ -48,6 +50,7 @@ export default function TotalsPayments() {
           title={`<strong>${capitalizeFirtsLetter(t('payments.totals.membershipsSold'))}</strong>`}
 
           line4={`${t('payments.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
+          loading={loading}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.warning.lighterChannel}
           colorSvg="secondary.main"
@@ -56,6 +59,7 @@ export default function TotalsPayments() {
         <Card2TotalsPayments
           title={`<strong>${capitalizeFirtsLetter(t('payments.totals.fundraising'))}</strong>`}
           line1={`<strong>$${t(fundraising)} </strong>`}
+          loading={loading}
           color1={theme.vars.palette.error.lightChannel}
           color2={theme.vars.palette.warning.lighterChannel}
           colorSvg="success.main"
@@ -66,6 +70,7 @@ export default function TotalsPayments() {
           line3={`${capitalizeFirtsLetter(t('payments.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('payments.totals.total').toUpperCase()} : <strong>${TOTALS[1].line4}</strong>`}
           line5="15%"
+          loading={loading}  
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
           colorSvg="error.main"
