@@ -93,6 +93,7 @@ export default function DetailsEvent() {
               { label: 'Method5', value: 2100 },
             ],
           }}
+          loading={loading}
         />
         <AnalyticPie
           title={capitalizeFirtsLetter(t('events.details.paymentChannels'))}
@@ -108,6 +109,7 @@ export default function DetailsEvent() {
               { label: t('events.details.advisors'), value: 1500 },
             ],
           }}
+          loading={loading}
         />
 
         <AnalyticBar

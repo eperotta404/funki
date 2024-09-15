@@ -1,7 +1,7 @@
 import type { ChartOptions } from 'src/components/chart';
 
 import { useTheme } from '@mui/material/styles';
-import { Card, Divider, CardHeader } from '@mui/material';
+import { Card, Divider, CardHeader, Skeleton } from '@mui/material';
 
 import { Chart, useChart, ChartLegends } from 'src/components/chart';
 
@@ -16,10 +16,11 @@ interface AnalyticPieProps {
     }[];
     options?: ChartOptions;
   };
+  loading: boolean;
 }
 
 export default function AnalyticPie(props: AnalyticPieProps) {
-  const { title, subheader, chart } = props;
+  const { title, subheader, chart, loading } = props;
 
   const theme = useTheme();
 
@@ -50,23 +51,26 @@ export default function AnalyticPie(props: AnalyticPieProps) {
   return (
     <Card>
       <CardHeader title={title} subheader={subheader} />
-
-      <Chart
-        type="pie"
-        series={chartSeries}
-        options={chartOptions}
-        width={{ xs: 240, xl: 260 }}
-        height={{ xs: 240, xl: 260 }}
-        sx={{ my: 6, mx: 'auto' }}
-      />
-
-      <Divider sx={{ borderStyle: 'dashed' }} />
-
-      <ChartLegends
-        labels={chartOptions?.labels}
-        colors={chartOptions?.colors}
-        sx={{ p: 3, justifyContent: 'center' }}
-      />
+      {loading ? (
+        <Skeleton variant="rectangular" height={300} sx={{ m:3 }} />
+      ) : (
+        <>
+          <Chart
+            type="pie"
+            series={chartSeries}
+            options={chartOptions}
+            width={{ xs: 240, xl: 260 }}
+            height={{ xs: 240, xl: 260 }}
+            sx={{ my: 6, mx: 'auto' }}
+          />
+          <Divider sx={{ borderStyle: 'dashed' }} />
+          <ChartLegends
+            labels={chartOptions?.labels}
+            colors={chartOptions?.colors}
+            sx={{ p: 3, justifyContent: 'center' }}
+          />
+        </>
+      )}
     </Card>
   );
 }
