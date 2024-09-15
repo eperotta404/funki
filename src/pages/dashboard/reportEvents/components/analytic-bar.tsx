@@ -111,7 +111,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       <CardHeader title={title} subheader={subheader} />
 
       {loading ? (
-        <Skeleton variant="rectangular" height={364} sx={{ py: 2.5, pl: 1, pr: 2.5 }} />
+        <Skeleton variant="rectangular" height={364} sx={{ m: 3, py: 2.5, pl: 1, pr: 2.5 }} />
       ) : (
         <Chart
           type="bar"

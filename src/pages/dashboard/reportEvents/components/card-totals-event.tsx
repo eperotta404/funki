@@ -1,4 +1,4 @@
-import { Box, Card, Grid, Typography } from '@mui/material';
+import { Box, Card, Grid, Skeleton, Typography } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { varAlpha, bgGradient } from 'src/theme/styles';
@@ -12,13 +12,14 @@ interface CardTotalsEventProps {
   line3: string;
   line4: string;
   line5?: string;
+  loading: boolean;
   color1: string;
   color2: string;
   colorSvg: string;
 }
 
 export default function CardTotalsEvent(props: CardTotalsEventProps) {
-  const { title, line1, line2, line3, line4, line5, color1, color2, colorSvg } = props;
+  const { title, line1, line2, line3, line4, line5, loading, color1, color2, colorSvg } = props;
 
   return (
     <Card
@@ -53,28 +54,47 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
               sx={{ color: 'text.info', mb: 1 }}
               dangerouslySetInnerHTML={{ __html: title }}
             />
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.info' }}
-              dangerouslySetInnerHTML={{ __html: line1 }}
-            />
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.info' }}
-              dangerouslySetInnerHTML={{ __html: line2 }}
-            />
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.info' }}
-              dangerouslySetInnerHTML={{ __html: line3 }}
-            />
-            <Typography
-              variant="body1"
-              sx={{ color: 'text.info', mt: 1.5, fontSize: 20 }}
-              dangerouslySetInnerHTML={{ __html: line4 }}
-            />
+            {loading ? (
+              <Skeleton variant="rectangular" height={20} sx={{ mt: 2, mr: 2 }} />
+            ) : (
+              <Typography
+                variant="h2"
+                sx={{ mt: 3.5, color: 'text.info' }}
+                dangerouslySetInnerHTML={{ __html: line1 }}
+              />
+            )}
+            {loading ? (
+              <Skeleton variant="rectangular" height={20} sx={{ mt: 1, mr: 2 }} />
+            ) : (
+              <Typography
+                variant="body2"
+                sx={{ color: 'text.info' }}
+                dangerouslySetInnerHTML={{ __html: line2 }}
+              />
+            )}
+
+            {loading ? (
+              <Skeleton variant="rectangular" height={10} sx={{ mt: 1, mr: 2 }} />
+            ) : (
+              <Typography
+                variant="body2"
+                sx={{ color: 'text.info' }}
+                dangerouslySetInnerHTML={{ __html: line3 }}
+              />
+            )}
+
+            {loading ? (
+              <Skeleton variant="rectangular" height={30} sx={{ mt: 1, mr: 2 }} />
+            ) : (
+              <Typography
+                variant="body1"
+                sx={{ color: 'text.info', mt: 1.5, fontSize: 20 }}
+                dangerouslySetInnerHTML={{ __html: line4 }}
+              />
+            )}
           </Box>
         </Grid>
+
         {line5 && (
           <Grid item xs={6}>
             <Box
@@ -84,11 +104,15 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
                 mt: -8,
               }}
             >
-              <Typography
-                variant="inherit"
-                sx={{ color: 'text.primary', textAlign: 'center', fontSize: 35, fontWeight: 700 }}
-                dangerouslySetInnerHTML={{ __html: line5 }}
-              />
+              {loading ? (
+                <Skeleton variant="rectangular" width={100} height={30} />
+              ) : (
+                <Typography
+                  variant="inherit"
+                  sx={{ color: 'text.primary', textAlign: 'center', fontSize: 35, fontWeight: 700 }}
+                  dangerouslySetInnerHTML={{ __html: line5 }}
+                />
+              )}
             </Box>
           </Grid>
         )}

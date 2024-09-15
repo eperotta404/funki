@@ -27,6 +27,7 @@ const fundraising = '45,653';
 export default function TotalsEvent() {
   const theme = useTheme();
   const { t } = useTranslation();
+  const loading = true;
 
   return (
     <>
@@ -53,6 +54,7 @@ export default function TotalsEvent() {
           line2={`${capitalizeFirtsLetter(t('events.totals.memberships'))} : <strong>${TOTALS[0].line2} </strong>`}
           line3={`${capitalizeFirtsLetter(t('events.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('events.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
+          loading={loading}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.warning.lighterChannel}
           colorSvg="secondary.main"
@@ -73,6 +75,7 @@ export default function TotalsEvent() {
           line3={`${capitalizeFirtsLetter(t('events.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('events.totals.total').toUpperCase()} : <strong>${TOTALS[1].line4}</strong>`}
           line5="63%"
+          loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
           colorSvg="error.main"
