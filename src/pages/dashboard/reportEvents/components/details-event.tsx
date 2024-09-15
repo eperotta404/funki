@@ -10,6 +10,8 @@ import AnalyticPie from './analytic-pie';
 export default function DetailsEvent() {
   const { t } = useTranslation();
   const theme = useTheme();
+
+  const loading = true;
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.details.details'))}</h2>
@@ -43,6 +45,7 @@ export default function DetailsEvent() {
               { name: t('events.totals.courtesy'), data: [30, 50, 70, 47, 67, 40, 37, 24,  24] },
             ],
           }}
+          loading
         />
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.montoByTribune'))}
@@ -69,6 +72,7 @@ export default function DetailsEvent() {
               },
             ],
           }}
+          loading={loading}
         />
 
         <AnalyticPie
@@ -121,6 +125,7 @@ export default function DetailsEvent() {
             ],
 
           }}
+          loading={loading}
         />
 
         <AnalyticBar
@@ -138,6 +143,7 @@ export default function DetailsEvent() {
             ],
             yAxisMarker: 72000,
           }}
+          loading={loading}
         />
       </Box>
     </>

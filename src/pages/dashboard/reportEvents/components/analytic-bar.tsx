@@ -1,6 +1,6 @@
 import type { ChartOptions } from 'src/components/chart';
 
-import { Card, CardHeader } from '@mui/material';
+import { Card, CardHeader, Skeleton } from '@mui/material';
 import { useTheme, alpha as hexAlpha } from '@mui/material/styles';
 
 import { Chart, useChart } from 'src/components/chart';
@@ -21,10 +21,11 @@ interface AnalyticBarProps {
     options?: ChartOptions;
     yAxisMarker?: number;
   };
+  loading: boolean;
 }
 
 export default function AnalyticBar(props: AnalyticBarProps) {
-  const { title, subheader, isVertical, chart, ...other } = props;
+  const { title, subheader, isVertical, chart, loading, ...other } = props;
   const theme = useTheme();
   const chartColors = chart.colors ?? [
     hexAlpha(theme.palette.primary.dark, 0.8),
@@ -97,7 +98,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       bar: {
         horizontal: !isVertical,
         ...(chart.series[0].data.length === 1 && {
-          columnWidth: '20%', 
+          columnWidth: '20%',
         }),
       },
     },
@@ -109,13 +110,17 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
 
-      <Chart
-        type="bar"
-        series={chart.series}
-        options={chartOptions}
-        height={364}
-        sx={{ py: 2.5, pl: 1, pr: 2.5 }}
-      />
+      {loading ? (
+        <Skeleton variant="rectangular" height={364} sx={{ py: 2.5, pl: 1, pr: 2.5 }} />
+      ) : (
+        <Chart
+          type="bar"
+          series={chart.series}
+          options={chartOptions}
+          height={364}
+          sx={{ py: 2.5, pl: 1, pr: 2.5 }}
+        />
+      )}
     </Card>
   );
 }
