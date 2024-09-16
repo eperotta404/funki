@@ -1,4 +1,8 @@
-import { Box, Card, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
+import { Box, Card, Tooltip, Typography } from '@mui/material';
+
+import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import { CONFIG } from 'src/config-global';
 import { varAlpha, bgGradient } from 'src/theme/styles';
@@ -10,14 +14,14 @@ interface CardDetailEventProps {
   icon: string;
   line1: string;
   line2: string;
-  line3?: string;
   color1: string;
   color2: string;
   colorSvg: string;
 }
 
 export default function CardSummaryEvent(props: CardDetailEventProps) {
-  const { icon, line1, line2, line3, color1, color2, colorSvg } = props;
+  const { icon, line1, line2, color1, color2, colorSvg } = props;
+  const { t } = useTranslation();
   return (
     <Card
       sx={{
@@ -44,24 +48,22 @@ export default function CardSummaryEvent(props: CardDetailEventProps) {
         }}
       />
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
-      <Box sx={{ textAlign: 'start', ml:10, mt: line3 ?  -2 : 0 }}>
+      <Box sx={{ textAlign: 'start', ml: 10, mt: 0 }}>
         <Typography
           variant="body1"
           sx={{ color: 'text.info' }}
           dangerouslySetInnerHTML={{ __html: line1 }}
         />
-        <Typography
-          variant="body1"
-          sx={{ color: 'text.info' }}
-          dangerouslySetInnerHTML={{ __html: line2 }}
-        />
-        {line3 && (
+        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+          <Tooltip title={capitalizeFirtsLetter(t('events.summary.rival'))} arrow>
+            <Iconify icon="tabler:vs" width={25} sx={{ color: 'primary.main', mr: 1 }} />
+          </Tooltip>
           <Typography
             variant="body1"
             sx={{ color: 'text.info' }}
-            dangerouslySetInnerHTML={{ __html: line3 }}
+            dangerouslySetInnerHTML={{ __html: line2 }}
           />
-        )}
+        </Box>
       </Box>
     </Card>
   );

@@ -19,7 +19,7 @@
     "title": "Inicio"
   },
   "events": {
-    "title": "eventos",
+    "title": "eventos col",
 
     "buttons": {
       "download": "descargar"
@@ -41,8 +41,8 @@
     },
     "totals": {
       "totals": "totales",
-      "ticketsSold": "boletos ES vendidos",
-      "tickets": "boletos",
+      "ticketsSold": "tickets vendidos",
+      "tickets": "tickets",
       "memberships": "abonos",
       "total": "total",
       "ocupation": "ocupación",
@@ -51,10 +51,10 @@
     },
     "details": {
       "details": "detalles",
-      "ticketsByTribune": "boletos por tribuna",
+      "ticketsByTribune": "tickets por tribuna",
       "montoByTribune": "monto vendido por tribuna",
       "totalCapacitySalesRevenue": "aforo Total, Ventas e Ingresos",
-      "tickets": "boletos",
+      "tickets": "tickets",
       "memberships": "abonos",
       "courtesies": "cortesías",
       "courtesy": "cortesía",
@@ -63,9 +63,9 @@
       "web": "web",
       "app": "app",
       "advisors": "asesores",
-      "ticketsGenerated": "boletos Generados",
-      "ticketsRedeemed": "boletos Redimidos",
-      "ticketsUnredeemed": "boletos No Redimidos"
+      "ticketsGenerated": "tickets Generados",
+      "ticketsRedeemed": "tickets Redimidos",
+      "ticketsUnredeemed": "tickets No Redimidos"
     }
   },
   "bundles": {

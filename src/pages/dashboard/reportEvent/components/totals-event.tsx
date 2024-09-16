@@ -33,7 +33,6 @@ export default function TotalsEvent() {
   const queryParams = new URLSearchParams(location.search);
   const l = queryParams.get('l');
 
-
   const loading = l === 'true';
 
   return (

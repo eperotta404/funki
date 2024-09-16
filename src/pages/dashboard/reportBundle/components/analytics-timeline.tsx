@@ -25,6 +25,7 @@ type Props = CardProps & {
     id: string;
     type: string;
     title: string;
+    link?:string;
     time: string | number | null;
   }[];
   itemsPerPage?: number;
@@ -90,7 +91,15 @@ function Item({ item, lastItem, ...other }: ItemProps) {
       </TimelineSeparator>
 
       <TimelineContent>
-        <Typography variant="h6">{item.title}</Typography>
+      <Typography variant="h6">
+          {item.link ? (
+            <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+              {item.title}
+            </a>
+          ) : (
+            item.title
+          )}
+        </Typography>
 
         <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
           {fDateTime(item.time)}

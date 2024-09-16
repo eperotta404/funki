@@ -2,6 +2,7 @@ import type { IconButtonProps } from '@mui/material/IconButton';
 
 import { m } from 'framer-motion';
 import { useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
@@ -23,6 +24,7 @@ export type LanguagePopoverProps = IconButtonProps & {
 
 export function LanguagePopover({ data = [], sx, ...other }: LanguagePopoverProps) {
   const popover = usePopover();
+  const { i18n } = useTranslation();
 
   const [locale, setLocale] = useState<string>(data[0].value);
 
@@ -31,9 +33,10 @@ export function LanguagePopover({ data = [], sx, ...other }: LanguagePopoverProp
   const handleChangeLang = useCallback(
     (newLang: string) => {
       setLocale(newLang);
+      i18n.changeLanguage(newLang);
       popover.onClose();
     },
-    [popover]
+    [popover, i18n]
   );
 
   return (
@@ -43,6 +46,7 @@ export function LanguagePopover({ data = [], sx, ...other }: LanguagePopoverProp
         whileTap="tap"
         whileHover="hover"
         variants={varHover(1.05)}
+        onClick={popover.onOpen}
         sx={{
           p: 0,
           width: 40,
@@ -56,7 +60,7 @@ export function LanguagePopover({ data = [], sx, ...other }: LanguagePopoverProp
       </IconButton>
 
       <CustomPopover open={popover.open} anchorEl={popover.anchorEl} onClose={popover.onClose}>
-        <MenuList sx={{ width: 160, minHeight: 72 }}>
+        <MenuList sx={{ width: 200, minHeight: 72 }}>
           {data?.map((option) => (
             <MenuItem
               key={option.value}

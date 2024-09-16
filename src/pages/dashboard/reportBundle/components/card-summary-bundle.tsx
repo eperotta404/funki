@@ -63,9 +63,9 @@ export default function CardSummaryBundle(props: CardTotalsEventProps) {
           <Iconify icon="game-icons:soccer-ball" width={40} sx={{ color: 'text.primary' }} />
         </Tooltip>
         <Typography
-          variant="subtitle1"
+          variant="h2"
           color="text.primary"
-          sx={{ fontSize: 30, fontWeight: 'bold' }}
+          sx={{  fontWeight: 'bold' }}
         >
           5/10
         </Typography>

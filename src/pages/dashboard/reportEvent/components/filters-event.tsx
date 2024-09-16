@@ -18,7 +18,17 @@ interface FiltersEventProps {
   onEventChange: (event: FilterEventOption | null) => void;
 }
 
-export default function FiltersEvent({ teams, years, events, selectedTeam, selectedYear, selectedEvent, onTeamChange, onYearChange, onEventChange }: FiltersEventProps) {
+export default function FiltersEvent({
+  teams,
+  years,
+  events,
+  selectedTeam,
+  selectedYear,
+  selectedEvent,
+  onTeamChange,
+  onYearChange,
+  onEventChange,
+}: FiltersEventProps) {
   const { t } = useTranslation();
 
   return (
@@ -45,7 +55,11 @@ export default function FiltersEvent({ teams, years, events, selectedTeam, selec
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={capitalizeFirtsLetter(t('events.filter.teams'))} fullWidth />
+          <TextField
+            {...params}
+            label={capitalizeFirtsLetter(t('events.filter.teams'))}
+            fullWidth
+          />
         )}
         sx={{ background: 'white' }}
       />
@@ -90,7 +104,11 @@ export default function FiltersEvent({ teams, years, events, selectedTeam, selec
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={capitalizeFirtsLetter(t('events.filter.events'))} fullWidth />
+          <TextField
+            {...params}
+            label={capitalizeFirtsLetter(t('events.filter.events'))}
+            fullWidth
+          />
         )}
         sx={{ backgroundColor: 'white' }}
       />

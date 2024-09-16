@@ -8,11 +8,41 @@ import CardSummaryBundle from './card-summary-bundle';
 import { AnalyticsTimeline } from './analytics-timeline';
 
 const _analyticOrderTimeline = [
-  { id: '1', title: 'Atlas vs Chivas', type: 'type1', time: '2024-04-01 16:15' },
-  { id: '2', title: 'Atlas vs Santos', type: 'type5', time: '2024-04-17 17:30' },
-  { id: '3', title: 'Atlas vs Pumas y Tigres', type: 'type4', time: '2025-06-01 21:00' },
-  { id: '4', title: 'Atlas vs Boca Jrs', type: 'type1', time: '2025-01-01 21:00' },
-  { id: '5', title: 'Atlas vs Chivas', type: 'type1', time: '2025-01-06 20:00' },
+  {
+    id: '1',
+    title: 'Atlas vs Chivas',
+    type: 'type1',
+    link: 'https://www.google.com/',
+    time: '2024-04-01 16:15',
+  },
+  {
+    id: '2',
+    title: 'Atlas vs Santos',
+    type: 'type5',
+    link: 'https://www.google.com/',
+    time: '2024-04-17 17:30',
+  },
+  {
+    id: '3',
+    title: 'Atlas vs Pumas y Tigres',
+    type: 'type4',
+    link: 'https://www.google.com/',
+    time: '2025-06-01 21:00',
+  },
+  {
+    id: '4',
+    title: 'Atlas vs Boca Jrs',
+    type: 'type1',
+    link: 'https://www.google.com/',
+    time: '2025-01-01 21:00',
+  },
+  {
+    id: '5',
+    title: 'Atlas vs Chivas',
+    type: 'type1',
+    link: 'https://www.google.com/',
+    time: '2025-01-06 20:00',
+  },
 ];
 
 export default function SummaryBundle() {
@@ -44,7 +74,10 @@ export default function SummaryBundle() {
         }}
       >
         <Card>
-          <AnalyticsTimeline title={capitalizeFirtsLetter(t("bundles.summary.matches"))} list={_analyticOrderTimeline} />
+          <AnalyticsTimeline
+            title={capitalizeFirtsLetter(t('bundles.summary.matches'))}
+            list={_analyticOrderTimeline}
+          />
         </Card>
         <Card>
           <CardContent>
