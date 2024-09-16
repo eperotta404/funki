@@ -83,7 +83,7 @@ export default function DetailsEvent() {
         />
 
         <AnalyticPie
-          title={capitalizeFirtsLetter(t('events.details.paymentMethods'))}
+          title={capitalizeFirtsLetter(t('events.details.bundleMethods'))}
           chart={{
             colors: [
               theme.palette.info.main,
@@ -103,7 +103,7 @@ export default function DetailsEvent() {
           loading={loading}
         />
         <AnalyticPie
-          title={capitalizeFirtsLetter(t('events.details.paymentChannels'))}
+          title={capitalizeFirtsLetter(t('events.details.bundleChannels'))}
           chart={{
             colors: [
               theme.palette.primary.main,

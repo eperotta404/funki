@@ -4,8 +4,8 @@ import { Box, Card, useTheme, Typography, CardContent } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
+import CardSummaryBundle from './card-summary-bundle';
 import { AnalyticsTimeline } from './analytics-timeline';
-import CardSummaryPayments from './card-summary-payments';
 
 const _analyticOrderTimeline = [
   { id: '1', title: 'Atlas vs Chivas', type: 'type1', time: '2024-04-01 16:15' },
@@ -15,7 +15,7 @@ const _analyticOrderTimeline = [
   { id: '5', title: 'Atlas vs Chivas', type: 'type1', time: '2025-01-06 20:00' },
 ];
 
-export default function SummaryPayments() {
+export default function SummaryBundle() {
   const theme = useTheme();
   const { t } = useTranslation();
 
@@ -44,11 +44,11 @@ export default function SummaryPayments() {
         }}
       >
         <Card>
-          <AnalyticsTimeline title={capitalizeFirtsLetter(t("payments.summary.matches"))} list={_analyticOrderTimeline} />
+          <AnalyticsTimeline title={capitalizeFirtsLetter(t("bundles.summary.matches"))} list={_analyticOrderTimeline} />
         </Card>
         <Card>
           <CardContent>
-            <CardSummaryPayments team="Atlas Masculino" />
+            <CardSummaryBundle team="Atlas Masculino" />
           </CardContent>
         </Card>
       </Box>

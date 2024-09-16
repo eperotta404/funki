@@ -5,8 +5,8 @@ import { Box, useTheme } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
-import CardTotalsPayments from './card-totals-payments';
-import Card2TotalsPayments from './card-2-totals-payments';
+import CardTotalsBundle from './card-totals-bundle';
+import Card2TotalsBundle from './card-2-totals-bundle';
 
 const TOTALS = [
   {
@@ -22,7 +22,7 @@ const TOTALS = [
 
 const fundraising = '1,354,245';
 
-export default function TotalsPayments() {
+export default function TotalsBundle() {
   const theme = useTheme();
   const { t } = useTranslation();
 
@@ -34,7 +34,7 @@ export default function TotalsPayments() {
 
   return (
     <>
-      <h2>{capitalizeFirtsLetter(t('payments.totals.totals'))}</h2>
+      <h2>{capitalizeFirtsLetter(t('bundles.totals.totals'))}</h2>
       <Box
         gap={8}
         display="grid"
@@ -51,18 +51,18 @@ export default function TotalsPayments() {
           },
         }}
       >
-        <CardTotalsPayments
-          title={`<strong>${capitalizeFirtsLetter(t('payments.totals.membershipsSold'))}</strong>`}
+        <CardTotalsBundle
+          title={`<strong>${capitalizeFirtsLetter(t('bundles.totals.membershipsSold'))}</strong>`}
 
-          line4={`${t('payments.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
+          line4={`${t('bundles.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
           loading={loading}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.warning.lighterChannel}
           colorSvg="secondary.main"
         />
 
-        <Card2TotalsPayments
-          title={`<strong>${capitalizeFirtsLetter(t('payments.totals.fundraising'))}</strong>`}
+        <Card2TotalsBundle
+          title={`<strong>${capitalizeFirtsLetter(t('bundles.totals.fundraising'))}</strong>`}
           line1={`<strong>$${t(fundraising)} </strong>`}
           loading={loading}
           color1={theme.vars.palette.error.lightChannel}
@@ -70,10 +70,10 @@ export default function TotalsPayments() {
           colorSvg="success.main"
         />
 
-        <CardTotalsPayments
-          title={`<strong>${capitalizeFirtsLetter(t('payments.totals.ocupation'))}</strong>`}
-          line3={`${capitalizeFirtsLetter(t('payments.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
-          line4={`${t('payments.totals.total').toUpperCase()} : <strong>${TOTALS[1].line4}</strong>`}
+        <CardTotalsBundle
+          title={`<strong>${capitalizeFirtsLetter(t('bundles.totals.ocupation'))}</strong>`}
+          line3={`${capitalizeFirtsLetter(t('bundles.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
+          line4={`${t('bundles.totals.total').toUpperCase()} : <strong>${TOTALS[1].line4}</strong>`}
           line5="15%"
           loading={loading}  
           color1={theme.vars.palette.primary.lightChannel}

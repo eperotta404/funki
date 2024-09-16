@@ -10,39 +10,39 @@ import { DashboardContent } from 'src/layouts/dashboard';
 
 import { BlankView } from 'src/sections/blank/view';
 
-import TotalsPayments from './components/totals-payments';
-import FiltersPayment from './components/filters-payments';
-import SummaryPayments from './components/summary-payments';
-import DetailsPayments from './components/details-payments';
+import TotalsBundle from './components/totals-bundle';
+import FiltersBundle from './components/filters-bundle';
+import SummaryBundle from './components/summary-bundle';
+import DetailsBundle from './components/details-bundle';
 
 // ----------------------------------------------------------------------
 
-const metadata = { title: `Payments| Dashboard - ${CONFIG.appName}` };
+const metadata = { title: `Bundles| Dashboard - ${CONFIG.appName}` };
 
 export default function Page() {
   const { t } = useTranslation();
 
   const cardStyle = { p: 3, backgroundColor: 'background.default', boxShadow: 3 };
 
-  const renderPaymentsScreen = (
+  const renderBundlesScreen = (
     <DashboardContent maxWidth="xl">
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <FiltersPayment />
+          <FiltersBundle />
         </Grid>
         <Grid item xs={12}>
           <Card sx={cardStyle}>
-            <SummaryPayments />
+            <SummaryBundle />
           </Card>
         </Grid>
         <Grid item xs={12}>
           <Card sx={cardStyle}>
-            <TotalsPayments />
+            <TotalsBundle />
           </Card>
         </Grid>
         <Grid item xs={12}>
           <Card sx={cardStyle}>
-            <DetailsPayments />
+            <DetailsBundle />
           </Card>
         </Grid>
       </Grid>
@@ -54,8 +54,8 @@ export default function Page() {
         <title> {metadata.title}</title>
       </Helmet>
 
-      <BlankView title={capitalizeFirtsLetter(t('payments.title'))}>
-        {renderPaymentsScreen}
+      <BlankView title={capitalizeFirtsLetter(t('bundles.title'))}>
+        {renderBundlesScreen}
       </BlankView>
     </>
   );

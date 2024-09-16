@@ -53,7 +53,7 @@ export const navData = [
         icon: ICONS.analytics,
         children: [
           { title: 'Eventos', path: paths.dashboard.reports.root },
-          { title: 'Abonos', path: paths.dashboard.reports.payments },
+          { title: 'Abonos', path: paths.dashboard.reports.bundles },
           { title: 'Ventas', path: paths.dashboard.reports.sellers },
         ],
       },

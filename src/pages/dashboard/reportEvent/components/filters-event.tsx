@@ -4,7 +4,7 @@ import { Box, Paper, TextField, Autocomplete } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
-import type { FilterOption, FilterEventOption } from '../report-events';
+import type { FilterOption, FilterEventOption } from '../report-event';
 
 interface FiltersEventProps {
   teams: FilterOption[];

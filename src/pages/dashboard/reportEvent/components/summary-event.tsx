@@ -10,7 +10,7 @@ import { Iconify } from 'src/components/iconify';
 import Card2SummaryEvent from './card-2-summary';
 import CardSummaryEvent from './card-summary-event';
 
-import type { FilterEventOption } from '../report-events';
+import type { FilterEventOption } from '../report-event';
 
 interface SummaryEventProps {
   selectedEvent: FilterEventOption

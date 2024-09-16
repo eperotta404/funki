@@ -10,10 +10,10 @@ const selectedYear = '2024';
 const teams = ['team1', 'team2', 'team3'];
 const selectedTeam = 'team1';
 
-const payments = ['payment1', 'payment2', 'payment3'];
-const selectedPayment = 'payment1';
+const bundles = ['bundle1', 'bundle2', 'bundle3'];
+const selectedBundle = 'bundle1';
 
-export default function FiltersPayment() {
+export default function FiltersBundle() {
   const { t } = useTranslation();
 
   return (
@@ -39,7 +39,7 @@ export default function FiltersPayment() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={capitalizeFirtsLetter(t('payments.filter.year'))} fullWidth />
+          <TextField {...params} label={capitalizeFirtsLetter(t('bundles.filter.year'))} fullWidth />
         )}
         sx={{ background: 'white' }}
       />
@@ -60,16 +60,16 @@ export default function FiltersPayment() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={capitalizeFirtsLetter(t('payments.filter.teams'))} fullWidth />
+          <TextField {...params} label={capitalizeFirtsLetter(t('bundles.filter.teams'))} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />
 
       <Autocomplete
         disablePortal
-        id="combo-box-payment"
-        options={payments}
-        value={selectedPayment}
+        id="combo-box-bundle"
+        options={bundles}
+        value={selectedBundle}
         PaperComponent={(props) => (
           <Paper
             {...props}
@@ -81,7 +81,7 @@ export default function FiltersPayment() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={capitalizeFirtsLetter(t('payments.filter.payments'))} fullWidth />
+          <TextField {...params} label={capitalizeFirtsLetter(t('bundles.filter.bundles'))} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />

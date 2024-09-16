@@ -7,7 +7,7 @@ import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import AnalyticBar from './analytic-bar';
 
-export default function DetailsPayments() {
+export default function DetailsBundles() {
   const { t } = useTranslation();
   const theme = useTheme();
   const location = useLocation();
@@ -19,7 +19,7 @@ export default function DetailsPayments() {
 
   return (
     <>
-      <h2>{capitalizeFirtsLetter(t('payments.details.details'))}</h2>
+      <h2>{capitalizeFirtsLetter(t('bundles.details.details'))}</h2>
       <Box
         gap={8}
         display="grid"

@@ -11,7 +11,7 @@ interface CardTotalsEventProps {
   team: string;
 }
 
-export default function CardSummaryPayments(props: CardTotalsEventProps) {
+export default function CardSummaryBundle(props: CardTotalsEventProps) {
   const { team } = props;
   const { t } = useTranslation();
 
@@ -28,7 +28,7 @@ export default function CardSummaryPayments(props: CardTotalsEventProps) {
           gap: 3,
         }}
       >
-        <Tooltip title={capitalizeFirtsLetter(t("payments.summary.startDate"))} arrow>
+        <Tooltip title={capitalizeFirtsLetter(t("bundles.summary.startDate"))} arrow>
           <Iconify icon="clarity:calendar-line" width={40} sx={{ color: 'text.primary' }} />
         </Tooltip>
         <Typography variant="subtitle1" color="text.primary" sx={{ fontSize: { xs: 16, sm: 18} }}>
@@ -43,7 +43,7 @@ export default function CardSummaryPayments(props: CardTotalsEventProps) {
           gap: 3,
         }}
       >
-        <Tooltip title={capitalizeFirtsLetter(t("payments.summary.endDate"))} arrow>
+        <Tooltip title={capitalizeFirtsLetter(t("bundles.summary.endDate"))} arrow>
           <Iconify icon="clarity:calendar-solid" width={40} sx={{ color: 'text.primary' }} />
         </Tooltip>
         <Typography variant="subtitle1" color="text.primary" sx={{ fontSize: { xs: 16, sm: 18} }}>
@@ -59,7 +59,7 @@ export default function CardSummaryPayments(props: CardTotalsEventProps) {
           gap: 3,
         }}
       >
-        <Tooltip title={capitalizeFirtsLetter(t("payments.summary.matches"))} arrow>
+        <Tooltip title={capitalizeFirtsLetter(t("bundles.summary.matches"))} arrow>
           <Iconify icon="game-icons:soccer-ball" width={40} sx={{ color: 'text.primary' }} />
         </Tooltip>
         <Typography

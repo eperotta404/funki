@@ -58,8 +58,8 @@
       "memberships": "abonos",
       "courtesies": "cortesías",
       "courtesy": "cortesía",
-      "paymentMethods": "métodos de Pago",
-      "paymentChannels": "canales de Pago",
+      "bundleMethods": "métodos de Pago",
+      "bundleChannels": "canales de Pago",
       "web": "web",
       "app": "app",
       "advisors": "asesores",
@@ -68,12 +68,12 @@
       "ticketsUnredeemed": "boletos No Redimidos"
     }
   },
-  "payments": {
+  "bundles": {
     "title": "abonos",
     "filter": {
       "teams": "equipos",
       "year": "año",
-      "payments": "abonos"
+      "bundles": "abonos"
     },
     "summary": {
       "startDate": "feha inicio",
