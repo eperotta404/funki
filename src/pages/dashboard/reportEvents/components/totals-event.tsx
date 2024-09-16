@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import { Box, useTheme } from '@mui/material';
@@ -27,7 +28,13 @@ const fundraising = '45,653';
 export default function TotalsEvent() {
   const theme = useTheme();
   const { t } = useTranslation();
-  const loading = true;
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const l = queryParams.get('l');
+
+
+  const loading = l === 'true';
 
   return (
     <>

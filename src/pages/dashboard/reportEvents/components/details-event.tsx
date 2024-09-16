@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import { Box, useTheme } from '@mui/material';
@@ -11,7 +12,13 @@ export default function DetailsEvent() {
   const { t } = useTranslation();
   const theme = useTheme();
 
-  const loading = true;
+  
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const l = queryParams.get('l');
+
+
+  const loading = l === 'true';
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.details.details'))}</h2>

@@ -50,7 +50,7 @@ export default function Page() {
   const { selectedOrganization } = useOrganization();
 
   const [loading, setLoading] = useState(false);
-  const [isDataFetched, setIsDataFetched] = useState(false); // Nuevo estado para controlar si los datos ya fueron cargados
+  const [isDataFetched, setIsDataFetched] = useState(false); 
 
   const [teams, setTeams] = useState<FilterOption[]>([]);
   const [years, setYear] = useState<FilterOption[]>([]);
@@ -59,6 +59,7 @@ export default function Page() {
   const [selectedTeam, setSelectedTeam] = useState<FilterOption | null>(null);
   const [selectedYear, setSelectedYear] = useState<FilterOption | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<FilterEventOption | null>(null);
+  
 
   const getDatesOrganizationDropdown = (): FilterOption[] => [
     { id: (currentYear - 2).toString(), label: (currentYear - 2).toString() },

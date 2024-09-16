@@ -58,7 +58,7 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
               <Skeleton variant="rectangular" height={20} sx={{ mt: 2, mr: 2 }} />
             ) : (
               <Typography
-                variant="h2"
+                variant="body1"
                 sx={{ mt: 3.5, color: 'text.info' }}
                 dangerouslySetInnerHTML={{ __html: line1 }}
               />
