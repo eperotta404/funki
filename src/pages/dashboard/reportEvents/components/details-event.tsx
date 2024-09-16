@@ -52,7 +52,7 @@ export default function DetailsEvent() {
               { name: t('events.totals.courtesy'), data: [30, 50, 70, 47, 67, 40, 37, 24,  24] },
             ],
           }}
-          loading
+          loading={loading}
         />
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.montoByTribune'))}
