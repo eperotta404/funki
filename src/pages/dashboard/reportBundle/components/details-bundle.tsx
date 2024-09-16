@@ -6,6 +6,7 @@ import { Box, useTheme } from '@mui/material';
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import AnalyticBar from '../../components/analytic-bar';
+import AnalyticPie from '../../components/analytic-pie';
 
 export default function DetailsBundles() {
   const { t } = useTranslation();
@@ -13,7 +14,6 @@ export default function DetailsBundles() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const l = queryParams.get('l');
-
 
   const loading = l === 'true';
 
@@ -75,6 +75,86 @@ export default function DetailsBundles() {
                 name: t('events.totals.tickets'),
                 data: [11236, 7188, 8002, 6057, 5958, 6008, 3778, 11000, 5500],
               },
+            ],
+          }}
+          loading={loading}
+        />
+
+        <AnalyticBar
+          title={capitalizeFirtsLetter(t('events.details.totalCapacitySalesRevenue'))}
+          isVertical={false}
+          chart={{
+            stacked: true,
+            categories: ['Tribune 1', 'Tribune 2', 'Tribune 3'],
+            max: 50000,
+            colors: [
+              theme.palette.info.main,
+              theme.palette.success.light,
+              theme.palette.warning.main,
+            ],
+            series: [
+              { name: t('events.details.tickets'), data: [20000, 1700, 30000] },
+              { name: t('events.details.memberships'), data: [7000, 1500, 4000] },
+              { name: t('events.details.courtesy'), data: [3000, 25000, 3500] },
+            ],
+          }}
+          loading={loading}
+        />
+
+        <AnalyticPie
+          title={capitalizeFirtsLetter(t('events.details.bundleMethods'))}
+          chart={{
+            colors: [
+              theme.palette.info.main,
+              theme.palette.warning.light,
+              theme.palette.error.dark,
+              theme.palette.primary.dark,
+              theme.palette.success.main,
+            ],
+            series: [
+              { label: 'Method1', value: 900 },
+              { label: 'Method2', value: 3500 },
+              { label: 'Method3', value: 1500 },
+              { label: 'Method4', value: 1000 },
+              { label: 'Method5', value: 2100 },
+            ],
+          }}
+          loading={loading}
+        />
+
+        <AnalyticPie
+          title={capitalizeFirtsLetter(t('events.details.bundleChannels'))}
+          chart={{
+            colors: [
+              theme.palette.primary.main,
+              theme.palette.warning.main,
+              theme.palette.error.dark,
+            ],
+            series: [
+              { label: t('events.details.web'), value: 1700 },
+              { label: t('events.details.app'), value: 3500 },
+              { label: t('events.details.advisors'), value: 1500 },
+            ],
+          }}
+          loading={loading}
+        />
+
+<AnalyticBar
+          title={capitalizeFirtsLetter(t('bundle.details.seassonBundle'))}
+          isVertical={false}
+          chart={{
+            stacked: true,
+            categories: ['Tribune 1', 'Tribune 2', 'Tribune 3'],
+            max: 50000,
+            colors: [
+              theme.palette.info.main,
+              theme.palette.success.light,
+              theme.palette.warning.main,
+            ],
+            series: [
+              { name: t('events.details.tickets'), data: [20000, 1700, 30000] },
+              { name: t('events.details.memberships'), data: [7000, 1500, 4000] },
+              { name: t('events.details.courtesy'), data: [3000, 25000, 3500] },
             ],
           }}
           loading={loading}
