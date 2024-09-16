@@ -5,7 +5,7 @@ import { Box, useTheme } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
-import AnalyticBar from './analytic-bar';
+import AnalyticBar from '../../components/analytic-bar';
 
 export default function DetailsBundles() {
   const { t } = useTranslation();

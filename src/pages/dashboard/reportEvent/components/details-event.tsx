@@ -5,8 +5,10 @@ import { Box, useTheme } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
-import AnalyticBar from './analytic-bar';
-import AnalyticPie from './analytic-pie';
+import AnalyticBar from '../../components/analytic-bar';
+import AnalyticPie from '../../components/analytic-pie';
+
+
 
 export default function DetailsEvent() {
   const { t } = useTranslation();
