@@ -53,21 +53,20 @@ export default function TotalsBundle() {
       >
         <CardTotalsBundle
           title={`<strong>${capitalizeFirtsLetter(t('bundles.totals.membershipsSold'))}</strong>`}
-
           line4={`${t('bundles.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
           loading={loading}
-          color1={theme.vars.palette.warning.lightChannel}
-          color2={theme.vars.palette.warning.lighterChannel}
-          colorSvg="secondary.main"
+          color1={theme.vars.palette.primary.lightChannel}
+          color2={theme.vars.palette.primary.lighterChannel}
+          colorSvg="error.main"
         />
 
         <Card2TotalsBundle
           title={`<strong>${capitalizeFirtsLetter(t('bundles.totals.fundraising'))}</strong>`}
           line1={`<strong>$${t(fundraising)} </strong>`}
           loading={loading}
-          color1={theme.vars.palette.error.lightChannel}
-          color2={theme.vars.palette.warning.lighterChannel}
-          colorSvg="success.main"
+          color1={theme.vars.palette.primary.lightChannel}
+          color2={theme.vars.palette.primary.lighterChannel}
+          colorSvg="error.main"
         />
 
         <CardTotalsBundle
@@ -75,7 +74,7 @@ export default function TotalsBundle() {
           line3={`${capitalizeFirtsLetter(t('bundles.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('bundles.totals.total').toUpperCase()} : <strong>${TOTALS[1].line4}</strong>`}
           line5="15%"
-          loading={loading}  
+          loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
           colorSvg="error.main"

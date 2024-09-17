@@ -61,18 +61,18 @@ export default function TotalsEvent() {
           line3={`${capitalizeFirtsLetter(t('events.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('events.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
           loading={loading}
-          color1={theme.vars.palette.warning.lightChannel}
-          color2={theme.vars.palette.warning.lighterChannel}
-          colorSvg="secondary.main"
+          color1={theme.vars.palette.primary.lightChannel}
+          color2={theme.vars.palette.primary.lighterChannel}
+          colorSvg="error.main"
         />
 
         <Card2TotalsEvent
           title={`<strong>${capitalizeFirtsLetter(t('events.totals.fundraising'))}</strong>`}
           line1={`<strong>$${t(fundraising)} </strong>`}
-          color1={theme.vars.palette.error.lightChannel}
           loading={loading}
-          color2={theme.vars.palette.warning.lighterChannel}
-          colorSvg="success.main"
+          color1={theme.vars.palette.primary.lightChannel}
+          color2={theme.vars.palette.primary.lighterChannel}
+          colorSvg="error.main"
         />
 
         <CardTotalsEvent

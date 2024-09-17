@@ -58,6 +58,7 @@ export function AnalyticsTimeline({ title, subheader, list, itemsPerPage = 4, ..
       </Timeline>
       <Pagination
         color="primary"
+        variant='outlined'
         count={totalPages}
         page={page}
         onChange={(e, value) => setPage(value)}

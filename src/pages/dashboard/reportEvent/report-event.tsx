@@ -50,7 +50,6 @@ export default function Page() {
   const { selectedOrganization } = useOrganization();
 
   const [loading, setLoading] = useState(false);
-  const [isDataFetched, setIsDataFetched] = useState(false);
 
   const [teams, setTeams] = useState<FilterOption[]>([]);
   const [years, setYear] = useState<FilterOption[]>([]);
@@ -116,7 +115,6 @@ export default function Page() {
         console.error('Error fetching events:', error);
       } finally {
         setLoading(false);
-        setIsDataFetched(true);
       }
     };
 
@@ -157,7 +155,7 @@ export default function Page() {
               <LoadingScreen />
             </Box>
           </Grid>
-        ) : isDataFetched && selectedOrganization && selectedEvent ? (
+        ) : selectedOrganization && selectedEvent ? (
           <>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
@@ -176,13 +174,11 @@ export default function Page() {
             </Grid>
           </>
         ) : (
-          isDataFetched && (
             <Grid item xs={12}>
               <Card sx={cardStyle}>
                 <EventNotAvailable />
               </Card>
             </Grid>
-          )
         )}
       </Grid>
     </DashboardContent>

@@ -1,6 +1,6 @@
 import type { ChartOptions } from 'src/components/chart';
 
-import { Card, CardHeader, Skeleton } from '@mui/material';
+import { Card, Skeleton, CardHeader } from '@mui/material';
 import { useTheme, alpha as hexAlpha } from '@mui/material/styles';
 
 import { Chart, useChart } from 'src/components/chart';

@@ -1,7 +1,7 @@
 import type { ChartOptions } from 'src/components/chart';
 
 import { useTheme } from '@mui/material/styles';
-import { Card, Divider, CardHeader, Skeleton } from '@mui/material';
+import { Card, Divider, Skeleton, CardHeader } from '@mui/material';
 
 import { Chart, useChart, ChartLegends } from 'src/components/chart';
 

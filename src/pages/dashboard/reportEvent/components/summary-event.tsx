@@ -82,8 +82,8 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           icon="guidance:stadium"
           line1={`<strong style="font-size: 2rem; color: ${theme.vars.palette.primary.main}">${selectedEvent?.details?.home}</strong>`}
           line2={`<strong style="font-size: 1.5rem;color: ${theme.vars.palette.primary.mainChannel}">${selectedEvent?.details?.away} </strong>`}
-          color1={theme.vars.palette.secondary.lighterChannel}
-          color2={theme.vars.palette.warning.lightChannel}
+          color1={theme.vars.palette.warning.lightChannel}
+          color2={theme.vars.palette.error.lightChannel}
           colorSvg="grey.main"
         />
 
@@ -92,9 +92,9 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           line1={formattedDate}
           line2={timeWithTimezone}
           line3={selectedEvent?.details?.stadium}
-          color1={theme.vars.palette.info.lightChannel}
-          color2={theme.vars.palette.success.lightChannel}
-          colorSvg="error.main"
+          color1={theme.vars.palette.warning.lightChannel}
+          color2={theme.vars.palette.error.lightChannel}
+          colorSvg="grey.main"
         />
       </Box>
     </>
