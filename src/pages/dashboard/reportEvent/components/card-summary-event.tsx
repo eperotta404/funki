@@ -48,13 +48,13 @@ export default function CardSummaryEvent(props: CardDetailEventProps) {
         }}
       />
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
-      <Box sx={{ textAlign: 'start', ml: 6, mt: 0 }}>
+      <Box sx={{ textAlign: 'center', ml: 0, mt: 0 }}>
         <Typography
           variant="body1"
           sx={{ color: 'text.primary' }}
           dangerouslySetInnerHTML={{ __html: line1 }}
         />
-        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, justifyContent: 'center' }}>
           <Tooltip title={capitalizeFirtsLetter(t('events.summary.rival'))} arrow>
             <Iconify icon="tabler:vs" width={25} sx={{ color: 'primary.main', mr: 1 }} />
           </Tooltip>
