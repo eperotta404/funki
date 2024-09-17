@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Card, Grid } from '@mui/material';
 
+import { useRouter } from 'src/routes/hooks';
+
 import { CONFIG } from 'src/config-global';
 import { DashboardContent } from 'src/layouts/dashboard';
 import { organizationService } from 'src/core/infrastructure/instances';
@@ -18,12 +20,14 @@ import { LoadingScreen } from 'src/components/loading-screen';
 
 import { BlankView } from 'src/sections/blank/view';
 
+import { signOut } from 'src/auth/context';
+import { useAuthContext } from 'src/auth/hooks';
+
 import TotalsEvent from './components/totals-event';
 import SummaryEvent from './components/summary-event';
 import FiltersEvent from './components/filters-event';
 import DetailsEvent from './components/details-event';
 import EventNotAvailable from './components/event-not-available';
-
 // ----------------------------------------------------------------------
 
 const getEventsByOrgnizationUseCase = new GetEventsByOrganization(organizationService);
@@ -44,11 +48,11 @@ export default function Page() {
   const currentYear = new Date().getFullYear();
 
   const { t } = useTranslation();
-
   const { selectedOrganization } = useOrganization();
+  const { checkUserSession } = useAuthContext();
+  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
-  const [isDataFetched, setIsDataFetched] = useState(false); // Nuevo estado para controlar si los datos ya fueron cargados
 
   const [teams, setTeams] = useState<FilterOption[]>([]);
   const [years, setYear] = useState<FilterOption[]>([]);
@@ -111,10 +115,9 @@ export default function Page() {
           setSelectedEvent(eventsData.length > 0 ? eventsData[0] : null);
         }
       } catch (error) {
-        console.error('Error fetching events:', error);
+        handleError(error);
       } finally {
         setLoading(false);
-        setIsDataFetched(true);
       }
     };
 
@@ -122,6 +125,16 @@ export default function Page() {
       fetchEventByOrganization();
     }
   }, [selectedTeam, selectedYear]);
+
+  const handleError = async (error: any) => {
+    if (error.message === 'Forbidden Error') {
+      await signOut();
+      await checkUserSession?.();
+      router.refresh();
+    } else {
+      console.log(error.message);
+    }
+  };
 
   const cardStyle = { p: 3, backgroundColor: 'background.default', boxShadow: 3 };
 
@@ -148,7 +161,7 @@ export default function Page() {
             <LoadingScreen />
             </Box>
           </Grid>
-        ) : isDataFetched && selectedOrganization && selectedEvent ? (
+        ) : selectedOrganization && selectedEvent ? (
           <>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
@@ -167,14 +180,12 @@ export default function Page() {
             </Grid>
           </>
         ) : (
-          isDataFetched && (
             <Grid item xs={12}>
               <Card sx={cardStyle}>
                 <EventNotAvailable />
               </Card>
             </Grid>
-          )
-        )}
+            )}
       </Grid>
     </DashboardContent>
   );

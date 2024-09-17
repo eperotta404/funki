@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'src/routes/hooks';
 
 import { signOut } from 'src/auth/context';
+import { useAuthContext } from 'src/auth/hooks';
 
 type UseFetchData<T> = {
   data: T | null;
@@ -14,6 +15,7 @@ export const useFetchData = <T>(
   useCase: { execute: (...args: any[]) => Promise<T> },
   ...args: any[]
 ): UseFetchData<T> => {
+  const { checkUserSession } = useAuthContext();
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +27,6 @@ export const useFetchData = <T>(
         const fetchedData = await useCase.execute(...args);
         setData(fetchedData);
       } catch (err) {
-        console.log('EZEEEEEE', err.message)
         if (err.message === 'Forbidden Error') {
           await signOut();
           await checkUserSession?.();
@@ -43,7 +44,4 @@ export const useFetchData = <T>(
 
   return { data, loading, error };
 };
-function checkUserSession() {
-  throw new Error('Function not implemented.');
-}
 
