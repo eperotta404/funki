@@ -55,7 +55,7 @@ export default function Card2TotalsEvent(props: Card2TotalsEventProps) {
             ) : (
               <Typography
                 variant="h2"
-                sx={{ mt: 3, color: 'text.info' , mb: { xs: 6, md: 0 }}}
+                sx={{ mt: 3, color: 'text.secondary', mb: { xs: 6, md: 0 } }}
                 dangerouslySetInnerHTML={{ __html: line1 }}
               />
             )}

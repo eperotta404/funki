@@ -25,7 +25,7 @@ type Props = CardProps & {
     id: string;
     type: string;
     title: string;
-    link?:string;
+    link?: string;
     time: string | number | null;
   }[];
   itemsPerPage?: number;
@@ -38,7 +38,7 @@ export function AnalyticsTimeline({ title, subheader, list, itemsPerPage = 4, ..
   const paginatedList = list.slice((page - 1) * itemsPerPage, page * itemsPerPage);
   return (
     <Card {...other}>
-      <CardHeader title={title} subheader={subheader} titleTypographyProps={{ variant: 'h5' }}  />
+      <CardHeader title={title} subheader={subheader} titleTypographyProps={{ variant: 'h5' }} />
 
       <Timeline
         sx={{
@@ -91,9 +91,14 @@ function Item({ item, lastItem, ...other }: ItemProps) {
       </TimelineSeparator>
 
       <TimelineContent>
-      <Typography variant="h6">
+        <Typography variant="h6" sx={{ color: 'text.primary' }}>
           {item.link ? (
-            <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               {item.title}
             </a>
           ) : (

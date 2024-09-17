@@ -59,7 +59,7 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
             ) : (
               <Typography
                 variant="body1"
-                sx={{ mt: 3.5, color: 'text.info' }}
+                sx={{ mt: 3.5, color: 'text.secondary' }}
                 dangerouslySetInnerHTML={{ __html: line1 }}
               />
             )}
@@ -68,7 +68,7 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
             ) : (
               <Typography
                 variant="body2"
-                sx={{ color: 'text.info' }}
+                sx={{ color: 'text.secondary' }}
                 dangerouslySetInnerHTML={{ __html: line2 }}
               />
             )}
@@ -78,7 +78,7 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
             ) : (
               <Typography
                 variant="body2"
-                sx={{ color: 'text.info' }}
+                sx={{ color: 'text.secondary' }}
                 dangerouslySetInnerHTML={{ __html: line3 }}
               />
             )}
@@ -88,7 +88,7 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
             ) : (
               <Typography
                 variant="body1"
-                sx={{ color: 'text.info', mt: 1.5, fontSize: 20 }}
+                sx={{ color: 'text.secondary', mt: 1.5, fontSize: 20 }}
                 dangerouslySetInnerHTML={{ __html: line4 }}
               />
             )}
@@ -109,7 +109,12 @@ export default function CardTotalsEvent(props: CardTotalsEventProps) {
               ) : (
                 <Typography
                   variant="inherit"
-                  sx={{ color: 'text.primary', textAlign: 'center', fontSize: 35, fontWeight: 700 }}
+                  sx={{
+                    color: 'text.secondary',
+                    textAlign: 'center',
+                    fontSize: 35,
+                    fontWeight: 700,
+                  }}
                   dangerouslySetInnerHTML={{ __html: line5 }}
                 />
               )}

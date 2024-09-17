@@ -60,7 +60,7 @@ export default function Card3SummaryEvent(props: CardDetailEventProps) {
             />
           </Tooltip>
 
-          <Typography variant="h6" sx={{ color: 'text.main', fontWeight: 900 }}>
+          <Typography variant="h6" sx={{ color: 'text.secondary', fontWeight: 900 }}>
             {line1}
           </Typography>
         </Box>
@@ -69,7 +69,7 @@ export default function Card3SummaryEvent(props: CardDetailEventProps) {
           <Tooltip title={capitalizeFirtsLetter(t('events.summary.time'))} arrow>
             <Iconify icon="bx:time" width={25} sx={{ color: 'primary.main', mr: 1 }} />
           </Tooltip>
-          <Typography variant="h6" sx={{ color: 'text.main', fontWeight: 900 }}>
+          <Typography variant="h6" sx={{ color: 'text.secondary', fontWeight: 900 }}>
             {line2}
           </Typography>
         </Box>
@@ -78,7 +78,7 @@ export default function Card3SummaryEvent(props: CardDetailEventProps) {
           <Tooltip title={capitalizeFirtsLetter(t('events.summary.stadium'))} arrow>
             <Iconify icon="mdi:stadium-outline" width={25} sx={{ color: 'primary.main', mr: 1 }} />
           </Tooltip>
-          <Typography variant="h6" sx={{ color: 'text.main', fontWeight: 900 }}>
+          <Typography variant="h6" sx={{ color: 'text.secondary', fontWeight: 900 }}>
             {line3}
           </Typography>
         </Box>

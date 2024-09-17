@@ -55,25 +55,25 @@ export default function CardTotalsBundle(props: CardTotalsBundleProps) {
             {loading ? (
               <Skeleton variant="rectangular" height={20} sx={{ mt: 5, mr: 2 }} />
             ) : (
-              <Typography variant="h6" sx={{ color: 'text.main', fontWeight: 700 }}>
+              <Typography variant="h6" sx={{ color: 'text.secondary', fontWeight: 700 }}>
                 Abono Flex promo
               </Typography>
             )}
             {loading ? (
               <Skeleton variant="rectangular" height={20} sx={{ mt: 1, mr: 2 }} />
             ) : (
-              <Typography variant="h4" sx={{ color: 'text.main', fontWeight: 700 }}>
+              <Typography variant="h4" sx={{ color: 'text.secondary', fontWeight: 900 }}>
                 1,500
               </Typography>
             )}
-            {!line3 && <Box sx={{ height: 24 }} />} {/* Spacer for when line3 is not present */}
+            {!line3 && <Box sx={{ height: 24 }} />}
             {loading && line3 ? (
               <Skeleton variant="rectangular" height={15} sx={{ mt: 1, mr: 2 }} />
             ) : (
               line3 && (
                 <Typography
                   variant="body2"
-                  sx={{ color: 'text.info' }}
+                  sx={{ color: 'text.secondary' }}
                   dangerouslySetInnerHTML={{ __html: line3 }}
                 />
               )
@@ -83,7 +83,7 @@ export default function CardTotalsBundle(props: CardTotalsBundleProps) {
             ) : (
               <Typography
                 variant="body1"
-                sx={{ color: 'text.info', mt: 1.5, fontSize: 20 }}
+                sx={{ color: 'text.secondary', mt: 1.5, fontSize: 20, fontWeight: 900 }}
                 dangerouslySetInnerHTML={{ __html: line4 }}
               />
             )}
@@ -104,7 +104,12 @@ export default function CardTotalsBundle(props: CardTotalsBundleProps) {
               ) : (
                 <Typography
                   variant="inherit"
-                  sx={{ color: 'text.primary', textAlign: 'center', fontSize: 35, fontWeight: 700 }}
+                  sx={{
+                    color: 'text.secondary',
+                    textAlign: 'center',
+                    fontSize: 35,
+                    fontWeight: 900,
+                  }}
                   dangerouslySetInnerHTML={{ __html: line5 }}
                 />
               )}

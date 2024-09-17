@@ -28,10 +28,14 @@ export default function CardSummaryBundle(props: CardTotalsEventProps) {
           gap: 3,
         }}
       >
-        <Tooltip title={capitalizeFirtsLetter(t("bundles.summary.startDate"))} arrow>
-          <Iconify icon="clarity:calendar-line" width={40} sx={{ color: 'text.primary' }} />
+        <Tooltip title={capitalizeFirtsLetter(t('bundles.summary.startDate'))} arrow>
+          <Iconify icon="clarity:calendar-line" width={40} sx={{ color: 'text.secondary' }} />
         </Tooltip>
-        <Typography variant="subtitle1" color="text.primary" sx={{ fontSize: { xs: 16, sm: 18} }}>
+        <Typography
+          variant="subtitle1"
+          color="text.secondary"
+          sx={{ fontSize: { xs: 16, sm: 18 } }}
+        >
           {fDateTime('2024-04-01 16:15')}
         </Typography>
       </Box>
@@ -43,10 +47,14 @@ export default function CardSummaryBundle(props: CardTotalsEventProps) {
           gap: 3,
         }}
       >
-        <Tooltip title={capitalizeFirtsLetter(t("bundles.summary.endDate"))} arrow>
-          <Iconify icon="clarity:calendar-solid" width={40} sx={{ color: 'text.primary' }} />
+        <Tooltip title={capitalizeFirtsLetter(t('bundles.summary.endDate'))} arrow>
+          <Iconify icon="clarity:calendar-solid" width={40} sx={{ color: 'text.secondary' }} />
         </Tooltip>
-        <Typography variant="subtitle1" color="text.primary" sx={{ fontSize: { xs: 16, sm: 18} }}>
+        <Typography
+          variant="subtitle1"
+          color="text.secondary"
+          sx={{ fontSize: { xs: 16, sm: 18 } }}
+        >
           {fDateTime('2025-01-06 20:00')}
         </Typography>
       </Box>
@@ -59,14 +67,10 @@ export default function CardSummaryBundle(props: CardTotalsEventProps) {
           gap: 3,
         }}
       >
-        <Tooltip title={capitalizeFirtsLetter(t("bundles.summary.matches"))} arrow>
-          <Iconify icon="game-icons:soccer-ball" width={40} sx={{ color: 'text.primary' }} />
+        <Tooltip title={capitalizeFirtsLetter(t('bundles.summary.matches'))} arrow>
+          <Iconify icon="game-icons:soccer-ball" width={40} sx={{ color: 'text.secondary' }} />
         </Tooltip>
-        <Typography
-          variant="h2"
-          color="text.primary"
-          sx={{  fontWeight: 'bold' }}
-        >
+        <Typography variant="h2" color="text.secondary" sx={{ fontWeight: 900 }}>
           5/10
         </Typography>
       </Box>
