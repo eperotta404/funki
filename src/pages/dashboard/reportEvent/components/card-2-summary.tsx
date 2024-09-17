@@ -42,7 +42,7 @@ export default function Card2SummaryEvent(props: Card2SummaryEventProps) {
         }}
       />
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 0 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 0 ,  mb: { xs: 3, md: 0 }}}>
         <Typography variant="h2" sx={{ color: 'text.info', fontWeight: 900 }}>
           {status}
         </Typography>

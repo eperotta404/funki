@@ -54,7 +54,7 @@ export default function Card2TotalsBundles(props: Card2TotalsBundlesProps) {
             ) : (
               <Typography
                 variant="h2"
-                sx={{ mt: 3.5, color: 'text.info' }}
+                sx={{ mt: 3.5, color: 'text.info',  mb: { xs: 6, md: 0 }}}
                 dangerouslySetInnerHTML={{ __html: line1 }}
               />
             )}

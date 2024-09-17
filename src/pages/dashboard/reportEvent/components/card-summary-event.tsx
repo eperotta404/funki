@@ -28,7 +28,7 @@ export default function CardSummaryEvent(props: CardDetailEventProps) {
         pt: 2,
         pb: 3,
         position: 'relative',
-        textAlign: 'left',
+
         ...bgGradient({
           color: `135deg, ${varAlpha(color1, 0.48)}, ${varAlpha(color2, 0.48)}`,
         }),
@@ -48,13 +48,13 @@ export default function CardSummaryEvent(props: CardDetailEventProps) {
         }}
       />
       <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
-      <Box sx={{ textAlign: 'start', ml: 10, mt: 0 }}>
+      <Box sx={{ textAlign: 'start', ml: 6, mt: 0 }}>
         <Typography
           variant="body1"
           sx={{ color: 'text.info' }}
           dangerouslySetInnerHTML={{ __html: line1 }}
         />
-        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1}}>
           <Tooltip title={capitalizeFirtsLetter(t('events.summary.rival'))} arrow>
             <Iconify icon="tabler:vs" width={25} sx={{ color: 'primary.main', mr: 1 }} />
           </Tooltip>

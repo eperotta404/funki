@@ -22,7 +22,7 @@ export default function CardSummaryBundle(props: CardTotalsEventProps) {
       </Typography>
       <Box
         sx={{
-          mt: 5,
+          mt: 7,
           display: 'flex',
           alignItems: 'center',
           gap: 3,
@@ -37,7 +37,7 @@ export default function CardSummaryBundle(props: CardTotalsEventProps) {
       </Box>
       <Box
         sx={{
-          mt: 5,
+          mt: 7,
           display: 'flex',
           alignItems: 'center',
           gap: 3,
@@ -53,7 +53,7 @@ export default function CardSummaryBundle(props: CardTotalsEventProps) {
 
       <Box
         sx={{
-          mt: 5,
+          mt: 8,
           display: 'flex',
           alignItems: 'center',
           gap: 3,
