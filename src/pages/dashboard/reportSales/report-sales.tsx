@@ -10,8 +10,8 @@ import { DashboardContent } from 'src/layouts/dashboard';
 
 import { BlankView } from 'src/sections/blank/view';
 
-import TableSales from './components/table-sales';
 import Details from './components/details';
+import TableSales from './components/table-sales';
 
 // ----------------------------------------------------------------------
 

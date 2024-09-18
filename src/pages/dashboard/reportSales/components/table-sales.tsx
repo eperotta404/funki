@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 
 import {
-  Table, Paper, TableRow, TableBody, TableCell, TableHead, TextField, TableContainer, TableSortLabel
+  Table,
+  Paper,
+  TableRow,
+  TableBody,
+  TableCell,
+  TableHead,
+  TextField,
+  TableContainer,
+  TableSortLabel,
 } from '@mui/material';
 
-// Definición de tipos para los datos
 interface DataItem {
   orderNumber: string;
   purchaseDate: string;
@@ -37,7 +44,6 @@ type SortConfig = {
 } | null;
 
 const TableSales: React.FC = () => {
-  // Datos de prueba
   const initialData: DataItem[] = [
     {
       orderNumber: '1',
@@ -114,14 +120,12 @@ const TableSales: React.FC = () => {
       totalAmount: 120,
       checkoutId: 'CHK003',
     },
-    // Agrega más filas de datos de prueba si lo deseas
   ];
 
   const [data, setData] = useState<DataItem[]>(initialData);
   const [sortConfig, setSortConfig] = useState<SortConfig>(null);
   const [filterText, setFilterText] = useState<string>('');
 
-  // Función para ordenar datos
   const sortData = (key: keyof DataItem) => {
     let direction: 'asc' | 'desc' = 'asc';
     if (sortConfig && sortConfig.key === key && sortConfig.direction === 'asc') {
@@ -142,7 +146,6 @@ const TableSales: React.FC = () => {
     setData(sortedData);
   };
 
-  // Función para filtrar datos
   const filteredData = data.filter((item) =>
     Object.values(item).some((value) =>
       value.toString().toLowerCase().includes(filterText.toLowerCase())
@@ -157,17 +160,36 @@ const TableSales: React.FC = () => {
         value={filterText}
         onChange={(e) => setFilterText(e.target.value)}
         style={{ marginBottom: '20px' }}
-        fullWidth
+        size='small'
       />
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
               {[
-                'orderNumber', 'purchaseDate', 'event', 'sector', 'tribune', 'type', 'seat', 'paymentMethod',
-                'salesChannel', 'checkoutStatus', 'fanName', 'fanPhone', 'fanDocument', 'fanEmail', 'fanBirthDate',
-                'advisorId', 'advisorEmail', 'discountCode', 'price', 'discountApplied', 'itemsQuantity',
-                'totalAmount', 'checkoutId'
+                'orderNumber',
+                'purchaseDate',
+                'event',
+                'sector',
+                'tribune',
+                'type',
+                'seat',
+                'paymentMethod',
+                'salesChannel',
+                'checkoutStatus',
+                'fanName',
+                'fanPhone',
+                'fanDocument',
+                'fanEmail',
+                'fanBirthDate',
+                'advisorId',
+                'advisorEmail',
+                'discountCode',
+                'price',
+                'discountApplied',
+                'itemsQuantity',
+                'totalAmount',
+                'checkoutId',
               ].map((column) => (
                 <TableCell key={column}>
                   <TableSortLabel
