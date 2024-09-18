@@ -6,11 +6,29 @@ import {
 
 // Definición de tipos para los datos
 interface DataItem {
-  id: number;
-  status: string;
-  name: string;
-  email: string;
-  phone: string;
+  orderNumber: string;
+  purchaseDate: string;
+  event: string;
+  sector: string;
+  tribune: string;
+  type: string;
+  seat: string;
+  paymentMethod: string;
+  salesChannel: string;
+  checkoutStatus: string;
+  fanName: string;
+  fanPhone: string;
+  fanDocument: string;
+  fanEmail: string;
+  fanBirthDate: string;
+  advisorId: string;
+  advisorEmail: string;
+  discountCode: string;
+  price: number;
+  discountApplied: number;
+  itemsQuantity: number;
+  totalAmount: number;
+  checkoutId: string;
 }
 
 type SortConfig = {
@@ -21,11 +39,82 @@ type SortConfig = {
 const TableSales: React.FC = () => {
   // Datos de prueba
   const initialData: DataItem[] = [
-    { id: 1, status: 'Active', name: 'John Doe', email: 'john@example.com', phone: '123-456-7890' },
-    { id: 2, status: 'Inactive', name: 'Jane Smith', email: 'jane@example.com', phone: '987-654-3210' },
-    { id: 3, status: 'Active', name: 'Alice Johnson', email: 'alice@example.com', phone: '555-555-5555' },
-    { id: 4, status: 'Inactive', name: 'Bob Brown', email: 'bob@example.com', phone: '444-444-4444' },
-    { id: 5, status: 'Active', name: 'Charlie Green', email: 'charlie@example.com', phone: '333-333-3333' },
+    {
+      orderNumber: '1',
+      purchaseDate: '2023-01-01',
+      event: 'Concierto A',
+      sector: 'VIP',
+      tribune: 'Norte',
+      type: 'Entrada',
+      seat: 'A1',
+      paymentMethod: 'Tarjeta',
+      salesChannel: 'Online',
+      checkoutStatus: 'Completado',
+      fanName: 'Juan Pérez',
+      fanPhone: '1234567890',
+      fanDocument: '1234567',
+      fanEmail: 'juan@example.com',
+      fanBirthDate: '1990-01-01',
+      advisorId: 'AS001',
+      advisorEmail: 'asesor@example.com',
+      discountCode: 'DESC10',
+      price: 100,
+      discountApplied: 10,
+      itemsQuantity: 1,
+      totalAmount: 90,
+      checkoutId: 'CHK001',
+    },
+    {
+      orderNumber: '2',
+      purchaseDate: '2023-02-01',
+      event: 'Concierto B',
+      sector: 'General',
+      tribune: 'Sur',
+      type: 'Entrada',
+      seat: 'B2',
+      paymentMethod: 'Efectivo',
+      salesChannel: 'Taquilla',
+      checkoutStatus: 'Pendiente',
+      fanName: 'Ana García',
+      fanPhone: '0987654321',
+      fanDocument: '7654321',
+      fanEmail: 'ana@example.com',
+      fanBirthDate: '1985-05-15',
+      advisorId: 'AS002',
+      advisorEmail: 'asesor2@example.com',
+      discountCode: 'DESC20',
+      price: 80,
+      discountApplied: 20,
+      itemsQuantity: 2,
+      totalAmount: 120,
+      checkoutId: 'CHK002',
+    },
+    {
+      orderNumber: '3',
+      purchaseDate: '2023-03-01',
+      event: 'Concierto C',
+      sector: 'Preferencial',
+      tribune: 'Este',
+      type: 'Entrada',
+      seat: 'C3',
+      paymentMethod: 'Tarjeta',
+      salesChannel: 'Online',
+      checkoutStatus: 'Cancelado',
+      fanName: 'Carlos López',
+      fanPhone: '1122334455',
+      fanDocument: '112233',
+      fanEmail: 'carlos@example.com',
+      fanBirthDate: '1992-10-30',
+      advisorId: 'AS003',
+      advisorEmail: 'asesor3@example.com',
+      discountCode: 'DESC30',
+      price: 150,
+      discountApplied: 30,
+      itemsQuantity: 1,
+      totalAmount: 120,
+      checkoutId: 'CHK003',
+    },
+    // Agrega más filas de datos de prueba si lo deseas
   ];
 
   const [data, setData] = useState<DataItem[]>(initialData);
@@ -61,7 +150,7 @@ const TableSales: React.FC = () => {
   );
 
   return (
-    <>
+    <div>
       <TextField
         label="Filter"
         variant="outlined"
@@ -74,7 +163,12 @@ const TableSales: React.FC = () => {
         <Table>
           <TableHead>
             <TableRow>
-              {['id', 'status', 'name', 'email', 'phone'].map((column) => (
+              {[
+                'orderNumber', 'purchaseDate', 'event', 'sector', 'tribune', 'type', 'seat', 'paymentMethod',
+                'salesChannel', 'checkoutStatus', 'fanName', 'fanPhone', 'fanDocument', 'fanEmail', 'fanBirthDate',
+                'advisorId', 'advisorEmail', 'discountCode', 'price', 'discountApplied', 'itemsQuantity',
+                'totalAmount', 'checkoutId'
+              ].map((column) => (
                 <TableCell key={column}>
                   <TableSortLabel
                     active={sortConfig?.key === column}
@@ -89,18 +183,36 @@ const TableSales: React.FC = () => {
           </TableHead>
           <TableBody>
             {filteredData.map((item) => (
-              <TableRow key={item.id}>
-                <TableCell>{item.id}</TableCell>
-                <TableCell>{item.status}</TableCell>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.email}</TableCell>
-                <TableCell>{item.phone}</TableCell>
+              <TableRow key={item.orderNumber}>
+                <TableCell>{item.orderNumber}</TableCell>
+                <TableCell>{item.purchaseDate}</TableCell>
+                <TableCell>{item.event}</TableCell>
+                <TableCell>{item.sector}</TableCell>
+                <TableCell>{item.tribune}</TableCell>
+                <TableCell>{item.type}</TableCell>
+                <TableCell>{item.seat}</TableCell>
+                <TableCell>{item.paymentMethod}</TableCell>
+                <TableCell>{item.salesChannel}</TableCell>
+                <TableCell>{item.checkoutStatus}</TableCell>
+                <TableCell>{item.fanName}</TableCell>
+                <TableCell>{item.fanPhone}</TableCell>
+                <TableCell>{item.fanDocument}</TableCell>
+                <TableCell>{item.fanEmail}</TableCell>
+                <TableCell>{item.fanBirthDate}</TableCell>
+                <TableCell>{item.advisorId}</TableCell>
+                <TableCell>{item.advisorEmail}</TableCell>
+                <TableCell>{item.discountCode}</TableCell>
+                <TableCell>{item.price}</TableCell>
+                <TableCell>{item.discountApplied}</TableCell>
+                <TableCell>{item.itemsQuantity}</TableCell>
+                <TableCell>{item.totalAmount}</TableCell>
+                <TableCell>{item.checkoutId}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </div>
   );
 };
 

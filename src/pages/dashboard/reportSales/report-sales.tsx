@@ -11,6 +11,7 @@ import { DashboardContent } from 'src/layouts/dashboard';
 import { BlankView } from 'src/sections/blank/view';
 
 import TableSales from './components/table-sales';
+import Details from './components/details';
 
 // ----------------------------------------------------------------------
 
@@ -22,9 +23,14 @@ export default function Page() {
   const renderSelectedOde = (
     <DashboardContent maxWidth="xl">
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={12} sx={{ mt: 5 }}>
           <Card sx={cardStyle}>
             <TableSales />
+          </Card>
+        </Grid>
+        <Grid item xs={12}>
+          <Card sx={cardStyle}>
+            <Details />
           </Card>
         </Grid>
       </Grid>

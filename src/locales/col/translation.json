@@ -92,6 +92,13 @@
     }
   },
   "sales": {
-    "title": "ventas"
+    "title": "ventas",
+    "details": {
+      "details": "detalles",
+      "salesByChannel": "ventas por canal",
+      "salesByTribune": "ventas por tribuna",  
+      "salesTracking": "seguimiento de ventas"
+
+    }
   }
 }
