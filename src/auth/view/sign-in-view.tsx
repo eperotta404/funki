@@ -16,6 +16,8 @@ import { RouterLink } from 'src/routes/components';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
+import { capitalizeFirtsLetter } from 'src/utils/helper';
+
 import { Iconify } from 'src/components/iconify';
 import { Form, Field } from 'src/components/hook-form';
 
@@ -28,12 +30,12 @@ export function createSignInSchema(t: any) {
   return zod.object({
     email: zod
       .string()
-      .min(1, { message: t('auth.emailRequired') })
-      .email({ message: t('auth.emailInvalid') }),
+      .min(1, { message: capitalizeFirtsLetter(t('auth.emailRequired')) })
+      .email({ message: capitalizeFirtsLetter(t('auth.emailInvalid')) }),
     password: zod
       .string()
-      .min(1, { message: t('auth.passwordRequired') })
-      .min(5, { message: t('auth.passwordMinLength') }),
+      .min(1, { message: capitalizeFirtsLetter(t('auth.passwordRequired')) })
+      .min(5, { message: capitalizeFirtsLetter(t('auth.passwordMinLength')) }),
   });
 }
 
@@ -78,7 +80,7 @@ export function SignInView() {
 
   const renderForm = (
     <Box gap={3} display="flex" flexDirection="column">
-      <Field.Text name="email" label={t('auth.inputEmail')} InputLabelProps={{ shrink: true }} />
+      <Field.Text name="email" label={capitalizeFirtsLetter(t('auth.inputEmail'))} InputLabelProps={{ shrink: true }} />
 
       <Box gap={1.5} display="flex" flexDirection="column">
         <Link
@@ -88,13 +90,13 @@ export function SignInView() {
           color="inherit"
           sx={{ alignSelf: 'flex-end' }}
         >
-          {t('auth.links.forgotPassword')}
+          {capitalizeFirtsLetter(t('auth.links.forgotPassword'))}
         </Link>
 
         <Field.Text
           name="password"
-          label={t('auth.inputPassword')}
-          placeholder={t('auth.inputPassword')}
+          label={capitalizeFirtsLetter(t('auth.inputPassword'))}
+          placeholder={capitalizeFirtsLetter(t('auth.inputPassword'))}
           type={password.value ? 'text' : 'password'}
           InputLabelProps={{ shrink: true }}
           InputProps={{
@@ -118,7 +120,7 @@ export function SignInView() {
         loading={isSubmitting}
         loadingIndicator="Sign in..."
       >
-        {t('auth.buttons.login')}
+        {capitalizeFirtsLetter(t('auth.buttons.login'))}
       </LoadingButton>
     </Box>
   );
@@ -127,7 +129,7 @@ export function SignInView() {
     <>
       {!!errorMsg && (
         <Alert severity="error" sx={{ mb: 3 }}>
-          {errorMsg}
+          {capitalizeFirtsLetter(errorMsg)}
         </Alert>
       )}
 

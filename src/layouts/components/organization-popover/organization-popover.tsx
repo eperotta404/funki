@@ -57,6 +57,10 @@ export function OrganizationPopover({ sx }: ButtonBaseProps) {
           gap: { xs: 0.5, [mediaQuery]: 1 },
           backgroundColor: 'white',
           borderRadius: 1,
+          width: 'auto', minWidth: 200,
+          justifyContent: 'left',
+          display: 'flex',
+          alignItems: 'center',
           ...sx,
         }}
       >
@@ -76,7 +80,7 @@ export function OrganizationPopover({ sx }: ButtonBaseProps) {
           {selectedOrganization?.name}
         </Box>
 
-        <Iconify width={16} icon="carbon:chevron-sort" sx={{ color: 'text.disabled' }} />
+        <Iconify sx={{ color: 'text.disabled', ml: 'auto' }} width={16} icon="carbon:chevron-sort" />
       </ButtonBase>
 
       <CustomPopover
@@ -85,7 +89,7 @@ export function OrganizationPopover({ sx }: ButtonBaseProps) {
         onClose={popover.onClose}
         slotProps={{ arrow: { placement: 'top-left' } }}
       >
-        <MenuList sx={{ width: 240 }}>
+        <MenuList sx={{ width: 199 }}>
           {organizations.map((option) => (
             <MenuItem
               key={option.id}

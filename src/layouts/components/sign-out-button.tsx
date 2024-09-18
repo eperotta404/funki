@@ -8,6 +8,8 @@ import Button from '@mui/material/Button';
 
 import { useRouter } from 'src/routes/hooks';
 
+import { capitalizeFirtsLetter } from 'src/utils/helper';
+
 import { signOut } from 'src/auth/context';
 import { useAuthContext } from 'src/auth/hooks';
 
@@ -38,7 +40,7 @@ export function SignOutButton({ onClose, ...other }: Props) {
 
   return (
     <Button fullWidth variant="soft" size="large" color="error" onClick={handleLogout} {...other}>
-      {t('auth.logout')}
+      {capitalizeFirtsLetter(t('auth.logout'))}
     </Button>
   );
 }

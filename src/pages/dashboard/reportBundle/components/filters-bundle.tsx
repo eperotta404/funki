@@ -4,16 +4,32 @@ import { Box, Paper, TextField, Autocomplete } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
-const years = ['2020', '2021', '2022', '2023', '2024', '2025'];
-const selectedYear = '2024';
+import type { FilterOption, FilterEventOption } from '../../reportEvent/report-event';
 
-const teams = ['team1', 'team2', 'team3'];
-const selectedTeam = 'team1';
 
-const bundles = ['bundle1', 'bundle2', 'bundle3'];
-const selectedBundle = 'bundle1';
+interface FiltersBundleProps {
+  teams: FilterOption[];
+  years: FilterOption[];
+  events: FilterOption[];
+  selectedTeam: FilterOption | null;
+  selectedYear: FilterOption | null;
+  selectedEvent: FilterOption | null;
+  onTeamChange: (team: FilterOption | null) => void;
+  onYearChange: (date: FilterOption | null) => void;
+  onEventChange: (event: FilterEventOption | null) => void;
+}
 
-export default function FiltersBundle() {
+export default function FiltersBundle({
+  teams,
+  years,
+  events,
+  selectedTeam,
+  selectedYear,
+  selectedEvent,
+  onTeamChange,
+  onYearChange,
+  onEventChange,
+}: FiltersBundleProps) {
   const { t } = useTranslation();
 
   return (
@@ -25,9 +41,10 @@ export default function FiltersBundle() {
     >
       <Autocomplete
         disablePortal
-        id="combo-box-date"
-        options={years}
-        value={selectedYear}
+        id="combo-box-team"
+        options={teams}
+        value={selectedTeam}
+        onChange={(event, newValue) => onTeamChange(newValue)}
         PaperComponent={(props) => (
           <Paper
             {...props}
@@ -39,16 +56,22 @@ export default function FiltersBundle() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={capitalizeFirtsLetter(t('bundles.filter.year'))} fullWidth />
+          <TextField
+            {...params}
+            label={capitalizeFirtsLetter(t('events.filter.teams'))}
+            fullWidth
+          />
         )}
         sx={{ background: 'white' }}
       />
 
       <Autocomplete
         disablePortal
-        id="combo-box-team"
-        options={teams}
-        value={selectedTeam}
+        id="combo-box-date"
+        options={years}
+        value={selectedYear}
+        isOptionEqualToValue={(option, value) => option.id === value.id}
+        onChange={(event, newValue) => onYearChange(newValue)}
         PaperComponent={(props) => (
           <Paper
             {...props}
@@ -60,16 +83,17 @@ export default function FiltersBundle() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={capitalizeFirtsLetter(t('bundles.filter.teams'))} fullWidth />
+          <TextField {...params} label={capitalizeFirtsLetter(t('events.filter.year'))} fullWidth />
         )}
         sx={{ backgroundColor: 'white' }}
       />
 
       <Autocomplete
         disablePortal
-        id="combo-box-bundle"
-        options={bundles}
-        value={selectedBundle}
+        id="combo-box-date"
+        options={events}
+        value={selectedEvent}
+        onChange={(event, newValue: any) => onEventChange(newValue)}
         PaperComponent={(props) => (
           <Paper
             {...props}
@@ -81,7 +105,11 @@ export default function FiltersBundle() {
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={capitalizeFirtsLetter(t('bundles.filter.bundles'))} fullWidth />
+          <TextField
+            {...params}
+            label={capitalizeFirtsLetter(t('events.filter.events'))}
+            fullWidth
+          />
         )}
         sx={{ backgroundColor: 'white' }}
       />

@@ -1,23 +1,22 @@
 {
   "auth": {
-    "inputEmail": "Correo electrónico",
-    "inputPassword": "Contraseña",
-    "placeholderPassword": "6+ caracteres",
-    "emailRequired": "El correo electrónico es obligatorio",
-    "emailInvalid": "El correo electrónico debe ser una dirección válida",
-    "passwordRequired": "La contraseña es obligatoria",
-    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
-    "invalidCredentials": "Credenciales inválidas",
+    "inputEmail": "correo electrónico",
+    "inputPassword": "contraseña",
+    "emailRequired": "el correo electrónico es obligatorio",
+    "emailInvalid": "el correo electrónico debe ser una dirección válida",
+    "passwordRequired": "la contraseña es obligatoria",
+    "passwordMinLength": "la contraseña debe tener al menos 6 caracteres",
+    "invalidCredentials": "credenciales inválidas",
     "links": {
-      "forgotPassword": "Recuperar Contraseña?"
+      "forgotPassword": "recuperar Contraseña?"
     },
     "buttons": {
-      "login": "Ingresar"
+      "login": "ingresar"
     },
-    "logout": "Cerrar Sesión"
+    "logout": "cerrar Sesión"
   },
   "home": {
-    "title": "Inicio"
+    "title": "inicio"
   },
   "events": {
     "title": "eventos",

@@ -6,11 +6,11 @@ import { CONFIG } from 'src/config-global';
 
 import { NetworkError } from './NetworkError';
 import { HttpJsonError } from './HttpJsonError';
+import { ForbiddenError } from './ForbiddenError';
 import { NotAuthorizedError } from './NotAuthorizedError';
 import { InternalServerError } from './InternalServerError';
 
 import type { LocalStorage } from '../localStorage/localStorage';
-import { ForbiddenError } from './ForbiddenError';
 
 export class HttpClient {
   private http: AxiosInstance;
