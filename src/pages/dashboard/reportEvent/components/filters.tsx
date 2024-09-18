@@ -6,7 +6,7 @@ import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import type { FilterOption, FilterEventOption } from '../report-event';
 
-interface FiltersEventProps {
+interface FiltersProps {
   teams: FilterOption[];
   years: FilterOption[];
   events: FilterOption[];
@@ -18,7 +18,7 @@ interface FiltersEventProps {
   onEventChange: (event: FilterEventOption | null) => void;
 }
 
-export default function FiltersEvent({
+export default function Filters({
   teams,
   years,
   events,
@@ -28,7 +28,7 @@ export default function FiltersEvent({
   onTeamChange,
   onYearChange,
   onEventChange,
-}: FiltersEventProps) {
+}: FiltersProps) {
   const { t } = useTranslation();
 
   return (

@@ -25,7 +25,7 @@ const TOTALS = [
 
 const fundraising = '45,653';
 
-export default function TotalsEvent() {
+export default function Totals() {
   const theme = useTheme();
   const { t } = useTranslation();
 

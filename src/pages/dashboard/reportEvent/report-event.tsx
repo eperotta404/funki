@@ -19,10 +19,10 @@ import { LoadingScreen } from 'src/components/loading-screen';
 
 import { BlankView } from 'src/sections/blank/view';
 
-import TotalsEvent from './components/totals-event';
-import SummaryEvent from './components/summary-event';
-import FiltersEvent from './components/filters-event';
-import DetailsEvent from './components/details-event';
+import Totals from './components/totals';
+import Summary from './components/summary';
+import Filters from './components/filters';
+import Details from './components/details';
 import EventNotAvailable from './components/event-not-available';
 // ----------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ export default function Page() {
     <DashboardContent maxWidth="xl">
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <FiltersEvent
+          <Filters
             teams={teams}
             years={years}
             events={events}
@@ -82,17 +82,17 @@ export default function Page() {
           <>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <SummaryEvent selectedEvent={selectedEvent} />
+                <Summary selectedEvent={selectedEvent} />
               </Card>
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <TotalsEvent />
+                <Totals />
               </Card>
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <DetailsEvent />
+                <Details />
               </Card>
             </Grid>
           </>

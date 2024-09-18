@@ -17,10 +17,10 @@ import { LoadingScreen } from 'src/components/loading-screen';
 
 import { BlankView } from 'src/sections/blank/view';
 
-import TotalsBundle from './components/totals-bundle';
-import FiltersBundle from './components/filters-bundle';
-import SummaryBundle from './components/summary-bundle';
-import DetailsBundle from './components/details-bundle';
+import Totals from './components/totals';
+import Summary from './components/summary';
+import Filters from './components/filters';
+import Details from './components/details';
 import EventNotAvailable from '../reportEvent/components/event-not-available';
 
 // ----------------------------------------------------------------------
@@ -40,7 +40,7 @@ export default function Page() {
     <DashboardContent maxWidth="xl">
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <FiltersBundle
+          <Filters
             teams={teams}
             years={years}
             events={events}
@@ -69,17 +69,17 @@ export default function Page() {
           <>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <SummaryBundle />
+                <Summary />
               </Card>
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <TotalsBundle />
+                <Totals />
               </Card>
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <DetailsBundle />
+                <Details />
               </Card>
             </Grid>
             </>

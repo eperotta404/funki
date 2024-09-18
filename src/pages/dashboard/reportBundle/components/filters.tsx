@@ -7,7 +7,7 @@ import { capitalizeFirtsLetter } from 'src/utils/helper';
 import type { FilterOption, FilterEventOption } from '../../reportEvent/report-event';
 
 
-interface FiltersBundleProps {
+interface FiltersProps {
   teams: FilterOption[];
   years: FilterOption[];
   events: FilterOption[];
@@ -19,7 +19,7 @@ interface FiltersBundleProps {
   onEventChange: (event: FilterEventOption | null) => void;
 }
 
-export default function FiltersBundle({
+export default function Filters({
   teams,
   years,
   events,
@@ -29,7 +29,7 @@ export default function FiltersBundle({
   onTeamChange,
   onYearChange,
   onEventChange,
-}: FiltersBundleProps) {
+}: FiltersProps) {
   const { t } = useTranslation();
 
   return (

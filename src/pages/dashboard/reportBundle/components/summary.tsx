@@ -4,7 +4,7 @@ import { Box, Card, useTheme, Typography, CardContent } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
-import CardSummaryBundle from './card-summary-bundle';
+import CardSummary from './card-summary';
 import { AnalyticsTimeline } from './analytics-timeline';
 
 const _analyticOrderTimeline = [
@@ -45,7 +45,7 @@ const _analyticOrderTimeline = [
   },
 ];
 
-export default function SummaryBundle() {
+export default function Summary() {
   const theme = useTheme();
   const { t } = useTranslation();
 
@@ -81,7 +81,7 @@ export default function SummaryBundle() {
         </Card>
         <Card>
           <CardContent>
-            <CardSummaryBundle team="Atlas Masculino" />
+            <CardSummary team="Atlas Masculino" />
           </CardContent>
         </Card>
       </Box>
