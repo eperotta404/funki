@@ -76,7 +76,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           status={selectedEvent?.details?.status}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.error.lightChannel}
-          colorSvg="grey.main"
+          colorSvg="info.main"
         />
         <CardSummaryEvent
           icon="guidance:stadium"
@@ -84,7 +84,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           line2={`<strong style="font-size: 1.5rem;color: ${theme.vars.palette.primary.mainChannel}">${selectedEvent?.details?.away} </strong>`}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.error.lightChannel}
-          colorSvg="grey.main"
+          colorSvg="info.main"
         />
 
         <Card3SummaryEvent
@@ -94,7 +94,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           line3={selectedEvent?.details?.stadium}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.error.lightChannel}
-          colorSvg="grey.main"
+          colorSvg="info.main"
         />
       </Box>
     </>

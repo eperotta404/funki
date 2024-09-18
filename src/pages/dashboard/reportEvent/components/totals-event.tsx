@@ -63,7 +63,7 @@ export default function TotalsEvent() {
           loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="error.main"
+          colorSvg="info.main"
         />
 
         <Card2TotalsEvent
@@ -72,7 +72,7 @@ export default function TotalsEvent() {
           loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="error.main"
+          colorSvg="info.main"
         />
 
         <CardTotalsEvent
@@ -85,7 +85,7 @@ export default function TotalsEvent() {
           loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="error.main"
+          colorSvg="info.main"
         />
       </Box>
     </>

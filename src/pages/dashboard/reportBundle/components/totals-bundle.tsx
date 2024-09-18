@@ -57,7 +57,7 @@ export default function TotalsBundle() {
           loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="error.main"
+          colorSvg="info.main"
         />
 
         <Card2TotalsBundle
@@ -66,7 +66,7 @@ export default function TotalsBundle() {
           loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="error.main"
+          colorSvg="info.main"
         />
 
         <CardTotalsBundle
@@ -77,7 +77,7 @@ export default function TotalsBundle() {
           loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="error.main"
+          colorSvg="info.main"
         />
       </Box>
     </>
