@@ -2,6 +2,7 @@ import type { ButtonProps } from '@mui/material/Button';
 import type { Theme, SxProps } from '@mui/material/styles';
 
 import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Button from '@mui/material/Button';
 
@@ -19,6 +20,7 @@ type Props = ButtonProps & {
 
 export function SignOutButton({ onClose, ...other }: Props) {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const { checkUserSession } = useAuthContext();
 
@@ -36,7 +38,7 @@ export function SignOutButton({ onClose, ...other }: Props) {
 
   return (
     <Button fullWidth variant="soft" size="large" color="error" onClick={handleLogout} {...other}>
-      Logout
+      {t('auth.logout')}
     </Button>
   );
 }

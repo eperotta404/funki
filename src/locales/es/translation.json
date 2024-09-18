@@ -1,11 +1,11 @@
 {
-  "login": {
+  "auth": {
     "inputEmail": "Correo electrónico",
     "inputPassword": "Contraseña",
     "placeholderPassword": "6+ caracteres",
     "emailRequired": "El correo electrónico es obligatorio",
     "emailInvalid": "El correo electrónico debe ser una dirección válida",
-    "passwordRequired": "La contraseña es obligatoria!",
+    "passwordRequired": "La contraseña es obligatoria",
     "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
     "invalidCredentials": "Credenciales inválidas",
     "links": {
@@ -13,7 +13,8 @@
     },
     "buttons": {
       "login": "Ingresar"
-    }
+    },
+    "logout": "Cerrar Sesión"
   },
   "home": {
     "title": "Inicio"

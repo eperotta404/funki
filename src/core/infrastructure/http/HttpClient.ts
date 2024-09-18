@@ -10,6 +10,7 @@ import { NotAuthorizedError } from './NotAuthorizedError';
 import { InternalServerError } from './InternalServerError';
 
 import type { LocalStorage } from '../localStorage/localStorage';
+import { ForbiddenError } from './ForbiddenError';
 
 export class HttpClient {
   private http: AxiosInstance;
@@ -69,6 +70,9 @@ export class HttpClient {
     }
     if (e.response.status === 401) {
       throw new NotAuthorizedError('Not Authorized Error');
+    }
+    if (e.response.status === 403) {
+      throw new ForbiddenError('Forbidden Error');
     }
     throw new HttpJsonError(e.response.status, e.response.data);
   }
