@@ -6,7 +6,7 @@ import { varAlpha, bgGradient } from 'src/theme/styles';
 import { Iconify } from 'src/components/iconify';
 import { SvgColor } from 'src/components/svg-color';
 
-interface Card2SummaryEventProps {
+interface CardStatusSummaryProps {
   icon: string;
   status: string;
   color1: string;
@@ -14,7 +14,7 @@ interface Card2SummaryEventProps {
   colorSvg: string;
 }
 
-export default function Card2SummaryEvent(props: Card2SummaryEventProps) {
+export default function CardStatusSummary(props: CardStatusSummaryProps) {
   const { icon, status, color1, color2, colorSvg } = props;
   return (
     <Card

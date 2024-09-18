@@ -5,7 +5,7 @@ import { varAlpha, bgGradient } from 'src/theme/styles';
 
 import { SvgColor } from 'src/components/svg-color';
 
-interface Card2TotalsEventProps {
+interface CardIncomeTotalsProps {
   title: string;
   line1: string;
   loading: boolean;
@@ -14,7 +14,7 @@ interface Card2TotalsEventProps {
   colorSvg: string;
 }
 
-export default function Card2TotalsEvent(props: Card2TotalsEventProps) {
+export default function CardIncomeTotals(props: CardIncomeTotalsProps) {
   const { title, line1, loading, color1, color2, colorSvg } = props;
   return (
     <Card

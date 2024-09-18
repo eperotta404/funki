@@ -5,8 +5,8 @@ import { Box, useTheme } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
-import CardTotalsBundle from './card-totals-bundle';
-import Card2TotalsBundle from './card-2-totals-bundle';
+import CardTotals from './card-totals';
+import CardIncomeTotals from '../../components/card-income-totals';
 
 const TOTALS = [
   {
@@ -51,7 +51,7 @@ export default function TotalsBundle() {
           },
         }}
       >
-        <CardTotalsBundle
+        <CardTotals
           title={`<strong>${capitalizeFirtsLetter(t('bundles.totals.membershipsSold'))}</strong>`}
           line4={`${t('bundles.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
           loading={loading}
@@ -60,7 +60,7 @@ export default function TotalsBundle() {
           colorSvg="info.main"
         />
 
-        <Card2TotalsBundle
+        <CardIncomeTotals
           title={`<strong>${capitalizeFirtsLetter(t('bundles.totals.fundraising'))}</strong>`}
           line1={`<strong>$${t(fundraising)} </strong>`}
           loading={loading}
@@ -69,7 +69,7 @@ export default function TotalsBundle() {
           colorSvg="info.main"
         />
 
-        <CardTotalsBundle
+        <CardTotals
           title={`<strong>${capitalizeFirtsLetter(t('bundles.totals.ocupation'))}</strong>`}
           line3={`${capitalizeFirtsLetter(t('bundles.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('bundles.totals.total').toUpperCase()} : <strong>${TOTALS[1].line4}</strong>`}

@@ -10,7 +10,7 @@ import { varAlpha, bgGradient } from 'src/theme/styles';
 import { Iconify } from 'src/components/iconify';
 import { SvgColor } from 'src/components/svg-color';
 
-interface CardDetailEventProps {
+interface CardTeamsSummaryProps {
   icon: string;
   line1: string;
   line2: string;
@@ -19,7 +19,7 @@ interface CardDetailEventProps {
   colorSvg: string;
 }
 
-export default function CardSummaryEvent(props: CardDetailEventProps) {
+export default function CardTeamsSummary(props: CardTeamsSummaryProps) {
   const { icon, line1, line2, color1, color2, colorSvg } = props;
   const { t } = useTranslation();
   return (

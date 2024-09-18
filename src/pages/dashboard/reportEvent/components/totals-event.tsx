@@ -5,8 +5,8 @@ import { Box, useTheme } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
-import CardTotalsEvent from './card-totals-event';
-import Card2TotalsEvent from './card-2-totals-event';
+import CardTotals from './card-totals';
+import CardIncomeTotals from '../../components/card-income-totals';
 
 const TOTALS = [
   {
@@ -54,7 +54,7 @@ export default function TotalsEvent() {
           },
         }}
       >
-        <CardTotalsEvent
+        <CardTotals
           title={`<strong>${capitalizeFirtsLetter(t('events.totals.ticketsSold'))}</strong>`}
           line1={`${capitalizeFirtsLetter(t('events.totals.tickets'))} : <strong>${TOTALS[0].line1}</strong>`}
           line2={`${capitalizeFirtsLetter(t('events.totals.memberships'))} : <strong>${TOTALS[0].line2} </strong>`}
@@ -66,7 +66,7 @@ export default function TotalsEvent() {
           colorSvg="info.main"
         />
 
-        <Card2TotalsEvent
+        <CardIncomeTotals
           title={`<strong>${capitalizeFirtsLetter(t('events.totals.fundraising'))}</strong>`}
           line1={`<strong>$${t(fundraising)} </strong>`}
           loading={loading}
@@ -75,7 +75,7 @@ export default function TotalsEvent() {
           colorSvg="info.main"
         />
 
-        <CardTotalsEvent
+        <CardTotals
           title={`<strong>${capitalizeFirtsLetter(t('events.totals.ocupation'))}</strong>`}
           line1={`${capitalizeFirtsLetter(t('events.totals.tickets'))} : <strong>${TOTALS[1].line1} </strong>`}
           line2={`${capitalizeFirtsLetter(t('events.totals.memberships'))} : <strong> ${TOTALS[1].line2}</strong>`}

@@ -7,9 +7,9 @@ import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import { Iconify } from 'src/components/iconify';
 
-import Card2SummaryEvent from './card-2-summary';
-import Card3SummaryEvent from './card-3-summary';
-import CardSummaryEvent from './card-summary-event';
+import CardTeamsSummary from './card-teams-summary';
+import CardStatusSummary from './card-status-summary';
+import CardInfoMatchSummary from './card-info-match-summary';
 
 import type { FilterEventOption } from '../report-event';
 
@@ -71,14 +71,14 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           },
         }}
       >
-        <Card2SummaryEvent
+        <CardStatusSummary
           icon="game-icons:soccer-ball"
           status={selectedEvent?.details?.status}
           color1={theme.vars.palette.warning.lightChannel}
           color2={theme.vars.palette.error.lightChannel}
           colorSvg="info.main"
         />
-        <CardSummaryEvent
+        <CardTeamsSummary
           icon="guidance:stadium"
           line1={`<strong style="font-size: 2rem; color: ${theme.vars.palette.primary.main}">${selectedEvent?.details?.home}</strong>`}
           line2={`<strong style="font-size: 1.5rem;color: ${theme.vars.palette.primary.mainChannel}">${selectedEvent?.details?.away} </strong>`}
@@ -87,7 +87,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           colorSvg="info.main"
         />
 
-        <Card3SummaryEvent
+        <CardInfoMatchSummary
           icon="fluent-mdl2:date-time"
           line1={formattedDate}
           line2={timeWithTimezone}

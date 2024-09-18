@@ -5,9 +5,11 @@ import { varAlpha, bgGradient } from 'src/theme/styles';
 
 import { SvgColor } from 'src/components/svg-color';
 
-interface CardTotalsBundleProps {
+interface CardTotalsProps {
   title: string;
-  line3?: string;
+  line1: string;
+  line2: string;
+  line3: string;
   line4: string;
   line5?: string;
   loading: boolean;
@@ -16,8 +18,8 @@ interface CardTotalsBundleProps {
   colorSvg: string;
 }
 
-export default function CardTotalsBundle(props: CardTotalsBundleProps) {
-  const { title, line3, line4, line5, loading, color1, color2, colorSvg } = props;
+export default function CardTotals(props: CardTotalsProps) {
+  const { title, line1, line2, line3, line4, line5, loading, color1, color2, colorSvg } = props;
 
   return (
     <Card
@@ -53,37 +55,40 @@ export default function CardTotalsBundle(props: CardTotalsBundleProps) {
               dangerouslySetInnerHTML={{ __html: title }}
             />
             {loading ? (
-              <Skeleton variant="rectangular" height={20} sx={{ mt: 5, mr: 2 }} />
+              <Skeleton variant="rectangular" height={20} sx={{ mt: 2, mr: 2 }} />
             ) : (
-              <Typography variant="h6" sx={{ color: 'text.secondary', fontWeight: 700 }}>
-                Abono Flex promo
-              </Typography>
+              <Typography
+                variant="body1"
+                sx={{ mt: 3.5, color: 'text.secondary' }}
+                dangerouslySetInnerHTML={{ __html: line1 }}
+              />
             )}
             {loading ? (
               <Skeleton variant="rectangular" height={20} sx={{ mt: 1, mr: 2 }} />
             ) : (
-              <Typography variant="h4" sx={{ color: 'text.secondary', fontWeight: 900 }}>
-                1,500
-              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: 'text.secondary' }}
+                dangerouslySetInnerHTML={{ __html: line2 }}
+              />
             )}
-            {!line3 && <Box sx={{ height: 24 }} />}
-            {loading && line3 ? (
-              <Skeleton variant="rectangular" height={15} sx={{ mt: 1, mr: 2 }} />
-            ) : (
-              line3 && (
-                <Typography
-                  variant="body2"
-                  sx={{ color: 'text.secondary' }}
-                  dangerouslySetInnerHTML={{ __html: line3 }}
-                />
-              )
-            )}
+
             {loading ? (
-              <Skeleton variant="rectangular" height={15} sx={{ mt: 1, mr: 2 }} />
+              <Skeleton variant="rectangular" height={10} sx={{ mt: 1, mr: 2 }} />
+            ) : (
+              <Typography
+                variant="body2"
+                sx={{ color: 'text.secondary' }}
+                dangerouslySetInnerHTML={{ __html: line3 }}
+              />
+            )}
+
+            {loading ? (
+              <Skeleton variant="rectangular" height={30} sx={{ mt: 1, mr: 2 }} />
             ) : (
               <Typography
                 variant="body1"
-                sx={{ color: 'text.secondary', mt: 1.5, fontSize: 20, fontWeight: 900 }}
+                sx={{ color: 'text.secondary', mt: 1.5, fontSize: 20 }}
                 dangerouslySetInnerHTML={{ __html: line4 }}
               />
             )}
@@ -100,7 +105,7 @@ export default function CardTotalsBundle(props: CardTotalsBundleProps) {
               }}
             >
               {loading ? (
-                <Skeleton variant="rectangular" width={100} height={40} />
+                <Skeleton variant="rectangular" width={100} height={30} />
               ) : (
                 <Typography
                   variant="inherit"
@@ -108,7 +113,7 @@ export default function CardTotalsBundle(props: CardTotalsBundleProps) {
                     color: 'text.secondary',
                     textAlign: 'center',
                     fontSize: 35,
-                    fontWeight: 900,
+                    fontWeight: 700,
                   }}
                   dangerouslySetInnerHTML={{ __html: line5 }}
                 />
