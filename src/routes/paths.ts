@@ -19,7 +19,7 @@ export const paths = {
     reports: {
       root: `${ROOTS.DASHBOARD}/report?l=false`,
       bundles: `${ROOTS.DASHBOARD}/report/bundle?l=false`,
-      sellers: `${ROOTS.DASHBOARD}/report/seller`,
+      sellers: `${ROOTS.DASHBOARD}/report/sales`,
     },
   },
 };

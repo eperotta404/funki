@@ -7,7 +7,7 @@ import { BlankView } from 'src/sections/blank/view';
 
 // ----------------------------------------------------------------------
 
-const metadata = { title: `Sellers | Dashboard - ${CONFIG.appName}` };
+const metadata = { title: `Sales | Dashboard - ${CONFIG.appName}` };
 
 export default function Page() {
   const { t } = useTranslation();
@@ -17,7 +17,7 @@ export default function Page() {
         <title> {metadata.title}</title>
       </Helmet>
 
-      <BlankView title={t('sellers.title')} />
+      <BlankView title={t('sales.title')} />
     </>
   );
 }
