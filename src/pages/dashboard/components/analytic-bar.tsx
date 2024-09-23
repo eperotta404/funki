@@ -1,7 +1,8 @@
 import type { ChartOptions } from 'src/components/chart';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Card, Skeleton, CardHeader } from '@mui/material';
-import { useTheme, alpha as hexAlpha } from '@mui/material/styles';
+import { useTheme, alpha as hexAlpha } from '@mui/material/styles'; 
 
 import { Chart, useChart } from 'src/components/chart';
 
@@ -27,6 +28,9 @@ interface AnalyticBarProps {
 export default function AnalyticBar(props: AnalyticBarProps) {
   const { title, subheader, isVertical, chart, loading, ...other } = props;
   const theme = useTheme();
+  
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const chartColors = chart.colors ?? [
     hexAlpha(theme.palette.primary.dark, 0.8),
     hexAlpha(theme.palette.warning.main, 0.8),
@@ -47,6 +51,8 @@ export default function AnalyticBar(props: AnalyticBarProps) {
                 background: theme.palette.info.main,
               },
               text: `10% del aforo`,
+              position: 'left',
+              offsetX: 150,
             },
           },
         ],
@@ -97,12 +103,13 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     plotOptions: {
       bar: {
         horizontal: !isVertical,
-        ...(chart.series[0].data.length === 1 && {
-          columnWidth: '20%',
-        }),
+
+        columnWidth: chart.series[0].data.length === 1 
+          ? isMobile ? '30%' : '10%'  
+          : '50%', 
       },
     },
-
+  
     ...chart.options,
   });
 
@@ -118,7 +125,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
           series={chart.series}
           options={chartOptions}
           height={364}
-          sx={{ py: 2.5, pl: 1, pr: 2.5 }}
+          sx={{ py: 0.5, pl: 1, pr: 2.5 }}
         />
       )}
     </Card>

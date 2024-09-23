@@ -31,7 +31,7 @@ type Props = CardProps & {
   itemsPerPage?: number;
 };
 
-export function AnalyticsTimeline({ title, subheader, list, itemsPerPage = 4, ...other }: Props) {
+export function AnalyticsTimeline({ title, subheader, list, itemsPerPage = 5, ...other }: Props) {
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(list.length / itemsPerPage);
 
@@ -44,7 +44,7 @@ export function AnalyticsTimeline({ title, subheader, list, itemsPerPage = 4, ..
         sx={{
           m: 0,
           p: 3,
-          height: 300,
+          height: 400,
           overflow: 'hidden',
           [`& .${timelineItemClasses.root}:before`]: {
             flex: 0,

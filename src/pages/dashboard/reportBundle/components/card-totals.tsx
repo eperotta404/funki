@@ -52,13 +52,7 @@ export default function CardTotals(props: CardTotalsProps) {
               sx={{ color: 'text.info', mb: 1 }}
               dangerouslySetInnerHTML={{ __html: title }}
             />
-            {loading ? (
-              <Skeleton variant="rectangular" height={20} sx={{ mt: 5, mr: 2 }} />
-            ) : (
-              <Typography variant="h6" sx={{ color: 'text.secondary', fontWeight: 700 }}>
-                Abono Flex promo
-              </Typography>
-            )}
+    
             {loading ? (
               <Skeleton variant="rectangular" height={20} sx={{ mt: 1, mr: 2 }} />
             ) : (

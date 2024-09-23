@@ -21,9 +21,9 @@ export default function Details() {
     <>
       <h2>{capitalizeFirtsLetter(t('bundles.details.details'))}</h2>
       <Box
-        gap={8}
+        gap={2}
         display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
         sx={{ mt: 2 }}
       >
         <AnalyticBar
@@ -100,7 +100,13 @@ export default function Details() {
           }}
           loading={loading}
         />
-
+      </Box>
+      <Box
+        gap={2}
+        display="grid"
+        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+        sx={{ mt: 2 }}
+      >
         <AnalyticPie
           title={capitalizeFirtsLetter(t('events.details.bundleMethods'))}
           chart={{
@@ -138,8 +144,15 @@ export default function Details() {
           }}
           loading={loading}
         />
+        </Box>
+        <Box
+        gap={2}
+        display="grid"
+        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
+        sx={{ mt: 2 }}
+      >
 
-<AnalyticBar
+        <AnalyticBar
           title={capitalizeFirtsLetter(t('bundle.details.seassonBundle'))}
           isVertical={false}
           chart={{

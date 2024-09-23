@@ -8,26 +8,22 @@ import { capitalizeFirtsLetter } from 'src/utils/helper';
 import AnalyticBar from '../../components/analytic-bar';
 import AnalyticPie from '../../components/analytic-pie';
 
-
-
 export default function Details() {
   const { t } = useTranslation();
   const theme = useTheme();
 
-  
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const l = queryParams.get('l');
-
 
   const loading = l === 'true';
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.details.details'))}</h2>
       <Box
-        gap={8}
+        gap={2}
         display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
         sx={{ mt: 2 }}
       >
         <AnalyticBar
@@ -49,9 +45,9 @@ export default function Details() {
             max: 200,
             colors: [theme.palette.primary.main, theme.palette.info.dark, theme.palette.error.dark],
             series: [
-              { name: t('events.totals.tickets'), data: [43, 33, 22, 37, 67, 68, 37, 24,  16] },
-              { name: t('events.totals.memberships'), data: [51, 70, 47, 67, 40, 37, 24,  34, 17] },
-              { name: t('events.totals.courtesy'), data: [30, 50, 70, 47, 67, 40, 37, 24,  24] },
+              { name: t('events.totals.tickets'), data: [43, 33, 22, 37, 67, 68, 37, 24, 16] },
+              { name: t('events.totals.memberships'), data: [51, 70, 47, 67, 40, 37, 24, 34, 17] },
+              { name: t('events.totals.courtesy'), data: [30, 50, 70, 47, 67, 40, 37, 24, 24] },
             ],
           }}
           loading={loading}
@@ -83,7 +79,13 @@ export default function Details() {
           }}
           loading={loading}
         />
-
+      </Box>
+      <Box
+        gap={2}
+        display="grid"
+        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+        sx={{ mt: 2 }}
+      >
         <AnalyticPie
           title={capitalizeFirtsLetter(t('events.details.bundleMethods'))}
           chart={{
@@ -120,21 +122,31 @@ export default function Details() {
           }}
           loading={loading}
         />
+        </Box>
+        <Box
+        gap={2}
+        display="grid"
+        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
+        sx={{ mt: 2 }}
+      >
 
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.totalCapacitySalesRevenue'))}
           isVertical={false}
           chart={{
             stacked: true,
-            categories: [ "Tribune 1", "Tribune 2", "Tribune 3"],
+            categories: ['Tribune 1', 'Tribune 2', 'Tribune 3'],
             max: 50000,
-            colors: [theme.palette.info.main, theme.palette.success.light, theme.palette.warning.main],
+            colors: [
+              theme.palette.info.main,
+              theme.palette.success.light,
+              theme.palette.warning.main,
+            ],
             series: [
               { name: t('events.details.tickets'), data: [20000, 1700, 30000] },
               { name: t('events.details.memberships'), data: [7000, 1500, 4000] },
               { name: t('events.details.courtesy'), data: [3000, 25000, 3500] },
             ],
-
           }}
           loading={loading}
         />
