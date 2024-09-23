@@ -45,9 +45,9 @@ export default function Details() {
             max: 200,
             colors: [theme.palette.info.main, theme.palette.success.main, theme.palette.error.main],
             series: [
-              { name: t('events.totals.tickets'), data: [13, 33, 22, 37, 67, 68, 44, 24, 16] },
-              { name: t('events.totals.memberships'), data: [51, 20, 47, 67, 60, 58, 24, 34, 17] },
-              { name: t('events.totals.courtesy'), data: [30, 50, 70, 47, 67, 40, 37, 24, 24] },
+              { name: capitalizeFirtsLetter(t('events.totals.tickets')), data: [13, 33, 22, 37, 67, 68, 44, 24, 16] },
+              { name: capitalizeFirtsLetter(t('events.totals.memberships')), data: [51, 20, 47, 67, 60, 58, 24, 34, 17] },
+              { name: capitalizeFirtsLetter(t('events.totals.courtesy')), data: [30, 50, 70, 47, 67, 40, 37, 24, 24] },
             ],
           }}
           loading={loading}
@@ -73,7 +73,7 @@ export default function Details() {
             colors: [theme.palette.warning.main],
             series: [
               {
-                name: t('events.totals.tickets'),
+                name: capitalizeFirtsLetter(t('events.totals.tickets')),
                 data: [11236, 7188, 8002, 6057, 5958, 6008, 3778, 11000, 5500],
               },
             ],
@@ -119,9 +119,9 @@ export default function Details() {
               theme.palette.error.dark,
             ],
             series: [
-              { label: t('events.details.web'), value: 1700 },
-              { label: t('events.details.app'), value: 3500 },
-              { label: t('events.details.advisors'), value: 1500 },
+              { label: capitalizeFirtsLetter(t('events.details.web')), value: 1700 },
+              { label: capitalizeFirtsLetter(t('events.details.app')), value: 3500 },
+              { label: capitalizeFirtsLetter(t('events.details.advisors')), value: 1500 },
             ],
           }}
           loading={loading}
@@ -135,7 +135,7 @@ export default function Details() {
       >
 
         <AnalyticBar
-          title={capitalizeFirtsLetter(t('bundle.details.seassonBundle'))}
+          title={capitalizeFirtsLetter(t('bundles.details.seassonBundle'))}
           isVertical={false}
           chart={{
             stacked: true,
@@ -147,9 +147,9 @@ export default function Details() {
               theme.palette.warning.main,
             ],
             series: [
-              { name: t('events.details.tickets'), data: [20000, 1700, 30000] },
-              { name: t('events.details.memberships'), data: [7000, 1500, 4000] },
-              { name: t('events.details.courtesy'), data: [3000, 25000, 3500] },
+              { name: capitalizeFirtsLetter(t('events.details.tickets')), data: [20000, 1700, 30000] },
+              { name: capitalizeFirtsLetter(t('events.details.memberships')), data: [7000, 1500, 4000] },
+              { name: capitalizeFirtsLetter(t('events.details.courtesy')), data: [3000, 25000, 3500] },
             ],
           }}
           loading={loading}

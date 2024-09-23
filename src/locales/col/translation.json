@@ -91,7 +91,8 @@
       "courtesy": "cortesía"
     },
     "details": {
-      "details": "detalles"
+      "details": "detalles",
+      "seassonBundle": "recompra de abonos"
     }
   },
   "sales": {
@@ -99,9 +100,8 @@
     "details": {
       "details": "detalles",
       "salesByChannel": "ventas por canal",
-      "salesByTribune": "ventas por tribuna",  
+      "salesByTribune": "ventas por tribuna",
       "salesTracking": "seguimiento de ventas"
-
     }
   }
 }
