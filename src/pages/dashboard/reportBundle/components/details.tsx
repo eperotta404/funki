@@ -55,6 +55,7 @@ export default function Details() {
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.montoByTribune'))}
           isVertical
+          money
           chart={{
             stacked: false,
             categories: [
@@ -80,26 +81,7 @@ export default function Details() {
           loading={loading}
         />
 
-        <AnalyticBar
-          title={capitalizeFirtsLetter(t('events.details.totalCapacitySalesRevenue'))}
-          isVertical={false}
-          chart={{
-            stacked: true,
-            categories: ['Tribune 1', 'Tribune 2', 'Tribune 3'],
-            max: 50000,
-            colors: [
-              theme.palette.info.main,
-              theme.palette.success.light,
-              theme.palette.warning.main,
-            ],
-            series: [
-              { name: t('events.details.tickets'), data: [20000, 1700, 30000] },
-              { name: t('events.details.memberships'), data: [7000, 1500, 4000] },
-              { name: t('events.details.courtesy'), data: [3000, 25000, 3500] },
-            ],
-          }}
-          loading={loading}
-        />
+
       </Box>
       <Box
         gap={2}

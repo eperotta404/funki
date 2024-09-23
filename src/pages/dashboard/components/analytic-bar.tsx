@@ -10,6 +10,7 @@ interface AnalyticBarProps {
   title?: string;
   subheader?: string;
   isVertical?: boolean;
+  money?: boolean;
   chart: {
     colors?: string[];
     stacked: boolean;
@@ -26,7 +27,7 @@ interface AnalyticBarProps {
 }
 
 export default function AnalyticBar(props: AnalyticBarProps) {
-  const { title, subheader, isVertical, chart, loading, ...other } = props;
+  const { title, subheader, isVertical, money, chart, loading, ...other } = props;
   const theme = useTheme();
   
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -85,7 +86,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       min: 0,
       tickAmount: 5,
       labels: {
-        formatter: (value: number) => `${value}`,
+        formatter: (value: number) =>  ` ${value}`,
       },
     },
     legend: {
@@ -93,7 +94,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     },
     tooltip: {
       y: {
-        formatter: (value: number) => `${value}`,
+        formatter: (value: number) => money ? `$${value}` : `${value}`,
       },
       theme: 'light',
     },

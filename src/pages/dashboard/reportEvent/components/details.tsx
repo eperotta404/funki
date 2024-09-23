@@ -45,9 +45,9 @@ export default function Details() {
             max: 200,
             colors: [theme.palette.primary.main, theme.palette.info.dark, theme.palette.error.dark],
             series: [
-              { name: t('events.totals.tickets'), data: [43, 33, 22, 37, 67, 68, 37, 24, 16] },
-              { name: t('events.totals.memberships'), data: [51, 70, 47, 67, 40, 37, 24, 34, 17] },
-              { name: t('events.totals.courtesy'), data: [30, 50, 70, 47, 67, 40, 37, 24, 24] },
+              { name: capitalizeFirtsLetter(t('events.totals.tickets')), data: [43, 33, 22, 37, 67, 68, 37, 24, 16] },
+              { name: capitalizeFirtsLetter(t('events.totals.memberships')), data: [51, 70, 47, 67, 40, 37, 24, 34, 17] },
+              { name: capitalizeFirtsLetter(t('events.totals.courtesy')), data: [30, 50, 70, 47, 67, 40, 37, 24, 24] },
             ],
           }}
           loading={loading}
@@ -55,6 +55,7 @@ export default function Details() {
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.montoByTribune'))}
           isVertical
+          money
           chart={{
             stacked: false,
             categories: [
@@ -72,7 +73,7 @@ export default function Details() {
             colors: [theme.palette.info.main],
             series: [
               {
-                name: t('events.totals.tickets'),
+                name: capitalizeFirtsLetter(t('events.totals.tickets')),
                 data: [11236, 788, 16002, 6057, 1958, 6008, 3778, 11000, 5500],
               },
             ],
@@ -115,27 +116,26 @@ export default function Details() {
               theme.palette.error.dark,
             ],
             series: [
-              { label: t('events.details.web'), value: 1700 },
-              { label: t('events.details.app'), value: 3500 },
-              { label: t('events.details.advisors'), value: 1500 },
+              { label: capitalizeFirtsLetter(t('events.details.web')), value: 1700 },
+              { label: capitalizeFirtsLetter(t('events.details.app')), value: 3500 },
+              { label: capitalizeFirtsLetter(t('events.details.advisors')), value: 1500 },
             ],
           }}
           loading={loading}
         />
-        </Box>
-        <Box
+      </Box>
+      <Box
         gap={2}
         display="grid"
         gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
         sx={{ mt: 2 }}
       >
-
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.totalCapacitySalesRevenue'))}
           isVertical={false}
           chart={{
             stacked: true,
-            categories: ['Tribune 1', 'Tribune 2', 'Tribune 3'],
+            categories: [capitalizeFirtsLetter(t('events.details.capacity')), capitalizeFirtsLetter(t('events.details.sales')), capitalizeFirtsLetter(t('events.details.income'))],
             max: 50000,
             colors: [
               theme.palette.info.main,
@@ -143,9 +143,9 @@ export default function Details() {
               theme.palette.warning.main,
             ],
             series: [
-              { name: t('events.details.tickets'), data: [20000, 1700, 30000] },
-              { name: t('events.details.memberships'), data: [7000, 1500, 4000] },
-              { name: t('events.details.courtesy'), data: [3000, 25000, 3500] },
+              { name: capitalizeFirtsLetter( t('events.details.tickets')), data: [20000, 1700, 30000] },
+              { name: capitalizeFirtsLetter(t('events.details.memberships')), data: [7000, 1500, 4000] },
+              { name: capitalizeFirtsLetter(t('events.details.courtesy')), data: [3000, 25000, 3500] },
             ],
           }}
           loading={loading}
@@ -156,13 +156,13 @@ export default function Details() {
           isVertical
           chart={{
             stacked: true,
-            categories: [t('events.details.courtesies')],
+            categories: [capitalizeFirtsLetter(t('events.details.courtesies'))],
             max: 90000,
             colors: [theme.palette.success.main, theme.palette.info.main, theme.palette.error.main],
             series: [
-              { name: t('events.details.ticketsGenerated'), data: [40000] },
-              { name: t('events.details.ticketsRedeemed'), data: [17000] },
-              { name: t('events.details.ticketsUnredeemed'), data: [30000] },
+              { name: capitalizeFirtsLetter(t('events.details.ticketsGenerated')), data: [40000] },
+              { name: capitalizeFirtsLetter(t('events.details.ticketsRedeemed')), data: [17000] },
+              { name: capitalizeFirtsLetter(t('events.details.ticketsUnredeemed')), data: [30000] },
             ],
             yAxisMarker: 72000,
           }}
