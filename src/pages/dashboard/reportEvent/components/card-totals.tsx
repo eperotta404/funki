@@ -1,8 +1,11 @@
-import { Box, Card, Grid, Skeleton, Typography } from '@mui/material';
+import { useState } from 'react';
+
+import { Box, Card, Grid, Tooltip, Skeleton, IconButton, Typography } from '@mui/material';
 
 import { CONFIG } from 'src/config-global';
 import { varAlpha, bgGradient } from 'src/theme/styles';
 
+import { Iconify } from 'src/components/iconify';
 import { SvgColor } from 'src/components/svg-color';
 
 interface CardTotalsProps {
@@ -20,6 +23,16 @@ interface CardTotalsProps {
 
 export default function CardTotals(props: CardTotalsProps) {
   const { title, line1, line2, line3, line4, line5, loading, color1, color2, colorSvg } = props;
+
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  const handleTooltipOpen = () => {
+    setTooltipOpen(true);
+  };
+
+  const handleTooltipClose = () => {
+    setTooltipOpen(false);
+  };
 
   return (
     <Card
@@ -46,14 +59,37 @@ export default function CardTotals(props: CardTotalsProps) {
           color: colorSvg,
         }}
       />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '0 16px',
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{ color: 'text.info' }}
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
+
+        <Tooltip
+          title="Texto de ayuda que aparece al hacer clic"
+          open={tooltipOpen}
+          onClose={handleTooltipClose}
+          onClick={handleTooltipOpen}
+          placement="top-start"
+          arrow
+        >
+          <IconButton>
+            <Iconify icon="material-symbols:help" width={24} sx={{ color: 'text.secondary' }} />
+          </IconButton>
+        </Tooltip>
+      </Box>
+
       <Grid container spacing={2} sx={{ alignItems: 'center' }}>
         <Grid item xs={line5 ? 6 : 12}>
           <Box sx={{ ml: 2, width: 300 }}>
-            <Typography
-              variant="h4"
-              sx={{ color: 'text.info', mb: 1 }}
-              dangerouslySetInnerHTML={{ __html: title }}
-            />
             {loading ? (
               <Skeleton variant="rectangular" height={20} sx={{ mt: 2, mr: 2 }} />
             ) : (
@@ -101,7 +137,8 @@ export default function CardTotals(props: CardTotalsProps) {
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
-                mt: -8,
+                mt: -9,
+                mr:2
               }}
             >
               {loading ? (

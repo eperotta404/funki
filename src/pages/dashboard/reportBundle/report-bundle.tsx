@@ -26,7 +26,7 @@ import EventNotAvailable from '../reportEvent/components/event-not-available';
 // ----------------------------------------------------------------------
 
 const getEventsByOrgnizationUseCase = new GetEventsByOrganization(organizationService);
-const metadata = { title: `Bundles| Dashboard - ${CONFIG.appName}` };
+const metadata = { title: `Bundles | Dashboard - ${CONFIG.appName}` };
 
 export default function Page() {
   const { t } = useTranslation();
