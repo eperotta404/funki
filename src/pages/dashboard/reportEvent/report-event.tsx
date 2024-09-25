@@ -1,5 +1,8 @@
 import type { EventDetail } from 'src/core/domain/models/eventDetail'
+import type { EventSalesSummary } from 'src/core/domain/models/eventSalesSummary';
+import type { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
 
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
@@ -11,7 +14,9 @@ import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import { CONFIG } from 'src/config-global';
 import { DashboardContent } from 'src/layouts/dashboard';
-import { organizationService } from 'src/core/infrastructure/instances';
+import { GetEventSalesSummary } from 'src/core/domain/useCases/GetEventSalesSummary';
+import { eventService, organizationService } from 'src/core/infrastructure/instances';
+import { GetEventTicketsByStand } from 'src/core/domain/useCases/GetEventTicketsByStand';
 import { GetEventsByOrganization } from 'src/core/domain/useCases/GetEventsByOrganization';
 import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
 
@@ -27,6 +32,8 @@ import EventNotAvailable from './components/event-not-available';
 // ----------------------------------------------------------------------
 
 const getEventsByOrgnizationUseCase = new GetEventsByOrganization(organizationService);
+const getEventSalesSummaryUseCase = new GetEventSalesSummary(eventService);
+const getEventTicketByStandUseCase = new GetEventTicketsByStand(eventService);
 
 const metadata = { title: `Eventos| Dashboard - ${CONFIG.appName}` };
 export interface FilterOption {
@@ -45,6 +52,34 @@ export default function Page() {
   const { selectedOrganization } = useOrganization();
   const { loading, teams, years, events, selectedTeam, selectedYear, selectedEvent, setSelectedTeam, setSelectedYear, setSelectedEvent } =
   useFilterData(getEventsByOrgnizationUseCase, selectedOrganization, 'event');
+
+  const [salesSummary, setSalesSummary] = useState<EventSalesSummary | null>(null);
+  const [ticketsByStand, setTicketsByStand] = useState<EventTicketsByStand | null>(null);
+
+  useEffect(() => {
+    if (selectedEvent) {
+      const getEventSalesSummary = async () => {
+        try {
+          const summary = await getEventSalesSummaryUseCase.execute(selectedEvent.details.code);
+          setSalesSummary(summary);
+        } catch (error) {
+          console.error('Error fetching sales summary:', error);
+        }
+      };
+
+      const getEventTicketsByStand = async () => {
+        try {
+          const tickets = await getEventTicketByStandUseCase.execute(selectedEvent.details.code);
+          setTicketsByStand(tickets);
+        } catch (error) {
+          console.error('Error fetching tickets by stand:', error);
+        }
+      };
+
+      getEventSalesSummary();
+      getEventTicketsByStand();
+    }
+  }, [selectedEvent]);
 
   const cardStyle = { p: 3, backgroundColor: 'background.default', boxShadow: 3 };
 
@@ -87,12 +122,12 @@ export default function Page() {
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <Totals />
+                <Totals salesSummary={salesSummary}/>
               </Card>
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <Details />
+                <Details ticketsByStand={ticketsByStand}/>
               </Card>
             </Grid>
           </>

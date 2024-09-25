@@ -1,3 +1,5 @@
+import type { EventSalesSummary } from 'src/core/domain/models/eventSalesSummary';
+
 import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
@@ -8,9 +10,12 @@ import { capitalizeFirtsLetter } from 'src/utils/helper';
 import CardTotals from './card-totals';
 import CardIncomeTotals from '../../components/card-income-totals';
 
+interface SalesSummaryEventProps {
+  salesSummary: EventSalesSummary | null;
+}
+
 const TOTALS = [
   {
-    line1: '2,000',
     line2: '1,000',
     line3: '3,693,286 (3,641,012)',
     line4: '3,000 / 4,000',
@@ -23,9 +28,7 @@ const TOTALS = [
   },
 ];
 
-const fundraising = '45,653';
-
-export default function Totals() {
+export default function Totals({ salesSummary }: SalesSummaryEventProps) {
   const theme = useTheme();
   const { t } = useTranslation();
 
@@ -34,7 +37,8 @@ export default function Totals() {
   const l = queryParams.get('l');
 
   const loading = l === 'true';
-
+  const formattedAmount = t('', { value: salesSummary?.totalRevenue, format: 'currency' });
+  console.log(formattedAmount);
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.totals.totals'))}</h2>
@@ -56,7 +60,7 @@ export default function Totals() {
       >
         <CardTotals
           title={`<strong>${capitalizeFirtsLetter(t('events.totals.ticketsSold'))}</strong>`}
-          line1={`${capitalizeFirtsLetter(t('events.totals.tickets'))} : <strong>${TOTALS[0].line1}</strong>`}
+          line1={`${capitalizeFirtsLetter(t('events.totals.tickets'))} : <strong>${salesSummary?.totalSeats}</strong>`}
           line2={`${capitalizeFirtsLetter(t('events.totals.memberships'))} : <strong>${TOTALS[0].line2} </strong>`}
           line3={`${capitalizeFirtsLetter(t('events.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('events.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
@@ -68,7 +72,7 @@ export default function Totals() {
 
         <CardIncomeTotals
           title={`<strong>${capitalizeFirtsLetter(t('events.totals.fundraising'))}</strong>`}
-          line1={`<strong>$${t(fundraising)} </strong>`}
+          line1={`<strong>$${t(salesSummary?.totalRevenue.toString() || '0' )} </strong>`}
           loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}

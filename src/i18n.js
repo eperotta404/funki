@@ -13,10 +13,24 @@ i18n.use(initReactI18next).init({
       translation: colTranslation,
     },
   },
-  lng: 'es',
-  fallbackLng: 'es',
-  interpolation: {
-    escapeValue: false,
+  lng: 'es-MX',
+  fallbackLng: 'es-MX',
+  iinterpolation: {
+    format(value, format, lng) {
+      if (format === 'currency') {
+        let currency;
+        if (lng === 'es-MX') {
+          currency = 'MXN';
+        } else if (lng === 'es-CO') {
+          currency = 'COP';
+        }
+        return new Intl.NumberFormat(lng, {
+          style: 'currency',
+          currency,
+        }).format(value);
+      }
+      return value;
+    },
   },
 });
 

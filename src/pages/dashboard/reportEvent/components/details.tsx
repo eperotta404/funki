@@ -1,3 +1,5 @@
+import type { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
+
 import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
@@ -8,7 +10,11 @@ import { capitalizeFirtsLetter } from 'src/utils/helper';
 import AnalyticBar from '../../components/analytic-bar';
 import AnalyticPie from '../../components/analytic-pie';
 
-export default function Details() {
+interface TicketsByStandEventProps {
+  ticketsByStand: EventTicketsByStand | null;
+}
+
+export default function Details({ ticketsByStand }: TicketsByStandEventProps) {
   const { t } = useTranslation();
   const theme = useTheme();
 
@@ -17,6 +23,8 @@ export default function Details() {
   const l = queryParams.get('l');
 
   const loading = l === 'true';
+
+  console.log(ticketsByStand);
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.details.details'))}</h2>
