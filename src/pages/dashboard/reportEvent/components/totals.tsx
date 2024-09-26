@@ -1,6 +1,5 @@
 import type { EventSalesSummary } from 'src/core/domain/models/eventSalesSummary';
 
-import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import { Box, useTheme } from '@mui/material';
@@ -12,6 +11,7 @@ import CardIncomeTotals from '../../components/card-income-totals';
 
 interface SalesSummaryEventProps {
   salesSummary: EventSalesSummary | null;
+  loadingSalesSummary: boolean;
 }
 
 const TOTALS = [
@@ -28,17 +28,14 @@ const TOTALS = [
   },
 ];
 
-export default function Totals({ salesSummary }: SalesSummaryEventProps) {
+export default function Totals({ salesSummary, loadingSalesSummary }: SalesSummaryEventProps) {
   const theme = useTheme();
   const { t } = useTranslation();
 
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const l = queryParams.get('l');
-
-  const loading = l === 'true';
   const formattedAmount = t('', { value: salesSummary?.totalRevenue, format: 'currency' });
+
   console.log(formattedAmount);
+
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.totals.totals'))}</h2>
@@ -64,7 +61,7 @@ export default function Totals({ salesSummary }: SalesSummaryEventProps) {
           line2={`${capitalizeFirtsLetter(t('events.totals.memberships'))} : <strong>${TOTALS[0].line2} </strong>`}
           line3={`${capitalizeFirtsLetter(t('events.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('events.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
-          loading={loading}
+          loading={loadingSalesSummary}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
           colorSvg="info.main"
@@ -73,7 +70,7 @@ export default function Totals({ salesSummary }: SalesSummaryEventProps) {
         <CardIncomeTotals
           title={`<strong>${capitalizeFirtsLetter(t('events.totals.fundraising'))}</strong>`}
           line1={`<strong>$${t(salesSummary?.totalRevenue.toString() || '0' )} </strong>`}
-          loading={loading}
+          loading={loadingSalesSummary}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
           colorSvg="info.main"
@@ -86,7 +83,7 @@ export default function Totals({ salesSummary }: SalesSummaryEventProps) {
           line3={`${capitalizeFirtsLetter(t('events.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('events.totals.total').toUpperCase()} : <strong>${TOTALS[1].line4}</strong>`}
           line5="63%"
-          loading={loading}
+          loading={loadingSalesSummary}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
           colorSvg="info.main"

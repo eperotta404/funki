@@ -3,7 +3,6 @@ import type { EventSalesByStand } from 'src/core/domain/models/eventSalesByStand
 import type { EventSaleChannels } from 'src/core/domain/models/eventSaleChannels';
 import type { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
 
-import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import { Box, useTheme } from '@mui/material';
@@ -18,33 +17,34 @@ interface TicketsByStandEventProps {
   salesByStand: EventSalesByStand | null;
   paidMethods: EventPaidMethods | null;
   saleChannels: EventSaleChannels | null;
+  loadingTicketsByStand: boolean;
+  loadingSalesByStand: boolean;
+  loadingPaidMethods: boolean;
+  loadingSaleChannels: boolean
 }
 
-export default function Details({ ticketsByStand, salesByStand, paidMethods, saleChannels }: TicketsByStandEventProps) {
+export default function Details({ ticketsByStand, salesByStand, paidMethods, saleChannels, loadingTicketsByStand, loadingSalesByStand, loadingPaidMethods, loadingSaleChannels }: TicketsByStandEventProps) {
   const { t } = useTranslation();
   const theme = useTheme();
 
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const l = queryParams.get('l');
-
-  const loading = l === 'true';
   const colorPalette = [
-    theme.palette.info.main,
-    theme.palette.warning.light,
-    theme.palette.error.dark,
-    theme.palette.primary.dark,
     theme.palette.success.main,
-];
+    theme.palette.info.main,
+    theme.palette.success.dark,
+    theme.palette.primary.dark,
+    theme.palette.success.lighter,
+    theme.palette.info.light,
+    theme.palette.success.main,
+    theme.palette.info.lighterChannel,
+  ];
 
-  function getColorsForSeries(seriesCount: number): string[] {
-    return colorPalette.slice(0, seriesCount);
-  }
+  const getColorsForSeries = (seriesCount: number): string[] => colorPalette.slice(0, seriesCount);
 
   console.log(ticketsByStand);
   console.log(salesByStand);
   console.log(paidMethods);
   console.log(saleChannels);
+
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.details.details'))}</h2>
@@ -65,7 +65,7 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
               colors: getColorsForSeries(ticketsByStand?.series?.length || 0),
               series: ticketsByStand?.series,
             }}
-            loading={loading}
+            loading={loadingTicketsByStand}
           />
         }
         {salesByStand && salesByStand.categories.length > 0 &&
@@ -78,9 +78,12 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
               categories: salesByStand?.categories,
               max: salesByStand?.max,
               colors: getColorsForSeries(salesByStand?.series?.length || 0),
-              series:  salesByStand?.series,
+              series: salesByStand?.series?.map((serie) => ({
+                ...serie,
+                name: capitalizeFirtsLetter(t(serie.name)),
+              }))
             }}
-            loading={loading}
+            loading={loadingSalesByStand}
           />
         }
       </Box>
@@ -97,7 +100,7 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
               colors: getColorsForSeries(paidMethods?.series?.length || 0),
               series: paidMethods.series
             }}
-            loading={loading}
+            loading={loadingPaidMethods}
           />}
           {saleChannels && saleChannels.series.length > 0 &&
             <AnalyticPie
@@ -106,7 +109,7 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
                 colors: getColorsForSeries(paidMethods?.series?.length || 0),
               series: saleChannels.series
               }}
-              loading={loading}
+              loading={loadingSaleChannels}
             />}
       </Box>
       <Box
@@ -133,7 +136,7 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
               { name: capitalizeFirtsLetter(t('events.details.courtesy')), data: [3000, 25000, 3500] },
             ],
           }}
-          loading={loading}
+          loading={false}
         />
 
         <AnalyticBar
@@ -151,7 +154,7 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
             ],
             yAxisMarker: 72000,
           }}
-          loading={loading}
+          loading={false}
         />
       </Box>
     </>

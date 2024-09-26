@@ -29,6 +29,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
   const handleDownload = () => {
     console.log('download...');
   };
+
   return (
     <>
       <Box

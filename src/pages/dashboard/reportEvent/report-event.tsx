@@ -1,16 +1,11 @@
 import type { EventDetail } from 'src/core/domain/models/eventDetail'
-import type { EventPaidMethods } from 'src/core/domain/models/eventPaidMethod';
-import type { EventSalesSummary } from 'src/core/domain/models/eventSalesSummary';
-import type { EventSalesByStand } from 'src/core/domain/models/eventSalesByStand';
-import type { EventSaleChannels } from 'src/core/domain/models/eventSaleChannels';
-import type { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
 
 import { Helmet } from 'react-helmet-async';
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Card, Grid } from '@mui/material';
 
+import { useFetchData } from 'src/hooks/use-fetch-data';
 import { useFilterData } from 'src/hooks/use-filter-data';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
@@ -62,66 +57,12 @@ export default function Page() {
   const { loading, teams, years, events, selectedTeam, selectedYear, selectedEvent, setSelectedTeam, setSelectedYear, setSelectedEvent } =
   useFilterData(getEventsByOrgnizationUseCase, selectedOrganization, 'event');
 
-  const [salesSummary, setSalesSummary] = useState<EventSalesSummary | null>(null);
-  const [ticketsByStand, setTicketsByStand] = useState<EventTicketsByStand | null>(null);
-  const [salesByStand, setSalesByStand] = useState<EventSalesByStand | null>(null);
-  const [paidMethods, setPaidMethods] = useState<EventPaidMethods | null>(null);
-  const [saleChannels, setSaleChannels] = useState<EventSaleChannels | null>(null);
 
-  useEffect(() => {
-    if (selectedEvent) {
-      const getEventSalesSummary = async () => {
-        try {
-          const summary = await getEventSalesSummaryUseCase.execute(selectedEvent.details.code);
-          setSalesSummary(summary);
-        } catch (error) {
-          console.error('Error fetching sales summary:', error);
-        }
-      };
-
-      const getEventTicketsByStand = async () => {
-        try {
-          const tickets = await getEventTicketByStandUseCase.execute(selectedEvent.details.code);
-          setTicketsByStand(tickets);
-        } catch (error) {
-          console.error('Error fetching tickets by stand:', error);
-        }
-      };
-
-      const getEventSalesByStand = async () => {
-        try {
-          const sales = await getEventSalesByStandUseCase.execute(selectedEvent.details.code);
-          setSalesByStand(sales);
-        } catch (error) {
-          console.error('Error fetching sales by stand:', error);
-        }
-      };
-
-      const getEventPaidMethods = async () => {
-        try {
-          const paidMeth = await getEventPaidMethodsUseCase.execute(selectedEvent.details.code);
-          setPaidMethods(paidMeth);
-        } catch (error) {
-          console.error('Error fetching paid methods:', error);
-        }
-      };
-
-      const getEventSaleChannels = async () => {
-        try {
-          const saleChan = await getEventSaleChannelsUseCase.execute(selectedEvent.details.code);
-          setSaleChannels(saleChan);
-        } catch (error) {
-          console.error('Error fetching sale channels:', error);
-        }
-      };
-
-      getEventSalesSummary();
-      getEventTicketsByStand();
-      getEventSalesByStand();
-      getEventPaidMethods();
-      getEventSaleChannels();
-    }
-  }, [selectedEvent]);
+  const { data: salesSummary, loading: loadingSalesSummary } = useFetchData(getEventSalesSummaryUseCase, selectedEvent?.details.code);
+  const { data: ticketsByStand, loading: loadingTicketsByStand } = useFetchData(getEventTicketByStandUseCase, selectedEvent?.details.code);
+  const { data: salesByStand, loading: loadingSalesByStand } = useFetchData(getEventSalesByStandUseCase, selectedEvent?.details.code);
+  const { data: paidMethods, loading: loadingPaidMethods } = useFetchData(getEventPaidMethodsUseCase, selectedEvent?.details.code);
+  const { data: saleChannels, loading: loadingSaleChannels } = useFetchData(getEventSaleChannelsUseCase, selectedEvent?.details.code);
 
   const cardStyle = { p: 3, backgroundColor: 'background.default', boxShadow: 3 };
 
@@ -164,12 +105,21 @@ export default function Page() {
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <Totals salesSummary={salesSummary}/>
+                <Totals salesSummary={salesSummary} loadingSalesSummary={loadingSalesSummary}/>
               </Card>
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <Details ticketsByStand={ticketsByStand} salesByStand={salesByStand} paidMethods={paidMethods} saleChannels={saleChannels}/>
+                <Details
+                  ticketsByStand={ticketsByStand}
+                  salesByStand={salesByStand}
+                  paidMethods={paidMethods}
+                  saleChannels={saleChannels}
+                  loadingTicketsByStand={loadingTicketsByStand}
+                  loadingSalesByStand={loadingSalesByStand}
+                  loadingPaidMethods={loadingPaidMethods}
+                  loadingSaleChannels={loadingSaleChannels}
+                  />
               </Card>
             </Grid>
           </>

@@ -39,8 +39,10 @@ export const useFetchData = <T>(
       }
     };
 
-    fetchData();
-  }, []);
+    if (args.every(arg => arg !== null && arg !== undefined)) {
+      fetchData();
+    }
+  }, [useCase, ...args]);
 
   return { data, loading, error };
 };
