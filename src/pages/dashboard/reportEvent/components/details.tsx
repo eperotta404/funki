@@ -1,3 +1,4 @@
+import type { EventSalesByStand } from 'src/core/domain/models/eventSalesByStand';
 import type { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
 
 import { useLocation } from 'react-router';
@@ -12,9 +13,10 @@ import AnalyticPie from '../../components/analytic-pie';
 
 interface TicketsByStandEventProps {
   ticketsByStand: EventTicketsByStand | null;
+  salesByStand: EventSalesByStand | null;
 }
 
-export default function Details({ ticketsByStand }: TicketsByStandEventProps) {
+export default function Details({ ticketsByStand, salesByStand }: TicketsByStandEventProps) {
   const { t } = useTranslation();
   const theme = useTheme();
 
@@ -23,8 +25,19 @@ export default function Details({ ticketsByStand }: TicketsByStandEventProps) {
   const l = queryParams.get('l');
 
   const loading = l === 'true';
+  const colorPalette = [
+    theme.palette.primary.main,
+    theme.palette.info.dark,
+    theme.palette.error.dark,
+    theme.palette.warning.main
+  ];
+
+  function getColorsForSeries(seriesCount: number): string[] {
+    return colorPalette.slice(0, seriesCount);
+  }
 
   console.log(ticketsByStand);
+  console.log(salesByStand);
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.details.details'))}</h2>
@@ -34,60 +47,35 @@ export default function Details({ ticketsByStand }: TicketsByStandEventProps) {
         gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
         sx={{ mt: 2 }}
       >
-        <AnalyticBar
-          title={capitalizeFirtsLetter(t('events.details.ticketsByTribune'))}
-          isVertical
-          chart={{
-            stacked: true,
-            categories: [
-              'Tribune 1',
-              'Tribune 2',
-              'Tribune 3',
-              'Tribune 4',
-              'Tribune 5',
-              'Tribune 6',
-              'Tribune 7',
-              'Tribune 8',
-              'Tribune 9',
-            ],
-            max: 200,
-            colors: [theme.palette.primary.main, theme.palette.info.dark, theme.palette.error.dark],
-            series: [
-              { name: capitalizeFirtsLetter(t('events.totals.tickets')), data: [43, 33, 22, 37, 67, 68, 37, 24, 16] },
-              { name: capitalizeFirtsLetter(t('events.totals.memberships')), data: [51, 70, 47, 67, 40, 37, 24, 34, 17] },
-              { name: capitalizeFirtsLetter(t('events.totals.courtesy')), data: [30, 50, 70, 47, 67, 40, 37, 24, 24] },
-            ],
-          }}
-          loading={loading}
-        />
-        <AnalyticBar
-          title={capitalizeFirtsLetter(t('events.details.montoByTribune'))}
-          isVertical
-          money
-          chart={{
-            stacked: false,
-            categories: [
-              'Tribune 1',
-              'Tribune 2',
-              'Tribune 3',
-              'Tribune 4',
-              'Tribune 5',
-              'Tribune 6',
-              'Tribune 7',
-              'Tribune 8',
-              'Tribune 9',
-            ],
-            max: 20000,
-            colors: [theme.palette.info.main],
-            series: [
-              {
-                name: capitalizeFirtsLetter(t('events.totals.tickets')),
-                data: [11236, 788, 16002, 6057, 1958, 6008, 3778, 11000, 5500],
-              },
-            ],
-          }}
-          loading={loading}
-        />
+        {ticketsByStand && ticketsByStand.categories.length > 0 &&
+          <AnalyticBar
+            title={capitalizeFirtsLetter(t('events.details.ticketsByTribune'))}
+            isVertical
+            chart={{
+              stacked: true,
+              categories: ticketsByStand?.categories,
+              max: ticketsByStand?.max,
+              colors: getColorsForSeries(ticketsByStand?.series?.length || 0),
+              series: ticketsByStand?.series,
+            }}
+            loading={loading}
+          />
+        }
+        {salesByStand && salesByStand.categories.length > 0 &&
+          <AnalyticBar
+            title={capitalizeFirtsLetter(t('events.details.montoByTribune'))}
+            isVertical
+            money
+            chart={{
+              stacked: false,
+              categories: salesByStand?.categories,
+              max: salesByStand?.max,
+              colors: getColorsForSeries(salesByStand?.series?.length || 0),
+              series:  salesByStand?.series,
+            }}
+            loading={loading}
+          />
+        }
       </Box>
       <Box
         gap={2}

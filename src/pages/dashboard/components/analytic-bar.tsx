@@ -2,7 +2,7 @@ import type { ChartOptions } from 'src/components/chart';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Card, Skeleton, CardHeader } from '@mui/material';
-import { useTheme, alpha as hexAlpha } from '@mui/material/styles'; 
+import { useTheme, alpha as hexAlpha } from '@mui/material/styles';
 
 import { Chart, useChart } from 'src/components/chart';
 
@@ -29,7 +29,7 @@ interface AnalyticBarProps {
 export default function AnalyticBar(props: AnalyticBarProps) {
   const { title, subheader, isVertical, money, chart, loading, ...other } = props;
   const theme = useTheme();
-  
+
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const chartColors = chart.colors ?? [
@@ -79,6 +79,11 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       axisBorder: {
         show: isVertical,
       },
+      labels: {
+        style: {
+          fontSize: '8px',
+        },
+      },
     },
 
     yaxis: {
@@ -105,12 +110,12 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       bar: {
         horizontal: !isVertical,
 
-        columnWidth: chart.series[0].data.length === 1 
-          ? isMobile ? '30%' : '10%'  
-          : '50%', 
+        columnWidth: chart.series[0].data.length === 1
+          ? isMobile ? '30%' : '10%'
+          : '50%',
       },
     },
-  
+
     ...chart.options,
   });
 

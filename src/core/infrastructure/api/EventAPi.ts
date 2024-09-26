@@ -1,6 +1,7 @@
 import type { EventRepository } from 'src/core/domain/repositories/EventRepository';
 
 import { EventSalesSummary } from 'src/core/domain/models/eventSalesSummary';
+import { EventSalesByStand } from 'src/core/domain/models/eventSalesByStand';
 import { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
 
 import type { HttpClient } from '../http/HttpClient';
@@ -19,7 +20,7 @@ export class EventApi implements EventRepository {
       const { totalNetGmvLocal, totalSeats } = response.data || {};
       return new EventSalesSummary(totalNetGmvLocal, totalSeats);
     } catch (error) {
-      console.error('Error fetching organization:', error);
+      console.error('Error fetching getSalesSummary:', error);
       throw error;
     }
   }
@@ -30,7 +31,18 @@ export class EventApi implements EventRepository {
       const response = await this.httpClient.get(`/ticketsByStand?${params}`);
       return new EventTicketsByStand( response.data);
     } catch (error) {
-      console.error('Error fetching organization:', error);
+      console.error('Error fetching getTicketsByStandEvent:', error);
+      throw error;
+    }
+  }
+
+  async getSalesByStandEvent(eventCode: string): Promise<EventSalesByStand> {
+    try {
+      const params = new URLSearchParams({ eventCode }).toString();
+      const response = await this.httpClient.get(`/salesByStand?${params}`);
+      return new EventSalesByStand( response.data);
+    } catch (error) {
+      console.error('Error fetching getSalesByStandEvent:', error);
       throw error;
     }
   }

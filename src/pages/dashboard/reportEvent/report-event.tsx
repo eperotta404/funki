@@ -1,5 +1,6 @@
 import type { EventDetail } from 'src/core/domain/models/eventDetail'
 import type { EventSalesSummary } from 'src/core/domain/models/eventSalesSummary';
+import type { EventSalesByStand } from 'src/core/domain/models/eventSalesByStand';
 import type { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
 
 import { useState, useEffect } from 'react';
@@ -15,6 +16,7 @@ import { capitalizeFirtsLetter } from 'src/utils/helper';
 import { CONFIG } from 'src/config-global';
 import { DashboardContent } from 'src/layouts/dashboard';
 import { GetEventSalesSummary } from 'src/core/domain/useCases/GetEventSalesSummary';
+import { GetEventSalesByStand } from 'src/core/domain/useCases/GetEventSalesByStand';
 import { eventService, organizationService } from 'src/core/infrastructure/instances';
 import { GetEventTicketsByStand } from 'src/core/domain/useCases/GetEventTicketsByStand';
 import { GetEventsByOrganization } from 'src/core/domain/useCases/GetEventsByOrganization';
@@ -34,6 +36,7 @@ import EventNotAvailable from './components/event-not-available';
 const getEventsByOrgnizationUseCase = new GetEventsByOrganization(organizationService);
 const getEventSalesSummaryUseCase = new GetEventSalesSummary(eventService);
 const getEventTicketByStandUseCase = new GetEventTicketsByStand(eventService);
+const getEventSalesByStandUseCase = new GetEventSalesByStand(eventService);
 
 const metadata = { title: `Eventos| Dashboard - ${CONFIG.appName}` };
 export interface FilterOption {
@@ -55,6 +58,7 @@ export default function Page() {
 
   const [salesSummary, setSalesSummary] = useState<EventSalesSummary | null>(null);
   const [ticketsByStand, setTicketsByStand] = useState<EventTicketsByStand | null>(null);
+  const [salesByStand, setSalesByStand] = useState<EventSalesByStand | null>(null);
 
   useEffect(() => {
     if (selectedEvent) {
@@ -76,8 +80,18 @@ export default function Page() {
         }
       };
 
+      const getEventSalesByStand = async () => {
+        try {
+          const sales = await getEventSalesByStandUseCase.execute(selectedEvent.details.code);
+          setSalesByStand(sales);
+        } catch (error) {
+          console.error('Error fetching sales by stand:', error);
+        }
+      };
+
       getEventSalesSummary();
       getEventTicketsByStand();
+      getEventSalesByStand();
     }
   }, [selectedEvent]);
 
@@ -127,7 +141,7 @@ export default function Page() {
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <Details ticketsByStand={ticketsByStand}/>
+                <Details ticketsByStand={ticketsByStand} salesByStand={salesByStand}/>
               </Card>
             </Grid>
           </>
