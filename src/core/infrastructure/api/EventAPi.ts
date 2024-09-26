@@ -1,7 +1,7 @@
-import { EventSaleChannels } from 'src/core/domain/models/eventSaleChannels';
 import type { EventRepository } from 'src/core/domain/repositories/EventRepository';
 
 import { EventPaidMethods } from 'src/core/domain/models/eventPaidMethod';
+import { EventSaleChannels } from 'src/core/domain/models/eventSaleChannels';
 import { EventSalesSummary } from 'src/core/domain/models/eventSalesSummary';
 import { EventSalesByStand } from 'src/core/domain/models/eventSalesByStand';
 import { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';

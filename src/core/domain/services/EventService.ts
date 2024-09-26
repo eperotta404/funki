@@ -1,9 +1,9 @@
 import type { EventPaidMethods } from "../models/eventPaidMethod";
 import type { EventSalesSummary } from "../models/eventSalesSummary";
 import type { EventSalesByStand } from "../models/eventSalesByStand";
+import type { EventSaleChannels } from "../models/eventSaleChannels";
 import type { EventRepository } from "../repositories/EventRepository";
 import type { EventTicketsByStand } from "../models/eventTicketsByStand";
-import { EventSaleChannels } from "../models/eventSaleChannels";
 
 export class EventService {
   constructor(private eventRepository: EventRepository) {}
