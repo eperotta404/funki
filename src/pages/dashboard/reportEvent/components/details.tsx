@@ -1,3 +1,4 @@
+import type { EventPaidMethods } from 'src/core/domain/models/eventPaidMethod';
 import type { EventSalesByStand } from 'src/core/domain/models/eventSalesByStand';
 import type { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
 
@@ -14,9 +15,10 @@ import AnalyticPie from '../../components/analytic-pie';
 interface TicketsByStandEventProps {
   ticketsByStand: EventTicketsByStand | null;
   salesByStand: EventSalesByStand | null;
+  paidMethods: EventPaidMethods | null;
 }
 
-export default function Details({ ticketsByStand, salesByStand }: TicketsByStandEventProps) {
+export default function Details({ ticketsByStand, salesByStand, paidMethods }: TicketsByStandEventProps) {
   const { t } = useTranslation();
   const theme = useTheme();
 
@@ -26,11 +28,12 @@ export default function Details({ ticketsByStand, salesByStand }: TicketsByStand
 
   const loading = l === 'true';
   const colorPalette = [
-    theme.palette.primary.main,
-    theme.palette.info.dark,
+    theme.palette.info.main,
+    theme.palette.warning.light,
     theme.palette.error.dark,
-    theme.palette.warning.main
-  ];
+    theme.palette.primary.dark,
+    theme.palette.success.main,
+];
 
   function getColorsForSeries(seriesCount: number): string[] {
     return colorPalette.slice(0, seriesCount);
@@ -38,6 +41,7 @@ export default function Details({ ticketsByStand, salesByStand }: TicketsByStand
 
   console.log(ticketsByStand);
   console.log(salesByStand);
+  console.log(paidMethods);
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.details.details'))}</h2>
@@ -83,26 +87,15 @@ export default function Details({ ticketsByStand, salesByStand }: TicketsByStand
         gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
         sx={{ mt: 2 }}
       >
+      {paidMethods && paidMethods.series.length > 0 &&
         <AnalyticPie
           title={capitalizeFirtsLetter(t('events.details.bundleMethods'))}
           chart={{
-            colors: [
-              theme.palette.info.main,
-              theme.palette.warning.light,
-              theme.palette.error.dark,
-              theme.palette.primary.dark,
-              theme.palette.success.main,
-            ],
-            series: [
-              { label: 'Method1', value: 900 },
-              { label: 'Method2', value: 3500 },
-              { label: 'Method3', value: 1500 },
-              { label: 'Method4', value: 1000 },
-              { label: 'Method5', value: 2100 },
-            ],
+            colors: getColorsForSeries(paidMethods?.series?.length || 0),
+            series: paidMethods.series
           }}
           loading={loading}
-        />
+        />}
         <AnalyticPie
           title={capitalizeFirtsLetter(t('events.details.bundleChannels'))}
           chart={{

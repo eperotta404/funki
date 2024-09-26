@@ -1,10 +1,11 @@
 import type { EventDetail } from 'src/core/domain/models/eventDetail'
+import type { EventPaidMethods } from 'src/core/domain/models/eventPaidMethod';
 import type { EventSalesSummary } from 'src/core/domain/models/eventSalesSummary';
 import type { EventSalesByStand } from 'src/core/domain/models/eventSalesByStand';
 import type { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
 
-import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Card, Grid } from '@mui/material';
@@ -15,6 +16,7 @@ import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import { CONFIG } from 'src/config-global';
 import { DashboardContent } from 'src/layouts/dashboard';
+import { GetEventPaidMethods } from 'src/core/domain/useCases/GetEventPaidMethods';
 import { GetEventSalesSummary } from 'src/core/domain/useCases/GetEventSalesSummary';
 import { GetEventSalesByStand } from 'src/core/domain/useCases/GetEventSalesByStand';
 import { eventService, organizationService } from 'src/core/infrastructure/instances';
@@ -37,6 +39,7 @@ const getEventsByOrgnizationUseCase = new GetEventsByOrganization(organizationSe
 const getEventSalesSummaryUseCase = new GetEventSalesSummary(eventService);
 const getEventTicketByStandUseCase = new GetEventTicketsByStand(eventService);
 const getEventSalesByStandUseCase = new GetEventSalesByStand(eventService);
+const getEventPaidMethodsUseCase = new GetEventPaidMethods(eventService);
 
 const metadata = { title: `Eventos| Dashboard - ${CONFIG.appName}` };
 export interface FilterOption {
@@ -59,6 +62,7 @@ export default function Page() {
   const [salesSummary, setSalesSummary] = useState<EventSalesSummary | null>(null);
   const [ticketsByStand, setTicketsByStand] = useState<EventTicketsByStand | null>(null);
   const [salesByStand, setSalesByStand] = useState<EventSalesByStand | null>(null);
+  const [paidMethods, setPaidMethods] = useState<EventPaidMethods | null>(null);
 
   useEffect(() => {
     if (selectedEvent) {
@@ -89,9 +93,19 @@ export default function Page() {
         }
       };
 
+      const getEventPaidMethods = async () => {
+        try {
+          const paidMeth = await getEventPaidMethodsUseCase.execute(selectedEvent.details.code);
+          setPaidMethods(paidMeth);
+        } catch (error) {
+          console.error('Error fetching paid methods:', error);
+        }
+      };
+
       getEventSalesSummary();
       getEventTicketsByStand();
       getEventSalesByStand();
+      getEventPaidMethods();
     }
   }, [selectedEvent]);
 
@@ -141,7 +155,7 @@ export default function Page() {
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <Details ticketsByStand={ticketsByStand} salesByStand={salesByStand}/>
+                <Details ticketsByStand={ticketsByStand} salesByStand={salesByStand} paidMethods={paidMethods}/>
               </Card>
             </Grid>
           </>

@@ -1,3 +1,4 @@
+import type { EventPaidMethods } from "../models/eventPaidMethod";
 import type { EventSalesSummary } from "../models/eventSalesSummary";
 import type { EventSalesByStand } from "../models/eventSalesByStand";
 import type { EventRepository } from "../repositories/EventRepository";
@@ -16,5 +17,9 @@ export class EventService {
 
   async getSalesByStandEvent(eventCode: string): Promise<EventSalesByStand> {
     return this.eventRepository.getSalesByStandEvent(eventCode);
+  }
+
+  async getPaidMethodsEvent(eventCode: string): Promise<EventPaidMethods> {
+    return this.eventRepository.getPaidMethodsEvent(eventCode);
   }
 }
