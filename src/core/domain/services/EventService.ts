@@ -3,6 +3,7 @@ import type { EventSalesSummary } from "../models/eventSalesSummary";
 import type { EventSalesByStand } from "../models/eventSalesByStand";
 import type { EventRepository } from "../repositories/EventRepository";
 import type { EventTicketsByStand } from "../models/eventTicketsByStand";
+import { EventSaleChannels } from "../models/eventSaleChannels";
 
 export class EventService {
   constructor(private eventRepository: EventRepository) {}
@@ -21,5 +22,9 @@ export class EventService {
 
   async getPaidMethodsEvent(eventCode: string): Promise<EventPaidMethods> {
     return this.eventRepository.getPaidMethodsEvent(eventCode);
+  }
+
+  async getEventSaleChannels(eventCode: string): Promise<EventSaleChannels> {
+    return this.eventRepository.getSaleChannelsEvent(eventCode);
   }
 }

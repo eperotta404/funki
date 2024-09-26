@@ -1,5 +1,6 @@
 import type { EventPaidMethods } from 'src/core/domain/models/eventPaidMethod';
 import type { EventSalesByStand } from 'src/core/domain/models/eventSalesByStand';
+import type { EventSaleChannels } from 'src/core/domain/models/eventSaleChannels';
 import type { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
 
 import { useLocation } from 'react-router';
@@ -16,9 +17,10 @@ interface TicketsByStandEventProps {
   ticketsByStand: EventTicketsByStand | null;
   salesByStand: EventSalesByStand | null;
   paidMethods: EventPaidMethods | null;
+  saleChannels: EventSaleChannels | null;
 }
 
-export default function Details({ ticketsByStand, salesByStand, paidMethods }: TicketsByStandEventProps) {
+export default function Details({ ticketsByStand, salesByStand, paidMethods, saleChannels }: TicketsByStandEventProps) {
   const { t } = useTranslation();
   const theme = useTheme();
 
@@ -42,6 +44,7 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods }: T
   console.log(ticketsByStand);
   console.log(salesByStand);
   console.log(paidMethods);
+  console.log(saleChannels);
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.details.details'))}</h2>
@@ -87,31 +90,24 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods }: T
         gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
         sx={{ mt: 2 }}
       >
-      {paidMethods && paidMethods.series.length > 0 &&
-        <AnalyticPie
-          title={capitalizeFirtsLetter(t('events.details.bundleMethods'))}
-          chart={{
-            colors: getColorsForSeries(paidMethods?.series?.length || 0),
-            series: paidMethods.series
-          }}
-          loading={loading}
-        />}
-        <AnalyticPie
-          title={capitalizeFirtsLetter(t('events.details.bundleChannels'))}
-          chart={{
-            colors: [
-              theme.palette.primary.main,
-              theme.palette.warning.main,
-              theme.palette.error.dark,
-            ],
-            series: [
-              { label: capitalizeFirtsLetter(t('events.details.web')), value: 1700 },
-              { label: capitalizeFirtsLetter(t('events.details.app')), value: 3500 },
-              { label: capitalizeFirtsLetter(t('events.details.advisors')), value: 1500 },
-            ],
-          }}
-          loading={loading}
-        />
+        {paidMethods && paidMethods.series.length > 0 &&
+          <AnalyticPie
+            title={capitalizeFirtsLetter(t('events.details.bundleMethods'))}
+            chart={{
+              colors: getColorsForSeries(paidMethods?.series?.length || 0),
+              series: paidMethods.series
+            }}
+            loading={loading}
+          />}
+          {saleChannels && saleChannels.series.length > 0 &&
+            <AnalyticPie
+              title={capitalizeFirtsLetter(t('events.details.bundleChannels'))}
+              chart={{
+                colors: getColorsForSeries(paidMethods?.series?.length || 0),
+              series: saleChannels.series
+              }}
+              loading={loading}
+            />}
       </Box>
       <Box
         gap={2}

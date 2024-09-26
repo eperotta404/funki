@@ -2,6 +2,7 @@ import type { EventDetail } from 'src/core/domain/models/eventDetail'
 import type { EventPaidMethods } from 'src/core/domain/models/eventPaidMethod';
 import type { EventSalesSummary } from 'src/core/domain/models/eventSalesSummary';
 import type { EventSalesByStand } from 'src/core/domain/models/eventSalesByStand';
+import type { EventSaleChannels } from 'src/core/domain/models/eventSaleChannels';
 import type { EventTicketsByStand } from 'src/core/domain/models/eventTicketsByStand';
 
 import { Helmet } from 'react-helmet-async';
@@ -20,6 +21,7 @@ import { GetEventPaidMethods } from 'src/core/domain/useCases/GetEventPaidMethod
 import { GetEventSalesSummary } from 'src/core/domain/useCases/GetEventSalesSummary';
 import { GetEventSalesByStand } from 'src/core/domain/useCases/GetEventSalesByStand';
 import { eventService, organizationService } from 'src/core/infrastructure/instances';
+import { GetEventSalesChannels } from 'src/core/domain/useCases/GetEventSaleChannels';
 import { GetEventTicketsByStand } from 'src/core/domain/useCases/GetEventTicketsByStand';
 import { GetEventsByOrganization } from 'src/core/domain/useCases/GetEventsByOrganization';
 import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
@@ -40,6 +42,7 @@ const getEventSalesSummaryUseCase = new GetEventSalesSummary(eventService);
 const getEventTicketByStandUseCase = new GetEventTicketsByStand(eventService);
 const getEventSalesByStandUseCase = new GetEventSalesByStand(eventService);
 const getEventPaidMethodsUseCase = new GetEventPaidMethods(eventService);
+const getEventSaleChannelsUseCase = new GetEventSalesChannels(eventService);
 
 const metadata = { title: `Eventos| Dashboard - ${CONFIG.appName}` };
 export interface FilterOption {
@@ -63,6 +66,7 @@ export default function Page() {
   const [ticketsByStand, setTicketsByStand] = useState<EventTicketsByStand | null>(null);
   const [salesByStand, setSalesByStand] = useState<EventSalesByStand | null>(null);
   const [paidMethods, setPaidMethods] = useState<EventPaidMethods | null>(null);
+  const [saleChannels, setSaleChannels] = useState<EventSaleChannels | null>(null);
 
   useEffect(() => {
     if (selectedEvent) {
@@ -102,10 +106,20 @@ export default function Page() {
         }
       };
 
+      const getEventSaleChannels = async () => {
+        try {
+          const saleChan = await getEventSaleChannelsUseCase.execute(selectedEvent.details.code);
+          setSaleChannels(saleChan);
+        } catch (error) {
+          console.error('Error fetching sale channels:', error);
+        }
+      };
+
       getEventSalesSummary();
       getEventTicketsByStand();
       getEventSalesByStand();
       getEventPaidMethods();
+      getEventSaleChannels();
     }
   }, [selectedEvent]);
 
@@ -155,7 +169,7 @@ export default function Page() {
             </Grid>
             <Grid item xs={12}>
               <Card sx={cardStyle}>
-                <Details ticketsByStand={ticketsByStand} salesByStand={salesByStand} paidMethods={paidMethods}/>
+                <Details ticketsByStand={ticketsByStand} salesByStand={salesByStand} paidMethods={paidMethods} saleChannels={saleChannels}/>
               </Card>
             </Grid>
           </>

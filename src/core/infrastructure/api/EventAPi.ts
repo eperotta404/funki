@@ -1,3 +1,4 @@
+import { EventSaleChannels } from 'src/core/domain/models/eventSaleChannels';
 import type { EventRepository } from 'src/core/domain/repositories/EventRepository';
 
 import { EventPaidMethods } from 'src/core/domain/models/eventPaidMethod';
@@ -55,6 +56,17 @@ export class EventApi implements EventRepository {
       return new EventPaidMethods( response.data);
     } catch (error) {
       console.error('Error fetching getPaidMethodsEvent:', error);
+      throw error;
+    }
+  }
+
+  async getSaleChannelsEvent(eventCode: string): Promise<EventSaleChannels> {
+    try {
+      const params = new URLSearchParams({ eventCode }).toString();
+      const response = await this.httpClient.get(`/saleChannels?${params}`);
+      return new EventSaleChannels(response.data);
+    } catch (error) {
+      console.error('Error fetching getSaleChannelsEvent:', error);
       throw error;
     }
   }
