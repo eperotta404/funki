@@ -4,12 +4,15 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Card, Skeleton, CardHeader } from '@mui/material';
 import { useTheme, alpha as hexAlpha } from '@mui/material/styles';
 
+import { formatCurrency } from 'src/utils/format-currency';
+
 import { Chart, useChart } from 'src/components/chart';
 
 interface AnalyticBarProps {
   title?: string;
   subheader?: string;
   isVertical?: boolean;
+  currentLocale?: string,
   money?: boolean;
   chart: {
     colors?: string[];
@@ -27,7 +30,7 @@ interface AnalyticBarProps {
 }
 
 export default function AnalyticBar(props: AnalyticBarProps) {
-  const { title, subheader, isVertical, money, chart, loading, ...other } = props;
+  const { title, subheader, isVertical, money, chart, loading, currentLocale, ...other } = props;
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -91,7 +94,10 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       min: 0,
       tickAmount: 5,
       labels: {
-        formatter: (value: number) =>  ` ${value}`,
+        formatter: (value: number) =>
+          money
+            ? formatCurrency(value || 0, currentLocale || 'mex')
+            : `${value}`,
       },
     },
     legend: {
@@ -99,7 +105,10 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     },
     tooltip: {
       y: {
-        formatter: (value: number) => money ? `$${value}` : `${value}`,
+        formatter: (value: number) =>
+          money
+            ? formatCurrency(value || 0, currentLocale || 'mex')
+            : `${value}`,
       },
       theme: 'light',
     },

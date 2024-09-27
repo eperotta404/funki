@@ -24,8 +24,10 @@ interface TicketsByStandEventProps {
 }
 
 export default function Details({ ticketsByStand, salesByStand, paidMethods, saleChannels, loadingTicketsByStand, loadingSalesByStand, loadingPaidMethods, loadingSaleChannels }: TicketsByStandEventProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const theme = useTheme();
+
+  const currentLocale = i18n.language;
 
   const colorPalette = [
     theme.palette.success.main,
@@ -58,6 +60,7 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
           <AnalyticBar
             title={capitalizeFirtsLetter(t('events.details.ticketsByTribune'))}
             isVertical
+            currentLocale={currentLocale}
             chart={{
               stacked: true,
               categories: ticketsByStand?.categories,
@@ -72,6 +75,7 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
           <AnalyticBar
             title={capitalizeFirtsLetter(t('events.details.montoByTribune'))}
             isVertical
+            currentLocale={currentLocale}
             money
             chart={{
               stacked: false,
@@ -121,6 +125,7 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.totalCapacitySalesRevenue'))}
           isVertical={false}
+          currentLocale={currentLocale}
           chart={{
             stacked: true,
             categories: [capitalizeFirtsLetter(t('events.details.capacity')), capitalizeFirtsLetter(t('events.details.sales')), capitalizeFirtsLetter(t('events.details.income'))],
@@ -142,6 +147,7 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.courtesies'))}
           isVertical
+          currentLocale={currentLocale}
           chart={{
             stacked: true,
             categories: [capitalizeFirtsLetter(t('events.details.courtesies'))],

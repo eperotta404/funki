@@ -53,7 +53,7 @@ export default function Details() {
           loading={loading}
         />
 
-<AnalyticBar
+      <AnalyticBar
           title={capitalizeFirtsLetter(t('sales.details.salesTracking'))}
           isVertical
           chart={{
@@ -81,7 +81,7 @@ export default function Details() {
           title={capitalizeFirtsLetter(t('sales.details.salesByChannel'))}
           chart={{
             colors: [
-        
+
               theme.palette.error.dark,
               theme.palette.warning.light,
               theme.palette.success.light,
