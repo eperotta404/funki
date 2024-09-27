@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, useTheme } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
+import { formatCurrency } from 'src/utils/format-currency';
 
 import CardTotals from './card-totals';
 import CardIncomeTotals from '../../components/card-income-totals';
@@ -30,12 +31,12 @@ const TOTALS = [
 
 export default function Totals({ salesSummary, loadingSalesSummary }: SalesSummaryEventProps) {
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n} = useTranslation();
+  const currentLocale = i18n.language;
 
-  const formattedAmount = t('', { value: salesSummary?.totalRevenue, format: 'currency' });
+  console.log(currentLocale);
 
-  console.log(formattedAmount);
-
+  console.log(formatCurrency(salesSummary?.totalRevenue || 0, currentLocale));
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.totals.totals'))}</h2>
@@ -69,7 +70,7 @@ export default function Totals({ salesSummary, loadingSalesSummary }: SalesSumma
 
         <CardIncomeTotals
           title={`<strong>${capitalizeFirtsLetter(t('events.totals.fundraising'))}</strong>`}
-          line1={`<strong>$${t(salesSummary?.totalRevenue.toString() || '0' )} </strong>`}
+          line1={`<strong>${formatCurrency(salesSummary?.totalRevenue || 0, currentLocale)} </strong>`}
           loading={loadingSalesSummary}
           color1={theme.vars.palette.primary.lightChannel}
           color2={theme.vars.palette.primary.lighterChannel}
