@@ -54,8 +54,8 @@ export default function CardIncomeTotals(props: CardIncomeTotalsProps) {
               <Skeleton variant="rectangular" height={30} sx={{ mt: 5, mr: 2 }} />
             ) : (
               <Typography
-                variant="h2"
-                sx={{ mt: 3, color: 'text.secondary', mb: { xs: 6, md: 0 } }}
+                variant="subtitle2"
+                sx={{ fontSize: 30, mt: 3, color: 'text.secondary', mb: { xs: 6, md: 0 } }}
                 dangerouslySetInnerHTML={{ __html: line1 }}
               />
             )}

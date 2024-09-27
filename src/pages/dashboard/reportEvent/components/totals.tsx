@@ -33,10 +33,6 @@ export default function Totals({ salesSummary, loadingSalesSummary }: SalesSumma
   const theme = useTheme();
   const { t, i18n} = useTranslation();
   const currentLocale = i18n.language;
-
-  console.log(currentLocale);
-
-  console.log(formatCurrency(salesSummary?.totalRevenue || 0, currentLocale));
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.totals.totals'))}</h2>
