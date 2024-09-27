@@ -32,11 +32,11 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
   const colorPalette = [
     theme.palette.success.main,
     theme.palette.info.main,
-    theme.palette.success.dark,
-    theme.palette.primary.dark,
-    theme.palette.success.lighter,
-    theme.palette.info.light,
-    theme.palette.success.main,
+    theme.palette.error.main,
+    theme.palette.warning.main,
+    theme.palette.secondary.main,
+    theme.palette.primary.main,
+    theme.palette.warning.lighter,
     theme.palette.info.lighterChannel,
   ];
 

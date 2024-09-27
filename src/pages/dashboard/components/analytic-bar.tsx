@@ -84,7 +84,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       },
       labels: {
         style: {
-          fontSize: '8px',
+          fontSize: chart.categories && chart.categories?.length > 8  ? '8' : '12',
         },
       },
     },
