@@ -39,7 +39,7 @@ const getEventSalesByStandUseCase = new GetEventSalesByStand(eventService);
 const getEventPaidMethodsUseCase = new GetEventPaidMethods(eventService);
 const getEventSaleChannelsUseCase = new GetEventSalesChannels(eventService);
 
-const metadata = { title: `Eventos| Dashboard - ${CONFIG.appName}` };
+const metadata = { title: `Reportes | Eventos - ${CONFIG.appName}` };
 export interface FilterOption {
   id: string;
   label: string;
@@ -54,9 +54,9 @@ export interface FilterEventOption {
 export default function Page() {
   const { t } = useTranslation();
   const { selectedOrganization } = useOrganization();
+  const isBundles = false;
   const { loading, teams, years, events, selectedTeam, selectedYear, selectedEvent, setSelectedTeam, setSelectedYear, setSelectedEvent } =
-  useFilterData(getEventsByOrgnizationUseCase, selectedOrganization, 'event');
-
+  useFilterData(getEventsByOrgnizationUseCase, selectedOrganization, isBundles);
 
   const { data: salesSummary, loading: loadingSalesSummary } = useFetchData(getEventSalesSummaryUseCase, selectedEvent?.details.code);
   const { data: ticketsByStand, loading: loadingTicketsByStand } = useFetchData(getEventTicketByStandUseCase, selectedEvent?.details.code);
@@ -82,7 +82,6 @@ export default function Page() {
             onEventChange={setSelectedEvent}
           />
         </Grid>
-
         {loading ? (
           <Grid item xs={12} textAlign="center">
             <Box

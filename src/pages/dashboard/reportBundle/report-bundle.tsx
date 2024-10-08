@@ -26,13 +26,14 @@ import EventNotAvailable from '../reportEvent/components/event-not-available';
 // ----------------------------------------------------------------------
 
 const getEventsByOrgnizationUseCase = new GetEventsByOrganization(organizationService);
-const metadata = { title: `Bundles | Dashboard - ${CONFIG.appName}` };
+const metadata = { title: `Reportes | Abonos - ${CONFIG.appName}` };
 
 export default function Page() {
   const { t } = useTranslation();
   const { selectedOrganization } = useOrganization();
+  const isBundles = true;
   const { loading, teams, years, events, selectedTeam, selectedYear, selectedEvent, setSelectedTeam, setSelectedYear, setSelectedEvent } =
-    useFilterData(getEventsByOrgnizationUseCase, selectedOrganization, 'buble');
+    useFilterData(getEventsByOrgnizationUseCase, selectedOrganization, isBundles);
 
   const cardStyle = { p: 3, backgroundColor: 'background.default', boxShadow: 3 };
 

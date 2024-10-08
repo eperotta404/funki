@@ -29,7 +29,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
   const handleDownload = () => {
     console.log('download...');
   };
-
+  console.log(selectedEvent);
   return (
     <>
       <Box
@@ -41,8 +41,7 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           flexDirection: { xs: 'column', sm: 'row' },
         }}
       >
-        <Typography variant="h3" color={theme.vars.palette.primary.main}>
-          {`${selectedEvent?.details?.home} vs ${selectedEvent?.details?.away}`}
+        <Typography variant="h3" color={theme.vars.palette.primary.main}>{selectedEvent?.label}
         </Typography>
         <Button
           onClick={handleDownload}
@@ -75,17 +74,17 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
         <CardStatusSummary
           icon="game-icons:soccer-ball"
           status={selectedEvent?.details?.status}
-          color1={theme.vars.palette.warning.lightChannel}
-          color2={theme.vars.palette.error.lightChannel}
-          colorSvg="info.main"
+          color1={theme.vars.palette.accent.primaryChannel}
+          color2={theme.vars.palette.accent.primaryChannel}
+          colorSvg="primary.main"
         />
         <CardTeamsSummary
           icon="guidance:stadium"
           line1={`<strong style="font-size: 2rem; color: ${theme.vars.palette.primary.main}">${selectedEvent?.details?.home}</strong>`}
           line2={`<strong style="font-size: 1.5rem;color: ${theme.vars.palette.primary.mainChannel}">${selectedEvent?.details?.away} </strong>`}
-          color1={theme.vars.palette.warning.lightChannel}
-          color2={theme.vars.palette.error.lightChannel}
-          colorSvg="info.main"
+          color1={theme.vars.palette.primary.darkerChannel}
+          color2={theme.vars.palette.secondary.lightChannel}
+          colorSvg="primary.main"
         />
 
         <CardInfoMatchSummary
@@ -93,9 +92,9 @@ export default function SummaryEvent({ selectedEvent }: SummaryEventProps) {
           line1={formattedDate}
           line2={timeWithTimezone}
           line3={selectedEvent?.details?.stadium}
-          color1={theme.vars.palette.warning.lightChannel}
-          color2={theme.vars.palette.error.lightChannel}
-          colorSvg="info.main"
+          color1={theme.vars.palette.primary.lightChannel}
+          color2={theme.vars.palette.accent.secondaryChannel}
+          colorSvg="primary.main"
         />
       </Box>
     </>

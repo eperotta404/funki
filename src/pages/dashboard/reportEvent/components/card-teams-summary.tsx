@@ -47,7 +47,7 @@ export default function CardTeamsSummary(props: CardTeamsSummaryProps) {
           color: colorSvg,
         }}
       />
-      <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
+      <Iconify icon={icon} width={40} sx={{ color: 'primary.light', ml: 2 }} />
       <Box sx={{ textAlign: 'center', ml: 0, mt: 0 }}>
         <Typography
           variant="body1"

@@ -48,7 +48,7 @@ export default function CardInfoMatchSummary(props: CardInfoMatchSummaryProps) {
           color: colorSvg,
         }}
       />
-      <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
+      <Iconify icon={icon} width={40} sx={{ color: 'primary.light', ml: 2 }} />
 
       <Box sx={{ textAlign: 'start', ml: 10, mt: line3 ? -2 : 0 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>

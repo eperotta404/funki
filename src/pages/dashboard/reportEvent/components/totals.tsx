@@ -59,18 +59,18 @@ export default function Totals({ salesSummary, loadingSalesSummary }: SalesSumma
           line3={`${capitalizeFirtsLetter(t('events.totals.courtesy'))} :  <strong>${TOTALS[0].line3}</strong>`}
           line4={`${t('events.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
           loading={loadingSalesSummary}
-          color1={theme.vars.palette.primary.lightChannel}
-          color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="info.main"
+          color1={theme.vars.palette.primary.darkChannel}
+          color2={theme.vars.palette.primary.lightChannel}
+          colorSvg="primary.main"
         />
 
         <CardIncomeTotals
           title={`<strong>${capitalizeFirtsLetter(t('events.totals.fundraising'))}</strong>`}
           line1={`<strong>${formatCurrency(salesSummary?.totalRevenue || 0, currentLocale)} </strong>`}
           loading={loadingSalesSummary}
-          color1={theme.vars.palette.primary.lightChannel}
-          color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="info.main"
+          color1={theme.vars.palette.primary.mainChannel}
+          color2={theme.vars.palette.accent.secondaryChannel}
+          colorSvg="primary.main"
         />
 
         <CardTotals
@@ -82,8 +82,8 @@ export default function Totals({ salesSummary, loadingSalesSummary }: SalesSumma
           line5="63%"
           loading={loadingSalesSummary}
           color1={theme.vars.palette.primary.lightChannel}
-          color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="info.main"
+          color2={theme.vars.palette.accent.secondaryChannel}
+          colorSvg="primary.main"
         />
       </Box>
     </>

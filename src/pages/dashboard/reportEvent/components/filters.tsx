@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Box, Paper, TextField, Autocomplete } from '@mui/material';
+import { Box, Paper, useTheme, TextField, Autocomplete } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
@@ -30,7 +30,7 @@ export default function Filters({
   onEventChange,
 }: FiltersProps) {
   const { t } = useTranslation();
-
+  const theme = useTheme();
   return (
     <Box
       gap={5}
@@ -59,9 +59,20 @@ export default function Filters({
             {...params}
             label={capitalizeFirtsLetter(t('events.filter.teams'))}
             fullWidth
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                backgroundColor: theme.vars.palette.secondary.lighter,
+                borderRadius: '8px',
+                '& fieldset': {
+                  borderColor: '#ccc',
+                },
+                '&:hover fieldset': {
+                  borderColor: theme.vars.palette.secondary.light,
+                },
+              },
+            }}
           />
         )}
-        sx={{ background: 'white' }}
       />
 
       <Autocomplete
@@ -82,7 +93,22 @@ export default function Filters({
           />
         )}
         renderInput={(params) => (
-          <TextField {...params} label={capitalizeFirtsLetter(t('events.filter.year'))} fullWidth />
+          <TextField
+            {...params}
+            label={capitalizeFirtsLetter(t('events.filter.year'))}
+            fullWidth
+            sx={{
+            '& .MuiOutlinedInput-root': {
+              backgroundColor: theme.vars.palette.secondary.lighter,
+              borderRadius: '8px',
+              '& fieldset': {
+                borderColor: '#ccc',
+              },
+              '&:hover fieldset': {
+                borderColor: theme.vars.palette.secondary.light,
+              },
+            },
+          }}/>
         )}
         sx={{ backgroundColor: 'white' }}
       />
@@ -108,6 +134,18 @@ export default function Filters({
             {...params}
             label={capitalizeFirtsLetter(t('events.filter.events'))}
             fullWidth
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                backgroundColor: theme.vars.palette.secondary.lighter,
+                borderRadius: '8px',
+                '& fieldset': {
+                  borderColor: '#ccc',
+                },
+                '&:hover fieldset': {
+                  borderColor: theme.vars.palette.secondary.light,
+                },
+              },
+            }}
           />
         )}
         sx={{ backgroundColor: 'white' }}

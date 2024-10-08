@@ -15,7 +15,7 @@ import TableSales from './components/table-sales';
 
 // ----------------------------------------------------------------------
 
-const metadata = { title: `Sales | Dashboard - ${CONFIG.appName}` };
+const metadata = { title: `Reportes | Ventas - ${CONFIG.appName}` };
 
 export default function Page() {
   const { t } = useTranslation();

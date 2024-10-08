@@ -1,11 +1,7 @@
 export class EventDetail {
   code: string;
 
-  descripcion: string;
-
   stadium: string;
-
-  type: string;
 
   date: string;
 
@@ -15,11 +11,9 @@ export class EventDetail {
 
   away: string;
 
-  constructor(code: string, detail: string, stadium: string, type: string, date: string, expired: boolean, enabled: boolean, home: string, away: string) {
+  constructor(code: string, stadium: string, date: string, expired: boolean, enabled: boolean, home: string, away: string) {
     this.code = code;
-    this.descripcion = detail;
     this.stadium = stadium || 'Stadium';
-    this.type = type;
     this.date = date;
     this.status = this.determineStatus(expired, enabled);
     this.home = home || 'Home';

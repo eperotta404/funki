@@ -11,7 +11,7 @@ import { signOut } from 'src/auth/context';
 import { useAuthContext } from 'src/auth/hooks';
 
 
-export const useFilterData = (getEventsByOrgnizationUseCase: GetEventsByOrganization, selectedOrganization: Organization | null, type: string ) => {
+export const useFilterData = (getEventsByOrgnizationUseCase: GetEventsByOrganization, selectedOrganization: Organization | null, isBundles: boolean ) => {
   const currentYear = new Date().getFullYear();
   const { checkUserSession } = useAuthContext();
   const router = useRouter();
@@ -71,7 +71,7 @@ export const useFilterData = (getEventsByOrgnizationUseCase: GetEventsByOrganiza
       setLoading(true);
       try {
         if (selectedTeam?.id && selectedYear?.id) {
-          const res = await getEventsByOrgnizationUseCase.execute(selectedTeam.id, selectedYear.id);
+          const res = await getEventsByOrgnizationUseCase.execute(selectedTeam.id, selectedYear.id, isBundles);
           const eventsData = getEventsFromOrganization(res);
           setEvents(eventsData);
           setSelectedEvent(eventsData.length > 0 ? eventsData[0] : null);

@@ -31,7 +31,7 @@ export class OrganizationApi implements OrganizationRepository {
     }
   }
 
-  async getEventsByOrganization(team: string, date: string): Promise<Event[]> {
+  async getEventsByOrganization(team: string, date: string, isBundles: boolean): Promise<Event[]> {
     try {
       const { fromDate, toDate } = this.generateDateRange(date);
       const params = new URLSearchParams({
@@ -39,7 +39,8 @@ export class OrganizationApi implements OrganizationRepository {
         fromDate,
         toDate,
         page: '0',
-        size: '1000'
+        size: '1000',
+        bundle: isBundles ? 'true': 'false',
       }).toString();
 
       const seenNames = new Set();
@@ -52,9 +53,7 @@ export class OrganizationApi implements OrganizationRepository {
       .map((eve: any) =>
         new Event(eve.id, eve.name, {
           code: eve.code,
-          description: eve.detail,
-          venue: eve.venue,
-          type: eve.type,
+          venue: eve.venueInfo.name,
           date: eve.date,
           expired: eve.expired,
           enabled: eve.enabled,

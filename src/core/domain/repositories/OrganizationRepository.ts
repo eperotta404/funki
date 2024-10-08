@@ -3,5 +3,5 @@ import type { Organization } from "../models/organization";
 
 export interface OrganizationRepository {
   getOrganizations(): Promise<Organization[]>;
-  getEventsByOrganization(team: string, date: string): Promise<Event[]>;
+  getEventsByOrganization(team: string, date: string, isBundles: boolean): Promise<Event[]>;
 }

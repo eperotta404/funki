@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Alert from '@mui/material/Alert';
+import { Box, useTheme } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -44,6 +44,7 @@ export function createSignInSchema(t: any) {
 export function SignInView() {
   const router = useRouter();
   const { t } = useTranslation();
+  const theme = useTheme();
   const { checkUserSession } = useAuthContext();
 
   const [errorMsg, setErrorMsg] = useState('');
@@ -80,7 +81,23 @@ export function SignInView() {
 
   const renderForm = (
     <Box gap={3} display="flex" flexDirection="column">
-      <Field.Text name="email" label={capitalizeFirtsLetter(t('auth.inputEmail'))} InputLabelProps={{ shrink: true }} />
+      <Field.Text
+        name="email"
+        label={capitalizeFirtsLetter(t('auth.inputEmail'))}
+        InputLabelProps={{ shrink: true }}
+        sx={{
+          '& .MuiOutlinedInput-root': {
+            backgroundColor: theme.vars.palette.secondary.lighter,
+            borderRadius: '8px',
+            '& fieldset': {
+              borderColor: '#ccc',
+            },
+            '&:hover fieldset': {
+              borderColor: theme.vars.palette.secondary.light,
+            },
+          },
+        }}
+      />
 
       <Box gap={1.5} display="flex" flexDirection="column">
         <Link
@@ -99,6 +116,18 @@ export function SignInView() {
           placeholder={capitalizeFirtsLetter(t('auth.inputPassword'))}
           type={password.value ? 'text' : 'password'}
           InputLabelProps={{ shrink: true }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              backgroundColor: theme.vars.palette.secondary.lighter,
+              borderRadius: '8px',
+              '& fieldset': {
+                borderColor: '#ccc',
+              },
+              '&:hover fieldset': {
+                borderColor: theme.vars.palette.secondary.light,
+              },
+            },
+          }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -118,7 +147,7 @@ export function SignInView() {
         type="submit"
         variant="contained"
         loading={isSubmitting}
-        loadingIndicator="Sign in..."
+        loadingIndicator={capitalizeFirtsLetter(t('auth.buttons.login'))}
       >
         {capitalizeFirtsLetter(t('auth.buttons.login'))}
       </LoadingButton>

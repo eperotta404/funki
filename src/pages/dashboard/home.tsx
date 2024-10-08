@@ -8,7 +8,7 @@ import { BlankView } from 'src/sections/blank/view';
 
 // ----------------------------------------------------------------------
 
-const metadata = { title: `Inicio | Dashboard - ${CONFIG.appName}` };
+const metadata = { title: `Inicio - ${CONFIG.appName}` };
 
 export default function Page() {
   const { t } = useTranslation();

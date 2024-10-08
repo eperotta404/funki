@@ -42,7 +42,7 @@ export default function CardTotals(props: CardTotalsProps) {
         position: 'relative',
         textAlign: 'left',
         ...bgGradient({
-          color: `135deg, ${varAlpha(color1, 0.48)}, ${varAlpha(color2, 0.48)}`,
+          color: `135deg, ${varAlpha(color1, 0.38)}, ${varAlpha(color2, 0.48)}`,
         }),
       }}
     >
@@ -69,7 +69,7 @@ export default function CardTotals(props: CardTotalsProps) {
       >
         <Typography
           variant="h4"
-          sx={{ color: 'text.info' }}
+          sx={{ color: 'text.primary' }}
           dangerouslySetInnerHTML={{ __html: title }}
         />
 
@@ -82,7 +82,7 @@ export default function CardTotals(props: CardTotalsProps) {
           arrow
         >
           <IconButton>
-            <Iconify icon="material-symbols:help" width={24} sx={{ color: 'text.secondary' }} />
+            <Iconify icon="material-symbols:help" width={24} sx={{ color: 'text.primary' }} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -124,7 +124,7 @@ export default function CardTotals(props: CardTotalsProps) {
             ) : (
               <Typography
                 variant="body1"
-                sx={{ color: 'text.secondary', mt: 1.5, fontSize: 20 }}
+                sx={{ color: 'text.primary', mt: 1.5, fontSize: 20 }}
                 dangerouslySetInnerHTML={{ __html: line4 }}
               />
             )}
@@ -147,7 +147,7 @@ export default function CardTotals(props: CardTotalsProps) {
                 <Typography
                   variant="inherit"
                   sx={{
-                    color: 'text.secondary',
+                    color: 'text.primary',
                     textAlign: 'center',
                     fontSize: 35,
                     fontWeight: 700,

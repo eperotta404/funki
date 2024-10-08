@@ -1,6 +1,5 @@
 import type { Theme, SxProps, Breakpoint } from '@mui/material/styles';
 
-import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 
 import { Logo } from 'src/components/logo';
@@ -8,7 +7,6 @@ import { Logo } from 'src/components/logo';
 import { Main, Content } from './main';
 import { HeaderSection } from '../core/header-section';
 import { LayoutSection } from '../core/layout-section';
-import { SettingsButton } from '../components/settings-button';
 
 // ----------------------------------------------------------------------
 
@@ -42,11 +40,6 @@ export function AuthSplitLayout({ sx, children, header }: AuthSplitLayoutProps) 
             ),
             leftArea: (
               <Logo />
-            ),
-            rightArea: (
-              <Box display="flex" alignItems="center" gap={{ xs: 1, sm: 1.5 }}>
-                <SettingsButton />
-              </Box>
             ),
           }}
         />

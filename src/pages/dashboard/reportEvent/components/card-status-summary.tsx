@@ -16,6 +16,7 @@ interface CardStatusSummaryProps {
 
 export default function CardStatusSummary(props: CardStatusSummaryProps) {
   const { icon, status, color1, color2, colorSvg } = props;
+
   return (
     <Card
       sx={{
@@ -41,9 +42,9 @@ export default function CardStatusSummary(props: CardStatusSummaryProps) {
           color: colorSvg,
         }}
       />
-      <Iconify icon={icon} width={40} sx={{ color: 'primary.main', ml: 2 }} />
+      <Iconify icon={icon} width={40} sx={{ color: 'primary.light', ml: 2 }} />
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 0, mb: { xs: 3, md: 0 } }}>
-        <Typography variant="h2" sx={{ color: 'text.secondary', fontWeight: 900 }}>
+        <Typography variant="h2" sx={{ color: 'text.primary', fontWeight: 900 }}>
           {status.toUpperCase()}
         </Typography>
       </Box>

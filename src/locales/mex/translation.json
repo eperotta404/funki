@@ -28,6 +28,7 @@
       "teams": "equipos",
       "year": "año",
       "events": "eventos",
+      "bundles": "abonos",
       "eventNotFound": "no has realizado una búsqueda",
       "eventNotFoundFeedback": "por favor, selecciona o busca un evento para continuar."
     },
@@ -101,7 +102,7 @@
     "details": {
       "details": "detalles",
       "salesByChannel": "ventas por canal",
-      "salesByTribune": "ventas por tribuna",  
+      "salesByTribune": "ventas por tribuna",
       "salesTracking": "seguimiento de ventas"
 
     }

@@ -7,14 +7,12 @@ export class Event {
 
   details: EventDetail;
 
-  constructor(id: string, name: string, eventData: { code: string, description: string, venue: string, type: string, date: string, expired: boolean, enabled: boolean, home: string, away: string }) {
+  constructor(id: string, name: string, eventData: { code: string, venue: string, date: string, expired: boolean, enabled: boolean, home: string, away: string }) {
     this.id = id;
     this.name = name;
     this.details = new EventDetail(
       eventData.code,
-      eventData.description,
       eventData.venue,
-      eventData.type,
       eventData.date,
       eventData.expired,
       eventData.enabled,

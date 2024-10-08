@@ -56,8 +56,8 @@ export default function Totals() {
           line4={`${t('bundles.totals.total').toUpperCase()} : <strong>${TOTALS[0].line4}</strong>`}
           loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
-          color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="info.main"
+          color2={theme.vars.palette.accent.secondaryChannel}
+          colorSvg="primary.main"
         />
 
         <CardIncomeTotals
@@ -65,8 +65,8 @@ export default function Totals() {
           line1={`<strong>$${t(fundraising)} </strong>`}
           loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
-          color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="info.main"
+          color2={theme.vars.palette.accent.secondaryChannel}
+          colorSvg="primary.main"
         />
 
         <CardTotals
@@ -76,8 +76,8 @@ export default function Totals() {
           line5="15%"
           loading={loading}
           color1={theme.vars.palette.primary.lightChannel}
-          color2={theme.vars.palette.primary.lighterChannel}
-          colorSvg="info.main"
+          color2={theme.vars.palette.accent.secondaryChannel}
+          colorSvg="primary.main"
         />
       </Box>
     </>

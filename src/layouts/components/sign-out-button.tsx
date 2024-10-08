@@ -39,7 +39,7 @@ export function SignOutButton({ onClose, ...other }: Props) {
   }, [checkUserSession, onClose, router]);
 
   return (
-    <Button fullWidth variant="soft" size="large" color="error" onClick={handleLogout} {...other}>
+    <Button fullWidth variant="contained" size="large" color="inherit" onClick={handleLogout} {...other}>
       {capitalizeFirtsLetter(t('auth.logout'))}
     </Button>
   );

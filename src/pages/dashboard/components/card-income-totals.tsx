@@ -24,7 +24,7 @@ export default function CardIncomeTotals(props: CardIncomeTotalsProps) {
         position: 'relative',
         textAlign: 'left',
         ...bgGradient({
-          color: `135deg, ${varAlpha(color1, 0.48)}, ${varAlpha(color2, 0.48)}`,
+          color: `135deg, ${varAlpha(color1, 0.25)}, ${varAlpha(color2, 0.48)}`,
         }),
       }}
     >

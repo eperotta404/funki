@@ -6,6 +6,14 @@ import { varAlpha, createPaletteChannel } from '../styles';
 // ----------------------------------------------------------------------
 
 declare module '@mui/material/styles/createPalette' {
+  interface Palette {
+    accent: {
+      primary: string;
+      secondary: string;
+      primaryChannel: string;
+      secondaryChannel: string;
+    };
+  }
   interface CommonColors {
     whiteChannel: string;
     blackChannel: string;
@@ -65,6 +73,9 @@ export const primary = createPaletteChannel(COLORS.primary);
 // Secondary
 export const secondary = createPaletteChannel(COLORS.secondary);
 
+// Accent
+export const accent = createPaletteChannel(COLORS.accent);
+
 // Info
 export const info = createPaletteChannel(COLORS.info);
 
@@ -111,6 +122,8 @@ export const action = {
 /*
  * Base palette
  */
+
+
 export const basePalette = {
   primary,
   secondary,
@@ -120,6 +133,7 @@ export const basePalette = {
   error,
   grey,
   common,
+  accent,
   divider: varAlpha(grey['500Channel'], 0.2),
   action,
 };
