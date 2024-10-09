@@ -58,6 +58,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
               position: 'left',
               offsetX: 150,
             },
+            
           },
         ],
       }
@@ -75,7 +76,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
 
     xaxis: {
       categories: chart.categories,
-      tickAmount: 5,
+      tickAmount: chart.categories?.length,
       axisTicks: {
         show: isVertical,
       },
@@ -83,8 +84,12 @@ export default function AnalyticBar(props: AnalyticBarProps) {
         show: isVertical,
       },
       labels: {
+        show: true,
+        rotate: -45,
+        
+    
         style: {
-          fontSize: chart.categories && chart.categories?.length > 8  ? '8' : '12',
+          fontSize: "15",
         },
       },
     },
@@ -92,8 +97,12 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     yaxis: {
       max: chart.max,
       min: 0,
-      tickAmount: 5,
+      tickAmount:8,
       labels: {
+        style: {
+          fontSize: "12",
+          
+        },
         formatter: (value: number) =>
           money
             ? formatCurrency(value || 0, currentLocale || 'mex')
