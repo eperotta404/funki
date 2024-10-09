@@ -12,7 +12,7 @@ interface AnalyticBarProps {
   title?: string;
   subheader?: string;
   isVertical?: boolean;
-  currentLocale?: string,
+  currentLocale?: string;
   money?: boolean;
   chart: {
     colors?: string[];
@@ -58,7 +58,6 @@ export default function AnalyticBar(props: AnalyticBarProps) {
               position: 'left',
               offsetX: 150,
             },
-            
           },
         ],
       }
@@ -85,11 +84,11 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       },
       labels: {
         show: true,
-        rotate: -45,
-        
-    
+        hideOverlappingLabels: false,
+        rotate: isVertical ? -45 : 0,
+
         style: {
-          fontSize: "15",
+          fontSize: '12',
         },
       },
     },
@@ -97,16 +96,13 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     yaxis: {
       max: chart.max,
       min: 0,
-      tickAmount:8,
+      tickAmount: 6,
       labels: {
         style: {
-          fontSize: "12",
-          
+          fontSize: '12',
         },
         formatter: (value: number) =>
-          money
-            ? formatCurrency(value || 0, currentLocale || 'mex')
-            : `${value}`,
+          money ? formatCurrency(value || 0, currentLocale || 'mex') : `${value}`,
       },
     },
     legend: {
@@ -115,9 +111,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
     tooltip: {
       y: {
         formatter: (value: number) =>
-          money
-            ? formatCurrency(value || 0, currentLocale || 'mex')
-            : `${value}`,
+          money ? formatCurrency(value || 0, currentLocale || 'mex') : `${value}`,
       },
       theme: 'light',
     },
@@ -128,9 +122,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       bar: {
         horizontal: !isVertical,
 
-        columnWidth: chart.series[0].data.length === 1
-          ? isMobile ? '30%' : '10%'
-          : '50%',
+        columnWidth: chart.series[0].data.length === 1 ? (isMobile ? '30%' : '10%') : '50%',
       },
     },
 
@@ -142,7 +134,7 @@ export default function AnalyticBar(props: AnalyticBarProps) {
       <CardHeader title={title} subheader={subheader} />
 
       {loading ? (
-        <Skeleton variant="rectangular" height={364} sx={{m:3, py: 2.5, pl: 1, pr: 2.5 }} />
+        <Skeleton variant="rectangular" height={364} sx={{ m: 3, py: 2.5, pl: 1, pr: 2.5 }} />
       ) : (
         <Chart
           type="bar"
