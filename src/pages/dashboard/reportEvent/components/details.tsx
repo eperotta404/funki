@@ -20,10 +20,19 @@ interface TicketsByStandEventProps {
   loadingTicketsByStand: boolean;
   loadingSalesByStand: boolean;
   loadingPaidMethods: boolean;
-  loadingSaleChannels: boolean
+  loadingSaleChannels: boolean;
 }
 
-export default function Details({ ticketsByStand, salesByStand, paidMethods, saleChannels, loadingTicketsByStand, loadingSalesByStand, loadingPaidMethods, loadingSaleChannels }: TicketsByStandEventProps) {
+export default function Details({
+  ticketsByStand,
+  salesByStand,
+  paidMethods,
+  saleChannels,
+  loadingTicketsByStand,
+  loadingSalesByStand,
+  loadingPaidMethods,
+  loadingSaleChannels,
+}: TicketsByStandEventProps) {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
 
@@ -50,13 +59,8 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('events.details.details'))}</h2>
-      <Box
-        gap={2}
-        display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
-        sx={{ mt: 2 }}
-      >
-        {ticketsByStand && ticketsByStand.categories.length > 0 &&
+      {ticketsByStand && ticketsByStand.categories.length > 0 && (
+        <Box sx={{ mt: 2 }}>
           <AnalyticBar
             title={capitalizeFirtsLetter(t('events.details.ticketsByTribune'))}
             isVertical
@@ -70,8 +74,10 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
             }}
             loading={loadingTicketsByStand}
           />
-        }
-        {salesByStand && salesByStand.categories.length > 0 &&
+        </Box>
+      )}
+      {salesByStand && salesByStand.categories.length > 0 && (
+        <Box sx={{ mt: 2 }}>
           <AnalyticBar
             title={capitalizeFirtsLetter(t('events.details.montoByTribune'))}
             isVertical
@@ -85,50 +91,48 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
               series: salesByStand?.series?.map((serie) => ({
                 ...serie,
                 name: capitalizeFirtsLetter(t(serie.name)),
-              }))
+              })),
             }}
             loading={loadingSalesByStand}
           />
-        }
-      </Box>
-      <Box
-        gap={2}
-        display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
-        sx={{ mt: 2 }}
-      >
-        {paidMethods && paidMethods.series.length > 0 &&
+        </Box>
+      )}
+      {paidMethods && paidMethods.series.length > 0 && (
+        <Box sx={{ mt: 2 }}>
           <AnalyticPie
             title={capitalizeFirtsLetter(t('events.details.bundleMethods'))}
             chart={{
               colors: getColorsForSeries(paidMethods?.series?.length || 0),
-              series: paidMethods.series
+              series: paidMethods.series,
             }}
             loading={loadingPaidMethods}
-          />}
-          {saleChannels && saleChannels.series.length > 0 &&
-            <AnalyticPie
-              title={capitalizeFirtsLetter(t('events.details.bundleChannels'))}
-              chart={{
-                colors: getColorsForSeries(paidMethods?.series?.length || 0),
-              series: saleChannels.series
-              }}
-              loading={loadingSaleChannels}
-            />}
-      </Box>
-      <Box
-        gap={2}
-        display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
-        sx={{ mt: 2 }}
-      >
+          />
+        </Box>
+      )}
+      {saleChannels && saleChannels.series.length > 0 && (
+        <Box sx={{ mt: 2 }}>
+          <AnalyticPie
+            title={capitalizeFirtsLetter(t('events.details.bundleChannels'))}
+            chart={{
+              colors: getColorsForSeries(paidMethods?.series?.length || 0),
+              series: saleChannels.series,
+            }}
+            loading={loadingSaleChannels}
+          />
+        </Box>
+      )}
+      <Box sx={{ mt: 2 }}>
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.totalCapacitySalesRevenue'))}
           isVertical={false}
           currentLocale={currentLocale}
           chart={{
             stacked: true,
-            categories: [capitalizeFirtsLetter(t('events.details.capacity')), capitalizeFirtsLetter(t('events.details.sales')), capitalizeFirtsLetter(t('events.details.income'))],
+            categories: [
+              capitalizeFirtsLetter(t('events.details.capacity')),
+              capitalizeFirtsLetter(t('events.details.sales')),
+              capitalizeFirtsLetter(t('events.details.income')),
+            ],
             max: 50000,
             colors: [
               theme.palette.info.main,
@@ -136,14 +140,24 @@ export default function Details({ ticketsByStand, salesByStand, paidMethods, sal
               theme.palette.warning.main,
             ],
             series: [
-              { name: capitalizeFirtsLetter( t('events.details.tickets')), data: [20000, 1700, 30000] },
-              { name: capitalizeFirtsLetter(t('events.details.memberships')), data: [7000, 1500, 4000] },
-              { name: capitalizeFirtsLetter(t('events.details.courtesy')), data: [3000, 25000, 3500] },
+              {
+                name: capitalizeFirtsLetter(t('events.details.tickets')),
+                data: [20000, 1700, 30000],
+              },
+              {
+                name: capitalizeFirtsLetter(t('events.details.memberships')),
+                data: [7000, 1500, 4000],
+              },
+              {
+                name: capitalizeFirtsLetter(t('events.details.courtesy')),
+                data: [3000, 25000, 3500],
+              },
             ],
           }}
           loading={false}
         />
-
+      </Box>
+      <Box sx={{ mt: 2 }}>
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.courtesies'))}
           isVertical

@@ -20,12 +20,7 @@ export default function Details() {
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('bundles.details.details'))}</h2>
-      <Box
-        gap={2}
-        display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
-        sx={{ mt: 2 }}
-      >
+      <Box sx={{ mt: 2 }}>
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.ticketsByTribune'))}
           isVertical
@@ -45,13 +40,24 @@ export default function Details() {
             max: 200,
             colors: [theme.palette.info.main, theme.palette.success.main, theme.palette.error.main],
             series: [
-              { name: capitalizeFirtsLetter(t('events.totals.tickets')), data: [13, 33, 22, 37, 67, 68, 44, 24, 16] },
-              { name: capitalizeFirtsLetter(t('events.totals.memberships')), data: [51, 20, 47, 67, 60, 58, 24, 34, 17] },
-              { name: capitalizeFirtsLetter(t('events.totals.courtesy')), data: [30, 50, 70, 47, 67, 40, 37, 24, 24] },
+              {
+                name: capitalizeFirtsLetter(t('events.totals.tickets')),
+                data: [13, 33, 22, 37, 67, 68, 44, 24, 16],
+              },
+              {
+                name: capitalizeFirtsLetter(t('events.totals.memberships')),
+                data: [51, 20, 47, 67, 60, 58, 24, 34, 17],
+              },
+              {
+                name: capitalizeFirtsLetter(t('events.totals.courtesy')),
+                data: [30, 50, 70, 47, 67, 40, 37, 24, 24],
+              },
             ],
           }}
           loading={loading}
         />
+      </Box>
+      <Box sx={{ mt: 2 }}>
         <AnalyticBar
           title={capitalizeFirtsLetter(t('events.details.montoByTribune'))}
           isVertical
@@ -80,15 +86,8 @@ export default function Details() {
           }}
           loading={loading}
         />
-
-
       </Box>
-      <Box
-        gap={2}
-        display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
-        sx={{ mt: 2 }}
-      >
+      <Box sx={{ mt: 2 }}>
         <AnalyticPie
           title={capitalizeFirtsLetter(t('events.details.bundleMethods'))}
           chart={{
@@ -109,7 +108,8 @@ export default function Details() {
           }}
           loading={loading}
         />
-
+      </Box>
+      <Box sx={{ mt: 2 }}>
         <AnalyticPie
           title={capitalizeFirtsLetter(t('events.details.bundleChannels'))}
           chart={{
@@ -126,14 +126,8 @@ export default function Details() {
           }}
           loading={loading}
         />
-        </Box>
-        <Box
-        gap={2}
-        display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
-        sx={{ mt: 2 }}
-      >
-
+      </Box>
+      <Box sx={{ mt: 2 }}>
         <AnalyticBar
           title={capitalizeFirtsLetter(t('bundles.details.seassonBundle'))}
           isVertical={false}
@@ -147,9 +141,18 @@ export default function Details() {
               theme.palette.warning.main,
             ],
             series: [
-              { name: capitalizeFirtsLetter(t('events.details.tickets')), data: [20000, 1700, 30000] },
-              { name: capitalizeFirtsLetter(t('events.details.memberships')), data: [7000, 1500, 4000] },
-              { name: capitalizeFirtsLetter(t('events.details.courtesy')), data: [3000, 25000, 3500] },
+              {
+                name: capitalizeFirtsLetter(t('events.details.tickets')),
+                data: [20000, 1700, 30000],
+              },
+              {
+                name: capitalizeFirtsLetter(t('events.details.memberships')),
+                data: [7000, 1500, 4000],
+              },
+              {
+                name: capitalizeFirtsLetter(t('events.details.courtesy')),
+                data: [3000, 25000, 3500],
+              },
             ],
           }}
           loading={loading}

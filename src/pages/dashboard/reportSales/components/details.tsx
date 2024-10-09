@@ -20,12 +20,7 @@ export default function Details() {
   return (
     <>
       <h2>{capitalizeFirtsLetter(t('bundles.details.details'))}</h2>
-      <Box
-        gap={8}
-        display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', sm: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)' }}
-        sx={{ mt: 2 }}
-      >
+      <Box sx={{ mt: 2 }}>
         <AnalyticBar
           title={capitalizeFirtsLetter(t('sales.details.salesByTribune'))}
           isVertical
@@ -52,36 +47,34 @@ export default function Details() {
           }}
           loading={loading}
         />
-
-      <AnalyticBar
+      </Box>
+      <Box sx={{ mt: 2 }}>
+        <AnalyticBar
           title={capitalizeFirtsLetter(t('sales.details.salesTracking'))}
           isVertical
           chart={{
             stacked: true,
-            categories: [
-              'Event1',
-              'Event 2',
-              'Event 3',
-              'Event 4',
-              'Event 5',
-
-            ],
+            categories: ['Event1', 'Event 2', 'Event 3', 'Event 4', 'Event 5'],
             max: 200,
-            colors: [theme.palette.warning.main, theme.palette.error.main, theme.palette.primary.main],
+            colors: [
+              theme.palette.warning.main,
+              theme.palette.error.main,
+              theme.palette.primary.main,
+            ],
             series: [
-              { name: t('events.totals.tickets'), data: [13, 33, 22, 37, 67, ] },
+              { name: t('events.totals.tickets'), data: [13, 33, 22, 37, 67] },
               { name: t('events.totals.memberships'), data: [51, 20, 47, 67, 60] },
               { name: t('events.totals.courtesy'), data: [30, 50, 70, 47, 67] },
             ],
           }}
           loading={loading}
         />
-
+      </Box>
+      <Box sx={{ mt: 2 }}>
         <AnalyticPie
           title={capitalizeFirtsLetter(t('sales.details.salesByChannel'))}
           chart={{
             colors: [
-
               theme.palette.error.dark,
               theme.palette.warning.light,
               theme.palette.success.light,
@@ -90,7 +83,6 @@ export default function Details() {
               { label: 'Channel 1', value: 900 },
               { label: 'channel 2', value: 3500 },
               { label: 'channel 3', value: 1500 },
-
             ],
           }}
           loading={loading}
