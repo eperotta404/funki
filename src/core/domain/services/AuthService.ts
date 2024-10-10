@@ -1,6 +1,5 @@
-
-import type { User } from '../models/user';
 import type { Login } from '../models/login';
+import type { UserLogin } from '../models/userLogin';
 import type { AuthRepository } from '../repositories/AuthRepository';
 
 export class AuthService {
@@ -10,7 +9,7 @@ export class AuthService {
     return this.authRepository.signIn(email, password);
   }
 
-  async getMe(): Promise<User> {
+  async getMe(): Promise<UserLogin> {
     return this.authRepository.getMe();
   }
 }

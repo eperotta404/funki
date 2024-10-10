@@ -31,9 +31,9 @@ export function AuthProvider({ children }: Props) {
         setSession(accessToken);
 
         const res = await getMeUseCase.execute();
-        const { id, name, avatar } = res;
+        const { id, email, avatar } = res;
 
-        setState({ user: { id, name, avatar, accessToken }, loading: false });
+        setState({ user: { id, email, avatar, accessToken }, loading: false });
       } else {
         setState({ user: null, loading: false });
       }

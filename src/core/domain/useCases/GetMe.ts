@@ -1,10 +1,11 @@
-import type { User } from '../models/user';
+
+import type { UserLogin } from '../models/userLogin';
 import type { AuthService } from '../services/AuthService';
 
 export class GetMe {
   constructor(private authService: AuthService) {}
 
-  async execute(): Promise<User> {
+  async execute(): Promise<UserLogin> {
     return this.authService.getMe();
   }
 }
