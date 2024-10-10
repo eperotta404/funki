@@ -49,9 +49,28 @@ export class HttpClient {
     }
   }
 
-  async post(url: string, jsonBody: Record<string, unknown>): Promise<any> {
+  async post<T>(url: string, jsonBody: T): Promise<any> {
     try {
       return await this.http.post(url, JSON.stringify(jsonBody), this.configWithAuthHeader());
+    } catch (e) {
+      this.handleError(e);
+      return null;
+    }
+  }
+
+  async put<T>(url: string, jsonBody: T): Promise<any> {
+    try {
+      return await this.http.put(url, JSON.stringify(jsonBody), this.configWithAuthHeader());
+    } catch (e) {
+      this.handleError(e);
+      return null;
+    }
+  }
+
+
+  async delete(url: string): Promise<any> {
+    try {
+      return await this.http.delete(url, this.configWithAuthHeader());
     } catch (e) {
       this.handleError(e);
       return null;

@@ -53,7 +53,7 @@ export class EventApi implements EventRepository {
     try {
       const params = new URLSearchParams({ eventCode }).toString();
       const response = await this.httpClient.get(`/paidMethods?${params}`);
-      return new EventPaidMethods( response.data);
+      return new EventPaidMethods(response.data);
     } catch (error) {
       console.error('Error fetching getPaidMethodsEvent:', error);
       throw error;
