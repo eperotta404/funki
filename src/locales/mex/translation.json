@@ -106,5 +106,8 @@
       "salesTracking": "seguimiento de ventas"
 
     }
+  },
+  "users": {
+    "title": "usuarios"
   }
 }

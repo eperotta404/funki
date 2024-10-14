@@ -104,5 +104,8 @@
       "salesByTribune": "ventas por tribuna",
       "salesTracking": "seguimiento de ventas"
     }
+  },
+  "users": {
+    "title": "usuarios"
   }
 }
