@@ -5,11 +5,15 @@ import { useTranslation } from 'react-i18next';
 import { Box, Card, Grid, Table, TableBody } from '@mui/material';
 
 import { useSetState } from 'src/hooks/use-set-state';
+import { useFetchData } from 'src/hooks/use-fetch-data';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
 import { CONFIG } from 'src/config-global';
 import { DashboardContent } from 'src/layouts/dashboard';
+import { userService } from 'src/core/infrastructure/instances';
+import { GetUsers } from 'src/core/domain/useCases/users/GetUsers';
+import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
 
 import { Scrollbar } from 'src/components/scrollbar';
 import { LoadingScreen } from 'src/components/loading-screen';
@@ -50,13 +54,19 @@ type IUserTableFilters = {
   status: string;
 };
 
+
+const getUsersUseCase = new GetUsers(userService);
+
 export default function Page() {
   const { t } = useTranslation();
+  const { selectedOrganization } = useOrganization();
   const table = useTable();
   const metadata = { title: `Usuarios | Listado - ${CONFIG.appName}` };
-
-  const loading = false;
   const users: string[] = [];
+
+  const { data, loading } = useFetchData(getUsersUseCase, selectedOrganization?.id);
+
+  console.log('UNAAAAAAA', data);
 
   const TABLE_HEAD = [
     { id: 'name', label: 'Name' },
