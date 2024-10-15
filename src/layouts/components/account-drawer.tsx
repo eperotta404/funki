@@ -3,14 +3,11 @@ import { useState, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
-import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
-import { varAlpha } from 'src/theme/styles';
-
 import { Iconify } from 'src/components/iconify';
-import { AnimateAvatar } from 'src/components/animate';
+import { CustomAvatar } from 'src/components/custom-avatar';
 
 import { useAuthContext } from 'src/auth/hooks';
 
@@ -20,8 +17,6 @@ import { SignOutButton } from './sign-out-button';
 // ----------------------------------------------------------------------
 
 export function AccountDrawer() {
-  const theme = useTheme();
-
   const { user } = useAuthContext();
 
   const [open, setOpen] = useState(false);
@@ -34,30 +29,18 @@ export function AccountDrawer() {
     setOpen(false);
   }, []);
 
-
   const renderAvatar = (
-    <AnimateAvatar
-      width={96}
-      slotProps={{
-        avatar: { src: user?.avatar, alt: user?.name },
-        overlay: {
-          border: 2,
-          spacing: 3,
-          color: `linear-gradient(135deg, ${varAlpha(theme.vars.palette.primary.mainChannel, 0)} 25%, ${theme.vars.palette.primary.main} 100%)`,
-        },
-      }}
-    >
-      {user?.name?.charAt(0).toUpperCase()}
-    </AnimateAvatar>
+    <CustomAvatar
+      src={user?.avatar}
+      alt={user?.email}
+      name={user?.email}
+      sx={{ width: 40, height: 40 }}
+    />
   );
 
   return (
     <>
-      <AccountButton
-        onClick={handleOpenDrawer}
-        photoURL={user?.avatar}
-        displayName={user?.user}
-      />
+      <AccountButton onClick={handleOpenDrawer} photoURL={user?.avatar} displayName={user?.email} />
 
       <Drawer
         open={open}
@@ -73,17 +56,17 @@ export function AccountDrawer() {
           <Iconify icon="mingcute:close-line" />
         </IconButton>
 
-          <Stack alignItems="center" sx={{ pt: 8, pb: 2 }}>
-            {renderAvatar}
+        <Stack alignItems="center" sx={{ pt: 8, pb: 2 }}>
+          {renderAvatar}
 
-            <Typography variant="subtitle1" noWrap sx={{ mt: 2 }}>
-              {user?.name}
-            </Typography>
+          <Typography variant="subtitle1" noWrap sx={{ mt: 2 }}>
+            {user?.name}
+          </Typography>
 
-            <Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5 }} noWrap>
-              {user?.email}
-            </Typography>
-          </Stack>
+          <Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5 }} noWrap>
+            {user?.email}
+          </Typography>
+        </Stack>
 
         <Box sx={{ p: 2.5 }}>
           <SignOutButton onClose={handleCloseDrawer} />

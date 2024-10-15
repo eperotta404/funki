@@ -2,39 +2,21 @@ import type { IconButtonProps } from '@mui/material/IconButton';
 
 import { m } from 'framer-motion';
 
-import NoSsr from '@mui/material/NoSsr';
-import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 
-import { varAlpha } from 'src/theme/styles';
+// Importamos tu componente CustomAvatar
 
-import { varHover, AnimateAvatar } from 'src/components/animate';
+import { varHover } from 'src/components/animate';
+import { CustomAvatar } from 'src/components/custom-avatar';
 
 // ----------------------------------------------------------------------
 
-export type AccountButtonProps = IconButtonProps & {
+export type AccountButtonProps = {
   photoURL: string;
   displayName: string;
-};
+} & IconButtonProps;
 
 export function AccountButton({ photoURL, displayName, sx, ...other }: AccountButtonProps) {
-  const theme = useTheme();
-
-  const renderFallback = (
-    <AnimateAvatar
-      width={96}
-      slotProps={{
-        avatar: { src: photoURL, alt: displayName },
-        overlay: {
-          border: 2,
-          spacing: 3,
-          color: `linear-gradient(135deg, ${varAlpha(theme.vars.palette.primary.mainChannel, 0)} 25%, ${theme.vars.palette.primary.main} 100%)`,
-        },
-      }}
-    >
-      {displayName?.charAt(0).toUpperCase()}
-    </AnimateAvatar>
-  );
 
   return (
     <IconButton
@@ -45,20 +27,12 @@ export function AccountButton({ photoURL, displayName, sx, ...other }: AccountBu
       sx={{ p: 0, ...sx }}
       {...other}
     >
-      <NoSsr fallback={renderFallback}>
-        <AnimateAvatar
-          slotProps={{
-            avatar: { src: photoURL, alt: displayName },
-            overlay: {
-              border: 1,
-              spacing: 2,
-              color: `conic-gradient(${theme.vars.palette.primary.main}, ${theme.vars.palette.warning.main}, ${theme.vars.palette.primary.main})`,
-            },
-          }}
-        >
-          {displayName?.charAt(0).toUpperCase()}
-        </AnimateAvatar>
-      </NoSsr>
+      <CustomAvatar
+        src={photoURL}
+        alt={displayName}
+        name={displayName}
+        sx={{ width: 40, height: 40 }}
+      />
     </IconButton>
   );
 }

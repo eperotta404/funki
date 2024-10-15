@@ -1,9 +1,7 @@
+import type { User } from 'src/core/domain/models/user';
 
-
-import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
@@ -16,6 +14,7 @@ import { useBoolean } from 'src/hooks/use-boolean';
 
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
+import { CustomAvatar } from 'src/components/custom-avatar';
 // import { ConfirmDialog } from 'src/components/custom-dialog';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
 
@@ -23,25 +22,8 @@ import { usePopover, CustomPopover } from 'src/components/custom-popover';
 
 // ----------------------------------------------------------------------
 
-type IUserItem = {
-  id: string;
-  name: string;
-  city: string;
-  role: string;
-  email: string;
-  state: string;
-  status: string;
-  address: string;
-  country: string;
-  zipCode: string;
-  company: string;
-  avatarUrl: string;
-  phoneNumber: string;
-  isVerified: boolean;
-};
-
 type Props = {
-  row: IUserItem;
+  row: User;
   selected: boolean;
   onEditRow: () => void;
   onSelectRow: () => void;
@@ -55,6 +37,8 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
 
   const quickEdit = useBoolean();
 
+  console.log('row', row);
+
   return (
     <>
       <TableRow hover selected={selected} aria-checked={selected} tabIndex={-1}>
@@ -64,38 +48,22 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
 
         <TableCell>
           <Stack spacing={2} direction="row" alignItems="center">
-            <Avatar alt={row.name} src={row.avatarUrl} />
+            <CustomAvatar
+              src={row.avatar}
+              alt={row.email}
+              name={row.email}
+              sx={{ width: 40, height: 40 }}
+            />
 
             <Stack sx={{ typography: 'body2', flex: '1 1 auto', alignItems: 'flex-start' }}>
               <Link color="inherit" onClick={onEditRow} sx={{ cursor: 'pointer' }}>
-                {row.name}
-              </Link>
-              <Box component="span" sx={{ color: 'text.disabled' }}>
                 {row.email}
-              </Box>
+              </Link>
             </Stack>
           </Stack>
         </TableCell>
 
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row.phoneNumber}</TableCell>
-
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row.company}</TableCell>
-
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row.role}</TableCell>
-
-        <TableCell>
-          <Label
-            variant="soft"
-            color={
-              (row.status === 'active' && 'success') ||
-              (row.status === 'pending' && 'warning') ||
-              (row.status === 'banned' && 'error') ||
-              'default'
-            }
-          >
-            {row.status}
-          </Label>
-        </TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row.roles}</TableCell>
 
         <TableCell>
           <Stack direction="row" alignItems="center">
@@ -114,8 +82,6 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
           </Stack>
         </TableCell>
       </TableRow>
-
-      
 
       <CustomPopover
         open={popover.open}
@@ -146,8 +112,6 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
           </MenuItem>
         </MenuList>
       </CustomPopover>
-
-      
     </>
   );
 }
