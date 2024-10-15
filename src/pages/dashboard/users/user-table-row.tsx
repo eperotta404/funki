@@ -37,8 +37,6 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
 
   const quickEdit = useBoolean();
 
-  console.log('row', row);
-
   return (
     <>
       <TableRow hover selected={selected} aria-checked={selected} tabIndex={-1}>
