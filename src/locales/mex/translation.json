@@ -104,10 +104,10 @@
       "salesByChannel": "ventas por canal",
       "salesByTribune": "ventas por tribuna",
       "salesTracking": "seguimiento de ventas"
-
     }
   },
   "users": {
-    "title": "usuarios"
+    "title": "usuarios",
+    "titleCreation": "nuevo usuario"
   }
 }

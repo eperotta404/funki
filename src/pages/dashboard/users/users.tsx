@@ -1,6 +1,6 @@
 import type { User } from 'src/core/domain/models/user';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
@@ -46,7 +46,7 @@ export default function Page() {
   const { selectedOrganization } = useOrganization();
   const table = useTable();
   const metadata = { title: `Usuarios | Listado - ${CONFIG.appName}` };
-  const users: string[] = [];
+ 
 
   const { data, loading } = useFetchData(getUsersUseCase, selectedOrganization?.id);
 
@@ -90,7 +90,7 @@ export default function Page() {
               <LoadingScreen />
             </Box>
           </Grid>
-        ) : users ? (
+        ) : dataFiltered.length > 0 ? (
           <Grid item xs={12}>
             <Scrollbar>
               <Card sx={cardStyle}>

@@ -62,7 +62,10 @@ export const navData = [
         title: 'Usuarios',
         path: paths.dashboard.users.root,
         icon: ICONS.users,
-        children: [{ title: 'Usuarios', path: paths.dashboard.users.root }],
+        children: [
+          { title: 'Usuarios', path: paths.dashboard.users.root },
+          { title: 'Nuevo Usuario', path: paths.dashboard.users.create }
+        ],
       },
     ],
   },

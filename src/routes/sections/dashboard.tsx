@@ -15,6 +15,7 @@ const PageReportEvent = lazy(() => import('src/pages/dashboard/reportEvent/repor
 const PageReportBundle = lazy(() => import('src/pages/dashboard/reportBundle/report-bundle'));
 const PageReportSales = lazy(() => import('src/pages/dashboard/reportSales/report-sales'));
 const PageUsers = lazy(() => import('src/pages/dashboard/users/users'));
+const PageUserCreation = lazy(() => import('src/pages/dashboard/users/user-create'));
 
 // ----------------------------------------------------------------------
 
@@ -42,7 +43,11 @@ export const dashboardRoutes = [
       },
       {
         path: 'users',
-        children: [{ element: <PageUsers />, index: true }],
+        children: [
+          { element: <PageUsers />, index: true },
+          { path: 'create', element: <PageUserCreation /> },
+
+        ],
       },
     ],
   },

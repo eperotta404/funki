@@ -1,5 +1,6 @@
 // ----------------------------------------------------------------------
 
+
 const ROOTS = {
   AUTH: '/auth',
   DASHBOARD: '/dashboard',
@@ -23,6 +24,7 @@ export const paths = {
     },
     users: {
       root: `${ROOTS.DASHBOARD}/users`,
+      create: `${ROOTS.DASHBOARD}/users/create`,
     },
   },
 };
