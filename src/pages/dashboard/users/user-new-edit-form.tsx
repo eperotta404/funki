@@ -10,21 +10,47 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Unstable_Grid2';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Select, Checkbox, MenuItem, InputLabel, FormControl, ListItemText, FormHelperText } from '@mui/material';
+import {
+  Select,
+  Checkbox,
+  MenuItem,
+  InputLabel,
+  IconButton,
+  FormControl,
+  ListItemText,
+  FormHelperText,
+  InputAdornment,
+} from '@mui/material';
 
+import { useBoolean } from 'src/hooks/use-boolean';
+
+import { Iconify } from 'src/components/iconify';
 import { Form, Field } from 'src/components/hook-form';
 
 // ----------------------------------------------------------------------
 
 export type NewUserSchemaType = zod.infer<typeof NewUserSchema>;
 
-export const NewUserSchema = zod.object({
-  email: zod
-    .string()
-    .min(1, { message: 'Email is required!' })
-    .email({ message: 'Email must be a valid email address!' }),
-  role: zod.array(zod.string()).min(1, { message: 'At least one role is required!' }),
-});
+export const NewUserSchema = zod
+  .object({
+    email: zod
+      .string()
+      .min(1, { message: 'Email is required!' })
+      .email({ message: 'Email must be a valid email address!' }),
+    role: zod.array(zod.string()).min(1, { message: 'At least one role is required!' }),
+    password: zod
+      .string()
+      .min(8, { message: 'Password must be at least 8 characters long!' })
+      .regex(/[a-z]/, { message: 'Password must contain at least one lowercase letter!' })
+      .regex(/[A-Z]/, { message: 'Password must contain at least one uppercase letter!' })
+      .regex(/\d/, { message: 'Password must contain at least one number!' })
+      .regex(/[^a-zA-Z0-9]/, { message: 'Password must contain at least one special character!' }),
+    confirmPassword: zod.string().min(1, { message: 'Please confirm your password!' }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match!',
+    path: ['confirmPassword'],
+  });
 
 // ----------------------------------------------------------------------
 
@@ -35,19 +61,25 @@ type Props = {
 export function UserNewEditForm({ currentUser }: Props) {
   const rolesOptions = ['SUPER_ADMIN', 'SO_ADMIN', 'SO_ASSISTANT'];
 
+  const password = useBoolean();
+  const confirmPassword = useBoolean();
+
   const defaultValues = useMemo(() => {
-    const initialRole = Array.isArray(currentUser?.roles) && currentUser.roles.length > 0
-      ? currentUser.roles.filter(Boolean) 
-      : [rolesOptions[0]]; // Asignar el primer rol por defecto
+    const initialRole =
+      Array.isArray(currentUser?.roles) && currentUser.roles.length > 0
+        ? currentUser.roles.filter(Boolean)
+        : [rolesOptions[0]];
 
     return {
       email: currentUser?.email || '',
       role: initialRole,
+      password: '',
+      confirmPassword: '',
     };
   }, [currentUser]);
 
   const methods = useForm<NewUserSchemaType>({
-    mode: 'onSubmit',
+    mode: 'onChange',
     resolver: zodResolver(NewUserSchema),
     defaultValues,
   });
@@ -67,7 +99,7 @@ export function UserNewEditForm({ currentUser }: Props) {
   const menuProps = {
     PaperProps: {
       sx: {
-        background: 'white', 
+        background: 'white',
       },
     },
   };
@@ -78,8 +110,8 @@ export function UserNewEditForm({ currentUser }: Props) {
         <Grid xs={12} md={6}>
           <Card sx={{ p: 3 }}>
             <Box rowGap={3} display="grid">
-              <Field.Text name="email" label="Email address" />
-              
+              <Field.Text name="email" label="Email address" autoComplete="off" />
+
               <FormControl fullWidth error={!!errors.role}>
                 <InputLabel>Role</InputLabel>
                 <Select
@@ -100,10 +132,42 @@ export function UserNewEditForm({ currentUser }: Props) {
                     </MenuItem>
                   ))}
                 </Select>
-                {errors.role && (
-                  <FormHelperText>{errors.role.message}</FormHelperText>
-                )}
+                {errors.role && <FormHelperText>{errors.role.message}</FormHelperText>}
               </FormControl>
+              <Field.Text
+                name="password"
+                label="Password"
+                type={password.value ? 'text' : 'password'}
+                helperText={errors.password?.message}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={password.onToggle} edge="end">
+                        <Iconify
+                          icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'}
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Field.Text
+                name="confirmPassword"
+                label="Confirm Password"
+                type={confirmPassword.value ? 'text' : 'password'}
+                helperText={errors.confirmPassword?.message}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={confirmPassword.onToggle} edge="end">
+                        <Iconify
+                          icon={confirmPassword.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'}
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
             </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>

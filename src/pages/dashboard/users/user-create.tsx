@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
-import { Card, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import { capitalizeFirtsLetter } from 'src/utils/helper';
 
