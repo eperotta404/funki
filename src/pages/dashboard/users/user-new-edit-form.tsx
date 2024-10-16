@@ -68,9 +68,10 @@ type Props = {
 
 export function UserNewEditForm({ currentUser }: Props) {
   const { selectedOrganization } = useOrganization();
-  const { data, loading, error, execute } = useMutationData<User, [CreateUserDto]>(
+  const { data, loading, error, execute } = useMutationData<User, CreateUserDto>(
     createUserUseCase
   );
+
   const rolesOptions = ['SUPER_ADMIN', 'SO_ADMIN', 'SO_ASSISTANT'];
 
   const password = useBoolean();
@@ -105,14 +106,14 @@ export function UserNewEditForm({ currentUser }: Props) {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
-    console.log(formData);
-
-    await execute([{
+    await execute({
       email: formData.email,
       roles: formData.role,
       password: formData.password,
-      sportOrganizationsIds: selectedOrganization?.id ? [selectedOrganization.id] : [],
-  }]);
+      sportOrganizationsIds: selectedOrganization?.id
+        ? [selectedOrganization.id]
+        : [],
+    });
   });
 
   const menuProps = {
