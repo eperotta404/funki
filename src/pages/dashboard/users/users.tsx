@@ -90,7 +90,7 @@ export default function Page() {
               <LoadingScreen />
             </Box>
           </Grid>
-        ) : dataFiltered.length > 0 ? (
+        ) : (
           <Grid item xs={12}>
             <Scrollbar>
               <Card sx={cardStyle}>
@@ -146,10 +146,6 @@ export default function Page() {
                 />
               </Card>
             </Scrollbar>
-          </Grid>
-        ) : (
-          <Grid item xs={12}>
-            <p>error </p>
           </Grid>
         )}
       </Grid>

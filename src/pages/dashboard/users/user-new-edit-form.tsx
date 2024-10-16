@@ -10,10 +10,9 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Unstable_Grid2';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Select, Checkbox, MenuItem, InputLabel, FormControl, ListItemText } from '@mui/material';
+import { Select, Checkbox, MenuItem, InputLabel, FormControl, ListItemText, FormHelperText } from '@mui/material';
 
 import { Form, Field } from 'src/components/hook-form';
-
 
 // ----------------------------------------------------------------------
 
@@ -36,13 +35,16 @@ type Props = {
 export function UserNewEditForm({ currentUser }: Props) {
   const rolesOptions = ['SUPER_ADMIN', 'SO_ADMIN', 'SO_ASSISTANT'];
 
-  const defaultValues = useMemo(
-    () => ({
+  const defaultValues = useMemo(() => {
+    const initialRole = Array.isArray(currentUser?.roles) && currentUser.roles.length > 0
+      ? currentUser.roles.filter(Boolean) 
+      : [rolesOptions[0]]; // Asignar el primer rol por defecto
+
+    return {
       email: currentUser?.email || '',
-      role: Array.isArray(currentUser?.roles) ? currentUser.roles.filter(Boolean) : [], // Evitar valores vacíos
-    }),
-    [currentUser]
-  );
+      role: initialRole,
+    };
+  }, [currentUser]);
 
   const methods = useForm<NewUserSchemaType>({
     mode: 'onSubmit',
@@ -53,7 +55,7 @@ export function UserNewEditForm({ currentUser }: Props) {
   const {
     watch,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = methods;
 
   const values = watch();
@@ -65,7 +67,7 @@ export function UserNewEditForm({ currentUser }: Props) {
   const menuProps = {
     PaperProps: {
       sx: {
-        background: 'white', // Fondo blanco
+        background: 'white', 
       },
     },
   };
@@ -77,7 +79,8 @@ export function UserNewEditForm({ currentUser }: Props) {
           <Card sx={{ p: 3 }}>
             <Box rowGap={3} display="grid">
               <Field.Text name="email" label="Email address" />
-              <FormControl fullWidth>
+              
+              <FormControl fullWidth error={!!errors.role}>
                 <InputLabel>Role</InputLabel>
                 <Select
                   label="Role"
@@ -97,6 +100,9 @@ export function UserNewEditForm({ currentUser }: Props) {
                     </MenuItem>
                   ))}
                 </Select>
+                {errors.role && (
+                  <FormHelperText>{errors.role.message}</FormHelperText>
+                )}
               </FormControl>
             </Box>
 
