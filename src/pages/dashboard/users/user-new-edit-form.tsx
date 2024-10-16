@@ -2,8 +2,8 @@ import type { CreateUserDto } from 'src/shared/types';
 import type { User } from 'src/core/domain/models/user';
 
 import { z as zod } from 'zod';
-import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
+import { useMemo, useState, useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import Box from '@mui/material/Box';
@@ -12,6 +12,7 @@ import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Unstable_Grid2';
 import LoadingButton from '@mui/lab/LoadingButton';
 import {
+  Alert,
   Select,
   Checkbox,
   MenuItem,
@@ -68,9 +69,8 @@ type Props = {
 
 export function UserNewEditForm({ currentUser }: Props) {
   const { selectedOrganization } = useOrganization();
-  const { data, loading, error, execute } = useMutationData<User, CreateUserDto>(
-    createUserUseCase
-  );
+  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const { data, loading, error, execute } = useMutationData<User, CreateUserDto>(createUserUseCase);
 
   const rolesOptions = ['SUPER_ADMIN', 'SO_ADMIN', 'SO_ASSISTANT'];
 
@@ -100,7 +100,7 @@ export function UserNewEditForm({ currentUser }: Props) {
   const {
     watch,
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = methods;
 
   const values = watch();
@@ -110,11 +110,24 @@ export function UserNewEditForm({ currentUser }: Props) {
       email: formData.email,
       roles: formData.role,
       password: formData.password,
-      sportOrganizationsIds: selectedOrganization?.id
-        ? [selectedOrganization.id]
-        : [],
+      sportOrganizationsIds: selectedOrganization?.id ? [selectedOrganization.id] : [],
     });
   });
+
+  useEffect(() => {
+    if (data) {
+      setAlert({ type: 'success', message: `Nuevo usuario creado: ${data.email}` });
+      methods.reset();
+    } else if (error) {
+      setAlert({ type: 'error', message: 'No se pudo crear usuario.' });
+    }
+  }, [data, error, methods]);
+
+  const handleChange = () => {
+    if (alert) {
+      setAlert(null);
+    }
+  };
 
   const menuProps = {
     PaperProps: {
@@ -129,8 +142,20 @@ export function UserNewEditForm({ currentUser }: Props) {
       <Grid container justifyContent="center">
         <Grid xs={12} md={6}>
           <Card sx={{ p: 3 }}>
+            {alert && (
+              <Alert severity={alert.type} sx={{ mb: 3 }}>
+                {alert.message}
+              </Alert>
+            )}
             <Box rowGap={3} display="grid">
-              <Field.Text name="email" label="Email address" autoComplete="off" />
+              <Field.Text
+                name="email"
+                label="Email address"
+                onChange={(e) => {
+                  handleChange();
+                  methods.setValue('email', e.target.value);
+                }}
+              />
 
               <FormControl fullWidth error={!!errors.role}>
                 <InputLabel>Role</InputLabel>
@@ -139,7 +164,10 @@ export function UserNewEditForm({ currentUser }: Props) {
                   name="role"
                   multiple
                   value={values.role || []}
-                  onChange={(e) => methods.setValue('role', e.target.value as string[])}
+                  onChange={(e) => {
+                    methods.setValue('role', e.target.value as string[]);
+                    handleChange();
+                  }}
                   renderValue={(selected) =>
                     Array.isArray(selected) && selected.length > 0 ? selected.join(', ') : ''
                   }
@@ -158,6 +186,10 @@ export function UserNewEditForm({ currentUser }: Props) {
                 name="password"
                 label="Password"
                 type={password.value ? 'text' : 'password'}
+                onChange={(e) => {
+                  handleChange();
+                  methods.setValue('password', e.target.value);
+                }}
                 helperText={errors.password?.message}
                 InputProps={{
                   endAdornment: (
@@ -175,6 +207,10 @@ export function UserNewEditForm({ currentUser }: Props) {
                 name="confirmPassword"
                 label="Confirm Password"
                 type={confirmPassword.value ? 'text' : 'password'}
+                onChange={(e) => {
+                  handleChange();
+                  methods.setValue('confirmPassword', e.target.value);
+                }}
                 helperText={errors.confirmPassword?.message}
                 InputProps={{
                   endAdornment: (
@@ -191,7 +227,7 @@ export function UserNewEditForm({ currentUser }: Props) {
             </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+              <LoadingButton type="submit" variant="contained" loading={loading}>
                 {!currentUser ? 'Create user' : 'Save changes'}
               </LoadingButton>
             </Stack>

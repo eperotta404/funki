@@ -96,7 +96,7 @@ export default function Page() {
                 <Box sx={{ overflowX: 'auto' }}>
                   <Table
                     size={table.dense ? 'small' : 'medium'}
-                    sx={{ minWidth: 960, overflowY: 'auto' }}
+                    sx={{ minWidth: 960 }}
                   >
                     <TableHeadCustom
                       order={table.order}

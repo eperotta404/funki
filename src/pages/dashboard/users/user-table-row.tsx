@@ -29,7 +29,7 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
       </TableCell>
 
       <TableCell>
-        <Stack spacing={2} direction="row" alignItems="center">
+        <Stack spacing={3} direction="row" alignItems="center">
           <CustomAvatar
             src={row.avatar}
             alt={row.email}
