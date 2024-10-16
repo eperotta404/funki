@@ -1,3 +1,4 @@
+import type { CreateUserDto } from 'src/shared/types';
 import type { User } from 'src/core/domain/models/user';
 
 import { z as zod } from 'zod';
@@ -23,9 +24,16 @@ import {
 } from '@mui/material';
 
 import { useBoolean } from 'src/hooks/use-boolean';
+import { useMutationData } from 'src/hooks/use-mutation-data';
+
+import { userService } from 'src/core/infrastructure/instances';
+import { CreateUser } from 'src/core/domain/useCases/users/CreateUser';
+import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
 
 import { Iconify } from 'src/components/iconify';
 import { Form, Field } from 'src/components/hook-form';
+
+const createUserUseCase = new CreateUser(userService);
 
 // ----------------------------------------------------------------------
 
@@ -59,6 +67,10 @@ type Props = {
 };
 
 export function UserNewEditForm({ currentUser }: Props) {
+  const { selectedOrganization } = useOrganization();
+  const { data, loading, error, execute } = useMutationData<User, [CreateUserDto]>(
+    createUserUseCase
+  );
   const rolesOptions = ['SUPER_ADMIN', 'SO_ADMIN', 'SO_ASSISTANT'];
 
   const password = useBoolean();
@@ -92,8 +104,15 @@ export function UserNewEditForm({ currentUser }: Props) {
 
   const values = watch();
 
-  const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (formData) => {
+    console.log(formData);
+
+    await execute([{
+      email: formData.email,
+      roles: formData.role,
+      password: formData.password,
+      sportOrganizationsIds: selectedOrganization?.id ? [selectedOrganization.id] : [],
+  }]);
   });
 
   const menuProps = {

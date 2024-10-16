@@ -4,7 +4,7 @@ type UseMutationData<T, U = any> = {
   data: T | null;
   loading: boolean;
   error: string | null;
-  execute: (...args: U[]) => Promise<void>;
+  execute: (arg: U) => Promise<void>; 
 };
 
 export const useMutationData = <T, U = any>(
