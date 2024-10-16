@@ -93,56 +93,61 @@ export default function Page() {
           <Grid item xs={12}>
             <Scrollbar>
               <Card sx={cardStyle}>
-                <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
-                  <TableHeadCustom
-                    order={table.order}
-                    orderBy={table.orderBy}
-                    headLabel={TABLE_HEAD}
-                    rowCount={dataFiltered.length}
-                    numSelected={table.selected.length}
-                    onSort={table.onSort}
-                    onSelectAllRows={(checked) =>
-                      table.onSelectAllRows(
-                        checked,
-                        dataFiltered.map((row) => row.id)
-                      )
-                    }
-                  />
-
-                  <TableBody>
-                    {dataFiltered
-                      .slice(
-                        table.page * table.rowsPerPage,
-                        table.page * table.rowsPerPage + table.rowsPerPage
-                      )
-                      .map((row) => (
-                        <UserTableRow
-                          key={row.id}
-                          row={row}
-                          selected={table.selected.includes(row.id)}
-                          onSelectRow={() => table.onSelectRow(row.id)}
-                          onDeleteRow={() => alert(row.id)}
-                          onEditRow={() => alert('edit')}
-                        />
-                      ))}
-
-                    <TableEmptyRows
-                      height={table.dense ? 56 : 56 + 20}
-                      emptyRows={emptyRows(table.page, table.rowsPerPage, dataFiltered.length)}
+                <Box sx={{ overflowX: 'auto' }}>
+                  <Table
+                    size={table.dense ? 'small' : 'medium'}
+                    sx={{ minWidth: 960, overflowY: 'auto' }}
+                  >
+                    <TableHeadCustom
+                      order={table.order}
+                      orderBy={table.orderBy}
+                      headLabel={TABLE_HEAD}
+                      rowCount={dataFiltered.length}
+                      numSelected={table.selected.length}
+                      onSort={table.onSort}
+                      onSelectAllRows={(checked) =>
+                        table.onSelectAllRows(
+                          checked,
+                          dataFiltered.map((row) => row.id)
+                        )
+                      }
                     />
 
-                    <TableNoData notFound={notFound} />
-                  </TableBody>
-                </Table>
-                <TablePaginationCustom
-                  page={table.page}
-                  dense={table.dense}
-                  count={dataFiltered.length}
-                  rowsPerPage={table.rowsPerPage}
-                  onPageChange={table.onChangePage}
-                  onChangeDense={table.onChangeDense}
-                  onRowsPerPageChange={table.onChangeRowsPerPage}
-                />
+                    <TableBody>
+                      {dataFiltered
+                        .slice(
+                          table.page * table.rowsPerPage,
+                          table.page * table.rowsPerPage + table.rowsPerPage
+                        )
+                        .map((row) => (
+                          <UserTableRow
+                            key={row.id}
+                            row={row}
+                            selected={table.selected.includes(row.id)}
+                            onSelectRow={() => table.onSelectRow(row.id)}
+                            onDeleteRow={() => alert(row.id)}
+                            onEditRow={() => alert('edit')}
+                          />
+                        ))}
+
+                      <TableEmptyRows
+                        height={table.dense ? 56 : 56 + 20}
+                        emptyRows={emptyRows(table.page, table.rowsPerPage, dataFiltered.length)}
+                      />
+
+                      <TableNoData notFound={notFound} />
+                    </TableBody>
+                  </Table>
+                  <TablePaginationCustom
+                    page={table.page}
+                    dense={table.dense}
+                    count={dataFiltered.length}
+                    rowsPerPage={table.rowsPerPage}
+                    onPageChange={table.onChangePage}
+                    onChangeDense={table.onChangeDense}
+                    onRowsPerPageChange={table.onChangeRowsPerPage}
+                  />
+                </Box>
               </Card>
             </Scrollbar>
           </Grid>
