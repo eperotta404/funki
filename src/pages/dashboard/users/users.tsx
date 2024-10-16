@@ -46,13 +46,12 @@ export default function Page() {
   const { selectedOrganization } = useOrganization();
   const table = useTable();
   const metadata = { title: `Usuarios | Listado - ${CONFIG.appName}` };
- 
 
   const { data, loading } = useFetchData(getUsersUseCase, selectedOrganization?.id);
 
   const TABLE_HEAD = [
     { id: 'email', label: 'Email' },
-    { id: 'role', label: 'Role'},
+    { id: 'role', label: 'Role' },
     { id: '', width: 88 },
   ];
 
