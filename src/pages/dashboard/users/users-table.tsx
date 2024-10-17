@@ -20,12 +20,13 @@ import { UserTableRow } from './user-table-row';
 interface UserTableProps {
   tableData: User[];
   onEdit: (userId: string) => void;
+  onDelete: (userId: string, email: string) => void;
 }
 
 const TABLE_HEAD = [
   { id: 'email', label: 'Correo electrónico' },
   { id: 'role', label: 'Roles' },
-  { id: '', label: 'Actions', width: 88 },
+  { id: '', label: 'Acciones', width: 88 },
 ];
 
 type IUserTableFilters = {
@@ -35,7 +36,7 @@ type IUserTableFilters = {
 };
 
 export default function UsersTable(props: UserTableProps) {
-  const { tableData, onEdit } = props;
+  const { tableData, onEdit, onDelete } = props;
 
   const table = useTable();
   const filtersState = useSetState<IUserTableFilters>({ name: '', role: [], status: 'all' });
@@ -78,7 +79,7 @@ export default function UsersTable(props: UserTableProps) {
                     row={row}
                     selected={table.selected.includes(row.id)}
                     onSelectRow={() => table.onSelectRow(row.id)}
-                    onDeleteRow={() => alert(row.id)}
+                    onDeleteRow={() =>onDelete(row.id, row.email)}
                     onEditRow={() => onEdit(row.id)}
                   />
                 ))}

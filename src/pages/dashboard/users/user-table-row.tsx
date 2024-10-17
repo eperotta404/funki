@@ -4,7 +4,6 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import TableRow from '@mui/material/TableRow';
-import Checkbox from '@mui/material/Checkbox';
 import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
 
@@ -44,7 +43,7 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
 
       <TableCell>
         <Stack direction="row" alignItems="center">
-          <Tooltip title="Edit" placement="top" arrow>
+          <Tooltip title="Editar" placement="top" arrow>
             <IconButton
               onClick={() => {
                 onEditRow();
@@ -53,10 +52,10 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
               <Iconify icon="solar:pen-bold" />
             </IconButton>
           </Tooltip>
-          <Tooltip title="Remove" placement="top" arrow>
+          <Tooltip title="Eliminar" placement="top" arrow>
             <IconButton
               onClick={() => {
-                alert('borrar');
+                onDeleteRow();
               }}
             >
               <Iconify icon="solar:trash-bin-trash-bold" />
