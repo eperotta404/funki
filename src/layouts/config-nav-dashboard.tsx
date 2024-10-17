@@ -59,7 +59,7 @@ export const navData = [
         ],
       },
       {
-        title: 'Usuarios',
+        title: 'Administración',
         path: paths.dashboard.users.root,
         icon: ICONS.users,
         children: [

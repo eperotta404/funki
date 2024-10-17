@@ -43,7 +43,6 @@ export default function Page() {
 
   const handleClose = () => {
     setOpen(false);
-    refetch();
   };
 
   const onEdit = (userId: string) => {
@@ -78,7 +77,7 @@ export default function Page() {
             <UsersTable tableData={tableData} onEdit={onEdit} onDelete={onDelete} />
             {userIdSelected && (
               <>
-                <UserEditModal userId={userIdSelected} open={open} handleClose={handleClose} />
+                <UserEditModal userId={userIdSelected} open={open} handleClose={handleClose} refetch={refetch}/>
                 <ConfirmDialog
                   open={confirm.value}
                   onClose={confirm.onFalse}

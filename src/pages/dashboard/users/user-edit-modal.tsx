@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Box, Modal, IconButton } from '@mui/material';
 
 import { useFetchData } from 'src/hooks/use-fetch-data';
@@ -14,6 +16,7 @@ interface UserEditModalProps {
   open: boolean;
   userId: string;
   handleClose: () => void;
+  refetch: () => void;
 }
 
 const style = {
@@ -34,14 +37,26 @@ const style = {
 const getUserUseCase = new GetUser(userService);
 
 export default function UserEditModal(props: UserEditModalProps) {
-  const { userId, open, handleClose } = props;
+  const { userId, open, handleClose, refetch } = props;
 
   const { data: currentUser, loading } = useFetchData(getUserUseCase, userId);
+  const [shouldRefetch, setShouldRefetch] = useState(false);
+
+  const handleSaveSuccess = () => {
+    setShouldRefetch(true);
+  };
+
+  const handleModalClose = () => {
+    if (shouldRefetch) {
+      refetch();
+    }
+    setShouldRefetch(false);
+    handleClose();
+  };
 
   return (
     <Modal
       open={open}
-      onClose={handleClose}
       aria-labelledby="modal-user-edit"
       aria-describedby="modal-user-edit"
     >
@@ -50,7 +65,7 @@ export default function UserEditModal(props: UserEditModalProps) {
           <h2 id="modal-user-edit" style={{ marginLeft: 10 }}>
             Editar Usuario
           </h2>
-          <IconButton onClick={handleClose} aria-label="cerrar">
+          <IconButton onClick={handleModalClose} aria-label="cerrar">
             <Iconify icon="icon-park-solid:close-one" width={30} sx={{ color: 'text.secondary' }} />
           </IconButton>
         </Box>
@@ -66,7 +81,7 @@ export default function UserEditModal(props: UserEditModalProps) {
             <LoadingScreen />
           </Box>
         ) : (
-          <>{currentUser && <UserNewEditForm currentUser={currentUser} />}</>
+          <>{currentUser && <UserNewEditForm currentUser={currentUser} onSaveSuccess={handleSaveSuccess} />}</>
         )}
       </Box>
     </Modal>

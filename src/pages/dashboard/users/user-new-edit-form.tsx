@@ -69,11 +69,12 @@ export const NewUserSchema = zod
 
 type Props = {
   currentUser?: User;
+  onSaveSuccess?: () => void;
 };
 
-export function UserNewEditForm({ currentUser }: Props) {
+export function UserNewEditForm({ currentUser, onSaveSuccess }: Props) {
   const { selectedOrganization } = useOrganization();
-  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [ alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const {
     data: dataCreated,
     loading: loadingCreate,
@@ -136,6 +137,7 @@ export function UserNewEditForm({ currentUser }: Props) {
         sportOrganizationsIds: selectedOrganization?.id ? [selectedOrganization.id] : [],
       });
     }
+    onSaveSuccess?.();
   });
 
   useEffect(() => {
