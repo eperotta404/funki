@@ -23,9 +23,9 @@ interface UserTableProps {
 }
 
 const TABLE_HEAD = [
-  { id: 'email', label: 'Email' },
-  { id: 'role', label: 'Role' },
-  { id: '', width: 88 },
+  { id: 'email', label: 'Correo electrónico' },
+  { id: 'role', label: 'Roles' },
+  { id: '', label: "Actions", width: 88 },
 ];
 
 type IUserTableFilters = {
