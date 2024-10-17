@@ -34,10 +34,16 @@ export default function Page() {
   const { data, loading } = useFetchData(getUsersUseCase, selectedOrganization?.id);
 
   const [tableData, setTableData] = useState<User[]>(data || []);
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
+  const [userIdSelected, setUserIdSelected] = useState<string>('');
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const onEdit = (userId: string) => {
+    setUserIdSelected(userId);
+    setOpen(true);
   };
 
   const renderUserList = (
@@ -58,8 +64,8 @@ export default function Page() {
           </Grid>
         ) : (
           <Grid item xs={12}>
-            <UsersTable tableData={tableData} />
-            <UserEditModal userId="1" open={open} handleClose={handleClose} />
+            <UsersTable tableData={tableData} onEdit={onEdit} />
+            <UserEditModal userId={userIdSelected} open={open} handleClose={handleClose} />
           </Grid>
         )}
       </Grid>

@@ -49,7 +49,7 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
           <Tooltip title="Edit" placement="top" arrow>
             <IconButton
               onClick={() => {
-                alert('editar');
+                onEditRow();
               }}
             >
               <Iconify icon="solar:pen-bold" />
