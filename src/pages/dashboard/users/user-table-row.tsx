@@ -28,24 +28,21 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
         <Checkbox id={row.id} checked={selected} onClick={onSelectRow} />
       </TableCell>
 
-      <TableCell>
-        <Stack spacing={3} direction="row" alignItems="center">
+      <TableCell width={500}>
+        <Stack spacing={1} direction="row" alignItems="center">
           <CustomAvatar
             src={row.avatar}
             alt={row.email}
             name={row.email}
             sx={{ width: 40, height: 40 }}
           />
-
-          <Stack sx={{ typography: 'body2', flex: '1 1 auto', alignItems: 'flex-start' }}>
-            <Link color="inherit" onClick={onEditRow} sx={{ cursor: 'pointer' }}>
-              {row.email}
-            </Link>
-          </Stack>
+          <Link color="inherit" onClick={onEditRow} sx={{ cursor: 'pointer' }}>
+            {row.email}
+          </Link>
         </Stack>
       </TableCell>
 
-      <TableCell sx={{ whiteSpace: 'nowrap' }}>{row.roles}</TableCell>
+      <TableCell sx={{ whiteSpace: 'nowrap' }}>{row.roles.join(', ')}</TableCell>
 
       <TableCell>
         <Stack direction="row" alignItems="center">

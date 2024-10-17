@@ -44,20 +44,22 @@ export const NewUserSchema = zod
   .object({
     email: zod
       .string()
-      .min(1, { message: 'Email is required!' })
-      .email({ message: 'Email must be a valid email address!' }),
-    role: zod.array(zod.string()).min(1, { message: 'At least one role is required!' }),
+      .min(1, { message: '¡El correo electrónico es obligatorio!' })
+      .email({ message: '¡El correo electrónico debe ser una dirección válida!' }),
+    role: zod.array(zod.string()).min(1, { message: '¡Se requiere al menos un rol!' }),
     password: zod
       .string()
-      .min(8, { message: 'Password must be at least 8 characters long!' })
-      .regex(/[a-z]/, { message: 'Password must contain at least one lowercase letter!' })
-      .regex(/[A-Z]/, { message: 'Password must contain at least one uppercase letter!' })
-      .regex(/\d/, { message: 'Password must contain at least one number!' })
-      .regex(/[^a-zA-Z0-9]/, { message: 'Password must contain at least one special character!' }),
-    confirmPassword: zod.string().min(1, { message: 'Please confirm your password!' }),
+      .min(8, { message: '¡La contraseña debe tener al menos 8 caracteres!' })
+      .regex(/[a-z]/, { message: '¡La contraseña debe contener al menos una letra minúscula!' })
+      .regex(/[A-Z]/, { message: '¡La contraseña debe contener al menos una letra mayúscula!' })
+      .regex(/\d/, { message: '¡La contraseña debe contener al menos un número!' })
+      .regex(/[^a-zA-Z0-9]/, {
+        message: '¡La contraseña debe contener al menos un carácter especial!',
+      }),
+    confirmPassword: zod.string().min(1, { message: '¡Por favor, confirma tu contraseña!' }),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: 'Passwords do not match!',
+    message: '¡Las contraseñas no coinciden!',
     path: ['confirmPassword'],
   });
 
@@ -150,7 +152,7 @@ export function UserNewEditForm({ currentUser }: Props) {
             <Box rowGap={3} display="grid">
               <Field.Text
                 name="email"
-                label="Email address"
+                label="Correo electrónico"
                 onChange={(e) => {
                   handleChange();
                   methods.setValue('email', e.target.value);
@@ -158,9 +160,9 @@ export function UserNewEditForm({ currentUser }: Props) {
               />
 
               <FormControl fullWidth error={!!errors.role}>
-                <InputLabel>Role</InputLabel>
+                <InputLabel>Roles</InputLabel>
                 <Select
-                  label="Role"
+                  label="Roles"
                   name="role"
                   multiple
                   value={values.role || []}
@@ -184,7 +186,7 @@ export function UserNewEditForm({ currentUser }: Props) {
               </FormControl>
               <Field.Text
                 name="password"
-                label="Password"
+                label="Contraseña"
                 type={password.value ? 'text' : 'password'}
                 onChange={(e) => {
                   handleChange();
@@ -205,7 +207,7 @@ export function UserNewEditForm({ currentUser }: Props) {
               />
               <Field.Text
                 name="confirmPassword"
-                label="Confirm Password"
+                label="Confirmar contraseña"
                 type={confirmPassword.value ? 'text' : 'password'}
                 onChange={(e) => {
                   handleChange();
@@ -228,7 +230,7 @@ export function UserNewEditForm({ currentUser }: Props) {
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
               <LoadingButton type="submit" variant="contained" loading={loading}>
-                {!currentUser ? 'Create user' : 'Save changes'}
+                {!currentUser ? 'Crear usuario' : 'Save changes'}
               </LoadingButton>
             </Stack>
           </Card>
