@@ -1,5 +1,5 @@
 export class User {
-  private _id: string = '';
+  private _id: string = '1';
 
   private _email: string = 'admin@fanki.co';
 

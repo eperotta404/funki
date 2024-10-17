@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import { CONFIG } from 'src/config-global';
 
+import { STORAGE_KEY } from 'src/components/settings';
+
 import { NetworkError } from './NetworkError';
 import { HttpJsonError } from './HttpJsonError';
 import { ForbiddenError } from './ForbiddenError';
@@ -31,7 +33,7 @@ export class HttpClient {
   }
 
   configWithAuthHeader(): AxiosRequestConfig {
-    const accessToken = this.session.get()
+    const accessToken = this.session.get(STORAGE_KEY)
     if (!accessToken) { return {}; }
     return {
       headers: {

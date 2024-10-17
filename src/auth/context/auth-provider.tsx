@@ -3,14 +3,15 @@ import { useMemo, useEffect, useCallback } from 'react';
 import { useSetState } from 'src/hooks/use-set-state';
 
 import { GetMe } from 'src/core/domain/useCases/GetMe';
-import { session, authService } from 'src/core/infrastructure/instances';
+import { session } from 'src/core/infrastructure/instances';
 
+import { STORAGE_KEY } from './constant';
 import { AuthContext } from './auth-context';
 import { setSession, isValidToken } from './utils';
 
 import type { AuthState } from '../types';
 
-const getMeUseCase = new GetMe(authService);
+const getMeUseCase = new GetMe(session);
 
 // ----------------------------------------------------------------------
 
@@ -26,7 +27,7 @@ export function AuthProvider({ children }: Props) {
 
   const checkUserSession = useCallback(async () => {
     try {
-      const accessToken = session.get();
+      const accessToken = session.get(STORAGE_KEY);
       if (accessToken && isValidToken(accessToken)) {
         setSession(accessToken);
 

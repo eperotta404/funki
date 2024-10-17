@@ -3,16 +3,16 @@ import type { SessionStorage } from 'src/core/domain/models/sessionStorage';
 import { STORAGE_KEY } from 'src/components/settings';
 
 export class LocalStorage implements SessionStorage {
-  get(): string | null {
-    return sessionStorage.getItem(STORAGE_KEY);
+  get(key: string): string | null {
+    return sessionStorage.getItem(key);
   }
 
-  store(value: string): void {
-    sessionStorage.setItem(STORAGE_KEY, value);
+  store(key: string, value: string): void {
+    sessionStorage.setItem(key, value);
   }
 
-  remove():void {
-    sessionStorage.removeItem(STORAGE_KEY);
+  remove(key: string):void {
+    sessionStorage.removeItem(key);
   }
 
   hasSession():boolean {
