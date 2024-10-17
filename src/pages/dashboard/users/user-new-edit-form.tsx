@@ -1,5 +1,5 @@
-import type { CreateUserDto, UpdateUserDto } from 'src/shared/types';
 import type { User } from 'src/core/domain/models/user';
+import type { CreateUserDto, UpdateUserDto } from 'src/shared/types';
 
 import { z as zod } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -150,7 +150,6 @@ export function UserNewEditForm({ currentUser }: Props) {
   useEffect(() => {
     if (dataUpdated) {
       setAlert({ type: 'success', message: `Usuario modificado: ${dataUpdated.email}` });
-      methods.reset();
     } else if (errorUpdate) {
       setAlert({ type: 'error', message: 'No se pudo crear usuario.' });
     }
@@ -268,7 +267,11 @@ export function UserNewEditForm({ currentUser }: Props) {
             </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
-              <LoadingButton type="submit" variant="contained" loading={loadingCreate}>
+              <LoadingButton
+                type="submit"
+                variant="contained"
+                loading={loadingCreate || loadingUpdate}
+              >
                 {!currentUser ? 'Crear usuario' : 'Guardar cambios'}
               </LoadingButton>
             </Stack>
