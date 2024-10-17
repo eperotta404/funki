@@ -16,11 +16,10 @@ type Props = {
   row: User;
   selected: boolean;
   onEditRow: () => void;
-  onSelectRow: () => void;
   onDeleteRow: () => void;
 };
 
-export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }: Props) {
+export function UserTableRow({ row, selected, onEditRow, onDeleteRow }: Props) {
   return (
     <TableRow hover selected={selected} aria-checked={selected} tabIndex={-1}>
 
@@ -58,7 +57,7 @@ export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRo
                 onDeleteRow();
               }}
             >
-              <Iconify icon="solar:trash-bin-trash-bold" />
+              <Iconify color="error" icon="solar:trash-bin-trash-bold" />
             </IconButton>
           </Tooltip>
         </Stack>

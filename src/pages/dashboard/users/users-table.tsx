@@ -78,8 +78,7 @@ export default function UsersTable(props: UserTableProps) {
                     key={row.id}
                     row={row}
                     selected={table.selected.includes(row.id)}
-                    onSelectRow={() => table.onSelectRow(row.id)}
-                    onDeleteRow={() =>onDelete(row.id, row.email)}
+                    onDeleteRow={() => onDelete(row.id, row.email)}
                     onEditRow={() => onEdit(row.id)}
                   />
                 ))}

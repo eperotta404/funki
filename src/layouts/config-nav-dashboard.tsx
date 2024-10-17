@@ -38,6 +38,7 @@ const ICONS = {
   analytics: icon('ic-analytics'),
   dashboard: icon('ic-dashboard'),
   parameter: icon('ic-parameter'),
+  accordion: icon('ic-accordion'),
 };
 
 // ----------------------------------------------------------------------
@@ -61,7 +62,7 @@ export const navData = [
       {
         title: 'Administración',
         path: paths.dashboard.users.root,
-        icon: ICONS.users,
+        icon: ICONS.accordion,
         children: [
           { title: 'Usuarios', path: paths.dashboard.users.root },
           { title: 'Nuevo Usuario', path: paths.dashboard.users.create }
