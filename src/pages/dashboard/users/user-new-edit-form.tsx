@@ -1,4 +1,4 @@
-import type { CreateUserDto } from 'src/shared/types';
+import type { CreateUserDto, UpdateUserDto } from 'src/shared/types';
 import type { User } from 'src/core/domain/models/user';
 
 import { z as zod } from 'zod';
@@ -29,12 +29,14 @@ import { useMutationData } from 'src/hooks/use-mutation-data';
 
 import { userService } from 'src/core/infrastructure/instances';
 import { CreateUser } from 'src/core/domain/useCases/users/CreateUser';
+import { UpdateUser } from 'src/core/domain/useCases/users/UpdateUser';
 import { useOrganization } from 'src/layouts/components/organization-popover/context/organization-selector-context';
 
 import { Iconify } from 'src/components/iconify';
 import { Form, Field } from 'src/components/hook-form';
 
 const createUserUseCase = new CreateUser(userService);
+const updateUserUseCase = new UpdateUser(userService);
 
 // ----------------------------------------------------------------------
 
@@ -72,7 +74,18 @@ type Props = {
 export function UserNewEditForm({ currentUser }: Props) {
   const { selectedOrganization } = useOrganization();
   const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
-  const { data, loading, error, execute } = useMutationData<User, CreateUserDto>(createUserUseCase);
+  const {
+    data: dataCreated,
+    loading: loadingCreate,
+    error: errorCreate,
+    execute: executeCreate,
+  } = useMutationData<User, CreateUserDto>(createUserUseCase);
+  const {
+    data: dataUpdated,
+    loading: loadingUpdate,
+    error: errorUpdate,
+    execute: executeUpdate,
+  } = useMutationData<User, UpdateUserDto>(updateUserUseCase);
 
   const rolesOptions = ['SUPER_ADMIN', 'SO_ADMIN', 'SO_ASSISTANT'];
 
@@ -88,7 +101,8 @@ export function UserNewEditForm({ currentUser }: Props) {
     return {
       email: currentUser?.email || '',
       role: initialRole,
-      ...(currentUser ? {} : { password: '', confirmPassword: '' }),
+      password: currentUser ? 'aA123456!' : '',
+      confirmPassword: currentUser ? 'aA123456!' : '',
     };
   }, [currentUser]);
 
@@ -107,22 +121,40 @@ export function UserNewEditForm({ currentUser }: Props) {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
-    await execute({
-      email: formData.email,
-      roles: formData.role,
-      password: formData.password,
-      sportOrganizationsIds: selectedOrganization?.id ? [selectedOrganization.id] : [],
-    });
+    if (currentUser) {
+      await executeUpdate({
+        id: currentUser.id,
+        email: formData.email,
+        roles: formData.role,
+        sportOrganizationsIds: selectedOrganization?.id ? [selectedOrganization.id] : [],
+      });
+    } else {
+      await executeCreate({
+        email: formData.email,
+        roles: formData.role,
+        password: formData.password,
+        sportOrganizationsIds: selectedOrganization?.id ? [selectedOrganization.id] : [],
+      });
+    }
   });
 
   useEffect(() => {
-    if (data) {
-      setAlert({ type: 'success', message: `Nuevo usuario creado: ${data.email}` });
+    if (dataCreated) {
+      setAlert({ type: 'success', message: `Nuevo usuario creado: ${dataCreated.email}` });
       methods.reset();
-    } else if (error) {
+    } else if (errorCreate) {
       setAlert({ type: 'error', message: 'No se pudo crear usuario.' });
     }
-  }, [data, error, methods]);
+  }, [dataCreated, errorCreate, methods]);
+
+  useEffect(() => {
+    if (dataUpdated) {
+      setAlert({ type: 'success', message: `Usuario modificado: ${dataUpdated.email}` });
+      methods.reset();
+    } else if (errorUpdate) {
+      setAlert({ type: 'error', message: 'No se pudo crear usuario.' });
+    }
+  }, [dataUpdated, errorUpdate, methods]);
 
   const handleChange = () => {
     if (alert) {
@@ -236,7 +268,7 @@ export function UserNewEditForm({ currentUser }: Props) {
             </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
-              <LoadingButton type="submit" variant="contained" loading={loading}>
+              <LoadingButton type="submit" variant="contained" loading={loadingCreate}>
                 {!currentUser ? 'Crear usuario' : 'Guardar cambios'}
               </LoadingButton>
             </Stack>

@@ -8,7 +8,6 @@ export interface CreateUserDto {
 export interface UpdateUserDto {
   id: string;
   email: string;
-  password: string;
   roles: string[];
   sportOrganizationsIds: string[];
 }

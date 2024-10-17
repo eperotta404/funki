@@ -31,7 +31,7 @@ export default function Page() {
 
   const metadata = { title: `Usuarios | Listado - ${CONFIG.appName}` };
 
-  const { data, loading } = useFetchData(getUsersUseCase, selectedOrganization?.id);
+  const { data, loading, refetch  } = useFetchData(getUsersUseCase, selectedOrganization?.id);
 
   const [tableData, setTableData] = useState<User[]>(data || []);
   const [open, setOpen] = useState<boolean>(false);
@@ -39,6 +39,7 @@ export default function Page() {
 
   const handleClose = () => {
     setOpen(false);
+    refetch();
   };
 
   const onEdit = (userId: string) => {
