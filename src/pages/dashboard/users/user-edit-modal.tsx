@@ -16,11 +16,11 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 2, 
+  p: 2,
   width: '90%',
   maxWidth: '900px',
-  height: 'auto', 
-  borderRadius: '8px', 
+  height: 'auto',
+  borderRadius: '8px',
 };
 export default function UserEditModal(props: UserEditModalProps) {
   const { userId, open, handleClose } = props;

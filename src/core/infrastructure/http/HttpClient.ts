@@ -33,8 +33,6 @@ export class HttpClient {
   }
 
   configWithAuthHeader(): AxiosRequestConfig {
-    // eslint-disable-next-line no-debugger
-    debugger
     const accessToken = this.session.get(STORAGE_KEY)
     if (!accessToken) { return {}; }
     return {

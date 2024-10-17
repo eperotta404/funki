@@ -2,7 +2,7 @@ import { paths } from 'src/routes/paths';
 
 import { session } from 'src/core/infrastructure/instances';
 
-import { STORAGE_KEY } from './constant';
+import { STORAGE_KEY, STORAGE_USER_KEY } from './constant';
 
 // ----------------------------------------------------------------------
 
@@ -83,6 +83,7 @@ export async function setSession(accessToken: string | null) {
       }
     } else {
       session.remove(STORAGE_KEY);
+      session.remove(STORAGE_USER_KEY);
     }
   } catch (error) {
     console.error('Error during set session:', error);
