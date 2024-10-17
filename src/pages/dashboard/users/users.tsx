@@ -21,6 +21,7 @@ import { LoadingScreen } from 'src/components/loading-screen';
 import { BlankView } from 'src/sections/blank/view';
 
 import UsersTable from './users-table';
+import UserEditModal from './user-edit-modal';
 
 const getUsersUseCase = new GetUsers(userService);
 
@@ -33,6 +34,11 @@ export default function Page() {
   const { data, loading } = useFetchData(getUsersUseCase, selectedOrganization?.id);
 
   const [tableData, setTableData] = useState<User[]>(data || []);
+  const [open, setOpen] = useState<boolean>(true);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const renderUserList = (
     <DashboardContent maxWidth="xl">
@@ -53,6 +59,7 @@ export default function Page() {
         ) : (
           <Grid item xs={12}>
             <UsersTable tableData={tableData} />
+            <UserEditModal userId="1" open={open} handleClose={handleClose} />
           </Grid>
         )}
       </Grid>

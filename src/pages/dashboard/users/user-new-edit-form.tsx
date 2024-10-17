@@ -141,8 +141,8 @@ export function UserNewEditForm({ currentUser }: Props) {
 
   return (
     <Form methods={methods} onSubmit={onSubmit}>
-      <Grid container justifyContent="center">
-        <Grid xs={12} md={6}>
+      <Grid container justifyContent="center" sx={{ width: '100%', height: '100%' }}>
+        <Grid xs={12} md={8}>
           <Card sx={{ p: 3 }}>
             {alert && (
               <Alert severity={alert.type} sx={{ mb: 3 }}>
