@@ -25,7 +25,7 @@ interface UserTableProps {
 const TABLE_HEAD = [
   { id: 'email', label: 'Correo electrónico' },
   { id: 'role', label: 'Roles' },
-  { id: '', label: "Actions", width: 88 },
+  { id: '', label: 'Actions', width: 88 },
 ];
 
 type IUserTableFilters = {
@@ -63,15 +63,7 @@ export default function UsersTable(props: UserTableProps) {
               order={table.order}
               orderBy={table.orderBy}
               headLabel={TABLE_HEAD}
-              rowCount={dataFiltered.length}
-              numSelected={table.selected.length}
               onSort={table.onSort}
-              onSelectAllRows={(checked) =>
-                table.onSelectAllRows(
-                  checked,
-                  dataFiltered.map((row) => row.id)
-                )
-              }
             />
 
             <TableBody>
@@ -120,7 +112,7 @@ export default function UsersTable(props: UserTableProps) {
   };
 
   function applyFilter({ inputData, comparator, filters }: ApplyFilterProps) {
-    const { name, status, role } = filters;
+    const { role } = filters;
 
     const stabilizedThis = inputData.map((el, index) => [el, index] as const);
 
@@ -131,16 +123,6 @@ export default function UsersTable(props: UserTableProps) {
     });
 
     inputData = stabilizedThis.map((el) => el[0]);
-
-    if (name) {
-      inputData = inputData.filter(
-        (user) => user.name.toLowerCase().indexOf(name.toLowerCase()) !== -1
-      );
-    }
-
-    if (status !== 'all') {
-      inputData = inputData.filter((user) => user.status === status);
-    }
 
     if (role.length) {
       inputData = inputData.filter((user) => role.includes(user.role));

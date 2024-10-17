@@ -24,9 +24,7 @@ type Props = {
 export function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }: Props) {
   return (
     <TableRow hover selected={selected} aria-checked={selected} tabIndex={-1}>
-      <TableCell padding="checkbox">
-        <Checkbox id={row.id} checked={selected} onClick={onSelectRow} />
-      </TableCell>
+
 
       <TableCell width={500}>
         <Stack spacing={1} direction="row" alignItems="center">
