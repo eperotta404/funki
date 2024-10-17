@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { CONFIG } from 'src/config-global';
 
-import { STORAGE_KEY } from 'src/components/settings';
+import { STORAGE_KEY } from 'src/auth/context/constant';
 
 import { NetworkError } from './NetworkError';
 import { HttpJsonError } from './HttpJsonError';
@@ -33,6 +33,8 @@ export class HttpClient {
   }
 
   configWithAuthHeader(): AxiosRequestConfig {
+    // eslint-disable-next-line no-debugger
+    debugger
     const accessToken = this.session.get(STORAGE_KEY)
     if (!accessToken) { return {}; }
     return {

@@ -27,7 +27,7 @@ export class AuthApi implements AuthRepository {
       // eslint-disable-next-line no-debugger
       debugger;
       const userInfo = new User(user.id, user.email, user.roles, user.sportOrganizationsIds);
-      // this.sessionStorage.store('user', JSON.stringify(userInfo))
+      this.sessionStorage.store('user', JSON.stringify(userInfo))
       return { accessToken: token, user: userInfo };
     } catch (error) {
       error.message = "auth.invalidCredentials"
