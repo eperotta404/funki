@@ -88,8 +88,7 @@ export function UserNewEditForm({ currentUser }: Props) {
     return {
       email: currentUser?.email || '',
       role: initialRole,
-      password: '',
-      confirmPassword: '',
+      ...(currentUser ? {} : { password: '', confirmPassword: '' }),
     };
   }, [currentUser]);
 
@@ -153,6 +152,7 @@ export function UserNewEditForm({ currentUser }: Props) {
               <Field.Text
                 name="email"
                 label="Correo electrónico"
+                disabled={!!currentUser}
                 onChange={(e) => {
                   handleChange();
                   methods.setValue('email', e.target.value);
@@ -184,53 +184,60 @@ export function UserNewEditForm({ currentUser }: Props) {
                 </Select>
                 {errors.role && <FormHelperText>{errors.role.message}</FormHelperText>}
               </FormControl>
-              <Field.Text
-                name="password"
-                label="Contraseña"
-                type={password.value ? 'text' : 'password'}
-                onChange={(e) => {
-                  handleChange();
-                  methods.setValue('password', e.target.value);
-                }}
-                helperText={errors.password?.message}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={password.onToggle} edge="end">
-                        <Iconify
-                          icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'}
-                        />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Field.Text
-                name="confirmPassword"
-                label="Confirmar contraseña"
-                type={confirmPassword.value ? 'text' : 'password'}
-                onChange={(e) => {
-                  handleChange();
-                  methods.setValue('confirmPassword', e.target.value);
-                }}
-                helperText={errors.confirmPassword?.message}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={confirmPassword.onToggle} edge="end">
-                        <Iconify
-                          icon={confirmPassword.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'}
-                        />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
+
+              {!currentUser && (
+                <>
+                  <Field.Text
+                    name="password"
+                    label="Contraseña"
+                    type={password.value ? 'text' : 'password'}
+                    onChange={(e) => {
+                      handleChange();
+                      methods.setValue('password', e.target.value);
+                    }}
+                    helperText={errors.password?.message}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={password.onToggle} edge="end">
+                            <Iconify
+                              icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'}
+                            />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <Field.Text
+                    name="confirmPassword"
+                    label="Confirmar contraseña"
+                    type={confirmPassword.value ? 'text' : 'password'}
+                    onChange={(e) => {
+                      handleChange();
+                      methods.setValue('confirmPassword', e.target.value);
+                    }}
+                    helperText={errors.confirmPassword?.message}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={confirmPassword.onToggle} edge="end">
+                            <Iconify
+                              icon={
+                                confirmPassword.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'
+                              }
+                            />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </>
+              )}
             </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
               <LoadingButton type="submit" variant="contained" loading={loading}>
-                {!currentUser ? 'Crear usuario' : 'Save changes'}
+                {!currentUser ? 'Crear usuario' : 'Guardar cambios'}
               </LoadingButton>
             </Stack>
           </Card>

@@ -65,7 +65,9 @@ export default function Page() {
         ) : (
           <Grid item xs={12}>
             <UsersTable tableData={tableData} onEdit={onEdit} />
-            <UserEditModal userId={userIdSelected} open={open} handleClose={handleClose} />
+            {userIdSelected && (
+              <UserEditModal userId={userIdSelected} open={open} handleClose={handleClose} />
+            )}
           </Grid>
         )}
       </Grid>
