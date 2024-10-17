@@ -1,4 +1,6 @@
-import { Box, Modal } from '@mui/material';
+import { Box, Modal, IconButton } from '@mui/material';
+
+import { Iconify } from 'src/components/iconify';
 
 import { UserNewEditForm } from './user-new-edit-form';
 
@@ -16,7 +18,7 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 2, 
+  p: 1, 
   width: '90%',
   maxWidth: '900px',
   height: 'auto', 
@@ -32,6 +34,12 @@ export default function UserEditModal(props: UserEditModalProps) {
       aria-describedby="modal-user-edit"
     >
       <Box sx={style}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h2 id="modal-user-edit" style={{ marginLeft:10 }} >Editar Usuario</h2>
+          <IconButton onClick={handleClose} aria-label="cerrar">
+          <Iconify icon="icon-park-solid:close-one" width={40} sx={{ color: 'text.secondary' }} />
+          </IconButton>
+        </Box>
         <UserNewEditForm />
       </Box>
     </Modal>
