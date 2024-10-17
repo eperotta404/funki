@@ -2,6 +2,8 @@ import { paths } from 'src/routes/paths';
 
 import { session } from 'src/core/infrastructure/instances';
 
+import { STORAGE_KEY, STORAGE_USER_KEY } from './constant';
+
 // ----------------------------------------------------------------------
 
 export function jwtDecode(token: string) {
@@ -56,7 +58,7 @@ export function tokenExpired(exp: number) {
   setTimeout(() => {
     try {
       alert('Token expired!');
-      session.remove();
+      session.remove(STORAGE_KEY);
       window.location.href = paths.auth.signIn;
     } catch (error) {
       console.error('Error during token expiration:', error);
@@ -70,7 +72,7 @@ export function tokenExpired(exp: number) {
 export async function setSession(accessToken: string | null) {
   try {
     if (accessToken) {
-      session.store(accessToken);
+      session.store(STORAGE_KEY, accessToken);
 
       const decodedToken = jwtDecode(accessToken);
 
@@ -80,7 +82,8 @@ export async function setSession(accessToken: string | null) {
         throw new Error('Invalid access token!');
       }
     } else {
-      session.remove();
+      session.remove(STORAGE_KEY);
+      session.remove(STORAGE_USER_KEY);
     }
   } catch (error) {
     console.error('Error during set session:', error);

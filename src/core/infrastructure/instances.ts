@@ -13,7 +13,7 @@ import { OrganizationService } from '../domain/services/OrganizationService';
 export const session = new LocalStorage();
 
 const httpClient = new HttpClient(session);
-const authApi = new AuthApi(httpClient);
+const authApi = new AuthApi(httpClient, session);
 const organizationApi = new OrganizationApi(httpClient);
 const eventApi = new EventApi(httpClient);
 const userApi = new UserApi(httpClient);

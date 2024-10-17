@@ -1,6 +1,6 @@
 export interface SessionStorage {
-  get():string | null;
-  store(value: string): void;
-  remove(): void;
+  get(key: string):string | null;
+  store(key: string, value: string): void;
+  remove(key: string): void;
   hasSession(): boolean
 }
