@@ -100,15 +100,6 @@ export function SignInView() {
       />
 
       <Box gap={1.5} display="flex" flexDirection="column">
-        <Link
-          component={RouterLink}
-          href="#"
-          variant="body2"
-          color="inherit"
-          sx={{ alignSelf: 'flex-end' }}
-        >
-          {capitalizeFirtsLetter(t('auth.links.forgotPassword'))}
-        </Link>
 
         <Field.Text
           name="password"

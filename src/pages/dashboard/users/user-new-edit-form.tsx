@@ -16,6 +16,7 @@ import {
   Select,
   Checkbox,
   MenuItem,
+  useTheme,
   InputLabel,
   IconButton,
   FormControl,
@@ -74,7 +75,8 @@ type Props = {
 
 export function UserNewEditForm({ currentUser, onSaveSuccess }: Props) {
   const { selectedOrganization } = useOrganization();
-  const [ alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const theme = useTheme();
+  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const {
     data: dataCreated,
     loading: loadingCreate,
@@ -166,7 +168,7 @@ export function UserNewEditForm({ currentUser, onSaveSuccess }: Props) {
   const menuProps = {
     PaperProps: {
       sx: {
-        background: 'white',
+        background: theme.vars.palette.secondary.lighter,
       },
     },
   };
@@ -190,6 +192,18 @@ export function UserNewEditForm({ currentUser, onSaveSuccess }: Props) {
                   handleChange();
                   methods.setValue('email', e.target.value);
                 }}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    backgroundColor: theme.vars.palette.secondary.lighter,
+                    borderRadius: '8px',
+                    '& fieldset': {
+                      borderColor: '#ccc',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: theme.vars.palette.secondary.light,
+                    },
+                  },
+                }}
               />
 
               <FormControl fullWidth error={!!errors.role}>
@@ -199,6 +213,22 @@ export function UserNewEditForm({ currentUser, onSaveSuccess }: Props) {
                   name="role"
                   multiple
                   value={values.role || []}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '8px',
+                      '& fieldset': {
+                        borderColor: '#ccc',
+                      },
+                      '&:hover fieldset': {
+                        borderColor: theme.vars.palette.secondary.light,
+                      },
+                    },
+
+                    '& .MuiSelect-select': {
+                      padding: '16.5px 14px',
+                      backgroundColor: theme.vars.palette.secondary.lighter,
+                    },
+                  }}
                   onChange={(e) => {
                     methods.setValue('role', e.target.value as string[]);
                     handleChange();
@@ -229,6 +259,18 @@ export function UserNewEditForm({ currentUser, onSaveSuccess }: Props) {
                       methods.setValue('password', e.target.value);
                     }}
                     helperText={errors.password?.message}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        backgroundColor: theme.vars.palette.secondary.lighter,
+                        borderRadius: '8px',
+                        '& fieldset': {
+                          borderColor: '#ccc',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: theme.vars.palette.secondary.light,
+                        },
+                      },
+                    }}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -250,6 +292,18 @@ export function UserNewEditForm({ currentUser, onSaveSuccess }: Props) {
                       methods.setValue('confirmPassword', e.target.value);
                     }}
                     helperText={errors.confirmPassword?.message}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        backgroundColor: theme.vars.palette.secondary.lighter,
+                        borderRadius: '8px',
+                        '& fieldset': {
+                          borderColor: '#ccc',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: theme.vars.palette.secondary.light,
+                        },
+                      },
+                    }}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
