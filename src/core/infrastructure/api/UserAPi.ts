@@ -64,7 +64,7 @@ export class UserApi implements UserRepository {
 
   async deleteUser(userId: string): Promise<User> {
     try {
-      const response = await this.httpClient.delete(`/users/${userId}`);
+      const response = await this.httpClient.delete(`/users/delete/${userId}`);
       const user = new User(response.data.id, response.data.email, response.data.roles, response.data.sportOrganizationsIds)
       return user;
     } catch (error) {
