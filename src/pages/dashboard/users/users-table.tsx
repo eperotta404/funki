@@ -16,6 +16,8 @@ import {
 } from 'src/components/table';
 
 import { UserTableRow } from './user-table-row';
+import { UserTableToolbar } from './user-table-toolbar';
+import { UserTableFiltersResult } from './user-table-filters-result';
 
 interface UserTableProps {
   tableData: User[];
@@ -47,17 +49,30 @@ export default function UsersTable(props: UserTableProps) {
     filters: filtersState.state,
   });
 
-  const canReset =
-    !!filtersState.state.name ||
-    filtersState.state.role.length > 0 ||
-    filtersState.state.status !== 'all';
+  const canReset = !!filtersState.state.name || filtersState.state.role.length > 0;
 
   const notFound = (!dataFiltered.length && canReset) || !dataFiltered.length;
+
+  const filters = useSetState<IUserTableFilters>({ name: '', role: [], status: 'all' });
 
   const cardStyle = { mt: 5, p: 3, backgroundColor: 'background.default', boxShadow: 3 };
   return (
     <Scrollbar>
       <Card sx={cardStyle}>
+        <UserTableToolbar
+          filters={filters}
+          onResetPage={table.onResetPage}
+          options={{ roles: ['SUPER_ADMIN', 'SO_ADMIN', 'SO_ASSISTANT'] }}
+        />
+
+        {canReset && (
+          <UserTableFiltersResult
+            filters={filters}
+            totalResults={dataFiltered.length}
+            onResetPage={table.onResetPage}
+            sx={{ p: 2.5, pt: 0 }}
+          />
+        )}
         <Box sx={{ overflowX: 'auto' }}>
           <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
             <TableHeadCustom
@@ -111,8 +126,8 @@ export default function UsersTable(props: UserTableProps) {
     comparator: (a: any, b: any) => number;
   };
 
-  function applyFilter({ inputData, comparator, filters }: ApplyFilterProps) {
-    const { role } = filters;
+  function applyFilter({ inputData, comparator, filters: filtersUser }: ApplyFilterProps) {
+    const { name, status, role } = filtersUser;
 
     const stabilizedThis = inputData.map((el, index) => [el, index] as const);
 
@@ -123,6 +138,16 @@ export default function UsersTable(props: UserTableProps) {
     });
 
     inputData = stabilizedThis.map((el) => el[0]);
+
+    if (name) {
+      inputData = inputData.filter(
+        (user) => user.name.toLowerCase().indexOf(name.toLowerCase()) !== -1
+      );
+    }
+
+    if (status !== 'all') {
+      inputData = inputData.filter((user) => user.status === status);
+    }
 
     if (role.length) {
       inputData = inputData.filter((user) => role.includes(user.role));
