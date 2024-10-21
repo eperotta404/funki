@@ -40,19 +40,20 @@ export default function UsersTable(props: UserTableProps) {
   const { tableData, onEdit, onDelete } = props;
 
   const table = useTable();
-  const filtersState = useSetState<IUserTableFilters>({ email: '', role: []});
+  const filters = useSetState<IUserTableFilters>({ email: '', role: []});
+  // const filtersState = useSetState<IUserTableFilters>({ email: '', role: []});
 
   const dataFiltered = applyFilter({
     inputData: tableData,
     comparator: getComparator(table.order, table.orderBy),
-    filters: filtersState.state,
+    filters: filters.state,
   });
 
-  const canReset = !!filtersState.state.email || filtersState.state.role.length > 0;
+  const canReset = !!filters.state.email || filters.state.role.length > 0;
 
   const notFound = (!dataFiltered.length && canReset) || !dataFiltered.length;
 
-  const filters = useSetState<IUserTableFilters>({ email: '', role: []});
+
 
   const cardStyle = { mt: 5, p: 3, backgroundColor: 'background.default', boxShadow: 3 };
   return (
@@ -69,7 +70,7 @@ export default function UsersTable(props: UserTableProps) {
             filters={filters}
             totalResults={dataFiltered.length}
             onResetPage={table.onResetPage}
-            sx={{ p: 2.5, pt: 0 }}
+            sx={{ py: 2.5, pt: 0 }}
           />
         )}
         <Box sx={{ overflowX: 'auto' }}>
@@ -119,35 +120,40 @@ export default function UsersTable(props: UserTableProps) {
     </Scrollbar>
   );
 
-  type ApplyFilterProps = {
-    inputData: any[];
-    filters: any;
-    comparator: (a: any, b: any) => number;
-  };
 
-  function applyFilter({ inputData, comparator, filters: filtersUser }: ApplyFilterProps) {
-    const { email, role } = filtersUser;
+}
 
-    const stabilizedThis = inputData.map((el, index) => [el, index] as const);
 
-    stabilizedThis.sort((a, b) => {
-      const order = comparator(a[0], b[0]);
-      if (order !== 0) return order;
-      return a[1] - b[1];
-    });
+type ApplyFilterProps = {
+  inputData: any[];
+  filters: any;
+  comparator: (a: any, b: any) => number;
+};
 
-    inputData = stabilizedThis.map((el) => el[0]);
 
-    if (email) {
-      inputData = inputData.filter(
-        (user) => user.email.toLowerCase().indexOf(email.toLowerCase()) !== -1
-      );
-    }
+function applyFilter({ inputData, comparator, filters }: ApplyFilterProps) {
+  const { email, role } = filters;
 
-    if (role.length) {
-      inputData = inputData.filter((user) => role.includes(user.role));
-    }
+ 
+  const stabilizedThis = inputData.map((el, index) => [el, index] as const);
 
-    return inputData;
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+
+  inputData = stabilizedThis.map((el) => el[0]);
+
+  if (email) {
+    inputData = inputData.filter(
+      (user) => user.email.toLowerCase().indexOf(email.toLowerCase()) !== -1
+    );
   }
+
+  if (role.length) {
+    inputData = inputData.filter((user) => role.includes(user.role));
+  }
+
+  return inputData;
 }
