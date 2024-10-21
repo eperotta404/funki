@@ -10,9 +10,8 @@ import { chipProps, FiltersBlock, FiltersResult } from 'src/components/filters-r
 // ----------------------------------------------------------------------
 
 export type IUserTableFilters = {
-  name: string;
+  email: string;
   role: string[];
-  status: string;
 };
 
 type Props = {
@@ -25,13 +24,9 @@ type Props = {
 export function UserTableFiltersResult({ filters, onResetPage, totalResults, sx }: Props) {
   const handleRemoveKeyword = useCallback(() => {
     onResetPage();
-    filters.setState({ name: '' });
+    filters.setState({ email: '' });
   }, [filters, onResetPage]);
 
-  const handleRemoveStatus = useCallback(() => {
-    onResetPage();
-    filters.setState({ status: 'all' });
-  }, [filters, onResetPage]);
 
   const handleRemoveRole = useCallback(
     (inputValue: string) => {
@@ -50,14 +45,6 @@ export function UserTableFiltersResult({ filters, onResetPage, totalResults, sx 
 
   return (
     <FiltersResult totalResults={totalResults} onReset={handleReset} sx={sx}>
-      <FiltersBlock label="Status:" isShow={filters.state.status !== 'all'}>
-        <Chip
-          {...chipProps}
-          label={filters.state.status}
-          onDelete={handleRemoveStatus}
-          sx={{ textTransform: 'capitalize' }}
-        />
-      </FiltersBlock>
 
       <FiltersBlock label="Role:" isShow={!!filters.state.role.length}>
         {filters.state.role.map((item) => (
@@ -65,8 +52,8 @@ export function UserTableFiltersResult({ filters, onResetPage, totalResults, sx 
         ))}
       </FiltersBlock>
 
-      <FiltersBlock label="Keyword:" isShow={!!filters.state.name}>
-        <Chip {...chipProps} label={filters.state.name} onDelete={handleRemoveKeyword} />
+      <FiltersBlock label="Keyword:" isShow={!!filters.state.email}>
+        <Chip {...chipProps} label={filters.state.email} onDelete={handleRemoveKeyword} />
       </FiltersBlock>
     </FiltersResult>
   );

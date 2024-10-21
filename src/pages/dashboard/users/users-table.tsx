@@ -32,16 +32,15 @@ const TABLE_HEAD = [
 ];
 
 type IUserTableFilters = {
-  name: string;
+  email: string;
   role: string[];
-  status: string;
 };
 
 export default function UsersTable(props: UserTableProps) {
   const { tableData, onEdit, onDelete } = props;
 
   const table = useTable();
-  const filtersState = useSetState<IUserTableFilters>({ name: '', role: [], status: 'all' });
+  const filtersState = useSetState<IUserTableFilters>({ email: '', role: []});
 
   const dataFiltered = applyFilter({
     inputData: tableData,
@@ -49,11 +48,11 @@ export default function UsersTable(props: UserTableProps) {
     filters: filtersState.state,
   });
 
-  const canReset = !!filtersState.state.name || filtersState.state.role.length > 0;
+  const canReset = !!filtersState.state.email || filtersState.state.role.length > 0;
 
   const notFound = (!dataFiltered.length && canReset) || !dataFiltered.length;
 
-  const filters = useSetState<IUserTableFilters>({ name: '', role: [], status: 'all' });
+  const filters = useSetState<IUserTableFilters>({ email: '', role: []});
 
   const cardStyle = { mt: 5, p: 3, backgroundColor: 'background.default', boxShadow: 3 };
   return (
@@ -127,7 +126,7 @@ export default function UsersTable(props: UserTableProps) {
   };
 
   function applyFilter({ inputData, comparator, filters: filtersUser }: ApplyFilterProps) {
-    const { name, status, role } = filtersUser;
+    const { email, role } = filtersUser;
 
     const stabilizedThis = inputData.map((el, index) => [el, index] as const);
 
@@ -139,14 +138,10 @@ export default function UsersTable(props: UserTableProps) {
 
     inputData = stabilizedThis.map((el) => el[0]);
 
-    if (name) {
+    if (email) {
       inputData = inputData.filter(
-        (user) => user.name.toLowerCase().indexOf(name.toLowerCase()) !== -1
+        (user) => user.email.toLowerCase().indexOf(email.toLowerCase()) !== -1
       );
-    }
-
-    if (status !== 'all') {
-      inputData = inputData.filter((user) => user.status === status);
     }
 
     if (role.length) {
