@@ -40,8 +40,8 @@ export default function UsersTable(props: UserTableProps) {
   const { tableData, onEdit, onDelete } = props;
 
   const table = useTable();
-  const filters = useSetState<IUserTableFilters>({ email: '', role: []});
-  // const filtersState = useSetState<IUserTableFilters>({ email: '', role: []});
+  const filters = useSetState<IUserTableFilters>({ email: '', role: [] });
+
 
   const dataFiltered = applyFilter({
     inputData: tableData,
@@ -52,8 +52,6 @@ export default function UsersTable(props: UserTableProps) {
   const canReset = !!filters.state.email || filters.state.role.length > 0;
 
   const notFound = (!dataFiltered.length && canReset) || !dataFiltered.length;
-
-
 
   const cardStyle = { mt: 5, p: 3, backgroundColor: 'background.default', boxShadow: 3 };
   return (
@@ -119,10 +117,7 @@ export default function UsersTable(props: UserTableProps) {
       </Card>
     </Scrollbar>
   );
-
-
 }
-
 
 type ApplyFilterProps = {
   inputData: any[];
@@ -130,11 +125,9 @@ type ApplyFilterProps = {
   comparator: (a: any, b: any) => number;
 };
 
-
 function applyFilter({ inputData, comparator, filters }: ApplyFilterProps) {
   const { email, role } = filters;
 
- 
   const stabilizedThis = inputData.map((el, index) => [el, index] as const);
 
   stabilizedThis.sort((a, b) => {
@@ -152,7 +145,11 @@ function applyFilter({ inputData, comparator, filters }: ApplyFilterProps) {
   }
 
   if (role.length) {
-    inputData = inputData.filter((user) => role.includes(user.role));
+    
+    inputData = inputData.filter((user) =>
+      user.roles.some((userRole: string) => role.includes(userRole))
+    );
+    
   }
 
   return inputData;

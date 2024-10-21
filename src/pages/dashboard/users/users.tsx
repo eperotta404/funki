@@ -105,7 +105,7 @@ export default function Page() {
           <Grid item xs={12}>
             <>
               {alert && (
-                <Alert severity={alert.type} sx={{ mt:2, mb: 0 }}>
+                <Alert severity={alert.type} sx={{ mt: 2, mb: 0 }}>
                   {alert.message}
                 </Alert>
               )}

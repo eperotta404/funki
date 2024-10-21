@@ -4,6 +4,7 @@ import type { UseSetStateReturn } from 'src/hooks/use-set-state';
 import { useCallback } from 'react';
 
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
@@ -31,6 +32,7 @@ type Props = {
 };
 
 export function UserTableToolbar({ filters, options, onResetPage }: Props) {
+  const theme = useTheme();
 
   const handleFilterEmail = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +69,27 @@ export function UserTableToolbar({ filters, options, onResetPage }: Props) {
           input={<OutlinedInput label="Roles" />}
           renderValue={(selected) => selected.map((value) => value).join(', ')}
           inputProps={{ id: 'user-filter-role-select-label' }}
-          MenuProps={{ PaperProps: { sx: { maxHeight: 240 } } }}
+          MenuProps={{
+            PaperProps: {
+              sx: { maxHeight: 240, background: theme.vars.palette.secondary.lighter },
+            },
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              borderRadius: '8px',
+              '& fieldset': {
+                borderColor: '#ccc',
+              },
+              '&:hover fieldset': {
+                borderColor: theme.vars.palette.secondary.light,
+              },
+            },
+
+            '& .MuiSelect-select': {
+              padding: '16.5px 14px',
+              backgroundColor: theme.vars.palette.secondary.lighter,
+            },
+          }}
         >
           {options.roles.map((option) => (
             <MenuItem key={option} value={option}>
@@ -80,6 +102,18 @@ export function UserTableToolbar({ filters, options, onResetPage }: Props) {
 
       <Stack direction="row" alignItems="center" spacing={2} flexGrow={1} sx={{ width: 1 }}>
         <TextField
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              backgroundColor: theme.vars.palette.secondary.lighter,
+              borderRadius: '8px',
+              '& fieldset': {
+                borderColor: '#ccc',
+              },
+              '&:hover fieldset': {
+                borderColor: theme.vars.palette.secondary.light,
+              },
+            },
+          }}
           fullWidth
           value={filters.state.email}
           onChange={handleFilterEmail}
@@ -92,7 +126,6 @@ export function UserTableToolbar({ filters, options, onResetPage }: Props) {
             ),
           }}
         />
-
       </Stack>
     </Stack>
   );
