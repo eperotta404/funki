@@ -59,15 +59,20 @@ export const navData = [
           { title: 'Ventas', path: paths.dashboard.reports.sellers },
         ],
       },
+    ],
+  },
+  {
+    subheader: 'Administración',
+    items: [
       {
-        title: 'Administración',
+        title: 'Usuarios',
         path: paths.dashboard.users.root,
         icon: ICONS.accordion,
         children: [
-          { title: 'Usuarios', path: paths.dashboard.users.root },
-          { title: 'Nuevo Usuario', path: paths.dashboard.users.create }
+          { title: 'Listado', path: paths.dashboard.users.root },
+          { title: 'Nuevo', path: paths.dashboard.users.create }
         ],
-      },
-    ],
+      }
+    ]
   },
 ];
