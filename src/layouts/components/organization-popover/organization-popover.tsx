@@ -32,7 +32,7 @@ export function OrganizationPopover({ sx }: ButtonBaseProps) {
   const [organizations, setOrganizations] = useState<Organization[]>([]);
 
   useEffect(() => {
-    if (data && data.length > 0) {
+    if (data && data.length > 0 && !selectedOrganization) {
       setOrganizations(data);
       setSelectedOrganization(data[0]);
     }
