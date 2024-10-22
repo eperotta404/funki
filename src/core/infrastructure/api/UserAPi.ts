@@ -15,7 +15,8 @@ export class UserApi implements UserRepository {
 
   async getUsers(sportOrganizationId: string): Promise<User[]> {
     try {
-      const params = new URLSearchParams({ sportOrganizationId }).toString();
+      const size = '100';
+      const params = new URLSearchParams({ sportOrganizationId, size}).toString();
       const response = await this.httpClient.get(`/users?${params}`);
       const { content } = response.data || {};
       const users = content.map((user: any) =>
